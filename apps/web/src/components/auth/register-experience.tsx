@@ -1,16 +1,16 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, CheckCircle2, Factory, Landmark, Ship, ShoppingBasket, Sparkles, UploadCloud } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { Button } from "@/components/ui/button";
+import { authDemoStorageKeys, saveDemoSession, saveRegistrationDraft } from "@/lib/auth-demo-storage";
 import { cn } from "@/lib/utils";
 
 const supplierDraftKey = "rootfablink_supplier_draft_iwall";
-const registrationDraftsKey = "rootfablink_registration_drafts";
 
 type AccountType = "buyer" | "supplier" | "logistics" | "customs";
 type FormValues = Record<string, string | string[]>;
@@ -18,20 +18,42 @@ type FormValues = Record<string, string | string[]>;
 const accountTypeIds: AccountType[] = ["buyer", "supplier", "logistics", "customs"];
 
 const fieldSets: Record<AccountType, string[]> = {
-  buyer: ["fullName", "companyName", "country", "city", "email", "phone", "sourcingInterest", "purchasingVolume", "message"],
-  supplier: ["brandName", "legalCompanyName", "country", "city", "website", "businessType", "mainCategory", "companyDescription", "contactPerson", "email", "phone", "position"],
-  logistics: ["companyName", "country", "city", "operatingRegions", "contactPerson", "email", "phone", "companyDescription"],
-  customs: ["companyName", "country", "city", "licenseNumber", "tradeRoutes", "contactPerson", "email", "phone", "description"]
+  buyer: ["fullName", "email", "password", "passwordConfirm", "phone", "country", "city", "companyName", "sourcingInterest", "purchasingVolume", "message"],
+  supplier: ["fullName", "email", "password", "passwordConfirm", "phone", "brandName", "legalCompanyName", "country", "city", "website", "businessType", "mainCategory", "companyDescription", "contactPerson", "position"],
+  logistics: ["fullName", "email", "password", "passwordConfirm", "phone", "companyName", "country", "city", "operatingRegions", "companyDescription"],
+  customs: ["fullName", "email", "password", "passwordConfirm", "phone", "companyName", "country", "city", "licenseNumber", "description"]
 };
 
-const serviceOptions: Record<AccountType, string[]> = {
-  buyer: [],
-  supplier: ["Manufacturer", "Supplier", "Exporter", "Wholesaler", "Design Brand", "OEM Available", "ODM Available", "Private Label Available"],
-  logistics: ["Sea freight", "Air freight", "Land freight", "Warehouse", "Customs support"],
-  customs: ["Import customs", "Export customs", "HS code consulting", "Document preparation", "Compliance support"]
+const serviceOptions = {
+  en: {
+    buyer: [],
+    supplier: ["Manufacturer", "Supplier", "Exporter", "Wholesaler", "Design Brand", "OEM Available", "ODM Available", "Private Label Available"],
+    logistics: ["Sea freight", "Air freight", "Land freight", "Warehouse", "Fulfillment"],
+    customs: ["Import customs", "Export customs", "HS code consulting", "Document preparation", "Compliance support"]
+  },
+  tr: {
+    buyer: [],
+    supplier: ["Üretici", "Tedarikçi", "İhracatçı", "Toptancı", "Tasarım markası", "OEM uygun", "ODM uygun", "Private label uygun"],
+    logistics: ["Deniz yolu", "Hava yolu", "Kara yolu", "Depolama", "Fulfillment"],
+    customs: ["İthalat gümrüğü", "İhracat gümrüğü", "HS code danışmanlığı", "Evrak hazırlığı", "Uyum danışmanlığı"]
+  }
+} satisfies Record<"en" | "tr", Record<AccountType, string[]>>;
+
+const savedCapabilityValues: Record<string, string> = {
+  Üretici: "Manufacturer",
+  Tedarikçi: "Supplier",
+  İhracatçı: "Exporter",
+  Toptancı: "Wholesaler",
+  "Tasarım markası": "Design Brand",
+  "OEM uygun": "OEM Available",
+  "ODM uygun": "ODM Available",
+  "Private label uygun": "Private Label Available"
 };
 
-const uploadPlaceholders = ["Business license", "Tax certificate", "Product catalog", "Company logo"];
+const uploadPlaceholders = {
+  en: ["Company logo", "Tax certificate", "Business license", "Product catalog"],
+  tr: ["Şirket logosu", "Vergi belgesi", "Faaliyet belgesi", "Ürün kataloğu"]
+};
 
 const labels = {
   en: {
@@ -71,88 +93,100 @@ const labels = {
     sections: { buyer: "Buyer information", supplier: "Supplier information", logistics: "Logistics provider information", customs: "Customs broker information", verification: "Verification preparation", capabilities: "Capabilities and services" },
     required: "This field is required.",
     email: "Enter a valid email address.",
-    savedKey: "Draft storage key"
+    savedKey: "Draft storage key",
+    google: "Continue with Google",
+    googleMessage: "Google sign-up is prepared. OAuth will be enabled during the backend authentication phase.",
+    terms: "I accept the RootFabLink Terms of Use and Privacy Policy.",
+    passwordMin: "Password must be at least 8 characters.",
+    passwordMatch: "Password confirmation must match."
   },
   tr: {
     accountDescriptions: [
-      "Tedarik talepleri oluşturun, tedarikçileri karşılaştırın ve güvenli ticaret akışlarına hazırlanın.",
-      "Şirket profili oluşturun, ürünlerinizi listeleyin ve RFQ fırsatları alın.",
-      "Deniz, hava, kara, depo ve sevkiyat teklif akışlarına katılın.",
-      "Gümrük belgeleri, HS kodu ve dış ticaret hizmet taleplerini destekleyin."
+      "Tedarik talepleri oluÅŸturun, tedarikÃ§ileri karÅŸÄ±laÅŸtÄ±rÄ±n ve gÃ¼venli ticaret akÄ±ÅŸlarÄ±na hazÄ±rlanÄ±n.",
+      "Åirket profili oluÅŸturun, Ã¼rÃ¼nlerinizi listeleyin ve RFQ fÄ±rsatlarÄ± alÄ±n.",
+      "Deniz, hava, kara, depo ve sevkiyat teklif akÄ±ÅŸlarÄ±na katÄ±lÄ±n.",
+      "GÃ¼mrÃ¼k belgeleri, HS kodu ve dÄ±ÅŸ ticaret hizmet taleplerini destekleyin."
     ],
-    selectedNote: "Seçilen onboarding akışı",
-    quickTitle: "İlk gerçek tedarikçi markasını kaydet",
-    quickText: "i-WALL yüzey sistemleri için doğrulamaya hazır tedarikçi taslağını otomatik doldurun.",
+    selectedNote: "SeÃ§ilen onboarding akÄ±ÅŸÄ±",
+    quickTitle: "Ä°lk gerÃ§ek tedarikÃ§i markasÄ±nÄ± kaydet",
+    quickText: "i-WALL yÃ¼zey sistemleri iÃ§in doÄŸrulamaya hazÄ±r tedarikÃ§i taslaÄŸÄ±nÄ± otomatik doldurun.",
     quickButton: "i-WALL bilgilerini otomatik doldur",
     successTitle: {
-      buyer: "Alıcı hesap taslağı oluşturuldu",
-      supplier: "Tedarikçi profil taslağı oluşturuldu",
-      logistics: "Lojistik firma profil taslağı oluşturuldu",
-      customs: "Gümrük müşaviri profil taslağı oluşturuldu"
+      buyer: "AlÄ±cÄ± hesap taslaÄŸÄ± oluÅŸturuldu",
+      supplier: "TedarikÃ§i profil taslaÄŸÄ± oluÅŸturuldu",
+      logistics: "Lojistik firma profil taslaÄŸÄ± oluÅŸturuldu",
+      customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri profil taslaÄŸÄ± oluÅŸturuldu"
     },
     successText: {
-      buyer: "Alıcı hesap taslağınız yerel olarak kaydedildi. Backend hesap oluşturma akışı sonraki aşamada bağlanabilir.",
-      supplier: "Tedarikçi profil taslağı oluşturuldu. Ürünlerinizi ve desen koleksiyonlarınızı eklemeye hazırsınız.",
-      logistics: "Lojistik firma taslağınız inceleme ve onboarding hazırlığı için yerel olarak kaydedildi.",
-      customs: "Gümrük müşaviri taslağınız inceleme ve onboarding hazırlığı için yerel olarak kaydedildi."
+      buyer: "AlÄ±cÄ± hesap taslaÄŸÄ±nÄ±z yerel olarak kaydedildi. Backend hesap oluÅŸturma akÄ±ÅŸÄ± sonraki aÅŸamada baÄŸlanabilir.",
+      supplier: "TedarikÃ§i profil taslaÄŸÄ± oluÅŸturuldu. ÃœrÃ¼nlerinizi ve desen koleksiyonlarÄ±nÄ±zÄ± eklemeye hazÄ±rsÄ±nÄ±z.",
+      logistics: "Lojistik firma taslaÄŸÄ±nÄ±z inceleme ve onboarding hazÄ±rlÄ±ÄŸÄ± iÃ§in yerel olarak kaydedildi.",
+      customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri taslaÄŸÄ±nÄ±z inceleme ve onboarding hazÄ±rlÄ±ÄŸÄ± iÃ§in yerel olarak kaydedildi."
     },
     buttons: {
-      profile: "Tedarikçi profiline git",
-      product: "İlk ürünü ekle",
+      profile: "TedarikÃ§i profiline git",
+      product: "Ä°lk Ã¼rÃ¼nÃ¼ ekle",
       pattern: "Desen koleksiyonu ekle",
       save: {
-        buyer: "Alıcı hesabı oluştur",
-        supplier: "Tedarikçi profili oluştur",
-        logistics: "Lojistik firma profili oluştur",
-        customs: "Gümrük müşaviri profili oluştur"
+        buyer: "AlÄ±cÄ± hesabÄ± oluÅŸtur",
+        supplier: "TedarikÃ§i profili oluÅŸtur",
+        logistics: "Lojistik firma profili oluÅŸtur",
+        customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri profili oluÅŸtur"
       }
     },
-    sections: { buyer: "Alıcı bilgileri", supplier: "Tedarikçi bilgileri", logistics: "Lojistik firma bilgileri", customs: "Gümrük müşaviri bilgileri", verification: "Doğrulama hazırlığı", capabilities: "Kabiliyetler ve hizmetler" },
+    sections: { buyer: "AlÄ±cÄ± bilgileri", supplier: "TedarikÃ§i bilgileri", logistics: "Lojistik firma bilgileri", customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri bilgileri", verification: "DoÄŸrulama hazÄ±rlÄ±ÄŸÄ±", capabilities: "Kabiliyetler ve hizmetler" },
     required: "Bu alan zorunludur.",
-    email: "Geçerli bir email adresi girin.",
-    savedKey: "Taslak kayıt anahtarı"
+    email: "GeÃ§erli bir email adresi girin.",
+    savedKey: "Taslak kayÄ±t anahtarÄ±",
+    google: "Google ile devam et",
+    googleMessage: "Google ile kayÄ±t altyapÄ±sÄ± hazÄ±rlanmÄ±ÅŸtÄ±r. OAuth baÄŸlantÄ±sÄ± backend kimlik doÄŸrulama aÅŸamasÄ±nda etkinleÅŸtirilecektir.",
+    terms: "RootFabLink KullanÄ±m ÅartlarÄ± ve Gizlilik PolitikasÄ±nÄ± kabul ediyorum.",
+    passwordMin: "Åifre en az 8 karakter olmalÄ±dÄ±r.",
+    passwordMatch: "Åifre tekrarÄ± eÅŸleÅŸmelidir."
   }
 };
 
 const fieldLabels: Record<string, { en: string; tr: string }> = {
   fullName: { en: "Full Name", tr: "Ad Soyad" },
-  companyName: { en: "Company Name", tr: "Şirket Adı" },
-  country: { en: "Country", tr: "Ülke" },
-  city: { en: "City", tr: "Şehir" },
+  companyName: { en: "Company Name", tr: "Åirket AdÄ±" },
+  country: { en: "Country", tr: "Ãœlke" },
+  city: { en: "City", tr: "Åehir" },
   email: { en: "Email", tr: "Email" },
+  password: { en: "Password", tr: "Åifre" },
+  passwordConfirm: { en: "Confirm password", tr: "Åifre tekrar" },
   phone: { en: "Phone", tr: "Telefon" },
   sourcingInterest: { en: "Main sourcing interest", tr: "Ana tedarik ilgisi" },
-  purchasingVolume: { en: "Expected purchasing volume", tr: "Tahmini alım hacmi" },
+  purchasingVolume: { en: "Expected purchasing volume", tr: "Tahmini alÄ±m hacmi" },
   message: { en: "Message", tr: "Mesaj" },
-  brandName: { en: "Brand Name", tr: "Marka Adı" },
-  legalCompanyName: { en: "Legal Company Name", tr: "Resmi Şirket Adı" },
+  brandName: { en: "Brand Name", tr: "Marka AdÄ±" },
+  legalCompanyName: { en: "Legal Company Name", tr: "Resmi Åirket AdÄ±" },
   website: { en: "Website", tr: "Website" },
-  businessType: { en: "Business Type", tr: "İşletme Türü" },
+  businessType: { en: "Business Type", tr: "Ä°ÅŸletme TÃ¼rÃ¼" },
   mainCategory: { en: "Main Category", tr: "Ana Kategori" },
-  companyDescription: { en: "Company Description", tr: "Şirket Açıklaması" },
-  contactPerson: { en: "Contact Person", tr: "Yetkili Kişi" },
-  position: { en: "Position", tr: "Görev" },
-  operatingRegions: { en: "Operating Regions", tr: "Operasyon Bölgeleri" },
-  licenseNumber: { en: "License / Authorization number", tr: "Lisans / Yetki numarası" },
-  tradeRoutes: { en: "Supported trade routes", tr: "Desteklenen ticaret rotaları" },
-  description: { en: "Description", tr: "Açıklama" }
+  companyDescription: { en: "Company Description", tr: "Åirket AÃ§Ä±klamasÄ±" },
+  contactPerson: { en: "Contact Person", tr: "Yetkili KiÅŸi" },
+  position: { en: "Position", tr: "GÃ¶rev" },
+  operatingRegions: { en: "Operating Regions", tr: "Operasyon BÃ¶lgeleri" },
+  licenseNumber: { en: "License / Authorization number", tr: "Lisans / Yetki numarasÄ±" },
+  tradeRoutes: { en: "Supported trade routes", tr: "Desteklenen ticaret rotalarÄ±" },
+  description: { en: "Description", tr: "AÃ§Ä±klama" }
 };
 
 const requiredFields: Record<AccountType, string[]> = {
-  buyer: ["fullName", "companyName", "country", "email"],
-  supplier: ["brandName", "country", "businessType", "mainCategory", "contactPerson", "email"],
-  logistics: ["companyName", "country", "contactPerson", "email"],
-  customs: ["companyName", "country", "contactPerson", "email"]
+  buyer: ["fullName", "email", "password", "passwordConfirm", "country"],
+  supplier: ["fullName", "email", "password", "passwordConfirm", "brandName", "country", "businessType", "mainCategory", "contactPerson"],
+  logistics: ["fullName", "email", "password", "passwordConfirm", "companyName", "country"],
+  customs: ["fullName", "email", "password", "passwordConfirm", "companyName", "country"]
 };
 
 const iWallData: FormValues = {
   brandName: "i-WALL",
   legalCompanyName: "i-WALL",
   country: "Türkiye",
-  city: "",
+  city: "İstanbul",
   website: "",
-  businessType: "Manufacturer / Supplier / Design Brand",
-  mainCategory: "Building Materials / Interior Decoration / Wall Panels",
+  businessType: "Üretici / Tedarikçi / Tasarım Markası",
+  mainCategory: "Yapı Malzemeleri / İç Dekorasyon / Duvar Panelleri",
   companyDescription:
     "i-WALL; konut, ticari alan, otel, ofis ve mimari projeler için dekoratif duvar sistemleri, desenli duvar panelleri ve iç mekan yüzey tasarım çözümleri sunar.",
   contactPerson: "",
@@ -165,11 +199,14 @@ const iWallData: FormValues = {
 export function RegisterExperience({ locale, accountTypes, accountNote }: { locale: Locale; accountTypes: string[]; accountNote: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const formRef = useRef<HTMLFormElement | null>(null);
   const copy = locale === "tr" ? labels.tr : labels.en;
+  const localizedServiceOptions = serviceOptions[locale === "tr" ? "tr" : "en"];
   const [selectedType, setSelectedType] = useState<AccountType>("buyer");
   const [values, setValues] = useState<FormValues>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submittedType, setSubmittedType] = useState<AccountType | null>(null);
+  const [googleMessage, setGoogleMessage] = useState("");
 
   useEffect(() => {
     const requestedType = searchParams.get("type") as AccountType | null;
@@ -194,6 +231,7 @@ export function RegisterExperience({ locale, accountTypes, accountNote }: { loca
     setSubmittedType(null);
     setErrors({});
     router.replace(`/${locale}/auth/register?type=${type}`, { scroll: false });
+    window.setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
   };
 
   const updateField = (field: string, value: string) => {
@@ -203,10 +241,11 @@ export function RegisterExperience({ locale, accountTypes, accountNote }: { loca
 
   const toggleOption = (option: string) => {
     const key = selectedType === "supplier" ? "capabilities" : "services";
+    const storedOption = savedCapabilityValues[option] ?? option;
     const currentOptions = Array.isArray(values[key]) ? (values[key] as string[]) : [];
     setValues((current) => ({
       ...current,
-      [key]: currentOptions.includes(option) ? currentOptions.filter((item) => item !== option) : [...currentOptions, option]
+      [key]: currentOptions.includes(storedOption) ? currentOptions.filter((item) => item !== storedOption) : [...currentOptions, storedOption]
     }));
   };
 
@@ -224,8 +263,24 @@ export function RegisterExperience({ locale, accountTypes, accountNote }: { loca
     }
     const email = String(values.email ?? "").trim();
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) nextErrors.email = copy.email;
+    const password = String(values.password ?? "");
+    const passwordConfirm = String(values.passwordConfirm ?? "");
+    if (password && password.length < 8) nextErrors.password = copy.passwordMin;
+    if (passwordConfirm && password !== passwordConfirm) nextErrors.passwordConfirm = copy.passwordMatch;
+    if (values.acceptedTerms !== "true") nextErrors.acceptedTerms = copy.required;
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
+  };
+
+  const isReadyToSubmit = () => {
+    if (values.acceptedTerms !== "true") return false;
+    for (const field of requiredFields[selectedType]) {
+      if (!String(values[field] ?? "").trim()) return false;
+    }
+    const email = String(values.email ?? "").trim();
+    const password = String(values.password ?? "");
+    const passwordConfirm = String(values.passwordConfirm ?? "");
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && password.length >= 8 && password === passwordConfirm;
   };
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -233,18 +288,36 @@ export function RegisterExperience({ locale, accountTypes, accountNote }: { loca
     if (!validate()) return;
 
     const now = new Date().toISOString();
+    const { password: _password, passwordConfirm: _passwordConfirm, acceptedTerms: _acceptedTerms, ...safeValues } = values;
+    void _password;
+    void _passwordConfirm;
+    void _acceptedTerms;
+    const account = {
+      fullName: String(values.fullName ?? ""),
+      email: String(values.email ?? ""),
+      phone: String(values.phone ?? ""),
+      country: String(values.country ?? ""),
+      city: String(values.city ?? "")
+    };
     const draft = {
       id: `draft_${selectedType}_${Date.now()}`,
-      type: selectedType,
-      data: values,
-      status: "draft",
+      accountType: selectedType,
+      account,
+      profile: safeValues,
+      status: "draft" as const,
       createdAt: now,
       updatedAt: now
     };
 
     if (typeof window !== "undefined") {
-      const existing = JSON.parse(window.localStorage.getItem(registrationDraftsKey) ?? "[]") as unknown[];
-      window.localStorage.setItem(registrationDraftsKey, JSON.stringify([draft, ...existing]));
+      saveRegistrationDraft(draft);
+      saveDemoSession({
+        email: account.email,
+        accountType: selectedType,
+        companyName: String(values.companyName ?? values.legalCompanyName ?? values.brandName ?? ""),
+        demoSession: true,
+        createdAt: now
+      });
       if (selectedType === "supplier" && String(values.brandName ?? "").toLowerCase() === "i-wall") {
         window.localStorage.setItem(supplierDraftKey, JSON.stringify(draft));
       }
@@ -315,20 +388,31 @@ export function RegisterExperience({ locale, accountTypes, accountNote }: { loca
         </div>
       )}
 
-      <form onSubmit={submit} className="mt-8 grid gap-6 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
+      <form ref={formRef} onSubmit={submit} className="mt-8 grid gap-6 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
+        <div>
+          <button
+            type="button"
+            onClick={() => setGoogleMessage(copy.googleMessage)}
+            className="flex h-11 w-full items-center justify-center rounded-md border border-ink/15 bg-white text-sm font-bold text-ink hover:border-signal/40 hover:bg-cloud"
+          >
+            {copy.google}
+          </button>
+          {googleMessage && <p className="mt-3 rounded-md bg-cloud p-3 text-xs font-semibold leading-5 text-steel">{googleMessage}</p>}
+        </div>
         <FormSection icon={accountCards.find((item) => item.id === selectedType)?.icon ?? Factory} title={copy.sections[selectedType]}>
           {fieldSets[selectedType].map((field) => (
             <TextField key={field} label={fieldLabels[field]?.[locale === "tr" ? "tr" : "en"] ?? field} value={String(values[field] ?? "")} onChange={(value) => updateField(field, value)} error={errors[field]} required={requiredFields[selectedType].includes(field)} multiline={["message", "companyDescription", "description"].includes(field)} />
           ))}
         </FormSection>
 
-        {serviceOptions[selectedType].length > 0 && (
+        {localizedServiceOptions[selectedType].length > 0 && (
           <div>
             <h3 className="text-lg font-bold text-ink">{copy.sections.capabilities}</h3>
             <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-              {serviceOptions[selectedType].map((option) => {
+              {localizedServiceOptions[selectedType].map((option) => {
                 const key = selectedType === "supplier" ? "capabilities" : "services";
-                const active = Array.isArray(values[key]) && (values[key] as string[]).includes(option);
+                const storedOption = savedCapabilityValues[option] ?? option;
+                const active = Array.isArray(values[key]) && (values[key] as string[]).includes(storedOption);
                 return (
                   <label key={option} className={cn("flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-sm font-semibold", active ? "border-signal bg-orange-50 text-copper" : "border-ink/10 text-ink hover:bg-cloud")}>
                     <input type="checkbox" checked={active} onChange={() => toggleOption(option)} className="accent-orange-600" />
@@ -344,7 +428,7 @@ export function RegisterExperience({ locale, accountTypes, accountNote }: { loca
           <div>
             <h3 className="text-lg font-bold text-ink">{copy.sections.verification}</h3>
             <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {uploadPlaceholders.map((item) => (
+              {uploadPlaceholders[locale === "tr" ? "tr" : "en"].map((item) => (
                 <div key={item} className="rounded-md border border-dashed border-ink/20 bg-cloud p-4">
                   <UploadCloud size={20} className="text-copper" />
                   <p className="mt-2 text-sm font-bold text-ink">{item}</p>
@@ -355,9 +439,15 @@ export function RegisterExperience({ locale, accountTypes, accountNote }: { loca
           </div>
         )}
 
+        <label className="flex items-start gap-3 rounded-md border border-ink/10 bg-cloud p-4 text-sm font-semibold leading-6 text-ink">
+          <input type="checkbox" checked={values.acceptedTerms === "true"} onChange={(event) => updateField("acceptedTerms", event.target.checked ? "true" : "")} className="mt-1 accent-orange-600" />
+          <span>{copy.terms}</span>
+        </label>
+        {errors.acceptedTerms && <p className="-mt-4 text-xs font-semibold text-red-600">{errors.acceptedTerms}</p>}
+
         <div className="flex flex-col gap-3 border-t border-ink/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-semibold leading-5 text-steel">{copy.savedKey}: {selectedType === "supplier" ? `${registrationDraftsKey} / ${supplierDraftKey}` : registrationDraftsKey}</p>
-          <button type="submit" className="rounded-md bg-signal px-5 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper">
+          <p className="text-xs font-semibold leading-5 text-steel">{copy.savedKey}: {selectedType === "supplier" ? `${authDemoStorageKeys.registrationDrafts} / ${supplierDraftKey}` : authDemoStorageKeys.registrationDrafts}</p>
+          <button type="submit" disabled={!isReadyToSubmit()} className="rounded-md bg-signal px-5 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper disabled:cursor-not-allowed disabled:bg-steel disabled:shadow-none">
             {copy.buttons.save[selectedType]}
           </button>
         </div>
@@ -394,3 +484,5 @@ function TextField({ label, value, onChange, error, required = false, multiline 
     </label>
   );
 }
+
+

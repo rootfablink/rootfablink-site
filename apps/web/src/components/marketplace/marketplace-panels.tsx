@@ -106,6 +106,8 @@ export function TradeProtectionMenu({ copy, locale }: { copy: MarketplaceCopy; l
 }
 
 export function SignInDropdown({ copy, locale }: { copy: MarketplaceCopy; locale: string }) {
+  const menuRoutes = [`/${locale}/account`, `/${locale}/account`, `/${locale}/messages`, `/${locale}/rfq`, `/${locale}/inquiry-basket`, `/${locale}/account`, `/${locale}/supplier-center`, `/${locale}/supplier-center`, `/${locale}/help-center`];
+
   return (
     <div className="w-full max-w-sm">
       <h3 className="text-lg font-bold text-ink">{copy.signIn.welcome}</h3>
@@ -124,8 +126,8 @@ export function SignInDropdown({ copy, locale }: { copy: MarketplaceCopy; locale
         ))}
       </div>
       <div className="mt-4 grid gap-1 border-t border-ink/10 pt-3">
-        {copy.signIn.items.map((item) => (
-          <a key={item} href={`/${locale}/account`} className="rounded-md px-2 py-2 text-sm font-medium text-steel hover:bg-cloud hover:text-ink">
+        {copy.signIn.items.map((item, index) => (
+          <a key={item} href={menuRoutes[index] ?? `/${locale}/account`} className="rounded-md px-2 py-2 text-sm font-medium text-steel hover:bg-cloud hover:text-ink">
             {item}
           </a>
         ))}
