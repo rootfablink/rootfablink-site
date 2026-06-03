@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Camera, Check, ChevronDown, Globe2, Heart, PackageSearch, Search, UserRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
@@ -17,6 +17,7 @@ type OpenPanel = "categories" | "verified" | "protection" | "buyer" | "supplier"
 export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOpenLens?: () => void }) {
   const router = useRouter();
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement | null>(null);
   const [preference, setPreference] = useState<LocalizationPreference>(() => preferenceFromLanguage(locale, false));
   const copy = getMarketplaceCopy(locale);
   const [activeTab, setActiveTab] = useState(copy.header.products);
@@ -39,6 +40,17 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
     setActiveTab(copy.header.products);
   }, [copy.header.products]);
 
+  useEffect(() => {
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setOpenPanel(null);
+      }
+    };
+
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
+  }, []);
+
   const toggle = (panel: OpenPanel) => {
     setOpenPanel((current) => (current === panel ? null : panel));
   };
@@ -55,7 +67,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
+    <header ref={headerRef} className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 py-3 sm:px-5">
         <div className="flex items-center justify-between gap-3">
           <Link href={`/${locale}`} className="shrink-0">
@@ -123,7 +135,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
                 {copy.header.lens}
               </button>
               <button type="button" className="rounded-md bg-signal px-4 py-2.5 text-sm font-bold text-white hover:bg-copper">
-                {copy.header.products === "Products" ? "Search" : "Ara"}
+                {copy.header.searchButton}
               </button>
             </div>
           </div>
