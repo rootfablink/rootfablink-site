@@ -22,6 +22,10 @@ npm run start
 npm run typecheck
 ```
 
+## Text encoding
+
+All Turkish UI strings must be stored as UTF-8. Do not paste mojibake text into source files, translation files, mock data, or documentation.
+
 ## Production deployment
 
 ### Package manager
