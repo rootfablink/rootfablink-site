@@ -84,7 +84,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
           <div className="hidden items-center gap-2 lg:flex">
             <SmallPanelButton icon={<MapPin size={16} />} label={copy.header.delivery} value={`${preference.country} · ${preference.currency}`} onClick={() => toggle("delivery")} />
             <SmallPanelButton icon={<Globe2 size={16} />} label={copy.header.languageCurrency} onClick={() => toggle("language")} />
-            <Link href={`/${locale}/messages`} className="flex h-10 w-10 items-center justify-center rounded-md border border-ink/10 text-ink hover:border-signal/35 hover:bg-cloud" aria-label={copy.header.basket}>
+            <Link href={`/${locale}/inquiry-basket`} className="flex h-10 w-10 items-center justify-center rounded-md border border-ink/10 text-ink hover:border-signal/35 hover:bg-cloud" aria-label={copy.header.basket}>
               <Heart size={17} />
             </Link>
             <button type="button" onClick={() => toggle("signin")} className="flex h-10 items-center gap-2 rounded-md border border-ink/10 px-3 text-sm font-semibold text-ink hover:border-signal/35 hover:bg-cloud">

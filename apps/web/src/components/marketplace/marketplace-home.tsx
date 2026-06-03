@@ -11,6 +11,7 @@ import { FloatingActionBar } from "./floating-action-bar";
 import { getMarketplaceCopy, marketplaceProducts, marketplaceSuppliers } from "./marketplace-copy";
 import { MarketplaceHeader } from "./marketplace-header";
 import { RFQQuickModal, RootFabLinkLensModal } from "./marketplace-modals";
+import { MobileMarketplaceHome } from "./mobile-marketplace-home";
 import { ProductCard } from "./product-card";
 import { SupplierCard } from "./supplier-card";
 
@@ -22,6 +23,8 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
 
   return (
     <>
+      <MobileMarketplaceHome locale={locale} />
+      <div className="hidden md:block">
       <MarketplaceHeader locale={locale} onOpenLens={() => setLensOpen(true)} />
       <main className="bg-white">
         <section className="border-b border-ink/10 bg-[linear-gradient(135deg,#ffffff_0%,#ffffff_52%,#fff2e5_100%)]">
@@ -180,6 +183,7 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
       <FloatingActionBar copy={copy} locale={locale} onOpenLens={() => setLensOpen(true)} onOpenRfq={() => setRfqOpen(true)} />
       <RootFabLinkLensModal copy={copy} open={lensOpen} onClose={() => setLensOpen(false)} />
       <RFQQuickModal copy={copy} open={rfqOpen} onClose={() => setRfqOpen(false)} />
+      </div>
     </>
   );
 }
