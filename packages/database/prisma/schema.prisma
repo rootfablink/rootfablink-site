@@ -1,0 +1,326 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  MODERATOR
+  SUPPORT_AGENT
+  VERIFICATION_AGENT
+  BUYER
+  SUPPLIER
+  LOGISTICS_PROVIDER
+  CUSTOMS_BROKER
+  SERVICE_PROVIDER
+  COMPANY_MEMBER
+}
+
+enum AccountStatus {
+  ACTIVE
+  PENDING
+  SUSPENDED
+  DELETED
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  PENDING_REVIEW
+  PARTIALLY_VERIFIED
+  VERIFIED_SUPPLIER
+  VERIFIED_FACTORY
+  PREMIUM_VERIFIED
+  REJECTED
+  SUSPENDED
+}
+
+enum ProductStatus {
+  DRAFT
+  PENDING_REVIEW
+  ACTIVE
+  REJECTED
+  ARCHIVED
+}
+
+enum RfqStatus {
+  DRAFT
+  OPEN
+  MATCHING
+  QUOTING
+  CLOSED
+  EXPIRED
+  REMOVED
+}
+
+enum QuoteStatus {
+  DRAFT
+  SUBMITTED
+  SHORTLISTED
+  REJECTED
+  ACCEPTED
+  WITHDRAWN
+}
+
+model User {
+  id               String          @id @default(cuid())
+  email            String          @unique
+  passwordHash     String
+  name             String
+  phone            String?
+  role             UserRole        @default(BUYER)
+  status           AccountStatus   @default(PENDING)
+  emailVerified    Boolean         @default(false)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  companiesOwned   Company[]       @relation("CompanyOwner")
+  rfqs             RFQ[]           @relation("BuyerRfqs")
+  quotations       Quotation[]     @relation("SupplierQuotes")
+  sentMessages     Message[]       @relation("MessageSender")
+  supportTickets   SupportTicket[] @relation("TicketOwner")
+  assignedTickets  SupportTicket[] @relation("TicketAssignee")
+  reviewedDocs     VerificationDocument[] @relation("DocumentReviewer")
+  auditLogs         AuditLog[]      @relation("AuditActor")
+}
+
+model Company {
+  id                 String             @id @default(cuid())
+  ownerId            String
+  owner              User               @relation("CompanyOwner", fields: [ownerId], references: [id])
+  name               String
+  slug               String             @unique
+  country            String
+  city               String
+  address            String?
+  companyType        String
+  description        String?
+  website            String?
+  logo               String?
+  coverImage         String?
+  yearEstablished    Int?
+  employeeCount      String?
+  annualRevenueRange String?
+  mainMarkets        String[]
+  verificationStatus VerificationStatus @default(UNVERIFIED)
+  trustScore         Int                @default(0)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  factoryProfile     FactoryProfile?
+  products           Product[]
+  logisticsProvider  LogisticsProvider?
+  documents          VerificationDocument[]
+  subscriptions      CompanySubscription[]
+  conversations      Conversation[]
+}
+
+model FactoryProfile {
+  id                 String   @id @default(cuid())
+  companyId          String   @unique
+  company            Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  productionCapacity String?
+  factorySize        String?
+  machinery          String[]
+  productionLines    Int?
+  qualityControl     String?
+  factoryImages      String[]
+  factoryVideos      String[]
+}
+
+model Category {
+  id             String     @id @default(cuid())
+  parentId       String?
+  parent         Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children       Category[] @relation("CategoryTree")
+  name           String
+  slug           String     @unique
+  description    String?
+  icon           String?
+  seoTitle       String?
+  seoDescription String?
+  products       Product[]
+  rfqs           RFQ[]
+}
+
+model Product {
+  id                    String        @id @default(cuid())
+  companyId             String
+  company               Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  title                 String
+  slug                  String        @unique
+  description           String
+  categoryId            String
+  category              Category      @relation(fields: [categoryId], references: [id])
+  images                String[]
+  videos                String[]
+  moq                   Int
+  priceMin              Decimal?
+  priceMax              Decimal?
+  currency              String        @default("USD")
+  leadTime              String?
+  modelNumber           String?
+  brandName             String?
+  oemAvailable          Boolean       @default(false)
+  odmAvailable          Boolean       @default(false)
+  privateLabelAvailable Boolean       @default(false)
+  certifications        String[]
+  status                ProductStatus @default(DRAFT)
+  seoTitle              String?
+  seoDescription        String?
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  conversations         Conversation[]
+}
+
+model RFQ {
+  id                 String         @id @default(cuid())
+  buyerId            String
+  buyer              User           @relation("BuyerRfqs", fields: [buyerId], references: [id])
+  title              String
+  description        String
+  categoryId         String
+  category           Category       @relation(fields: [categoryId], references: [id])
+  quantity           Int
+  destinationCountry String
+  deliveryTerms      String?
+  attachments        String[]
+  status             RfqStatus      @default(DRAFT)
+  expiresAt          DateTime?
+  createdAt          DateTime       @default(now())
+  quotations         Quotation[]
+  conversations      Conversation[]
+}
+
+model Quotation {
+  id          String      @id @default(cuid())
+  rfqId       String
+  rfq         RFQ         @relation(fields: [rfqId], references: [id], onDelete: Cascade)
+  supplierId  String
+  supplier    User        @relation("SupplierQuotes", fields: [supplierId], references: [id])
+  price       Decimal?
+  currency    String      @default("USD")
+  moq         Int?
+  leadTime    String?
+  message     String?
+  attachments String[]
+  status      QuoteStatus @default(DRAFT)
+  createdAt   DateTime    @default(now())
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  buyerId   String
+  supplierId String
+  companyId String?
+  company   Company?  @relation(fields: [companyId], references: [id])
+  productId String?
+  product   Product?  @relation(fields: [productId], references: [id])
+  rfqId     String?
+  rfq       RFQ?      @relation(fields: [rfqId], references: [id])
+  createdAt DateTime  @default(now())
+  messages  Message[]
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderId       String
+  sender         User         @relation("MessageSender", fields: [senderId], references: [id])
+  body           String
+  translatedBody String?
+  attachments    String[]
+  readAt         DateTime?
+  createdAt      DateTime     @default(now())
+}
+
+model VerificationDocument {
+  id              String             @id @default(cuid())
+  companyId       String
+  company         Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  documentType    String
+  fileUrl         String
+  status          VerificationStatus @default(PENDING_REVIEW)
+  reviewedBy      String?
+  reviewer        User?              @relation("DocumentReviewer", fields: [reviewedBy], references: [id])
+  reviewedAt      DateTime?
+  rejectionReason String?
+}
+
+model LogisticsProvider {
+  id                 String             @id @default(cuid())
+  companyId          String             @unique
+  company            Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  serviceTypes       String[]
+  regions            String[]
+  ports              String[]
+  transportModes     String[]
+  verificationStatus VerificationStatus @default(UNVERIFIED)
+}
+
+model FreightQuoteRequest {
+  id                 String        @id @default(cuid())
+  buyerId            String
+  originCountry      String
+  originCity         String?
+  destinationCountry String
+  destinationCity    String?
+  shipmentType       String
+  containerType      String?
+  cargoDescription   String
+  weight             Decimal?
+  volume             Decimal?
+  status             RfqStatus     @default(OPEN)
+  createdAt          DateTime      @default(now())
+}
+
+model SupportTicket {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation("TicketOwner", fields: [userId], references: [id])
+  subject     String
+  description String
+  status      String   @default("OPEN")
+  priority    String   @default("NORMAL")
+  assignedTo  String?
+  assignee    User?    @relation("TicketAssignee", fields: [assignedTo], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  actor      User?    @relation("AuditActor", fields: [actorId], references: [id])
+  action     String
+  entityType String
+  entityId   String
+  metadata   Json?
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+}
+
+model SubscriptionPlan {
+  id        String   @id @default(cuid())
+  name      String
+  price     Decimal
+  currency  String   @default("USD")
+  features  Json
+  limits    Json
+  createdAt DateTime @default(now())
+  subscriptions CompanySubscription[]
+}
+
+model CompanySubscription {
+  id        String   @id @default(cuid())
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  planId    String
+  plan      SubscriptionPlan @relation(fields: [planId], references: [id])
+  status    String   @default("ACTIVE")
+  startedAt DateTime @default(now())
+  expiresAt DateTime?
+}

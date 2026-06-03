@@ -1,0 +1,26 @@
+{
+  "name": "rootfablink",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "npm@10.9.4",
+  "scripts": {
+    "dev": "npm run dev --workspace @rootfablink/web",
+    "build": "npm run build --workspaces --if-present",
+    "start": "npm run start --workspace @rootfablink/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:generate": "npm run db:generate --workspace @rootfablink/database",
+    "db:migrate": "npm run db:migrate --workspace @rootfablink/database"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.34.0",
+    "@typescript-eslint/parser": "^8.34.0",
+    "eslint": "^9.29.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}
