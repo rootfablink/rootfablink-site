@@ -117,14 +117,6 @@ export function SignInDropdown({ copy, locale }: { copy: MarketplaceCopy; locale
           {copy.signIn.create}
         </Button>
       </div>
-      <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-steel">{copy.signIn.social}</p>
-      <div className="mt-2 grid grid-cols-3 gap-2">
-        {["Google", "LinkedIn", "Facebook"].map((item) => (
-          <button key={item} type="button" className="rounded-md border border-ink/10 px-2 py-2 text-xs font-semibold text-ink hover:bg-cloud">
-            {item}
-          </button>
-        ))}
-      </div>
       <div className="mt-4 grid gap-1 border-t border-ink/10 pt-3">
         {copy.signIn.items.map((item, index) => (
           <a key={item} href={menuRoutes[index] ?? `/${locale}/account`} className="rounded-md px-2 py-2 text-sm font-medium text-steel hover:bg-cloud hover:text-ink">

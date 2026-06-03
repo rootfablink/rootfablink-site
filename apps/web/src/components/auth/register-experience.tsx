@@ -45,18 +45,6 @@ const emptySupplierForm: SupplierFormData = {
   companyDescription: ""
 };
 
-const iWallSupplierForm: SupplierFormData = {
-  ...emptySupplierForm,
-  brandName: "i-WALL",
-  legalCompanyName: "i-WALL",
-  country: "Türkiye",
-  city: "İstanbul",
-  businessType: "Üretici / Tedarikçi / Tasarım Markası",
-  mainCategory: "Yapı Malzemeleri / İç Dekorasyon / Duvar Panelleri",
-  companyDescription:
-    "i-WALL; konut, ticari alan, otel, ofis ve mimari projeler için dekoratif duvar sistemleri, desenli duvar panelleri ve iç mekan yüzey tasarım çözümleri sunar."
-};
-
 const simpleFormFields: Record<Exclude<AccountType, "supplier">, string[]> = {
   buyer: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Şirket Adı", "Ülke", "Şehir", "Aradığınız ürün kategorileri", "Tahmini alım hacmi", "Mesaj"],
   logistics: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Firma Adı", "Ülke", "Şehir", "Hizmet türleri", "Hizmet verilen bölgeler", "Firma açıklaması"],
@@ -93,20 +81,6 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
     setSuccess(false);
   };
 
-  const prefillIWall = () => {
-    setSelectedType("supplier");
-    setSupplierForm((current) => ({
-      ...iWallSupplierForm,
-      fullName: current.fullName,
-      email: current.email,
-      password: current.password,
-      confirmPassword: current.confirmPassword,
-      phone: current.phone
-    }));
-    setErrors({});
-    setSuccess(false);
-  };
-
   const validateSupplier = () => {
     const nextErrors: Record<string, string> = {};
     const required: Array<keyof SupplierFormData> = ["fullName", "email", "password", "confirmPassword", "brandName", "country", "businessType", "mainCategory"];
@@ -132,7 +106,7 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
     if (!validateSupplier()) return;
     const now = new Date().toISOString();
     const draft = {
-      id: `supplier_iwall_${Date.now()}`,
+      id: `supplier_${Date.now()}`,
       accountType: "supplier",
       brandName: supplierForm.brandName,
       legalCompanyName: supplierForm.legalCompanyName,
@@ -150,7 +124,10 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
       createdAt: now,
       updatedAt: now
     };
-    window.localStorage.setItem("rootfablink_supplier_draft_iwall", JSON.stringify(draft));
+    window.localStorage.setItem("rootfablink_supplier_draft", JSON.stringify(draft));
+    if (supplierForm.brandName.trim().toLowerCase() === "i-wall") {
+      window.localStorage.setItem("rootfablink_supplier_draft_iwall", JSON.stringify(draft));
+    }
     const existingDrafts = JSON.parse(window.localStorage.getItem("rootfablink_registration_drafts") ?? "[]") as unknown[];
     window.localStorage.setItem("rootfablink_registration_drafts", JSON.stringify([draft, ...existingDrafts]));
     setSuccess(true);
@@ -197,14 +174,11 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
 
       {selectedType === "supplier" ? (
         <section className="mt-8 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
-          <div className="flex flex-col gap-3 rounded-md border border-signal/25 bg-orange-50/70 p-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-lg font-bold text-ink">{tr ? "i-WALL marka profilini doldur" : "Fill i-WALL supplier profile"}</h2>
-              <p className="mt-1 text-sm leading-6 text-steel">{tr ? "İlk tedarikçi marka taslağını hızlıca hazırlayın; tüm alanlar sonradan düzenlenebilir." : "Prepare the first supplier brand draft quickly; all fields remain editable."}</p>
-            </div>
-            <button type="button" onClick={prefillIWall} className="rounded-md bg-ink px-4 py-3 text-sm font-bold text-white hover:bg-copper">
-              {tr ? "i-WALL bilgilerini doldur" : "Fill i-WALL details"}
-            </button>
+          <div className="border-b border-ink/10 pb-5">
+            <h2 className="text-xl font-bold text-ink">{tr ? "Tedarikçi kayıt formu" : "Supplier registration form"}</h2>
+            <p className="mt-2 text-sm leading-6 text-steel">
+              {tr ? "Şirket bilgilerinizi manuel olarak girin. Kayıt taslağı güvenli şekilde yerel olarak saklanır; şifre kaydedilmez." : "Enter your company information manually. The registration draft is saved locally; passwords are never stored."}
+            </p>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -257,13 +231,19 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
             <h2 className="text-xl font-bold">{selectedType === "supplier" ? "Tedarikçi profil taslağı oluşturuldu" : "Kayıt taslağı oluşturuldu"}</h2>
           </div>
           <p className="mt-3 text-sm font-semibold leading-6 text-green-800">
-            {selectedType === "supplier" ? "i-WALL tedarikçi profili hazırlandı. Şimdi ürünlerinizi ve desen koleksiyonlarınızı ekleyebilirsiniz." : "Bilgileriniz localStorage üzerinde taslak olarak kaydedildi."}
+            {selectedType === "supplier" ? "Şirket profiliniz kaydedildi. Ürünlerinizi, desenlerinizi ve katalog bilgilerinizi eklemeye başlayabilirsiniz." : "Bilgileriniz localStorage üzerinde taslak olarak kaydedildi."}
           </p>
           {selectedType === "supplier" && (
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <Button href={`/${locale}/suppliers/i-wall`}>i-WALL profilini görüntüle</Button>
-              <Button href={`/${locale}/suppliers/i-wall/products/new`} variant="secondary">İlk ürünü ekle</Button>
-              <Button href={`/${locale}/suppliers/i-wall/patterns/new`} variant="secondary">Desen koleksiyonu ekle</Button>
+              <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall` : `/${locale}/supplier-center`}>
+                {tr ? "Tedarikçi paneline git" : "Go to supplier dashboard"}
+              </Button>
+              <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall/products/new` : `/${locale}/products`} variant="secondary">
+                {tr ? "Ürün ekle" : "Add product"}
+              </Button>
+              <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall/patterns/new` : `/${locale}/supplier-center`} variant="secondary">
+                {tr ? "Desen koleksiyonu ekle" : "Add pattern collection"}
+              </Button>
             </div>
           )}
         </section>
