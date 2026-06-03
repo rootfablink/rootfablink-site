@@ -8,7 +8,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
     <footer className="border-t border-ink/10 bg-white">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-5 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <p className="text-lg font-bold text-ink">ROOTFABLINK</p>
+          <p className="rootfablink-wordmark rootfablink-wordmark-large text-ink">ROOTFABLINK</p>
           <p className="mt-3 max-w-sm text-sm leading-6 text-steel">
             {t.footer.text}
           </p>

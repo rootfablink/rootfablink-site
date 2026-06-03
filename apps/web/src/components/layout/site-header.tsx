@@ -1,4 +1,4 @@
-import { Factory, Globe2, ShieldCheck } from "lucide-react";
+import { Globe2, ShieldCheck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { dictionaries } from "@/messages";
 import { Button } from "@/components/ui/button";
@@ -20,11 +20,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
       <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-5">
-        <a href={`/${locale}`} className="flex min-w-0 items-center gap-2 font-bold tracking-[0.02em] text-ink sm:gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-ink text-white ring-2 ring-signal/25">
-            <Factory size={19} />
-          </span>
-          <span className="truncate text-sm sm:text-base">ROOTFABLINK</span>
+        <a href={`/${locale}`} className="rootfablink-wordmark truncate text-ink">
+          <span>ROOTFABLINK</span>
         </a>
         <nav className="hidden items-center gap-6 text-sm font-medium text-steel md:flex">
           <a href={`/${locale}/buyers`}>{t.nav.buyers}</a>
