@@ -12,9 +12,12 @@ export type RegistrationDraft = {
 
 export type DemoSession = {
   email: string;
+  locale?: string;
+  authenticated?: true;
+  provider?: "email" | "google";
   accountType?: string;
   companyName?: string;
-  demoSession: true;
+  demoSession?: true;
   createdAt: string;
 };
 

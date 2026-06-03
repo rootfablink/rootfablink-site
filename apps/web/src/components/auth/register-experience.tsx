@@ -115,7 +115,7 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
         nextErrors[field] = tr ? "Bu alan zorunludur." : "This field is required.";
       }
     }
-    if (supplierForm.email && !supplierForm.email.includes("@")) {
+    if (supplierForm.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(supplierForm.email.trim())) {
       nextErrors.email = tr ? "Geçerli bir e-posta girin." : "Enter a valid email.";
     }
     if (supplierForm.password && supplierForm.password.length < 8) {
@@ -199,11 +199,11 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
         <section className="mt-8 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
           <div className="flex flex-col gap-3 rounded-md border border-signal/25 bg-orange-50/70 p-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="text-lg font-bold text-ink">{tr ? "i-WALL marka profilini otomatik doldur" : "Pre-fill i-WALL supplier profile"}</h2>
+              <h2 className="text-lg font-bold text-ink">{tr ? "i-WALL marka profilini doldur" : "Fill i-WALL supplier profile"}</h2>
               <p className="mt-1 text-sm leading-6 text-steel">{tr ? "İlk tedarikçi marka taslağını hızlıca hazırlayın; tüm alanlar sonradan düzenlenebilir." : "Prepare the first supplier brand draft quickly; all fields remain editable."}</p>
             </div>
             <button type="button" onClick={prefillIWall} className="rounded-md bg-ink px-4 py-3 text-sm font-bold text-white hover:bg-copper">
-              {tr ? "i-WALL bilgilerini otomatik doldur" : "Fill i-WALL details"}
+              {tr ? "i-WALL bilgilerini doldur" : "Fill i-WALL details"}
             </button>
           </div>
 
