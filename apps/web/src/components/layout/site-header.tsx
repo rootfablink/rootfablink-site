@@ -1,5 +1,6 @@
 import { Globe2, ShieldCheck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
+import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { dictionaries } from "@/messages";
 import { Button } from "@/components/ui/button";
 
@@ -20,8 +21,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
       <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-5">
-        <a href={`/${locale}`} className="rootfablink-wordmark truncate text-ink">
-          <span>ROOTFABLINK</span>
+        <a href={`/${locale}`} className="min-w-0 shrink-0">
+          <RootFabLinkWordmark size="compact" />
         </a>
         <nav className="hidden items-center gap-6 text-sm font-medium text-steel md:flex">
           <a href={`/${locale}/buyers`}>{t.nav.buyers}</a>

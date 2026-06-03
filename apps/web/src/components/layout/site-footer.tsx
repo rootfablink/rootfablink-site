@@ -1,4 +1,5 @@
 import type { Locale } from "@rootfablink/i18n";
+import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { dictionaries } from "@/messages";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
@@ -8,7 +9,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
     <footer className="border-t border-ink/10 bg-white">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-5 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <p className="rootfablink-wordmark rootfablink-wordmark-large text-ink">ROOTFABLINK</p>
+          <RootFabLinkWordmark size="large" />
           <p className="mt-3 max-w-sm text-sm leading-6 text-steel">
             {t.footer.text}
           </p>

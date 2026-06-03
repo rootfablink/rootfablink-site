@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { Camera, ChevronDown, Globe2, Heart, MapPin, PackageSearch, Search, UserRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
+import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { cn } from "@/lib/utils";
 import { getMarketplaceCopy } from "./marketplace-copy";
 import {
@@ -32,8 +33,8 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
     <header className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 py-3 sm:px-5">
         <div className="flex items-center justify-between gap-3">
-          <Link href={`/${locale}`} className="rootfablink-wordmark shrink-0 text-ink">
-            <span>ROOTFABLINK</span>
+          <Link href={`/${locale}`} className="shrink-0">
+            <RootFabLinkWordmark size="compact" />
           </Link>
 
           <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex">

@@ -41,23 +41,109 @@ textarea {
   text-wrap: balance;
 }
 
-.rootfablink-wordmark {
-  display: inline-flex;
-  align-items: center;
+.rootfablink-brand {
+  display: inline-grid;
   max-width: 100%;
-  font-family: "Arial Narrow", "Eurostile", "Microgramma", Arial, Helvetica, sans-serif;
-  font-size: clamp(0.74rem, 1vw, 0.92rem);
+  font-family:
+    "Orbitron",
+    "Rajdhani",
+    "Eurostile",
+    "Microgramma",
+    "Arial Narrow",
+    Arial,
+    Helvetica,
+    sans-serif;
   font-weight: 400;
-  font-stretch: expanded;
-  letter-spacing: clamp(0.1em, 0.45vw, 0.28em);
   line-height: 1;
   text-transform: uppercase;
-  transform: scaleX(1.08);
   transform-origin: left center;
   white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
-.rootfablink-wordmark-large {
-  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
-  letter-spacing: clamp(0.16em, 0.72vw, 0.46em);
+.rootfablink-brand-line {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: var(--rfl-tracking, 0.24em);
+  transform: scaleX(var(--rfl-scale, 1.1));
+  transform-origin: left center;
+}
+
+.rootfablink-brand-line::after {
+  position: absolute;
+  right: 0.04em;
+  bottom: -0.18em;
+  width: 2.7em;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0.42;
+}
+
+.rootfablink-brand-root {
+  opacity: 0.82;
+}
+
+.rootfablink-brand-fab {
+  margin-left: 0.08em;
+  position: relative;
+}
+
+.rootfablink-brand-fab::before {
+  position: absolute;
+  left: 3.08em;
+  top: 46%;
+  width: 0.44em;
+  height: 1px;
+  background: #f97316;
+  content: "";
+  opacity: 0.82;
+}
+
+.rootfablink-brand-subline {
+  margin-top: 0.78em;
+  color: currentColor;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  opacity: 0.68;
+  transform: scaleX(1);
+}
+
+.rootfablink-brand-compact {
+  --rfl-scale: 1.04;
+  --rfl-tracking: 0.12em;
+  font-size: clamp(0.72rem, 1vw, 0.88rem);
+}
+
+.rootfablink-brand-default {
+  --rfl-scale: 1.08;
+  --rfl-tracking: 0.18em;
+  font-size: clamp(0.84rem, 1.15vw, 1rem);
+}
+
+.rootfablink-brand-large {
+  --rfl-scale: 1.12;
+  --rfl-tracking: 0.26em;
+  font-size: clamp(1.1rem, 2.35vw, 1.55rem);
+}
+
+.rootfablink-brand-hero {
+  --rfl-scale: 1.14;
+  --rfl-tracking: clamp(0.14em, 1.05vw, 0.34em);
+  font-size: clamp(1.65rem, 5.2vw, 4.2rem);
+}
+
+@media (max-width: 480px) {
+  .rootfablink-brand-hero {
+    --rfl-scale: 1.03;
+    --rfl-tracking: 0.09em;
+  }
+
+  .rootfablink-brand-line::after {
+    width: 1.8em;
+  }
 }

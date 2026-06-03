@@ -1,5 +1,6 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
+import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Button } from "@/components/ui/button";
 import { getMarketplaceCopy } from "./marketplace-copy";
@@ -40,7 +41,7 @@ export function MarketplacePlaceholderPage({ locale, routeKey }: { locale: Local
       <main>
         <section className="border-b border-ink/10 bg-[linear-gradient(135deg,#ffffff,#fff8f1)]">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-5">
-            <p className="rootfablink-wordmark text-copper">ROOTFABLINK</p>
+            <RootFabLinkWordmark variant="accent" size="default" />
             <h1 className="mt-6 max-w-4xl text-3xl font-bold leading-tight text-ink sm:text-5xl">{title}</h1>
             <p className="mt-5 max-w-3xl text-base leading-7 text-steel sm:text-lg">{intro}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">

@@ -1,5 +1,6 @@
 import { ArrowRight, CheckCircle2, Factory, FileText, Globe2, ShieldCheck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
+import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { dictionaries } from "@/messages";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { MarketplaceHeader } from "@/components/marketplace/marketplace-header";
@@ -65,7 +66,7 @@ export function PublicInfoPage({ locale, pageKey }: { locale: Locale; pageKey: P
         <section className="bg-white py-14 sm:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-5">
             <div className="max-w-2xl">
-              <p className="text-sm font-bold uppercase tracking-[0.12em] text-copper">ROOTFABLINK</p>
+              <RootFabLinkWordmark variant="accent" size="default" />
               <h2 className="mt-3 text-2xl font-bold text-ink sm:text-3xl">{page.stepsTitle}</h2>
             </div>
             <div className="mt-8 grid gap-3 md:grid-cols-5">

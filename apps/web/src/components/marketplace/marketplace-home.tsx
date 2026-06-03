@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { ComponentType } from "react";
 import { ArrowRight, BadgeCheck, Boxes, Camera, Factory, FileSearch, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
+import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Button } from "@/components/ui/button";
 import { FloatingActionBar } from "./floating-action-bar";
@@ -38,6 +39,14 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
             </aside>
 
             <div className="min-w-0">
+              <div className="mb-7 overflow-hidden rounded-md bg-ink px-5 py-6 text-white shadow-soft sm:px-7 sm:py-8">
+                <RootFabLinkWordmark
+                  variant="dark"
+                  size="hero"
+                  showSubline
+                  subline={locale === "tr" ? "KÜRESEL B2B ÜRETİM VE TİCARET ALTYAPISI" : "GLOBAL B2B MANUFACTURING INFRASTRUCTURE"}
+                />
+              </div>
               <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-signal/25 bg-cloud px-3 py-2 text-sm font-semibold leading-5 text-copper">
                 <Sparkles size={16} />
                 <span>{copy.home.heroEyebrow}</span>
