@@ -1,488 +1,286 @@
-﻿"use client";
+"use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import type { FormEvent, ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowRight, CheckCircle2, Factory, Landmark, Ship, ShoppingBasket, Sparkles, UploadCloud } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { Button } from "@/components/ui/button";
-import { authDemoStorageKeys, saveDemoSession, saveRegistrationDraft } from "@/lib/auth-demo-storage";
 import { cn } from "@/lib/utils";
 
-const supplierDraftKey = "rootfablink_supplier_draft_iwall";
-
 type AccountType = "buyer" | "supplier" | "logistics" | "customs";
-type FormValues = Record<string, string | string[]>;
-
-const accountTypeIds: AccountType[] = ["buyer", "supplier", "logistics", "customs"];
-
-const fieldSets: Record<AccountType, string[]> = {
-  buyer: ["fullName", "email", "password", "passwordConfirm", "phone", "country", "city", "companyName", "sourcingInterest", "purchasingVolume", "message"],
-  supplier: ["fullName", "email", "password", "passwordConfirm", "phone", "brandName", "legalCompanyName", "country", "city", "website", "businessType", "mainCategory", "companyDescription", "contactPerson", "position"],
-  logistics: ["fullName", "email", "password", "passwordConfirm", "phone", "companyName", "country", "city", "operatingRegions", "companyDescription"],
-  customs: ["fullName", "email", "password", "passwordConfirm", "phone", "companyName", "country", "city", "licenseNumber", "description"]
+type SupplierFormData = {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phone: string;
+  brandName: string;
+  legalCompanyName: string;
+  country: string;
+  city: string;
+  businessType: string;
+  mainCategory: string;
+  companyDescription: string;
 };
 
-const serviceOptions = {
-  en: {
-    buyer: [],
-    supplier: ["Manufacturer", "Supplier", "Exporter", "Wholesaler", "Design Brand", "OEM Available", "ODM Available", "Private Label Available"],
-    logistics: ["Sea freight", "Air freight", "Land freight", "Warehouse", "Fulfillment"],
-    customs: ["Import customs", "Export customs", "HS code consulting", "Document preparation", "Compliance support"]
-  },
-  tr: {
-    buyer: [],
-    supplier: ["Üretici", "Tedarikçi", "İhracatçı", "Toptancı", "Tasarım markası", "OEM uygun", "ODM uygun", "Private label uygun"],
-    logistics: ["Deniz yolu", "Hava yolu", "Kara yolu", "Depolama", "Fulfillment"],
-    customs: ["İthalat gümrüğü", "İhracat gümrüğü", "HS code danışmanlığı", "Evrak hazırlığı", "Uyum danışmanlığı"]
-  }
-} satisfies Record<"en" | "tr", Record<AccountType, string[]>>;
+const accountTypes: Array<{ id: AccountType; tr: string; en: string; textTr: string; textEn: string }> = [
+  { id: "buyer", tr: "Alıcı", en: "Buyer", textTr: "Ürün arayın, RFQ oluşturun ve tedarikçileri karşılaştırın.", textEn: "Source products, post RFQs and compare suppliers." },
+  { id: "supplier", tr: "Tedarikçi", en: "Supplier", textTr: "Şirket profilinizi oluşturun ve ürünlerinizi listelemeye hazırlanın.", textEn: "Create a company profile and prepare product listings." },
+  { id: "logistics", tr: "Lojistik firması", en: "Logistics provider", textTr: "Lojistik hizmetlerinizi alıcı ve tedarikçi akışlarına bağlayın.", textEn: "Connect logistics services to buyer and supplier workflows." },
+  { id: "customs", tr: "Gümrük müşaviri", en: "Customs broker", textTr: "Gümrük, evrak ve uyum hizmetleri için profil hazırlayın.", textEn: "Prepare a profile for customs, documents and compliance services." }
+];
 
-const savedCapabilityValues: Record<string, string> = {
-  Üretici: "Manufacturer",
-  Tedarikçi: "Supplier",
-  İhracatçı: "Exporter",
-  Toptancı: "Wholesaler",
-  "Tasarım markası": "Design Brand",
-  "OEM uygun": "OEM Available",
-  "ODM uygun": "ODM Available",
-  "Private label uygun": "Private Label Available"
+const emptySupplierForm: SupplierFormData = {
+  fullName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  phone: "",
+  brandName: "",
+  legalCompanyName: "",
+  country: "",
+  city: "",
+  businessType: "",
+  mainCategory: "",
+  companyDescription: ""
 };
 
-const uploadPlaceholders = {
-  en: ["Company logo", "Tax certificate", "Business license", "Product catalog"],
-  tr: ["Şirket logosu", "Vergi belgesi", "Faaliyet belgesi", "Ürün kataloğu"]
-};
-
-const labels = {
-  en: {
-    accountDescriptions: [
-      "Create sourcing requests, compare suppliers and prepare protected trade workflows.",
-      "Create a company profile, list products and receive RFQ opportunities.",
-      "Join freight, warehousing and shipment quote workflows.",
-      "Support customs documentation, HS-code and trade service requests."
-    ],
-    selectedNote: "Selected onboarding flow",
-    quickTitle: "Register the first supplier brand",
-    quickText: "Pre-fill a verification-ready supplier draft for i-WALL surface systems.",
-    quickButton: "Pre-fill i-WALL supplier profile",
-    successTitle: {
-      buyer: "Buyer account draft created",
-      supplier: "Supplier profile draft created",
-      logistics: "Logistics provider profile draft created",
-      customs: "Customs broker profile draft created"
-    },
-    successText: {
-      buyer: "Your buyer account draft has been saved locally. Backend account creation can be connected in the next phase.",
-      supplier: "Supplier profile draft created. You are ready to add products and pattern collections.",
-      logistics: "Your logistics provider draft has been saved locally for review and onboarding preparation.",
-      customs: "Your customs broker draft has been saved locally for review and onboarding preparation."
-    },
-    buttons: {
-      profile: "Go to supplier profile",
-      product: "Add first product",
-      pattern: "Add pattern collection",
-      save: {
-        buyer: "Create buyer account",
-        supplier: "Create supplier profile",
-        logistics: "Create logistics provider profile",
-        customs: "Create customs broker profile"
-      }
-    },
-    sections: { buyer: "Buyer information", supplier: "Supplier information", logistics: "Logistics provider information", customs: "Customs broker information", verification: "Verification preparation", capabilities: "Capabilities and services" },
-    required: "This field is required.",
-    email: "Enter a valid email address.",
-    savedKey: "Draft storage key",
-    google: "Continue with Google",
-    googleMessage: "Google sign-up is prepared. OAuth will be enabled during the backend authentication phase.",
-    terms: "I accept the RootFabLink Terms of Use and Privacy Policy.",
-    passwordMin: "Password must be at least 8 characters.",
-    passwordMatch: "Password confirmation must match."
-  },
-  tr: {
-    accountDescriptions: [
-      "Tedarik talepleri oluÅŸturun, tedarikÃ§ileri karÅŸÄ±laÅŸtÄ±rÄ±n ve gÃ¼venli ticaret akÄ±ÅŸlarÄ±na hazÄ±rlanÄ±n.",
-      "Åirket profili oluÅŸturun, Ã¼rÃ¼nlerinizi listeleyin ve RFQ fÄ±rsatlarÄ± alÄ±n.",
-      "Deniz, hava, kara, depo ve sevkiyat teklif akÄ±ÅŸlarÄ±na katÄ±lÄ±n.",
-      "GÃ¼mrÃ¼k belgeleri, HS kodu ve dÄ±ÅŸ ticaret hizmet taleplerini destekleyin."
-    ],
-    selectedNote: "SeÃ§ilen onboarding akÄ±ÅŸÄ±",
-    quickTitle: "Ä°lk gerÃ§ek tedarikÃ§i markasÄ±nÄ± kaydet",
-    quickText: "i-WALL yÃ¼zey sistemleri iÃ§in doÄŸrulamaya hazÄ±r tedarikÃ§i taslaÄŸÄ±nÄ± otomatik doldurun.",
-    quickButton: "i-WALL bilgilerini otomatik doldur",
-    successTitle: {
-      buyer: "AlÄ±cÄ± hesap taslaÄŸÄ± oluÅŸturuldu",
-      supplier: "TedarikÃ§i profil taslaÄŸÄ± oluÅŸturuldu",
-      logistics: "Lojistik firma profil taslaÄŸÄ± oluÅŸturuldu",
-      customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri profil taslaÄŸÄ± oluÅŸturuldu"
-    },
-    successText: {
-      buyer: "AlÄ±cÄ± hesap taslaÄŸÄ±nÄ±z yerel olarak kaydedildi. Backend hesap oluÅŸturma akÄ±ÅŸÄ± sonraki aÅŸamada baÄŸlanabilir.",
-      supplier: "TedarikÃ§i profil taslaÄŸÄ± oluÅŸturuldu. ÃœrÃ¼nlerinizi ve desen koleksiyonlarÄ±nÄ±zÄ± eklemeye hazÄ±rsÄ±nÄ±z.",
-      logistics: "Lojistik firma taslaÄŸÄ±nÄ±z inceleme ve onboarding hazÄ±rlÄ±ÄŸÄ± iÃ§in yerel olarak kaydedildi.",
-      customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri taslaÄŸÄ±nÄ±z inceleme ve onboarding hazÄ±rlÄ±ÄŸÄ± iÃ§in yerel olarak kaydedildi."
-    },
-    buttons: {
-      profile: "TedarikÃ§i profiline git",
-      product: "Ä°lk Ã¼rÃ¼nÃ¼ ekle",
-      pattern: "Desen koleksiyonu ekle",
-      save: {
-        buyer: "AlÄ±cÄ± hesabÄ± oluÅŸtur",
-        supplier: "TedarikÃ§i profili oluÅŸtur",
-        logistics: "Lojistik firma profili oluÅŸtur",
-        customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri profili oluÅŸtur"
-      }
-    },
-    sections: { buyer: "AlÄ±cÄ± bilgileri", supplier: "TedarikÃ§i bilgileri", logistics: "Lojistik firma bilgileri", customs: "GÃ¼mrÃ¼k mÃ¼ÅŸaviri bilgileri", verification: "DoÄŸrulama hazÄ±rlÄ±ÄŸÄ±", capabilities: "Kabiliyetler ve hizmetler" },
-    required: "Bu alan zorunludur.",
-    email: "GeÃ§erli bir email adresi girin.",
-    savedKey: "Taslak kayÄ±t anahtarÄ±",
-    google: "Google ile devam et",
-    googleMessage: "Google ile kayÄ±t altyapÄ±sÄ± hazÄ±rlanmÄ±ÅŸtÄ±r. OAuth baÄŸlantÄ±sÄ± backend kimlik doÄŸrulama aÅŸamasÄ±nda etkinleÅŸtirilecektir.",
-    terms: "RootFabLink KullanÄ±m ÅartlarÄ± ve Gizlilik PolitikasÄ±nÄ± kabul ediyorum.",
-    passwordMin: "Åifre en az 8 karakter olmalÄ±dÄ±r.",
-    passwordMatch: "Åifre tekrarÄ± eÅŸleÅŸmelidir."
-  }
-};
-
-const fieldLabels: Record<string, { en: string; tr: string }> = {
-  fullName: { en: "Full Name", tr: "Ad Soyad" },
-  companyName: { en: "Company Name", tr: "Åirket AdÄ±" },
-  country: { en: "Country", tr: "Ãœlke" },
-  city: { en: "City", tr: "Åehir" },
-  email: { en: "Email", tr: "Email" },
-  password: { en: "Password", tr: "Åifre" },
-  passwordConfirm: { en: "Confirm password", tr: "Åifre tekrar" },
-  phone: { en: "Phone", tr: "Telefon" },
-  sourcingInterest: { en: "Main sourcing interest", tr: "Ana tedarik ilgisi" },
-  purchasingVolume: { en: "Expected purchasing volume", tr: "Tahmini alÄ±m hacmi" },
-  message: { en: "Message", tr: "Mesaj" },
-  brandName: { en: "Brand Name", tr: "Marka AdÄ±" },
-  legalCompanyName: { en: "Legal Company Name", tr: "Resmi Åirket AdÄ±" },
-  website: { en: "Website", tr: "Website" },
-  businessType: { en: "Business Type", tr: "Ä°ÅŸletme TÃ¼rÃ¼" },
-  mainCategory: { en: "Main Category", tr: "Ana Kategori" },
-  companyDescription: { en: "Company Description", tr: "Åirket AÃ§Ä±klamasÄ±" },
-  contactPerson: { en: "Contact Person", tr: "Yetkili KiÅŸi" },
-  position: { en: "Position", tr: "GÃ¶rev" },
-  operatingRegions: { en: "Operating Regions", tr: "Operasyon BÃ¶lgeleri" },
-  licenseNumber: { en: "License / Authorization number", tr: "Lisans / Yetki numarasÄ±" },
-  tradeRoutes: { en: "Supported trade routes", tr: "Desteklenen ticaret rotalarÄ±" },
-  description: { en: "Description", tr: "AÃ§Ä±klama" }
-};
-
-const requiredFields: Record<AccountType, string[]> = {
-  buyer: ["fullName", "email", "password", "passwordConfirm", "country"],
-  supplier: ["fullName", "email", "password", "passwordConfirm", "brandName", "country", "businessType", "mainCategory", "contactPerson"],
-  logistics: ["fullName", "email", "password", "passwordConfirm", "companyName", "country"],
-  customs: ["fullName", "email", "password", "passwordConfirm", "companyName", "country"]
-};
-
-const iWallData: FormValues = {
+const iWallSupplierForm: SupplierFormData = {
+  ...emptySupplierForm,
   brandName: "i-WALL",
   legalCompanyName: "i-WALL",
   country: "Türkiye",
   city: "İstanbul",
-  website: "",
   businessType: "Üretici / Tedarikçi / Tasarım Markası",
   mainCategory: "Yapı Malzemeleri / İç Dekorasyon / Duvar Panelleri",
   companyDescription:
-    "i-WALL; konut, ticari alan, otel, ofis ve mimari projeler için dekoratif duvar sistemleri, desenli duvar panelleri ve iç mekan yüzey tasarım çözümleri sunar.",
-  contactPerson: "",
-  email: "",
-  phone: "",
-  position: "",
-  capabilities: ["Manufacturer", "Supplier", "Design Brand", "OEM Available", "ODM Available", "Private Label Available"]
+    "i-WALL; konut, ticari alan, otel, ofis ve mimari projeler için dekoratif duvar sistemleri, desenli duvar panelleri ve iç mekan yüzey tasarım çözümleri sunar."
 };
 
-export function RegisterExperience({ locale, accountTypes, accountNote }: { locale: Locale; accountTypes: string[]; accountNote: string }) {
+const simpleFormFields: Record<Exclude<AccountType, "supplier">, string[]> = {
+  buyer: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Şirket Adı", "Ülke", "Şehir", "Aradığınız ürün kategorileri", "Tahmini alım hacmi", "Mesaj"],
+  logistics: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Firma Adı", "Ülke", "Şehir", "Hizmet türleri", "Hizmet verilen bölgeler", "Firma açıklaması"],
+  customs: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Firma Adı", "Ülke", "Şehir", "Yetki / lisans numarası", "Hizmetler", "Firma açıklaması"]
+};
+
+export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: string[]; accountNote?: string }) {
+  const tr = locale === "tr";
   const router = useRouter();
   const searchParams = useSearchParams();
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const copy = locale === "tr" ? labels.tr : labels.en;
-  const localizedServiceOptions = serviceOptions[locale === "tr" ? "tr" : "en"];
   const [selectedType, setSelectedType] = useState<AccountType>("buyer");
-  const [values, setValues] = useState<FormValues>({});
+  const [supplierForm, setSupplierForm] = useState<SupplierFormData>(emptySupplierForm);
+  const [simpleValues, setSimpleValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submittedType, setSubmittedType] = useState<AccountType | null>(null);
-  const [googleMessage, setGoogleMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const requestedType = searchParams.get("type") as AccountType | null;
-    if (requestedType && accountTypeIds.includes(requestedType)) {
-      setSelectedType(requestedType);
+    const type = searchParams.get("type") as AccountType | null;
+    if (type && accountTypes.some((item) => item.id === type)) {
+      setSelectedType(type);
     }
   }, [searchParams]);
 
-  const accountCards = useMemo(
-    () =>
-      accountTypeIds.map((id, index) => ({
-        id,
-        title: accountTypes[index] ?? id,
-        description: copy.accountDescriptions[index],
-        icon: [ShoppingBasket, Factory, Ship, Landmark][index] ?? ArrowRight
-      })),
-    [accountTypes, copy.accountDescriptions]
-  );
-
   const selectType = (type: AccountType) => {
     setSelectedType(type);
-    setSubmittedType(null);
+    setSuccess(false);
     setErrors({});
     router.replace(`/${locale}/auth/register?type=${type}`, { scroll: false });
-    window.setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
   };
 
-  const updateField = (field: string, value: string) => {
-    setValues((current) => ({ ...current, [field]: value }));
+  const updateSupplier = (field: keyof SupplierFormData, value: string) => {
+    setSupplierForm((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: "" }));
-  };
-
-  const toggleOption = (option: string) => {
-    const key = selectedType === "supplier" ? "capabilities" : "services";
-    const storedOption = savedCapabilityValues[option] ?? option;
-    const currentOptions = Array.isArray(values[key]) ? (values[key] as string[]) : [];
-    setValues((current) => ({
-      ...current,
-      [key]: currentOptions.includes(storedOption) ? currentOptions.filter((item) => item !== storedOption) : [...currentOptions, storedOption]
-    }));
+    setSuccess(false);
   };
 
   const prefillIWall = () => {
-    selectType("supplier");
-    setValues(iWallData);
+    setSelectedType("supplier");
+    setSupplierForm((current) => ({
+      ...iWallSupplierForm,
+      fullName: current.fullName,
+      email: current.email,
+      password: current.password,
+      confirmPassword: current.confirmPassword,
+      phone: current.phone
+    }));
     setErrors({});
+    setSuccess(false);
   };
 
-  const validate = () => {
+  const validateSupplier = () => {
     const nextErrors: Record<string, string> = {};
-    for (const field of requiredFields[selectedType]) {
-      const value = values[field];
-      if (!String(value ?? "").trim()) nextErrors[field] = copy.required;
+    const required: Array<keyof SupplierFormData> = ["fullName", "email", "password", "confirmPassword", "brandName", "country", "businessType", "mainCategory"];
+    for (const field of required) {
+      if (!supplierForm[field].trim()) {
+        nextErrors[field] = tr ? "Bu alan zorunludur." : "This field is required.";
+      }
     }
-    const email = String(values.email ?? "").trim();
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) nextErrors.email = copy.email;
-    const password = String(values.password ?? "");
-    const passwordConfirm = String(values.passwordConfirm ?? "");
-    if (password && password.length < 8) nextErrors.password = copy.passwordMin;
-    if (passwordConfirm && password !== passwordConfirm) nextErrors.passwordConfirm = copy.passwordMatch;
-    if (values.acceptedTerms !== "true") nextErrors.acceptedTerms = copy.required;
+    if (supplierForm.email && !supplierForm.email.includes("@")) {
+      nextErrors.email = tr ? "Geçerli bir e-posta girin." : "Enter a valid email.";
+    }
+    if (supplierForm.password && supplierForm.password.length < 8) {
+      nextErrors.password = tr ? "Şifre en az 8 karakter olmalıdır." : "Password must be at least 8 characters.";
+    }
+    if (supplierForm.password !== supplierForm.confirmPassword) {
+      nextErrors.confirmPassword = tr ? "Şifre tekrarı eşleşmelidir." : "Password confirmation must match.";
+    }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
 
-  const isReadyToSubmit = () => {
-    if (values.acceptedTerms !== "true") return false;
-    for (const field of requiredFields[selectedType]) {
-      if (!String(values[field] ?? "").trim()) return false;
-    }
-    const email = String(values.email ?? "").trim();
-    const password = String(values.password ?? "");
-    const passwordConfirm = String(values.passwordConfirm ?? "");
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && password.length >= 8 && password === passwordConfirm;
-  };
-
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!validate()) return;
-
+  const submitSupplier = () => {
+    if (!validateSupplier()) return;
     const now = new Date().toISOString();
-    const { password: _password, passwordConfirm: _passwordConfirm, acceptedTerms: _acceptedTerms, ...safeValues } = values;
-    void _password;
-    void _passwordConfirm;
-    void _acceptedTerms;
-    const account = {
-      fullName: String(values.fullName ?? ""),
-      email: String(values.email ?? ""),
-      phone: String(values.phone ?? ""),
-      country: String(values.country ?? ""),
-      city: String(values.city ?? "")
-    };
     const draft = {
-      id: `draft_${selectedType}_${Date.now()}`,
-      accountType: selectedType,
-      account,
-      profile: safeValues,
-      status: "draft" as const,
+      id: `supplier_iwall_${Date.now()}`,
+      accountType: "supplier",
+      brandName: supplierForm.brandName,
+      legalCompanyName: supplierForm.legalCompanyName,
+      country: supplierForm.country,
+      city: supplierForm.city,
+      businessType: supplierForm.businessType,
+      mainCategory: supplierForm.mainCategory,
+      companyDescription: supplierForm.companyDescription,
+      contact: {
+        fullName: supplierForm.fullName,
+        email: supplierForm.email,
+        phone: supplierForm.phone
+      },
+      status: "draft",
       createdAt: now,
       updatedAt: now
     };
-
-    if (typeof window !== "undefined") {
-      saveRegistrationDraft(draft);
-      saveDemoSession({
-        email: account.email,
-        accountType: selectedType,
-        companyName: String(values.companyName ?? values.legalCompanyName ?? values.brandName ?? ""),
-        demoSession: true,
-        createdAt: now
-      });
-      if (selectedType === "supplier" && String(values.brandName ?? "").toLowerCase() === "i-wall") {
-        window.localStorage.setItem(supplierDraftKey, JSON.stringify(draft));
-      }
-    }
-    setSubmittedType(selectedType);
+    window.localStorage.setItem("rootfablink_supplier_draft_iwall", JSON.stringify(draft));
+    const existingDrafts = JSON.parse(window.localStorage.getItem("rootfablink_registration_drafts") ?? "[]") as unknown[];
+    window.localStorage.setItem("rootfablink_registration_drafts", JSON.stringify([draft, ...existingDrafts]));
+    setSuccess(true);
   };
 
-  if (submittedType) {
-    return (
-      <section className="mt-8 rounded-md border border-signal/25 bg-white p-6 shadow-[0_18px_42px_rgba(11,11,12,0.08)]">
-        <div className="flex h-12 w-12 items-center justify-center rounded-md bg-signal/10 text-copper">
-          <CheckCircle2 size={24} />
-        </div>
-        <h2 className="mt-5 text-2xl font-bold text-ink">{copy.successTitle[submittedType]}</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-steel">{copy.successText[submittedType]}</p>
-        {submittedType === "supplier" && (
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Button href={`/${locale}/suppliers/i-wall`}>{copy.buttons.profile}</Button>
-            <Button href={`/${locale}/suppliers/i-wall/products/new`} variant="secondary">{copy.buttons.product}</Button>
-            <Button href={`/${locale}/suppliers/i-wall/patterns/new`} variant="secondary">{copy.buttons.pattern}</Button>
-          </div>
-        )}
-      </section>
-    );
-  }
+  const submitSimple = () => {
+    const label = tr ? accountTypes.find((item) => item.id === selectedType)?.tr : accountTypes.find((item) => item.id === selectedType)?.en;
+    const now = new Date().toISOString();
+    const draft = {
+      id: `${selectedType}_${Date.now()}`,
+      accountType: selectedType,
+      label,
+      data: simpleValues,
+      status: "draft",
+      createdAt: now,
+      updatedAt: now
+    };
+    const existingDrafts = JSON.parse(window.localStorage.getItem("rootfablink_registration_drafts") ?? "[]") as unknown[];
+    window.localStorage.setItem("rootfablink_registration_drafts", JSON.stringify([draft, ...existingDrafts]));
+    setSuccess(true);
+  };
 
   return (
-    <>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {accountCards.map(({ id, title, description, icon: Icon }) => {
-          const active = selectedType === id;
+    <div className="mt-8">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {accountTypes.map((type) => {
+          const active = selectedType === type.id;
           return (
             <button
-              key={id}
-              className={cn("cursor-pointer rounded-md border bg-white p-5 text-left text-ink transition hover:border-signal hover:shadow-[0_12px_28px_rgba(11,11,12,0.08)]", active ? "border-signal shadow-[0_12px_28px_rgba(249,115,22,0.12)]" : "border-ink/10")}
+              key={type.id}
               type="button"
-              onClick={() => selectType(id)}
+              onClick={() => selectType(type.id)}
+              className={cn("cursor-pointer rounded-md border bg-white p-5 text-left transition hover:border-signal hover:shadow-[0_12px_28px_rgba(11,11,12,0.08)]", active ? "border-signal shadow-[0_12px_28px_rgba(249,115,22,0.12)]" : "border-ink/10")}
             >
-              <span className="flex items-center justify-between gap-3">
-                <span className="flex items-center gap-2 font-bold">
-                  <Icon size={18} className={active ? "text-copper" : "text-steel"} />
-                  {title}
-                </span>
+              <span className="flex items-center justify-between gap-3 font-bold text-ink">
+                {tr ? type.tr : type.en}
                 <ArrowRight size={16} className={active ? "text-copper" : "text-steel"} />
               </span>
-              <span className="mt-3 block text-sm font-normal leading-6 text-steel">{description ?? accountNote}</span>
+              <span className="mt-3 block text-sm leading-6 text-steel">{tr ? type.textTr : type.textEn}</span>
             </button>
           );
         })}
       </div>
 
-      <div className="mt-6 rounded-md border border-ink/10 bg-cloud p-4">
-        <p className="text-sm font-bold text-ink">{copy.selectedNote}: {accountCards.find((item) => item.id === selectedType)?.title}</p>
-      </div>
-
-      {selectedType === "supplier" && (
-        <div className="mt-8 flex flex-col gap-3 rounded-md border border-signal/25 bg-orange-50/70 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="flex items-center gap-2 font-bold text-ink">
-              <Sparkles size={18} className="text-copper" />
-              {copy.quickTitle}
-            </p>
-            <p className="mt-1 text-sm leading-6 text-steel">{copy.quickText}</p>
+      {selectedType === "supplier" ? (
+        <section className="mt-8 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
+          <div className="flex flex-col gap-3 rounded-md border border-signal/25 bg-orange-50/70 p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-lg font-bold text-ink">{tr ? "i-WALL marka profilini otomatik doldur" : "Pre-fill i-WALL supplier profile"}</h2>
+              <p className="mt-1 text-sm leading-6 text-steel">{tr ? "İlk tedarikçi marka taslağını hızlıca hazırlayın; tüm alanlar sonradan düzenlenebilir." : "Prepare the first supplier brand draft quickly; all fields remain editable."}</p>
+            </div>
+            <button type="button" onClick={prefillIWall} className="rounded-md bg-ink px-4 py-3 text-sm font-bold text-white hover:bg-copper">
+              {tr ? "i-WALL bilgilerini otomatik doldur" : "Fill i-WALL details"}
+            </button>
           </div>
-          <button type="button" onClick={prefillIWall} className="rounded-md bg-ink px-4 py-3 text-sm font-bold text-white hover:bg-copper">
-            {copy.quickButton}
-          </button>
-        </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <SupplierField label={tr ? "Ad Soyad" : "Full Name"} value={supplierForm.fullName} error={errors.fullName} onChange={(value) => updateSupplier("fullName", value)} required />
+            <SupplierField label={tr ? "E-posta" : "Email"} value={supplierForm.email} error={errors.email} onChange={(value) => updateSupplier("email", value)} required />
+            <SupplierField label={tr ? "Şifre" : "Password"} value={supplierForm.password} error={errors.password} onChange={(value) => updateSupplier("password", value)} required password />
+            <SupplierField label={tr ? "Şifre Tekrar" : "Confirm Password"} value={supplierForm.confirmPassword} error={errors.confirmPassword} onChange={(value) => updateSupplier("confirmPassword", value)} required password />
+            <SupplierField label={tr ? "Telefon" : "Phone"} value={supplierForm.phone} onChange={(value) => updateSupplier("phone", value)} />
+            <SupplierField label={tr ? "Marka Adı" : "Brand Name"} value={supplierForm.brandName} error={errors.brandName} onChange={(value) => updateSupplier("brandName", value)} required />
+            <SupplierField label={tr ? "Resmi Şirket Adı" : "Legal Company Name"} value={supplierForm.legalCompanyName} onChange={(value) => updateSupplier("legalCompanyName", value)} />
+            <SupplierField label={tr ? "Ülke" : "Country"} value={supplierForm.country} error={errors.country} onChange={(value) => updateSupplier("country", value)} required />
+            <SupplierField label={tr ? "Şehir" : "City"} value={supplierForm.city} onChange={(value) => updateSupplier("city", value)} />
+            <SupplierField label={tr ? "İşletme Türü" : "Business Type"} value={supplierForm.businessType} error={errors.businessType} onChange={(value) => updateSupplier("businessType", value)} required />
+            <SupplierField label={tr ? "Ana Kategori" : "Main Category"} value={supplierForm.mainCategory} error={errors.mainCategory} onChange={(value) => updateSupplier("mainCategory", value)} required />
+            <label className="grid gap-2 md:col-span-2">
+              <span className="text-xs font-bold uppercase tracking-[0.08em] text-steel">{tr ? "Şirket Açıklaması" : "Company Description"}</span>
+              <textarea value={supplierForm.companyDescription} onChange={(event) => updateSupplier("companyDescription", event.target.value)} className="min-h-28 rounded-md border border-ink/10 px-3 py-3 text-sm font-medium text-ink outline-none focus:border-signal" />
+            </label>
+          </div>
+
+          <div className="mt-6 flex justify-end border-t border-ink/10 pt-5">
+            <button type="button" onClick={submitSupplier} className="rounded-md bg-signal px-5 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper">
+              {tr ? "Tedarikçi hesabı oluştur" : "Create supplier account"}
+            </button>
+          </div>
+        </section>
+      ) : (
+        <section className="mt-8 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
+          <h2 className="text-xl font-bold text-ink">{tr ? accountTypes.find((item) => item.id === selectedType)?.tr : accountTypes.find((item) => item.id === selectedType)?.en}</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {simpleFormFields[selectedType].map((label) => (
+              <label key={label} className={cn("grid gap-2", label === "Mesaj" || label.includes("açıklaması") ? "md:col-span-2" : "")}>
+                <span className="text-xs font-bold uppercase tracking-[0.08em] text-steel">{label}</span>
+                <input value={simpleValues[label] ?? ""} onChange={(event) => setSimpleValues((current) => ({ ...current, [label]: event.target.value }))} className="h-11 rounded-md border border-ink/10 px-3 text-sm font-medium text-ink outline-none focus:border-signal" />
+              </label>
+            ))}
+          </div>
+          <div className="mt-6 flex justify-end border-t border-ink/10 pt-5">
+            <button type="button" onClick={submitSimple} className="rounded-md bg-signal px-5 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper">
+              {selectedType === "buyer" ? "Alıcı hesabı oluştur" : selectedType === "logistics" ? "Lojistik firma hesabı oluştur" : "Gümrük müşaviri hesabı oluştur"}
+            </button>
+          </div>
+        </section>
       )}
 
-      <form ref={formRef} onSubmit={submit} className="mt-8 grid gap-6 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
-        <div>
-          <button
-            type="button"
-            onClick={() => setGoogleMessage(copy.googleMessage)}
-            className="flex h-11 w-full items-center justify-center rounded-md border border-ink/15 bg-white text-sm font-bold text-ink hover:border-signal/40 hover:bg-cloud"
-          >
-            {copy.google}
-          </button>
-          {googleMessage && <p className="mt-3 rounded-md bg-cloud p-3 text-xs font-semibold leading-5 text-steel">{googleMessage}</p>}
-        </div>
-        <FormSection icon={accountCards.find((item) => item.id === selectedType)?.icon ?? Factory} title={copy.sections[selectedType]}>
-          {fieldSets[selectedType].map((field) => (
-            <TextField key={field} label={fieldLabels[field]?.[locale === "tr" ? "tr" : "en"] ?? field} value={String(values[field] ?? "")} onChange={(value) => updateField(field, value)} error={errors[field]} required={requiredFields[selectedType].includes(field)} multiline={["message", "companyDescription", "description"].includes(field)} />
-          ))}
-        </FormSection>
-
-        {localizedServiceOptions[selectedType].length > 0 && (
-          <div>
-            <h3 className="text-lg font-bold text-ink">{copy.sections.capabilities}</h3>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-              {localizedServiceOptions[selectedType].map((option) => {
-                const key = selectedType === "supplier" ? "capabilities" : "services";
-                const storedOption = savedCapabilityValues[option] ?? option;
-                const active = Array.isArray(values[key]) && (values[key] as string[]).includes(storedOption);
-                return (
-                  <label key={option} className={cn("flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-sm font-semibold", active ? "border-signal bg-orange-50 text-copper" : "border-ink/10 text-ink hover:bg-cloud")}>
-                    <input type="checkbox" checked={active} onChange={() => toggleOption(option)} className="accent-orange-600" />
-                    {option}
-                  </label>
-                );
-              })}
-            </div>
+      {success && (
+        <section className="mt-8 rounded-md border border-green-200 bg-green-50 p-5">
+          <div className="flex items-center gap-2 text-green-800">
+            <CheckCircle2 size={20} />
+            <h2 className="text-xl font-bold">{selectedType === "supplier" ? "Tedarikçi profil taslağı oluşturuldu" : "Kayıt taslağı oluşturuldu"}</h2>
           </div>
-        )}
-
-        {selectedType === "supplier" && (
-          <div>
-            <h3 className="text-lg font-bold text-ink">{copy.sections.verification}</h3>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {uploadPlaceholders[locale === "tr" ? "tr" : "en"].map((item) => (
-                <div key={item} className="rounded-md border border-dashed border-ink/20 bg-cloud p-4">
-                  <UploadCloud size={20} className="text-copper" />
-                  <p className="mt-2 text-sm font-bold text-ink">{item}</p>
-                  <p className="mt-1 text-xs leading-5 text-steel">Upload placeholder</p>
-                </div>
-              ))}
+          <p className="mt-3 text-sm font-semibold leading-6 text-green-800">
+            {selectedType === "supplier" ? "i-WALL tedarikçi profili hazırlandı. Şimdi ürünlerinizi ve desen koleksiyonlarınızı ekleyebilirsiniz." : "Bilgileriniz localStorage üzerinde taslak olarak kaydedildi."}
+          </p>
+          {selectedType === "supplier" && (
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <Button href={`/${locale}/suppliers/i-wall`}>i-WALL profilini görüntüle</Button>
+              <Button href={`/${locale}/suppliers/i-wall/products/new`} variant="secondary">İlk ürünü ekle</Button>
+              <Button href={`/${locale}/suppliers/i-wall/patterns/new`} variant="secondary">Desen koleksiyonu ekle</Button>
             </div>
-          </div>
-        )}
-
-        <label className="flex items-start gap-3 rounded-md border border-ink/10 bg-cloud p-4 text-sm font-semibold leading-6 text-ink">
-          <input type="checkbox" checked={values.acceptedTerms === "true"} onChange={(event) => updateField("acceptedTerms", event.target.checked ? "true" : "")} className="mt-1 accent-orange-600" />
-          <span>{copy.terms}</span>
-        </label>
-        {errors.acceptedTerms && <p className="-mt-4 text-xs font-semibold text-red-600">{errors.acceptedTerms}</p>}
-
-        <div className="flex flex-col gap-3 border-t border-ink/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-semibold leading-5 text-steel">{copy.savedKey}: {selectedType === "supplier" ? `${authDemoStorageKeys.registrationDrafts} / ${supplierDraftKey}` : authDemoStorageKeys.registrationDrafts}</p>
-          <button type="submit" disabled={!isReadyToSubmit()} className="rounded-md bg-signal px-5 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper disabled:cursor-not-allowed disabled:bg-steel disabled:shadow-none">
-            {copy.buttons.save[selectedType]}
-          </button>
-        </div>
-      </form>
-    </>
+          )}
+        </section>
+      )}
+    </div>
   );
 }
 
-function FormSection({ icon: Icon, title, children }: { icon: LucideIcon; title: string; children: ReactNode }) {
+function SupplierField({ label, value, onChange, error, required, password }: { label: string; value: string; onChange: (value: string) => void; error?: string; required?: boolean; password?: boolean }) {
   return (
-    <section>
-      <div className="flex items-center gap-2">
-        <Icon size={19} className="text-copper" />
-        <h3 className="text-lg font-bold text-ink">{title}</h3>
-      </div>
-      <div className="mt-4 grid gap-4 md:grid-cols-2">{children}</div>
-    </section>
-  );
-}
-
-function TextField({ label, value, onChange, error, required = false, multiline = false }: { label: string; value: string; onChange: (value: string) => void; error?: string; required?: boolean; multiline?: boolean }) {
-  return (
-    <label className={cn("grid gap-2", multiline && "md:col-span-2")}>
+    <label className="grid gap-2">
       <span className="text-xs font-bold uppercase tracking-[0.08em] text-steel">
         {label}
         {required && <span className="text-copper"> *</span>}
       </span>
-      {multiline ? (
-        <textarea value={value} onChange={(event) => onChange(event.target.value)} className={cn("min-h-28 rounded-md border px-3 py-3 text-sm font-medium text-ink outline-none focus:border-signal", error ? "border-red-400" : "border-ink/10")} />
-      ) : (
-        <input value={value} onChange={(event) => onChange(event.target.value)} className={cn("h-11 rounded-md border px-3 text-sm font-medium text-ink outline-none focus:border-signal", error ? "border-red-400" : "border-ink/10")} />
-      )}
+      <input type={password ? "password" : "text"} value={value} onChange={(event) => onChange(event.target.value)} className={cn("h-11 rounded-md border px-3 text-sm font-medium text-ink outline-none focus:border-signal", error ? "border-red-400" : "border-ink/10")} />
       {error && <span className="text-xs font-semibold text-red-600">{error}</span>}
     </label>
   );
 }
-
-
