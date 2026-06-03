@@ -4,14 +4,14 @@ import { dictionaries } from "@/messages";
 import { Button } from "@/components/ui/button";
 
 const languageOptions = [
-  { code: "en", label: "English", ready: true },
-  { code: "tr", label: "Türkçe", ready: true },
-  { code: "ar", label: "العربية", ready: true },
-  { code: "zh", label: "中文", ready: true },
-  { code: "ru", label: "Русский", ready: true },
-  { code: "de", label: "Deutsch", ready: true },
-  { code: "fr", label: "Français", ready: true },
-  { code: "es", label: "Español", ready: true }
+  { code: "en", label: "English" },
+  { code: "tr", label: "Türkçe" },
+  { code: "ar", label: "العربية" },
+  { code: "zh", label: "中文" },
+  { code: "ru", label: "Русский" },
+  { code: "de", label: "Deutsch" },
+  { code: "fr", label: "Français" },
+  { code: "es", label: "Español" }
 ];
 
 export function SiteHeader({ locale }: { locale: Locale }) {
@@ -46,11 +46,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                 {languageOptions.map((item) => (
                   <a
                     key={item.code}
-                    className="flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium text-ink hover:bg-cloud"
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-cloud"
                     href={`/${item.code}`}
                   >
-                    <span>{item.label}</span>
-                    <span className="text-xs text-copper">{t.language.ready}</span>
+                    {item.label}
                   </a>
                 ))}
               </div>

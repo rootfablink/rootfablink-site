@@ -3,9 +3,9 @@ export const en = {
   languageSwitch: "Türkçe",
   language: {
     label: "Language",
-    ready: "Available now",
+    ready: "Available",
     preparing: "Native editorial version in preparation",
-    note: "We publish only reviewed, native business copy for each market."
+    note: "Choose a market language for reviewed B2B marketplace copy."
   },
   nav: {
     buyers: "Buyers",
@@ -18,81 +18,82 @@ export const en = {
     start: "Start trading"
   },
   home: {
-    headline: "ROOTFABLINK",
-    eyebrow: "Turkiye to the world, built for global trade",
+    headline: "Global B2B Trade Infrastructure for Manufacturers, Buyers and Logistics Partners",
+    eyebrow: "Türkiye to the world, built for global manufacturing trade",
     subhead:
-      "A trusted global B2B infrastructure for manufacturers, buyers, logistics providers, and trade service teams.",
+      "RootFabLink helps factories, suppliers and global buyers connect, negotiate, source products, manage RFQs and prepare secure international trade workflows.",
     primary: "Post an RFQ",
-    secondary: "Explore verified suppliers",
+    secondary: "List Your Products for Free",
     stats: [
-      ["8", "launch locales"],
-      ["12", "product phases"],
-      ["24/7", "global trade workflows"],
-      ["100%", "verification-first architecture"]
+      ["Free", "supplier registration"],
+      ["Free", "product listing"],
+      ["RFQ", "driven sourcing"],
+      ["Future", "trade assurance workflows"]
     ],
-    cockpitTitle: "Trade operations cockpit",
+    cockpitTitle: "Marketplace operating flow",
     workflows: [
-      "Global buyers create RFQs",
-      "Suppliers submit quotations",
-      "Teams negotiate in secure messaging",
-      "Admins verify companies and products",
-      "Logistics providers quote shipments"
+      "Buyers create structured RFQs",
+      "Suppliers register and list products free",
+      "Factories submit quotations",
+      "Teams prepare secure trade workflows",
+      "Logistics and customs partners support execution"
     ],
     featureCards: [
       {
-        title: "Permission-first",
-        text: "Roles and backend authorization are modeled before feature expansion."
+        title: "Free listing first",
+        text: "Supplier onboarding, company profiles and basic product listings stay open before paid growth tools are introduced."
       },
       {
-        title: "Messaging-ready",
-        text: "Conversation, quotation, and RFQ flows are prepared as core platform entities."
+        title: "Trust-ready workflows",
+        text: "RFQs, quotations, messaging, moderation and future trade assurance flows are positioned as the platform operating core."
       }
     ],
     flywheelEyebrow: "Marketplace flywheel",
-    flywheelTitle: "Liquidity grows when buyers, verified supply, and logistics stay in the same operating loop.",
+    flywheelTitle: "Liquidity grows when buyer demand, free supplier participation and trade services operate in one loop.",
     flywheel: [
-      ["Demand capture", "RFQs turn buyer intent into structured, searchable demand with files, delivery terms, quantity, and destination."],
-      ["Verified supply", "Factories and exporters compete on capability, response quality, documents, certifications, and trust status."],
-      ["Trade execution", "Messaging, quotation comparison, logistics quotes, and admin review keep transactions moving with less fragmentation."]
+      ["Demand capture", "RFQs turn buyer intent into structured sourcing demand with files, delivery terms, quantity and destination."],
+      ["Open supplier supply", "Factories and suppliers can create profiles, list products and receive buyer demand without upfront listing fees."],
+      ["Secure trade preparation", "Messaging, quotation comparison, verification review and logistics support prepare transactions for safer execution."]
     ],
-    proofEyebrow: "Founder-grade clarity",
-    proofTitle: "Why this can become infrastructure, not another supplier directory.",
+    proofEyebrow: "Revenue transparency",
+    proofTitle: "Simple marketplace model: free access first, value-based monetization later.",
     proof: [
-      "Clear ICP split across buyers, suppliers, logistics providers, and trade service teams.",
-      "Trust gate before scale: verification, moderation, audit logs, and role-based permissions.",
-      "Monetization path through supplier plans, verification packages, lead access, and enterprise workflows."
+      "Supplier registration, company profiles, basic buyer access and product listing remain free.",
+      "Revenue is designed around transaction commission, trade assurance service fees and secure workflow services.",
+      "Sponsored products, featured suppliers, premium RFQ visibility, logistics leads and enterprise tools create future growth revenue."
     ],
     foundationEyebrow: "Platform foundation",
-    foundationTitle: "Built around the real mechanics of industrial B2B trade.",
+    foundationTitle: "Built around the real mechanics of global B2B sourcing and industrial trade.",
     pillars: [
       {
-        id: "buyers",
-        title: "Buyer RFQ engine",
-        text: "Post requirements, attach technical files, match with relevant factories, and compare quotations."
+        id: "suppliers",
+        title: "Factories and suppliers can join free",
+        text: "Create a company profile, list products without upfront fees, receive RFQs, build trust with verification and use sponsored visibility when ready to scale."
       },
       {
-        id: "suppliers",
-        title: "Supplier and factory profiles",
-        text: "Build verified company pages, factory capacity records, product catalogs, badges, and trust signals."
+        id: "buyers",
+        title: "Buyers source directly from manufacturers",
+        text: "Discover verified suppliers, compare quotations, send RFQs, communicate securely and prepare future trade assurance workflows."
       },
       {
         id: "logistics",
-        title: "Logistics and customs marketplace",
-        text: "Prepare freight quote flows, customs broker profiles, shipment documents, and provider verification."
+        title: "Logistics and customs ecosystem",
+        text: "Freight forwarders, customs brokers and trade service teams can support sourcing flows and prepare lead-based commercial opportunities."
       },
       {
         id: "trust",
-        title: "Trust, verification, and admin control",
-        text: "Document review, audit logs, product moderation, dispute preparation, and permission-based operations."
+        title: "Verification first, trust first",
+        text: "Company document review, factory profile checks, product moderation and communication records build the foundation for safer trade."
       }
     ],
     commercialEyebrow: "Commercial model",
-    commercialTitle: "Designed for subscriptions, verification, leads, and sponsored discovery.",
-    plans: ["Free Supplier", "Verified Supplier", "Premium Supplier", "Enterprise Supplier"],
-    planNote: "Plan limits and billing hooks are prepared for future implementation."
+    commercialTitle: "Free listing first. Commission, trade assurance and sponsored visibility later.",
+    plans: ["Free Supplier", "Verified Supplier", "Sponsored Growth", "Enterprise"],
+    planNote:
+      "Basic access remains free; paid value is built around verification, transaction services, sponsored discovery, premium RFQ visibility and advanced tools."
   },
   footer: {
-    text: "Trusted B2B infrastructure for sourcing, verification, RFQs, logistics, and global industrial trade.",
+    text: "Global B2B infrastructure for sourcing, verification, RFQs, logistics and international trade workflows.",
     groups: [
       {
         title: "Platform",
@@ -111,59 +112,59 @@ export const en = {
   pages: {
     buyers: {
       eyebrow: "For global buyers",
-      title: "Source verified industrial suppliers with a clear RFQ workflow.",
+      title: "Source directly from manufacturers through structured RFQs.",
       intro:
-        "ROOTFABLINK gives procurement teams a structured way to discover factories, submit product requirements, compare quotations, and move supplier conversations into a controlled workspace.",
+        "RootFabLink gives procurement teams a clear way to discover suppliers, submit product requirements, compare quotations, communicate securely and prepare international trade workflows.",
       primary: "Create buyer account",
-      secondary: "View RFQ workflow",
+      secondary: "Post an RFQ",
       highlights: [
-        ["Structured RFQs", "Capture specifications, quantity, destination, delivery terms, and supporting files before suppliers respond."],
-        ["Supplier comparison", "Review quotations, response quality, verification level, and commercial fit in one place."],
-        ["Procurement workspace", "Prepare team-based buying workflows for enterprise sourcing, supplier shortlists, and follow-up."]
+        ["Structured RFQs", "Capture specifications, quantity, destination, delivery terms and supporting files before suppliers respond."],
+        ["Supplier comparison", "Review quotations, response quality, verification level and commercial fit in one workspace."],
+        ["Trade preparation", "Move from sourcing to negotiation, logistics support and future trade assurance workflows without leaving the platform."]
       ],
       stepsTitle: "Buyer workflow",
       steps: ["Open an RFQ", "Match with relevant suppliers", "Compare quotations", "Message and negotiate", "Prepare order and logistics"]
     },
     suppliers: {
       eyebrow: "For suppliers and factories",
-      title: "Build a trusted export profile and receive relevant buyer demand.",
+      title: "Register free, list products free and grow with verified buyer demand.",
       intro:
-        "Manufacturers, exporters, wholesalers, and factories can present their company, products, production capacity, certifications, and verification status with a premium B2B profile.",
+        "Manufacturers, exporters, wholesalers and factories can create a company profile, publish basic product listings and receive RFQs without upfront listing fees.",
       primary: "Create supplier account",
-      secondary: "See verification",
+      secondary: "List products free",
       highlights: [
-        ["Company profile", "Show export markets, main categories, factory capability, documentation, and team ownership."],
-        ["Product catalog", "Prepare SEO-ready product listings with MOQ, lead time, certificates, images, and private-label options."],
-        ["RFQ access", "Receive demand signals from buyers and respond with structured quotations."]
+        ["Free company profile", "Show export markets, main categories, factory capability, documentation and team ownership."],
+        ["Free product listing", "Publish product pages with MOQ, lead time, certificates, images and private-label options."],
+        ["Sponsored visibility", "Use promoted products, featured supplier ranking and RFQ visibility boosts when your team is ready to scale exposure."]
       ],
       stepsTitle: "Supplier workflow",
-      steps: ["Create company", "Add factory and documents", "Publish products", "Respond to RFQs", "Grow trust score"]
+      steps: ["Register free", "Create company profile", "List products free", "Respond to RFQs", "Build verification and visibility"]
     },
     logistics: {
       eyebrow: "Logistics and customs",
-      title: "Connect sourcing with freight, customs, and trade service execution.",
+      title: "Connect sourcing with freight, customs and trade service execution.",
       intro:
-        "ROOTFABLINK is designed to make logistics providers, customs brokers, inspection companies, and trade consultants part of the same international trade operating system.",
+        "RootFabLink is designed to make logistics providers, customs brokers, inspection companies and trade consultants part of the same international trade operating system.",
       primary: "Join as provider",
       secondary: "Explore trade services",
       highlights: [
-        ["Freight requests", "Prepare sea, air, land, container, warehouse, and destination-based shipment quote workflows."],
-        ["Customs support", "Model customs broker profiles, HS-code assistance, document checklists, and consultation requests."],
-        ["Provider verification", "Separate serious service providers from unverified listings with document and region-based trust signals."]
+        ["Freight requests", "Prepare sea, air, land, container, warehouse and destination-based shipment quote workflows."],
+        ["Customs support", "Model customs broker profiles, HS-code assistance, document checklists and consultation requests."],
+        ["Lead commission model", "Logistics and customs partners can support buyer-supplier transactions and future paid lead opportunities."]
       ],
       stepsTitle: "Service workflow",
       steps: ["Create provider profile", "Define regions and modes", "Receive quote requests", "Submit terms", "Support shipment execution"]
     },
     trust: {
       eyebrow: "Trust infrastructure",
-      title: "Verification, moderation, and auditability are product pillars, not add-ons.",
+      title: "Verification, moderation and auditability are product pillars.",
       intro:
-        "The platform foundation includes supplier verification states, document review, product approval, admin queues, and audit logs so trust can scale with the marketplace.",
+        "The platform foundation includes supplier verification states, document review, product moderation, admin queues and audit logs so trust can scale with the marketplace.",
       primary: "Open verification center",
       secondary: "View admin shell",
       highlights: [
-        ["Verification status", "Support unverified, pending, partially verified, verified supplier, verified factory, premium verified, rejected, and suspended states."],
-        ["Document review", "Prepare business licenses, tax certificates, export documents, certifications, factory media, and inspection reports for secure review."],
+        ["Verified supplier", "Support review states for company documents, factory profiles, product evidence and trust badges."],
+        ["Trade assurance preparation", "Prepare protected payment, milestone, escrow, dispute and transaction security workflows without claiming they are live payment rails."],
         ["Audit logs", "Track sensitive admin and moderation actions through a durable platform record."]
       ],
       stepsTitle: "Trust workflow",
@@ -173,44 +174,45 @@ export const en = {
       eyebrow: "RFQ marketplace",
       title: "Turn buyer demand into structured supplier opportunities.",
       intro:
-        "RFQ is the platform engine that connects buying intent with qualified supplier response, quotation comparison, messaging, and logistics preparation.",
+        "RFQ is the platform engine that connects buying intent with qualified supplier response, quotation comparison, messaging and logistics preparation.",
       primary: "Post an RFQ",
       secondary: "Supplier dashboard",
       highlights: [
-        ["Requirement quality", "Guide buyers to submit product details, files, quantity, destination, and delivery expectations."],
-        ["Supplier matching", "Prepare category, country, certification, trust-score, and membership-based matching logic."],
-        ["Quotation lifecycle", "Support draft, submitted, shortlisted, rejected, accepted, and withdrawn quotation states."]
+        ["Requirement quality", "Guide buyers to submit product details, files, quantity, destination and delivery expectations."],
+        ["Supplier matching", "Prepare category, country, certification, trust-score and visibility-based matching logic."],
+        ["RFQ priority visibility", "Future sponsored RFQ access can help qualified suppliers see relevant opportunities faster."]
       ],
       stepsTitle: "RFQ workflow",
       steps: ["Buyer posts request", "System matches suppliers", "Suppliers quote", "Buyer compares", "Negotiation begins"]
     },
     pricing: {
-      eyebrow: "Membership and monetization",
-      title: "A serious revenue model for suppliers, lead access, and verified visibility.",
+      eyebrow: "Marketplace model",
+      title: "Free supplier access with value-based monetization.",
       intro:
-        "ROOTFABLINK is prepared for supplier subscriptions, verification packages, sponsored discovery, RFQ lead credits, logistics leads, and future transaction-based services.",
-      primary: "Start with free supplier",
-      secondary: "Compare plans",
+        "RootFabLink is designed around free supplier onboarding and free product listing. Revenue is generated through transaction services, trade assurance, sponsored visibility, premium lead access and future enterprise tools.",
+      primary: "Start free",
+      secondary: "Compare growth options",
       highlights: [
-        ["Free Supplier", "Basic company presence, limited product publishing, and controlled RFQ access."],
-        ["Verified Supplier", "Verification badge, richer profile, stronger trust signals, and improved discovery."],
-        ["Premium and Enterprise", "Featured placement, analytics, priority support, team controls, and future API access."]
+        ["Free Supplier", "Company profile, basic product listings, basic RFQ access, basic messaging and a public supplier profile."],
+        ["Verified Supplier", "Verified supplier badge, trust profile, document review, higher buyer confidence and improved visibility."],
+        ["Sponsored Growth", "Sponsored products, featured supplier ranking, category promotion, search result boost and RFQ visibility boost."],
+        ["Enterprise", "API access, team management, advanced analytics, ERP/CRM integrations, dedicated support and enterprise workflows."]
       ],
       stepsTitle: "Commercial rollout",
-      steps: ["Free profile", "Verification package", "Premium visibility", "RFQ credits", "Enterprise procurement tools"]
+      steps: ["Free registration", "Free product listing", "Verification services", "Sponsored visibility", "Commission and enterprise tools"]
     }
   },
   auth: {
     loginEyebrow: "Secure access",
     loginTitle: "Sign in to your trade workspace.",
-    loginText: "Authentication is prepared for JWT, refresh tokens, MFA, and role-based access control.",
+    loginText: "Authentication is prepared for JWT, refresh tokens, MFA and role-based access control.",
     email: "Email",
     emailPlaceholder: "buyer@company.com",
     password: "Password",
     passwordPlaceholder: "Password",
     signIn: "Sign in",
     registerEyebrow: "Onboarding",
-    registerTitle: "Create a verified global trade account.",
+    registerTitle: "Create a global trade account.",
     accountTypes: ["Buyer", "Supplier", "Logistics provider", "Customs broker"],
     accountNote: "Prepared for dedicated onboarding and permissions."
   },
