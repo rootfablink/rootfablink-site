@@ -1,7 +1,7 @@
-import { isLocale, type Locale } from "@rootfablink/i18n";
+import { getTextDirection, isLocale, locales, type Locale } from "@rootfablink/i18n";
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "tr" }];
+  return locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -14,5 +14,9 @@ export default async function LocaleLayout({
   const { locale: localeParam } = await params;
   const locale: Locale = isLocale(localeParam) ? localeParam : "en";
 
-  return <div lang={locale}>{children}</div>;
+  return (
+    <div lang={locale} dir={getTextDirection(locale)}>
+      {children}
+    </div>
+  );
 }

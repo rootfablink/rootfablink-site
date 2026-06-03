@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { hasPermission } from "@rootfablink/auth";
+import { isLocale } from "@rootfablink/i18n";
 import type { UserRole } from "@rootfablink/types";
 
 const protectedRoutePermissions: Array<{ pattern: RegExp; permission?: Parameters<typeof hasPermission>[1] }> = [
-  { pattern: /^\/(?:en|tr)\/admin(?:\/|$)/, permission: "view_admin_dashboard" },
-  { pattern: /^\/(?:en|tr)\/dashboard(?:\/|$)/ }
+  { pattern: /^\/(?:en|tr|ar|zh|ru|de|fr|es)\/admin(?:\/|$)/, permission: "view_admin_dashboard" },
+  { pattern: /^\/(?:en|tr|ar|zh|ru|de|fr|es)\/dashboard(?:\/|$)/ }
 ];
 
 const sessionCookieNames = ["__Host-rootfablink_session", "rootfablink_session"];
@@ -12,7 +13,7 @@ const roleCookieNames = ["__Host-rootfablink_role", "rootfablink_role"];
 
 function getLocale(pathname: string) {
   const locale = pathname.split("/")[1];
-  return locale === "tr" || locale === "en" ? locale : "en";
+  return locale && isLocale(locale) ? locale : "en";
 }
 
 function readCookie(request: NextRequest, names: string[]) {
@@ -54,5 +55,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/:locale(en|tr)/admin/:path*", "/:locale(en|tr)/admin", "/:locale(en|tr)/dashboard/:path*", "/:locale(en|tr)/dashboard"]
+  matcher: ["/:locale/admin/:path*", "/:locale/admin", "/:locale/dashboard/:path*", "/:locale/dashboard"]
 };

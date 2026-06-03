@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 const languageOptions = [
   { code: "en", label: "English", ready: true },
   { code: "tr", label: "Türkçe", ready: true },
-  { code: "ar", label: "العربية", ready: false },
-  { code: "zh", label: "中文", ready: false },
-  { code: "ru", label: "Русский", ready: false },
-  { code: "de", label: "Deutsch", ready: false },
-  { code: "fr", label: "Français", ready: false },
-  { code: "es", label: "Español", ready: false }
+  { code: "ar", label: "العربية", ready: true },
+  { code: "zh", label: "中文", ready: true },
+  { code: "ru", label: "Русский", ready: true },
+  { code: "de", label: "Deutsch", ready: true },
+  { code: "fr", label: "Français", ready: true },
+  { code: "es", label: "Español", ready: true }
 ];
 
 export function SiteHeader({ locale }: { locale: Locale }) {
@@ -43,23 +43,16 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <div className="absolute right-0 mt-2 w-72 rounded-md border border-ink/10 bg-white p-3 shadow-soft">
               <p className="px-2 pb-2 text-xs leading-5 text-steel">{t.language.note}</p>
               <div className="grid gap-1">
-                {languageOptions.map((item) =>
-                  item.ready ? (
-                    <a
-                      key={item.code}
-                      className="flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium text-ink hover:bg-cloud"
-                      href={`/${item.code}`}
-                    >
-                      <span>{item.label}</span>
-                      <span className="text-xs text-copper">{t.language.ready}</span>
-                    </a>
-                  ) : (
-                    <div key={item.code} className="flex items-center justify-between rounded-md px-2 py-2 text-sm text-steel">
-                      <span>{item.label}</span>
-                      <span className="text-right text-xs">{t.language.preparing}</span>
-                    </div>
-                  )
-                )}
+                {languageOptions.map((item) => (
+                  <a
+                    key={item.code}
+                    className="flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium text-ink hover:bg-cloud"
+                    href={`/${item.code}`}
+                  >
+                    <span>{item.label}</span>
+                    <span className="text-xs text-copper">{t.language.ready}</span>
+                  </a>
+                ))}
               </div>
             </div>
           </details>
