@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Camera, ChevronDown, Globe2, Heart, MapPin, PackageSearch, Search, UserRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { cn } from "@/lib/utils";
+import type { CountryCode, LocalizationPreference } from "./localization-preferences";
+import { countryFromLocale, detectCountryFromBrowser, preferenceFromCountry, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
 import { getMarketplaceCopy } from "./marketplace-copy";
 import {
   CategoryMegaMenu,
@@ -21,12 +24,46 @@ import {
 type OpenPanel = "categories" | "verified" | "protection" | "buyer" | "supplier" | "delivery" | "language" | "signin" | null;
 
 export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOpenLens?: () => void }) {
-  const copy = getMarketplaceCopy(locale);
+  const router = useRouter();
+  const pathname = usePathname();
+  const [preference, setPreference] = useState<LocalizationPreference>(() => preferenceFromCountry(countryFromLocale(locale), false));
+  const copy = getMarketplaceCopy(preference.language);
   const [activeTab, setActiveTab] = useState(copy.header.products);
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
 
+  useEffect(() => {
+    const stored = readStoredPreference();
+    const initialPreference = stored ?? preferenceFromCountry(detectCountryFromBrowser(), false);
+    setPreference(initialPreference);
+
+    const shouldApplyStoredPreference = stored?.manuallySelected && initialPreference.language !== locale;
+    const shouldApplyBrowserDefault = !stored && locale === "en" && initialPreference.language !== locale;
+
+    if (shouldApplyStoredPreference || shouldApplyBrowserDefault) {
+      router.replace(replaceLocaleInPath(pathname, initialPreference.language));
+    }
+  }, [locale, pathname, router]);
+
+  useEffect(() => {
+    setActiveTab(copy.header.products);
+  }, [copy.header.products]);
+
   const toggle = (panel: OpenPanel) => {
     setOpenPanel((current) => (current === panel ? null : panel));
+  };
+
+  const handleCountryChange = (country: CountryCode) => {
+    setPreference(preferenceFromCountry(country, true));
+  };
+
+  const savePreference = () => {
+    const nextPreference = { ...preference, manuallySelected: true };
+    writeStoredPreference(nextPreference);
+    setOpenPanel(null);
+
+    if (nextPreference.language !== locale) {
+      router.push(replaceLocaleInPath(pathname, nextPreference.language));
+    }
   };
 
   return (
@@ -45,7 +82,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <SmallPanelButton icon={<MapPin size={16} />} label={copy.header.delivery} value={copy.header.deliveryCountry} onClick={() => toggle("delivery")} />
+            <SmallPanelButton icon={<MapPin size={16} />} label={copy.header.delivery} value={`${preference.country} · ${preference.currency}`} onClick={() => toggle("delivery")} />
             <SmallPanelButton icon={<Globe2 size={16} />} label={copy.header.languageCurrency} onClick={() => toggle("language")} />
             <Link href={`/${locale}/messages`} className="flex h-10 w-10 items-center justify-center rounded-md border border-ink/10 text-ink hover:border-signal/35 hover:bg-cloud" aria-label={copy.header.basket}>
               <Heart size={17} />
@@ -119,8 +156,8 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             {openPanel === "protection" && <TradeProtectionMenu copy={copy} locale={locale} />}
             {openPanel === "buyer" && <CenterMenu items={copy.buyerCenter} locale={locale} />}
             {openPanel === "supplier" && <CenterMenu items={copy.supplierCenter} locale={locale} supplier />}
-            {openPanel === "delivery" && <DeliverySelector copy={copy} />}
-            {openPanel === "language" && <LanguageCurrencySelector copy={copy} />}
+            {openPanel === "delivery" && <DeliverySelector copy={copy} preference={preference} onCountryChange={handleCountryChange} onSave={savePreference} />}
+            {openPanel === "language" && <LanguageCurrencySelector copy={copy} preference={preference} onChange={setPreference} onSave={savePreference} />}
             {openPanel === "signin" && <SignInDropdown copy={copy} locale={locale} />}
           </div>
         </div>
