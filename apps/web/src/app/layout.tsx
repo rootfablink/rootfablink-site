@@ -3,24 +3,24 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "RootFabLink | Global B2B Manufacturing, Sourcing and Trade Platform",
+    default: "RootFabLink | Global B2B Marketplace for Manufacturers, Buyers and Trade Services",
     template: "%s | RootFabLink"
   },
   description:
-    "RootFabLink connects manufacturers, suppliers, buyers, logistics providers and trade service teams through a global B2B infrastructure for sourcing, RFQs, verification and international trade workflows.",
+    "RootFabLink connects buyers, manufacturers, verified suppliers, logistics providers and trade service teams through a global B2B marketplace for sourcing, RFQs, product discovery and secure trade workflows.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   openGraph: {
-    title: "RootFabLink | Global B2B Manufacturing, Sourcing and Trade Platform",
+    title: "RootFabLink | Global B2B Marketplace for Manufacturers, Buyers and Trade Services",
     description:
-      "RootFabLink connects manufacturers, suppliers, buyers, logistics providers and trade service teams through a global B2B infrastructure for sourcing, RFQs, verification and international trade workflows.",
+      "RootFabLink connects buyers, manufacturers, verified suppliers, logistics providers and trade service teams through a global B2B marketplace for sourcing, RFQs, product discovery and secure trade workflows.",
     siteName: "RootFabLink",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "RootFabLink | Global B2B Manufacturing, Sourcing and Trade Platform",
+    title: "RootFabLink | Global B2B Marketplace for Manufacturers, Buyers and Trade Services",
     description:
-      "RootFabLink connects manufacturers, suppliers, buyers, logistics providers and trade service teams through a global B2B infrastructure for sourcing, RFQs, verification and international trade workflows."
+      "RootFabLink connects buyers, manufacturers, verified suppliers, logistics providers and trade service teams through a global B2B marketplace for sourcing, RFQs, product discovery and secure trade workflows."
   }
 };
 

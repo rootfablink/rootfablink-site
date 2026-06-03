@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle2, Factory, FileText, Globe2, ShieldCheck } from
 import type { Locale } from "@rootfablink/i18n";
 import { dictionaries } from "@/messages";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
+import { MarketplaceHeader } from "@/components/marketplace/marketplace-header";
 import { Button } from "@/components/ui/button";
 
 type PageKey = keyof typeof dictionaries.en.pages;
@@ -23,7 +23,7 @@ export function PublicInfoPage({ locale, pageKey }: { locale: Locale; pageKey: P
 
   return (
     <>
-      <SiteHeader locale={locale} />
+      <MarketplaceHeader locale={locale} />
       <main>
         <section className="border-b border-ink/10 bg-[linear-gradient(135deg,#ffffff_0%,#ffffff_55%,#fff2e5_100%)]">
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-5 lg:grid-cols-[0.9fr_1.1fr] lg:py-18">

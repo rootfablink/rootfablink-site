@@ -14,9 +14,9 @@ export async function generateMetadata({
   const locale: Locale = isLocale(localeParam) ? localeParam : "en";
 
   if (locale === "tr") {
-    const title = "RootFabLink | Küresel B2B Üretici, Tedarik ve Ticaret Platformu";
+    const title = "RootFabLink | Üreticiler, Alıcılar ve Ticaret Hizmetleri İçin Küresel B2B Pazaryeri";
     const description =
-      "RootFabLink; üreticileri, tedarikçileri, alıcıları, lojistik firmalarını ve ticaret hizmet ekiplerini küresel B2B tedarik, RFQ, doğrulama ve uluslararası ticaret altyapısında buluşturur.";
+      "RootFabLink; alıcıları, üreticileri, doğrulanmış tedarikçileri, lojistik firmalarını ve ticaret hizmet ekiplerini küresel B2B tedarik, RFQ, ürün keşfi ve güvenli ticaret iş akışlarında buluşturur.";
 
     return {
       title,
