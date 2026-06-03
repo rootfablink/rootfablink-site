@@ -3,7 +3,7 @@ export const tr = {
   languageSwitch: "English",
   language: {
     label: "Dil",
-    ready: "Yayında",
+    ready: "Kullanılabilir",
     preparing: "Yerel editoryal metin hazırlanıyor",
     note: "İncelemek istediğiniz pazar dilini seçin."
   },

@@ -1,9 +1,7 @@
 "use client";
 
-import { BadgeCheck, Box, CheckCircle2, Factory, Globe2, ShieldCheck, Truck } from "lucide-react";
+import { BadgeCheck, Box, CheckCircle2, Factory, Globe2, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { CountryCode, LocalizationPreference } from "./localization-preferences";
-import { countryOptions, currencyOptions, languageOptions, preferenceFromCountry } from "./localization-preferences";
 import type { MarketplaceCopy } from "./marketplace-copy";
 
 export function CategoryMegaMenu({ copy, locale }: { copy: MarketplaceCopy; locale: string }) {
@@ -37,7 +35,9 @@ export function CategoryMegaMenu({ copy, locale }: { copy: MarketplaceCopy; loca
             <p className="font-bold text-ink">{copy.categories.featuredSupplier}</p>
             <p className="mt-1 text-sm leading-6 text-steel">{copy.categories.featuredText}</p>
           </div>
-          <Button href={`/${locale}/categories`} variant="secondary">{copy.categories.viewAll}</Button>
+          <Button href={`/${locale}/categories`} variant="secondary">
+            {copy.categories.viewAll}
+          </Button>
         </div>
       </div>
     </div>
@@ -55,7 +55,9 @@ export function VerifiedManufacturersMenu({ copy, locale }: { copy: MarketplaceC
         <p className="mt-3 text-sm leading-6 text-steel">{copy.verifiedMenu.text}</p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <Button href={`/${locale}/verified-manufacturers`}>{copy.verifiedMenu.explore}</Button>
-          <Button href={`/${locale}/supplier/onboarding`} variant="secondary">{copy.verifiedMenu.become}</Button>
+          <Button href={`/${locale}/supplier/onboarding`} variant="secondary">
+            {copy.verifiedMenu.become}
+          </Button>
         </div>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
@@ -86,7 +88,9 @@ export function TradeProtectionMenu({ copy, locale }: { copy: MarketplaceCopy; l
         <h3 className="mt-4 text-2xl font-bold text-ink">{copy.protectionMenu.title}</h3>
         <p className="mt-3 text-sm leading-6 text-steel">{copy.protectionMenu.text}</p>
         <div className="mt-5">
-          <Button href={`/${locale}/trade-protection`} variant="secondary">{copy.protectionMenu.cta}</Button>
+          <Button href={`/${locale}/trade-protection`} variant="secondary">
+            {copy.protectionMenu.cta}
+          </Button>
         </div>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
@@ -107,7 +111,9 @@ export function SignInDropdown({ copy, locale }: { copy: MarketplaceCopy; locale
       <h3 className="text-lg font-bold text-ink">{copy.signIn.welcome}</h3>
       <div className="mt-4 grid gap-2 sm:grid-cols-2">
         <Button href={`/${locale}/auth/login`}>{copy.signIn.signIn}</Button>
-        <Button href={`/${locale}/auth/register`} variant="secondary">{copy.signIn.create}</Button>
+        <Button href={`/${locale}/auth/register`} variant="secondary">
+          {copy.signIn.create}
+        </Button>
       </div>
       <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-steel">{copy.signIn.social}</p>
       <div className="mt-2 grid grid-cols-3 gap-2">
@@ -124,101 +130,6 @@ export function SignInDropdown({ copy, locale }: { copy: MarketplaceCopy; locale
           </a>
         ))}
       </div>
-    </div>
-  );
-}
-
-export function LanguageCurrencySelector({
-  copy,
-  preference,
-  onChange,
-  onSave
-}: {
-  copy: MarketplaceCopy;
-  preference: LocalizationPreference;
-  onChange: (preference: LocalizationPreference) => void;
-  onSave: () => void;
-}) {
-  return (
-    <div className="w-full max-w-md">
-      <h3 className="text-base font-bold text-ink">{copy.selectors.preferencesTitle}</h3>
-      <p className="mt-2 text-xs leading-5 text-steel">{copy.selectors.preferencesNote}</p>
-      <div className="grid gap-3 sm:grid-cols-3">
-        <label className="grid gap-2 text-xs font-bold uppercase tracking-[0.08em] text-steel">
-          {copy.selectors.language}
-          <select
-            className="h-10 rounded-md border border-ink/10 bg-white px-2 text-sm font-medium normal-case tracking-normal text-ink"
-            value={preference.language}
-            onChange={(event) => onChange({ ...preference, language: event.target.value as LocalizationPreference["language"], manuallySelected: true })}
-          >
-            {languageOptions.map((item) => <option key={item.code} value={item.code}>{item.label}</option>)}
-          </select>
-        </label>
-        <label className="grid gap-2 text-xs font-bold uppercase tracking-[0.08em] text-steel">
-          {copy.selectors.currency}
-          <select
-            className="h-10 rounded-md border border-ink/10 bg-white px-2 text-sm font-medium normal-case tracking-normal text-ink"
-            value={preference.currency}
-            onChange={(event) => onChange({ ...preference, currency: event.target.value, manuallySelected: true })}
-          >
-            {currencyOptions.map((item) => <option key={item}>{item}</option>)}
-          </select>
-        </label>
-        <label className="grid gap-2 text-xs font-bold uppercase tracking-[0.08em] text-steel">
-          {copy.selectors.country}
-          <select
-            className="h-10 rounded-md border border-ink/10 bg-white px-2 text-sm font-medium normal-case tracking-normal text-ink"
-            value={preference.country}
-            onChange={(event) => onChange(preferenceFromCountry(event.target.value as CountryCode, true))}
-          >
-            {countryOptions.map((item) => <option key={item.code} value={item.code}>{item.label}</option>)}
-          </select>
-        </label>
-      </div>
-      <div className="mt-3 rounded-md bg-cloud p-3 text-xs font-semibold leading-5 text-ink">
-        {copy.selectors.autoApplied}: {preference.locale} · {preference.currency}
-      </div>
-      <div className="mt-4 flex justify-end gap-2">
-        <button type="button" className="rounded-md px-3 py-2 text-sm font-semibold text-steel hover:bg-cloud">{copy.selectors.cancel}</button>
-        <button type="button" onClick={onSave} className="rounded-md bg-ink px-3 py-2 text-sm font-semibold text-white">{copy.selectors.save}</button>
-      </div>
-    </div>
-  );
-}
-
-export function DeliverySelector({
-  copy,
-  preference,
-  onCountryChange,
-  onSave
-}: {
-  copy: MarketplaceCopy;
-  preference: LocalizationPreference;
-  onCountryChange: (country: CountryCode) => void;
-  onSave: () => void;
-}) {
-  const languageLabel = languageOptions.find((item) => item.code === preference.language)?.label ?? preference.language;
-  const countryLabel = countryOptions.find((item) => item.code === preference.country)?.label ?? preference.country;
-
-  return (
-    <div className="w-full max-w-sm">
-      <div className="flex items-center gap-2 text-sm font-bold text-ink">
-        <Truck size={18} className="text-copper" />
-        {copy.selectors.country}
-      </div>
-      <select
-        className="mt-3 h-10 w-full rounded-md border border-ink/10 bg-white px-3 text-sm font-medium text-ink"
-        value={preference.country}
-        onChange={(event) => onCountryChange(event.target.value as CountryCode)}
-      >
-        {countryOptions.map((item) => <option key={item.code} value={item.code}>{item.label}</option>)}
-      </select>
-      <input className="mt-3 h-10 w-full rounded-md border border-ink/10 px-3 text-sm" placeholder={copy.selectors.postal} />
-      <p className="mt-3 text-xs leading-5 text-steel">{copy.selectors.shippingNote}</p>
-      <div className="mt-3 rounded-md bg-cloud p-3 text-xs font-semibold leading-5 text-ink">
-        {copy.selectors.autoApplied}: {countryLabel} · {languageLabel} · {preference.currency}
-      </div>
-      <button type="button" onClick={onSave} className="mt-4 rounded-md bg-ink px-4 py-2 text-sm font-semibold text-white">{copy.selectors.save}</button>
     </div>
   );
 }

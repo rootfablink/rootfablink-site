@@ -12,7 +12,8 @@ const languageOptions = [
   { code: "ru", label: "Русский" },
   { code: "de", label: "Deutsch" },
   { code: "fr", label: "Français" },
-  { code: "es", label: "Español" }
+  { code: "es", label: "Español" },
+  { code: "ja", label: "Japanese" }
 ];
 
 export function SiteHeader({ locale }: { locale: Locale }) {

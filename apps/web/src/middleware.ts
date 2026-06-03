@@ -4,8 +4,8 @@ import { isLocale } from "@rootfablink/i18n";
 import type { UserRole } from "@rootfablink/types";
 
 const protectedRoutePermissions: Array<{ pattern: RegExp; permission?: Parameters<typeof hasPermission>[1] }> = [
-  { pattern: /^\/(?:en|tr|ar|zh|ru|de|fr|es)\/admin(?:\/|$)/, permission: "view_admin_dashboard" },
-  { pattern: /^\/(?:en|tr|ar|zh|ru|de|fr|es)\/dashboard(?:\/|$)/ }
+  { pattern: /^\/(?:en|tr|ar|zh|ru|de|fr|es|ja)\/admin(?:\/|$)/, permission: "view_admin_dashboard" },
+  { pattern: /^\/(?:en|tr|ar|zh|ru|de|fr|es|ja)\/dashboard(?:\/|$)/ }
 ];
 
 const sessionCookieNames = ["__Host-rootfablink_session", "rootfablink_session"];

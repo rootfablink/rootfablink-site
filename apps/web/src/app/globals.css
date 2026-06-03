@@ -71,17 +71,6 @@ textarea {
   transform-origin: left center;
 }
 
-.rootfablink-brand-line::after {
-  position: absolute;
-  right: 0.04em;
-  bottom: -0.18em;
-  width: 2.7em;
-  height: 1px;
-  background: currentColor;
-  content: "";
-  opacity: 0.42;
-}
-
 .rootfablink-brand-root {
   opacity: 0.82;
 }
@@ -89,17 +78,6 @@ textarea {
 .rootfablink-brand-fab {
   margin-left: 0.08em;
   position: relative;
-}
-
-.rootfablink-brand-fab::before {
-  position: absolute;
-  left: 3.08em;
-  top: 46%;
-  width: 0.44em;
-  height: 1px;
-  background: #f97316;
-  content: "";
-  opacity: 0.82;
 }
 
 .rootfablink-brand-subline {
@@ -143,7 +121,4 @@ textarea {
     --rfl-tracking: 0.09em;
   }
 
-  .rootfablink-brand-line::after {
-    width: 1.8em;
-  }
 }

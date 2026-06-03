@@ -14,10 +14,10 @@ export const marketplaceCopy = {
       manufacturers: "Manufacturers",
       rfq: "RFQ",
       search: "Search products, factories or RFQs",
-      lens: "RootFabLink Lens",
-      delivery: "Deliver to",
+      lens: "ROOTFABLINK LENS",
+      delivery: "Language",
       deliveryCountry: "Türkiye",
-      languageCurrency: "Preferences",
+      languageCurrency: "Language",
       basket: "Inquiry basket",
       signIn: "Sign in",
       createAccount: "Create account",
@@ -96,7 +96,7 @@ export const marketplaceCopy = {
       language: "Language",
       currency: "Currency",
       country: "Country / Region",
-      preferencesTitle: "Advanced Preferences",
+      preferencesTitle: "Language settings",
       preferencesNote: "Country selection applies language, currency and marketplace locale automatically. Advanced users can override these values manually.",
       autoApplied: "Auto-applied preferences",
       postal: "Postal code optional",
@@ -109,13 +109,13 @@ export const marketplaceCopy = {
     },
     quick: {
       messages: "Messages",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "Help Center",
       top: "Back to top"
     },
     lens: {
-      title: "RootFabLink Lens",
+      title: "ROOTFABLINK LENS",
       text: "Upload a product image to search similar products and suppliers. Visual search infrastructure will be connected in a future AI module.",
       upload: "Upload product image",
       close: "Close"
@@ -195,10 +195,10 @@ export const marketplaceCopy = {
       manufacturers: "Üreticiler",
       rfq: "RFQ",
       search: "Ürün, fabrika veya teklif talebi ara",
-      lens: "RootFabLink Lens",
-      delivery: "Teslimat adresi",
+      lens: "ROOTFABLINK LENS",
+      delivery: "Dil",
       deliveryCountry: "Türkiye",
-      languageCurrency: "Tercihler",
+      languageCurrency: "Dil",
       basket: "Talep sepeti",
       signIn: "Giriş yap",
       createAccount: "Hesap oluştur",
@@ -249,7 +249,7 @@ export const marketplaceCopy = {
       language: "Dil",
       currency: "Para birimi",
       country: "Ülke / Bölge",
-      preferencesTitle: "Gelişmiş Tercihler",
+      preferencesTitle: "Dil ayarları",
       preferencesNote: "Ülke seçimi dili, para birimini ve pazar yeri locale ayarını otomatik uygular. Gelişmiş kullanıcılar bu değerleri elle değiştirebilir.",
       autoApplied: "Otomatik uygulanan tercihler",
       postal: "Posta kodu isteğe bağlı",
@@ -262,13 +262,13 @@ export const marketplaceCopy = {
     },
     quick: {
       messages: "Mesajlarım",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "Yardım Merkezi",
       top: "En üste çık"
     },
     lens: {
-      title: "RootFabLink Lens",
+      title: "ROOTFABLINK LENS",
       text: "Benzer ürünleri ve tedarikçileri bulmak için ürün görseli yükleyin. Görsel arama altyapısı ilerleyen AI modülünde bağlanacaktır.",
       upload: "Ürün görseli yükle",
       close: "Kapat"
@@ -355,7 +355,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       manufacturers: "Hersteller",
       search: "Produkte, Fabriken oder RFQs suchen",
       delivery: "Lieferland",
-      languageCurrency: "Einstellungen",
+      languageCurrency: "Sprache",
       signIn: "Anmelden",
       createAccount: "Konto erstellen",
       supplierOnboarding: "Lieferant werden",
@@ -391,7 +391,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     quick: {
       messages: "Nachrichten",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "Hilfezentrum",
       top: "Nach oben"
@@ -410,7 +410,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       manufacturers: "Fabricants",
       search: "Rechercher produits, usines ou RFQ",
       delivery: "Livraison",
-      languageCurrency: "Préférences",
+      languageCurrency: "Langue",
       signIn: "Connexion",
       createAccount: "Créer un compte",
       supplierOnboarding: "Devenir fournisseur",
@@ -446,7 +446,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     quick: {
       messages: "Messages",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "Centre d’aide",
       top: "Retour en haut"
@@ -465,7 +465,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       manufacturers: "Fabricantes",
       search: "Buscar productos, fábricas o RFQ",
       delivery: "Entrega",
-      languageCurrency: "Preferencias",
+      languageCurrency: "Idioma",
       signIn: "Ingresar",
       createAccount: "Crear cuenta",
       supplierOnboarding: "Ser proveedor",
@@ -501,7 +501,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     quick: {
       messages: "Mensajes",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "Centro de ayuda",
       top: "Arriba"
@@ -520,7 +520,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       manufacturers: "المصنعون",
       search: "ابحث عن منتجات أو مصانع أو طلبات عروض",
       delivery: "التسليم إلى",
-      languageCurrency: "التفضيلات",
+      languageCurrency: "اللغة",
       signIn: "تسجيل الدخول",
       createAccount: "إنشاء حساب",
       supplierOnboarding: "كن موردا",
@@ -556,7 +556,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     quick: {
       messages: "الرسائل",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "مركز المساعدة",
       top: "إلى الأعلى"
@@ -575,7 +575,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       manufacturers: "制造商",
       search: "搜索产品、工厂或 RFQ",
       delivery: "配送至",
-      languageCurrency: "偏好设置",
+      languageCurrency: "语言",
       signIn: "登录",
       createAccount: "创建账户",
       supplierOnboarding: "成为供应商",
@@ -611,7 +611,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     quick: {
       messages: "消息",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "帮助中心",
       top: "返回顶部"
@@ -630,7 +630,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       manufacturers: "Производители",
       search: "Искать товары, фабрики или RFQ",
       delivery: "Доставка",
-      languageCurrency: "Настройки",
+      languageCurrency: "Язык",
       signIn: "Войти",
       createAccount: "Создать аккаунт",
       supplierOnboarding: "Стать поставщиком",
@@ -666,10 +666,85 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     quick: {
       messages: "Сообщения",
-      lens: "RootFabLink Lens",
+      lens: "ROOTFABLINK LENS",
       rfq: "RFQ",
       help: "Центр помощи",
       top: "Наверх"
+    }
+  },
+  ja: {
+    ...marketplaceCopy.en,
+    header: {
+      ...marketplaceCopy.en.header,
+      categories: "すべてのカテゴリ",
+      verified: "認証済みメーカー",
+      protection: "注文保護",
+      buyerCenter: "バイヤーセンター",
+      supplierCenter: "サプライヤーセンター",
+      products: "製品",
+      manufacturers: "メーカー",
+      rfq: "RFQ",
+      search: "製品、工場、RFQを検索",
+      lens: "ROOTFABLINK LENS",
+      languageCurrency: "言語",
+      basket: "問い合わせリスト",
+      signIn: "サインイン",
+      createAccount: "アカウント作成",
+      supplierOnboarding: "サプライヤー登録",
+      startTrading: "取引を開始"
+    },
+    selectors: {
+      ...marketplaceCopy.en.selectors,
+      language: "言語",
+      currency: "通貨",
+      country: "国 / 地域",
+      preferencesTitle: "言語設定",
+      preferencesNote: "言語を選択すると、通貨、国、マーケットプレイスの地域設定が自動的に適用されます。",
+      autoApplied: "自動適用される設定",
+      postal: "郵便番号は任意",
+      save: "保存",
+      cancel: "キャンセル",
+      shippingNote: "配送オプションと取引フローは対象地域によって異なる場合があります。"
+    },
+    home: {
+      ...marketplaceCopy.en.home,
+      heroEyebrow: "登録無料、製品掲載無料。手数料とプロモーションを中心としたマーケットプレイスモデル。",
+      heroTitle: "メーカー、バイヤー、貿易サービスのためのグローバルB2Bマーケットプレイス",
+      heroText: "製品検索、メーカー比較、RFQ送信、国際取引フローの準備、物流パートナーとの接続をRootFabLink上で進められます。",
+      recommended: "おすすめカテゴリ",
+      mostSearched: "よく検索される製品",
+      verifiedDiscovery: "認証対応メーカーの発見",
+      tradeProtection: "取引保護の基盤",
+      businessRecommendations: "ビジネス提案",
+      supplierGrowth: "サプライヤー成長モデル",
+      rfqCallout: "RFQを投稿し、関連サプライヤーからの回答を準備できます。",
+      searchTabs: ["製品", "メーカー", "RFQ"],
+      discoveryCards: ["スマート工場検索", "注目メーカー", "工場直送サンプル", "トルコ輸出サプライヤー"],
+      protectionCards: ["安全なワークフロー", "返金ポリシー準備", "物流サービス", "アフターセールス保護準備"],
+      businessCards: ["RFQマーケットプレイス", "スポンサー製品", "認証済みサプライヤープログラム", "物流見積依頼"],
+      growth: [
+        ["無料登録", "初期費用なしでサプライヤーアカウントと会社プロフィールを作成できます。"],
+        ["無料製品掲載", "基本製品を無料で掲載し、バイヤー需要を受け取れます。"],
+        ["スポンサー表示", "拡大段階で製品、サプライヤー、RFQ機会の露出を高められます。"],
+        ["手数料モデル", "取引、保護サービス、リード価値を中心に収益化を設計しています。"]
+      ]
+    },
+    signIn: {
+      ...marketplaceCopy.en.signIn,
+      welcome: "RootFabLinkへようこそ",
+      signIn: "サインイン",
+      create: "アカウント作成"
+    },
+    quick: {
+      messages: "メッセージ",
+      lens: "ROOTFABLINK LENS",
+      rfq: "RFQ",
+      help: "ヘルプセンター",
+      top: "トップへ戻る"
+    },
+    lens: {
+      ...marketplaceCopy.en.lens,
+      title: "ROOTFABLINK LENS"
     }
   }
 };
@@ -694,3 +769,4 @@ export const marketplaceSuppliers = [
   { company: "Global Pack Systems", country: "Germany", category: "Packaging", response: "88%", markets: "EU, UK" },
   { company: "Marmara Textile Works", country: "Türkiye", category: "Workwear", response: "95%", markets: "US, EU" }
 ];
+

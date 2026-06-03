@@ -8,7 +8,7 @@ export const mobileMarketplaceCopy = {
     searchPlaceholder: "Search products, factories or RFQs",
     searchExamples: ["women clothing", "electric scooter", "wall panels"],
     voiceSearch: "Voice search placeholder",
-    lens: "Rootfablink Lens",
+    lens: "ROOTFABLINK LENS",
     shortcuts: ["Source by category", "RFQ request", "Verified suppliers", "Most preferred", "Fast customization", "Sample center"],
     worldwideTitle: "Your global supplier guide from 190+ regions",
     sections: {
@@ -51,7 +51,7 @@ export const mobileMarketplaceCopy = {
     searchPlaceholder: "Ürün, fabrika veya RFQ ara",
     searchExamples: ["kadın giyim", "erkek kol saati", "duvar paneli"],
     voiceSearch: "Sesli arama yer tutucusu",
-    lens: "Rootfablink Lens",
+    lens: "ROOTFABLINK LENS",
     shortcuts: ["Kategoriye göre tedarik", "Fiyat Teklifi Talebi (RFQ)", "Doğrulanmış tedarikçiler", "En çok tercih edilenler", "Hızlı özelleştirme", "Numune merkezi"],
     worldwideTitle: "190+ bölgeden küresel tedarikçi rehberiniz",
     sections: {
@@ -163,3 +163,4 @@ export const mobileMessages = [
   { sender: "Verification Team", subject: "Supplier document preview", unread: 2 },
   { sender: "RFQ Assistant", subject: "Suggested suppliers for your request", unread: 0 }
 ];
+

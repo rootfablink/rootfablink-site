@@ -6,6 +6,7 @@ import { ru } from "./ru";
 import { de } from "./de";
 import { fr } from "./fr";
 import { es } from "./es";
+import { ja } from "./ja";
 
 export const dictionaries = {
   en,
@@ -15,7 +16,8 @@ export const dictionaries = {
   ru,
   de,
   fr,
-  es
+  es,
+  ja
 };
 
 export type Dictionary = typeof en;

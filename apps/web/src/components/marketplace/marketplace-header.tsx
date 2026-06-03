@@ -2,38 +2,29 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
-import { Camera, ChevronDown, Globe2, Heart, MapPin, PackageSearch, Search, UserRound } from "lucide-react";
+import { Camera, Check, ChevronDown, Globe2, Heart, PackageSearch, Search, UserRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { cn } from "@/lib/utils";
-import type { CountryCode, LocalizationPreference } from "./localization-preferences";
-import { countryFromLocale, detectCountryFromBrowser, preferenceFromCountry, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
+import type { LocalizationPreference } from "./localization-preferences";
+import { detectLanguageFromBrowser, languageOptions, preferenceFromLanguage, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
 import { getMarketplaceCopy } from "./marketplace-copy";
-import {
-  CategoryMegaMenu,
-  CenterMenu,
-  DeliverySelector,
-  LanguageCurrencySelector,
-  SignInDropdown,
-  TradeProtectionMenu,
-  VerifiedManufacturersMenu
-} from "./marketplace-panels";
+import { CategoryMegaMenu, CenterMenu, SignInDropdown, TradeProtectionMenu, VerifiedManufacturersMenu } from "./marketplace-panels";
 
-type OpenPanel = "categories" | "verified" | "protection" | "buyer" | "supplier" | "delivery" | "language" | "signin" | null;
+type OpenPanel = "categories" | "verified" | "protection" | "buyer" | "supplier" | "language" | "signin" | null;
 
 export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOpenLens?: () => void }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [preference, setPreference] = useState<LocalizationPreference>(() => preferenceFromCountry(countryFromLocale(locale), false));
-  const copy = getMarketplaceCopy(preference.language);
+  const [preference, setPreference] = useState<LocalizationPreference>(() => preferenceFromLanguage(locale, false));
+  const copy = getMarketplaceCopy(locale);
   const [activeTab, setActiveTab] = useState(copy.header.products);
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
 
   useEffect(() => {
     const stored = readStoredPreference();
-    const initialPreference = stored ?? preferenceFromCountry(detectCountryFromBrowser(), false);
+    const initialPreference = stored ?? preferenceFromLanguage(detectLanguageFromBrowser(), false);
     setPreference(initialPreference);
 
     const shouldApplyStoredPreference = stored?.manuallySelected && initialPreference.language !== locale;
@@ -52,12 +43,9 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
     setOpenPanel((current) => (current === panel ? null : panel));
   };
 
-  const handleCountryChange = (country: CountryCode) => {
-    setPreference(preferenceFromCountry(country, true));
-  };
-
-  const savePreference = () => {
-    const nextPreference = { ...preference, manuallySelected: true };
+  const handleLanguageSelect = (language: Locale) => {
+    const nextPreference = preferenceFromLanguage(language, true);
+    setPreference(nextPreference);
     writeStoredPreference(nextPreference);
     setOpenPanel(null);
 
@@ -82,8 +70,21 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <SmallPanelButton icon={<MapPin size={16} />} label={copy.header.delivery} value={`${preference.country} · ${preference.currency}`} onClick={() => toggle("delivery")} />
-            <SmallPanelButton icon={<Globe2 size={16} />} label={copy.header.languageCurrency} onClick={() => toggle("language")} />
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => toggle("language")}
+                className={cn(
+                  "flex h-10 items-center gap-2 rounded-md border border-ink/10 px-3 text-sm font-semibold text-ink hover:border-signal/35 hover:bg-cloud",
+                  openPanel === "language" && "border-signal/35 bg-cloud text-copper"
+                )}
+              >
+                <Globe2 size={16} />
+                {copy.header.languageCurrency}
+                <ChevronDown size={14} />
+              </button>
+              {openPanel === "language" && <LanguageDropdown current={preference.language} onSelect={handleLanguageSelect} />}
+            </div>
             <Link href={`/${locale}/inquiry-basket`} className="flex h-10 w-10 items-center justify-center rounded-md border border-ink/10 text-ink hover:border-signal/35 hover:bg-cloud" aria-label={copy.header.basket}>
               <Heart size={17} />
             </Link>
@@ -131,6 +132,10 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             <HeaderButton label={copy.header.categories} open={openPanel === "categories"} onClick={() => toggle("categories")} compact />
             <HeaderButton label={copy.header.verified} open={openPanel === "verified"} onClick={() => toggle("verified")} compact />
             <HeaderButton label={copy.header.protection} open={openPanel === "protection"} onClick={() => toggle("protection")} compact />
+            <button type="button" onClick={() => toggle("language")} className={cn("inline-flex shrink-0 items-center gap-2 rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink", openPanel === "language" && "border-signal/35 bg-cloud text-copper")}>
+              <Globe2 size={15} />
+              {copy.header.languageCurrency}
+            </button>
             <button type="button" onClick={() => toggle("signin")} className="shrink-0 rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink">
               {copy.header.signIn}
             </button>
@@ -148,7 +153,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
         </div>
       </div>
 
-      {openPanel && (
+      {openPanel && openPanel !== "language" && (
         <div className="border-t border-ink/10 bg-white shadow-soft">
           <div className="mx-auto max-w-7xl px-4 py-5 sm:px-5">
             {openPanel === "categories" && <CategoryMegaMenu copy={copy} locale={locale} />}
@@ -156,9 +161,15 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             {openPanel === "protection" && <TradeProtectionMenu copy={copy} locale={locale} />}
             {openPanel === "buyer" && <CenterMenu items={copy.buyerCenter} locale={locale} />}
             {openPanel === "supplier" && <CenterMenu items={copy.supplierCenter} locale={locale} supplier />}
-            {openPanel === "delivery" && <DeliverySelector copy={copy} preference={preference} onCountryChange={handleCountryChange} onSave={savePreference} />}
-            {openPanel === "language" && <LanguageCurrencySelector copy={copy} preference={preference} onChange={setPreference} onSave={savePreference} />}
             {openPanel === "signin" && <SignInDropdown copy={copy} locale={locale} />}
+          </div>
+        </div>
+      )}
+
+      {openPanel === "language" && (
+        <div className="border-t border-ink/10 bg-white shadow-soft lg:hidden">
+          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-5">
+            <LanguageDropdown current={preference.language} onSelect={handleLanguageSelect} mobile />
           </div>
         </div>
       )}
@@ -183,14 +194,23 @@ function HeaderButton({ label, open, onClick, compact = false }: { label: string
   );
 }
 
-function SmallPanelButton({ icon, label, value, onClick }: { icon: ReactNode; label: string; value?: string; onClick: () => void }) {
+function LanguageDropdown({ current, onSelect, mobile = false }: { current: Locale; onSelect: (language: Locale) => void; mobile?: boolean }) {
   return (
-    <button type="button" onClick={onClick} className="flex h-10 items-center gap-2 rounded-md border border-ink/10 px-3 text-left text-xs font-semibold text-ink hover:border-signal/35 hover:bg-cloud">
-      {icon}
-      <span className="grid leading-4">
-        <span className="text-[10px] uppercase tracking-[0.08em] text-steel">{label}</span>
-        {value && <span>{value}</span>}
-      </span>
-    </button>
+    <div className={cn("rounded-md border border-ink/10 bg-white p-1.5 shadow-[0_18px_42px_rgba(11,11,12,0.14)]", mobile ? "w-full" : "absolute right-0 top-[calc(100%+0.5rem)] z-50 w-48")}>
+      {languageOptions.map((option) => {
+        const active = option.code === current;
+        return (
+          <button
+            key={option.code}
+            type="button"
+            onClick={() => onSelect(option.code)}
+            className={cn("flex w-full items-center justify-between gap-3 rounded-md px-3 py-2.5 text-left text-sm font-semibold text-ink hover:bg-cloud", active && "bg-cloud text-copper")}
+          >
+            <span>{option.label}</span>
+            {active && <Check size={15} />}
+          </button>
+        );
+      })}
+    </div>
   );
 }
