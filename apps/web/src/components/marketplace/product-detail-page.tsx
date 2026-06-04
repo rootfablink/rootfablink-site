@@ -28,6 +28,9 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
   const specs = tr ? product.specificationsTr ?? product.specifications : product.specifications;
   const applications = tr ? product.applicationsTr ?? product.applications : product.applications;
   const packagingInfo = tr ? product.packagingInfoTr ?? product.packagingInfo : product.packagingInfo;
+  const leadTime = tr && "leadTimeTr" in product ? product.leadTimeTr ?? product.leadTime : product.leadTime;
+  const imageAlt = tr && "imageAltTr" in product ? product.imageAltTr ?? product.imageAlt ?? title : product.imageAlt ?? title;
+  const tradeTerms = tr && "tradeTermsTr" in product ? product.tradeTermsTr ?? product.tradeTerms : product.tradeTerms;
   const isIWall = product.supplierName === "i-WALL";
   const supplierDisplayName = product.brandName || product.supplierName;
   const structuredData = {
@@ -72,12 +75,12 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
           <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-5 lg:grid-cols-[0.95fr_1.05fr]">
             <div>
               <div className="overflow-hidden rounded-md border border-ink/10 bg-cloud">
-                <MarketplaceImage src={product.mainImage} alt={product.imageAlt ?? title} visualCategory={product.visualCategory} title={title} className="aspect-[4/3]" fit={product.imageFit} />
+                <MarketplaceImage src={product.mainImage} alt={imageAlt} visualCategory={product.visualCategory} title={title} className="aspect-[4/3]" fit={product.imageFit} />
               </div>
               <div className="mt-3 grid grid-cols-3 gap-3">
                 {product.galleryImages.slice(0, 3).map((image, index) => (
                   <div key={image} className="overflow-hidden rounded-md border border-ink/10 bg-cloud">
-                    <MarketplaceImage src={image} alt={`${product.imageAlt ?? title} ${index + 1}`} visualCategory={product.visualCategory} title={title} className="aspect-[4/3]" fit={product.imageFit} />
+                    <MarketplaceImage src={image} alt={`${imageAlt} ${index + 1}`} visualCategory={product.visualCategory} title={title} className="aspect-[4/3]" fit={product.imageFit} />
                   </div>
                 ))}
               </div>
@@ -98,7 +101,7 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
               <div className="mt-6 grid gap-3 rounded-md border border-ink/10 bg-white p-4 sm:grid-cols-2">
                 <Info label={tr ? "Fiyat" : "Price"} value={product.priceRange} />
                 <Info label="MOQ" value={product.moq} />
-                <Info label={tr ? "Teslim süresi" : "Lead time"} value={product.leadTime} />
+                <Info label={tr ? "Teslim süresi" : "Lead time"} value={leadTime ?? ""} />
                 <Info label={tr ? "Tedarikçi tipi" : "Supplier type"} value={supplierType ?? "Supplier profile"} />
               </div>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -164,7 +167,7 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
             <aside className="rounded-md border border-ink/10 bg-cloud p-5">
               <h2 className="text-lg font-bold text-ink">{tr ? "Ticaret koşulları" : "Trade terms"}</h2>
               <div className="mt-4 grid gap-2">
-                {product.tradeTerms.map((term) => (
+                {tradeTerms.map((term) => (
                   <p key={term} className="flex items-center gap-2 text-sm font-semibold text-steel">
                     <CheckCircle2 size={16} className="text-copper" />
                     {term}

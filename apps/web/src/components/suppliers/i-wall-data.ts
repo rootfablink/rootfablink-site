@@ -3,6 +3,7 @@ export type IWallProduct = {
   titleTr: string;
   price: string;
   priceRange: string;
+  priceRangeTr: string;
   moq: string;
   country: string;
   countryTr: string;
@@ -11,11 +12,13 @@ export type IWallProduct = {
   mainImage: string;
   galleryImages: string[];
   imageAlt: string;
+  imageAltTr: string;
   imageSearchIntent: string;
   visualCategory: string;
   visualMatchScore: number;
   imageFit: "contain";
   leadTime: string;
+  leadTimeTr: string;
   category: string;
   categoryTr: string;
   subcategory: string;
@@ -37,8 +40,10 @@ export type IWallProduct = {
   packagingInfoTr: string;
   tags: string[];
   tradeTerms: string[];
+  tradeTermsTr: string[];
   capabilities: string[];
-  source: "iwall_uploaded_assets";
+  source: "i-wall-local-assets";
+  isRealBrandAsset: true;
   reviewCount: 0;
   review_count: 0;
   rating: null;
@@ -52,9 +57,11 @@ export const iWallManufacturer = {
   countryTr: "Türkiye",
   industry: "Building Materials",
   industryTr: "Yapı Malzemeleri",
-  category: "PS Wall Panels",
+  category: "PS Wall Panel",
   categoryTr: "Polimer Lambiri",
   productCount: 27,
+  source: "i-wall-local-assets",
+  verified: false,
   description:
     "i-WALL manufactures PS wall panels for residential, commercial, hotel, office, retail and architectural interior decoration projects. The showroom presents uploaded product models for RFQ-based sourcing without invented prices, ratings or certifications.",
   descriptionTr:
@@ -81,6 +88,25 @@ const applicationsTr = [
   "Mimari Projeler"
 ];
 
+const tags = [
+  "ps wall panel",
+  "decorative wall panel",
+  "decorative wall panels",
+  "interior wall panel",
+  "polymer wall panel",
+  "wall cladding",
+  "slat wall panel",
+  "building materials",
+  "i-wall",
+  "polimer lambiri",
+  "duvar paneli",
+  "dekoratif duvar paneli",
+  "iç mekan duvar paneli",
+  "yapı malzemeleri",
+  "ps panel",
+  "ps duvar paneli"
+];
+
 function modelNumber(index: number) {
   return String(index).padStart(2, "0");
 }
@@ -92,6 +118,8 @@ function skuNumber(index: number) {
 function productImage(index: number) {
   return `/brands/i-wall/no${index}.jpeg`;
 }
+
+export const iWallAssetPaths = [iWallLogo, ...Array.from({ length: 27 }, (_, index) => productImage(index + 1))];
 
 export const iWallProducts: IWallProduct[] = Array.from({ length: 27 }, (_, itemIndex) => {
   const index = itemIndex + 1;
@@ -106,6 +134,7 @@ export const iWallProducts: IWallProduct[] = Array.from({ length: 27 }, (_, item
     titleTr: `i-WALL Polimer Lambiri Model ${model}`,
     price: "Request Quote",
     priceRange: "Request Quote",
+    priceRangeTr: "Teklif al",
     moq: "100 m²",
     country: "Turkey",
     countryTr: "Türkiye",
@@ -113,20 +142,22 @@ export const iWallProducts: IWallProduct[] = Array.from({ length: 27 }, (_, item
     sponsored: index <= 4,
     mainImage: image,
     galleryImages: [image, nextImage, previousImage],
-    imageAlt: `i-WALL PS Wall Panel Model ${model}`,
+    imageAlt: `i-WALL PS Wall Panel Model ${model} decorative wall panel product image`,
+    imageAltTr: `i-WALL Polimer Lambiri Model ${model} dekoratif duvar paneli ürün görseli`,
     imageSearchIntent: `i-WALL PS wall panel model ${model} decorative interior wall panel product photo`,
     visualCategory: "i_wall_ps_wall_panel",
     visualMatchScore: 10,
     imageFit: "contain",
-    leadTime: "10-20 Days",
-    category: "Building Materials",
-    categoryTr: "Yapı Malzemeleri",
-    subcategory: "PS Wall Panels",
+    leadTime: "10-20 days",
+    leadTimeTr: "10-20 gün",
+    category: "Decorative Wall Panel",
+    categoryTr: "Dekoratif Duvar Paneli",
+    subcategory: "PS Wall Panel",
     subcategoryTr: "Polimer Lambiri",
     shortDescription:
-      "PS wall panel model for decorative interior wall applications in residential, commercial and architectural projects. Pricing is handled through RFQ.",
+      "PS wall panel model for decorative interior wall applications in residential, commercial, hotel, office and architectural projects. Pricing is handled through RFQ.",
     shortDescriptionTr:
-      "Konut, ticari alan ve mimari projelerde dekoratif iç mekan duvar uygulamaları için polimer lambiri modeli. Fiyatlandırma RFQ ile yapılır.",
+      "Konut, ticari alan, otel, ofis ve mimari projelerde dekoratif iç mekan duvar uygulamaları için polimer lambiri modeli. Fiyatlandırma RFQ ile yapılır.",
     supplierName: "i-WALL",
     supplierType: "Manufacturer",
     supplierTypeTr: "Üretici",
@@ -138,40 +169,40 @@ export const iWallProducts: IWallProduct[] = Array.from({ length: 27 }, (_, item
       Brand: "i-WALL",
       SKU: sku,
       "Product Type": "PS Wall Panel",
+      "Turkish Name": "Polimer Lambiri",
       Length: "2.80 m",
       Width: "12-15 cm",
-      Category: "Decorative Interior Wall Panels",
-      Pricing: "Request Quote"
+      Application: "Interior wall decoration",
+      Category: "Decorative Wall Panel",
+      Origin: "Türkiye",
+      Price: "Request Quote",
+      MOQ: "100 m²",
+      "Lead Time": "10-20 days"
     },
     specificationsTr: {
       Marka: "i-WALL",
       SKU: sku,
       "Ürün Tipi": "Polimer Lambiri",
+      "İngilizce Ürün Adı": "PS Wall Panel",
       Uzunluk: "2.80 m",
       Genişlik: "12-15 cm",
-      Kategori: "Dekoratif İç Mekan Duvar Panelleri",
-      Fiyatlandırma: "Teklif ile"
+      Uygulama: "İç mekan duvar dekorasyonu",
+      Kategori: "Dekoratif Duvar Paneli",
+      Menşei: "Türkiye",
+      Fiyat: "Teklif al",
+      MOQ: "100 m²",
+      "Teslim Süresi": "10-20 gün"
     },
     applications,
     applicationsTr,
     packagingInfo: "Packaging details are confirmed during quotation based on order volume, destination and project requirements.",
     packagingInfoTr: "Paketleme bilgileri sipariş hacmi, teslimat ülkesi ve proje gereksinimlerine göre teklif aşamasında netleştirilir.",
-    tags: [
-      "ps wall panel",
-      "decorative wall panel",
-      "interior wall panel",
-      "polymer wall panel",
-      "slat wall panel",
-      "i-wall",
-      "polimer lambiri",
-      "duvar paneli",
-      "ps panel",
-      "ps duvar paneli",
-      "dekoratif duvar paneli"
-    ],
+    tags,
     tradeTerms: ["RFQ", "Project quotation", "Supplier inquiry"],
+    tradeTermsTr: ["RFQ", "Proje teklifi", "Tedarikçi talebi"],
     capabilities: ["Manufacturer", "Project sourcing", "Interior decoration", "RFQ ready"],
-    source: "iwall_uploaded_assets",
+    source: "i-wall-local-assets",
+    isRealBrandAsset: true,
     reviewCount: 0,
     review_count: 0,
     rating: null

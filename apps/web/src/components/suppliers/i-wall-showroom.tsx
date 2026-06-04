@@ -7,9 +7,9 @@ import { MarketplaceHeader } from "@/components/marketplace/marketplace-header";
 import { MarketplaceImage } from "@/components/marketplace/marketplace-image";
 import { getMarketplaceCopy } from "@/components/marketplace/marketplace-copy";
 import { MobileBottomNav } from "@/components/marketplace/mobile-bottom-nav";
-import { ProductCard } from "@/components/marketplace/product-card";
 import { Button } from "@/components/ui/button";
 import { iWallLogo, iWallManufacturer, iWallProducts } from "./i-wall-data";
+import { IWallProductCatalog } from "./i-wall-product-catalog";
 
 export function IWallShowroom({ locale }: { locale: Locale }) {
   const tr = locale === "tr";
@@ -63,11 +63,11 @@ export function IWallShowroom({ locale }: { locale: Locale }) {
 
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="overflow-hidden rounded-md border border-ink/10 bg-white p-3 shadow-soft sm:col-span-2">
-                <MarketplaceImage src={iWallProducts[0]?.mainImage} alt={iWallProducts[0]?.imageAlt ?? "i-WALL PS wall panel"} visualCategory="i_wall_ps_wall_panel" title="i-WALL PS Wall Panel" fit="contain" className="aspect-[16/9]" />
+                <MarketplaceImage src={iWallProducts[0]?.mainImage} alt={tr ? iWallProducts[0]?.imageAltTr ?? "i-WALL Polimer Lambiri" : iWallProducts[0]?.imageAlt ?? "i-WALL PS wall panel"} visualCategory="i_wall_ps_wall_panel" title="i-WALL PS Wall Panel" fit="contain" className="aspect-[16/9]" />
               </div>
               {featured.slice(1, 5).map((product) => (
                 <a key={product.slug} href={`/${locale}/products/${product.slug}`} className="overflow-hidden rounded-md border border-ink/10 bg-white p-2 transition hover:border-signal/40">
-                  <MarketplaceImage src={product.mainImage} alt={product.imageAlt} visualCategory={product.visualCategory} title={tr ? product.titleTr : product.title} fit="contain" className="aspect-[4/3]" />
+                  <MarketplaceImage src={product.mainImage} alt={tr ? product.imageAltTr : product.imageAlt} visualCategory={product.visualCategory} title={tr ? product.titleTr : product.title} fit="contain" className="aspect-[4/3]" />
                 </a>
               ))}
             </div>
@@ -102,7 +102,7 @@ export function IWallShowroom({ locale }: { locale: Locale }) {
             <div className="mt-6 grid gap-3 grid-cols-2 md:grid-cols-4">
               {gallery.map((product) => (
                 <a key={product.slug} href={`/${locale}/products/${product.slug}`} className="rounded-md border border-ink/10 bg-white p-2 transition hover:border-signal/40">
-                  <MarketplaceImage src={product.mainImage} alt={product.imageAlt} visualCategory={product.visualCategory} title={tr ? product.titleTr : product.title} fit="contain" className="aspect-[4/3]" />
+                  <MarketplaceImage src={product.mainImage} alt={tr ? product.imageAltTr : product.imageAlt} visualCategory={product.visualCategory} title={tr ? product.titleTr : product.title} fit="contain" className="aspect-[4/3]" />
                   <p className="mt-2 line-clamp-1 text-xs font-bold text-ink">{tr ? product.titleTr : product.title}</p>
                 </a>
               ))}
@@ -125,11 +125,7 @@ export function IWallShowroom({ locale }: { locale: Locale }) {
             </div>
             <Button href={`/${locale}/rfq/new`} variant="secondary">{tr ? "Toplu RFQ oluştur" : "Create bulk RFQ"}</Button>
           </div>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {iWallProducts.map((product) => (
-              <ProductCard key={product.slug} product={product} copy={copy} />
-            ))}
-          </div>
+          <IWallProductCatalog locale={locale} products={iWallProducts} copy={copy} />
         </section>
 
         <section className="bg-ink px-4 py-10 text-white md:px-5">

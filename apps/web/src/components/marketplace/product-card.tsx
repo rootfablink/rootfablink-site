@@ -12,6 +12,7 @@ export type ProductCardData = {
   titleTr?: string;
   price: string;
   priceRange?: string;
+  priceRangeTr?: string;
   moq: string;
   country: string;
   countryTr?: string;
@@ -20,6 +21,7 @@ export type ProductCardData = {
   mainImage?: string;
   imageFit?: "cover" | "contain";
   leadTime?: string;
+  leadTimeTr?: string;
   category?: string;
   categoryTr?: string;
   subcategory?: string;
@@ -27,6 +29,7 @@ export type ProductCardData = {
   shortDescription?: string;
   shortDescriptionTr?: string;
   imageAlt?: string;
+  imageAltTr?: string;
   visualCategory?: string;
   source?: "marketplace_seed_data" | string;
   supplierName?: string;
@@ -37,6 +40,7 @@ export type ProductCardData = {
   sku?: string;
   tags?: string[];
   tradeTerms?: string[];
+  tradeTermsTr?: string[];
   capabilities?: string[];
   reviewCount?: number;
   review_count?: number;
@@ -51,12 +55,15 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
   const country = tr ? product.countryTr ?? product.country : product.country;
   const description = tr ? product.shortDescriptionTr ?? product.shortDescription : product.shortDescription;
   const supplierType = tr ? product.supplierTypeTr ?? product.supplierType : product.supplierType;
+  const leadTime = tr ? product.leadTimeTr ?? product.leadTime : product.leadTime;
+  const imageAlt = tr ? product.imageAltTr ?? product.imageAlt ?? title : product.imageAlt ?? title;
+  const priceRange = tr ? product.priceRangeTr ?? product.priceRange ?? product.price : product.priceRange ?? product.price;
   const detailHref = product.slug ? `/${tr ? "tr" : "en"}/products/${product.slug}` : undefined;
 
   return (
     <article className="group overflow-hidden rounded-md border border-ink/10 bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)] transition hover:-translate-y-0.5 hover:shadow-soft">
       <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#f8fafc,#fff2e5)]">
-        <MarketplaceImage src={product.mainImage} alt={product.imageAlt ?? title} visualCategory={product.visualCategory} title={title} fit={product.imageFit} />
+        <MarketplaceImage src={product.mainImage} alt={imageAlt} visualCategory={product.visualCategory} title={title} fit={product.imageFit} />
         {product.sponsored && (
           <span className="absolute left-3 top-3 rounded-md bg-ink px-2 py-1 text-xs font-bold text-white">
             {copy.productCard.sponsored}
@@ -80,11 +87,11 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
             <span className="text-xs font-bold text-ink">{product.brandName ?? product.supplierName}</span>
           </div>
         )}
-        <p className="mt-2 text-lg font-bold text-copper">{product.priceRange ?? product.price}</p>
+        <p className="mt-2 text-lg font-bold text-copper">{priceRange}</p>
         <div className="mt-2 flex flex-wrap gap-2 text-xs font-semibold text-steel">
           <span>{copy.productCard.moq}: {product.moq}</span>
           <span>{country}</span>
-          {product.leadTime && <span>{product.leadTime}</span>}
+          {leadTime && <span>{leadTime}</span>}
         </div>
         {product.tags && product.tags.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
