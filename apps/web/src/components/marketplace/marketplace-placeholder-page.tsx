@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
@@ -5,7 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { Button } from "@/components/ui/button";
 import { getMarketplaceCopy, marketplaceSeedProducts } from "./marketplace-copy";
 import { MarketplaceHeader } from "./marketplace-header";
-import { ProductCard } from "./product-card";
+import { MarketplaceProductBrowser } from "./marketplace-product-browser";
 
 export type MarketplaceRouteKey =
   | "categories"
@@ -57,35 +58,19 @@ export function MarketplacePlaceholderPage({ locale, routeKey }: { locale: Local
         </section>
 
         {routeKey === "products" ? (
-          <section className="bg-white py-12 sm:py-14">
-            <div className="mx-auto max-w-7xl px-4 sm:px-5">
-              <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <p className="text-sm font-bold uppercase tracking-[0.12em] text-copper">Marketplace seed catalog</p>
-                  <h2 className="mt-3 text-2xl font-bold text-ink sm:text-3xl">Product and service discovery</h2>
-                  <p className="mt-2 max-w-3xl text-sm leading-6 text-steel">
-                    Seed listings are visible marketplace structure data. They are not verified suppliers, do not include reviews and do not claim certifications.
-                  </p>
-                </div>
-                <Button href={`/${locale}/rfq`} variant="secondary">{copy.header.rfq}</Button>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {marketplaceSeedProducts.map((product) => (
-                  <ProductCard key={product.title} product={product} copy={copy} />
-                ))}
-              </div>
-            </div>
-          </section>
+          <Suspense fallback={<section className="bg-white py-12 sm:py-14"><div className="mx-auto max-w-7xl px-4 text-sm font-semibold text-steel sm:px-5">Loading products...</div></section>}>
+            <MarketplaceProductBrowser locale={locale} copy={copy} />
+          </Suspense>
         ) : (
         <section className="bg-white py-12 sm:py-14">
           <div className="mx-auto max-w-7xl px-4 sm:px-5">
             <div className="grid gap-4 md:grid-cols-3">
-              {relevantItems.slice(0, routeKey === "categories" ? 24 : 9).map((item) => (
-                <article key={item} className="rounded-md border border-ink/10 bg-white p-5 shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
+              {relevantItems.slice(0, routeKey === "categories" ? 30 : 9).map((item) => (
+                <a key={item} href={routeKey === "categories" ? `/${locale}/products?category=${encodeURIComponent(item)}` : `/${locale}/${routeKey}`} className="rounded-md border border-ink/10 bg-white p-5 shadow-[0_8px_22px_rgba(11,11,12,0.04)] transition hover:-translate-y-0.5 hover:border-signal/40">
                   <CheckCircle2 className="text-copper" size={20} />
                   <h2 className="mt-4 text-base font-bold text-ink">{item}</h2>
                   <p className="mt-2 text-sm leading-6 text-steel">{copy.home.heroEyebrow}</p>
-                </article>
+                </a>
               ))}
             </div>
           </div>

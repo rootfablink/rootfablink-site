@@ -161,7 +161,8 @@ export const marketplaceCopy = {
       moq: "MOQ",
       verified: "Verified",
       inquiry: "Inquiry",
-      sponsored: "Sponsored"
+      sponsored: "Sponsored",
+      contact: "Contact supplier"
     },
     supplierCard: {
       verified: "Verification-ready",
@@ -315,7 +316,8 @@ export const marketplaceCopy = {
       moq: "MOQ",
       verified: "Doğrulanmış",
       inquiry: "Talep gönder",
-      sponsored: "Sponsorlu"
+      sponsored: "Sponsorlu",
+      contact: "Tedarikçi ile iletişime geç"
     },
     supplierCard: {
       verified: "Doğrulamaya hazır",
@@ -776,7 +778,14 @@ export const marketplaceSeedProducts = marketplaceSeedListings.map((listing) => 
   category: listing.category,
   subcategory: listing.subcategory,
   shortDescription: listing.shortDescription,
+  supplierName: listing.supplierName,
+  supplierType: listing.supplierType,
+  slug: listing.slug,
+  tags: listing.tags,
+  tradeTerms: listing.tradeTerms,
+  capabilities: listing.capabilities,
   source: listing.source,
+  reviewCount: listing.reviewCount,
   review_count: listing.review_count,
   rating: listing.rating
 }));

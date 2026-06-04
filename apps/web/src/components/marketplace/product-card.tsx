@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, MessageSquareText, ShieldCheck, Star } from "lucide-react";
+import { Heart, MessageSquareText, ShieldCheck, Store } from "lucide-react";
 import type { MarketplaceCopy } from "./marketplace-copy";
 
 export type ProductCardData = {
@@ -17,12 +17,18 @@ export type ProductCardData = {
   subcategory?: string;
   shortDescription?: string;
   source?: "marketplace_seed_data" | string;
+  supplierName?: string;
+  supplierType?: string;
+  tags?: string[];
+  tradeTerms?: string[];
+  capabilities?: string[];
+  reviewCount?: number;
   review_count?: number;
   rating?: number | null;
 };
 
 export function ProductCard({ product, copy }: { product: ProductCardData; copy: MarketplaceCopy }) {
-  const isSeedListing = product.source === "marketplace_seed_data";
+  const contactLabel = copy.productCard.contact ?? "Contact supplier";
 
   return (
     <article className="group overflow-hidden rounded-md border border-ink/10 bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)] transition hover:-translate-y-0.5 hover:shadow-soft">
@@ -51,8 +57,8 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
         </div>
         <div className="mt-3 flex items-center justify-between gap-2 border-t border-ink/10 pt-3">
           <span className="inline-flex items-center gap-1 text-xs font-bold text-ink">
-            {product.verified ? <ShieldCheck size={15} className="text-blue-700" /> : <Star size={15} className="text-steel" />}
-            {product.verified ? copy.productCard.verified : isSeedListing ? "Seed listing" : "Profile"}
+            {product.verified ? <ShieldCheck size={15} className="text-blue-700" /> : <Store size={15} className="text-steel" />}
+            {product.verified ? copy.productCard.verified : product.supplierType ?? "Supplier-ready profile"}
           </span>
           <button type="button" className="rounded-md bg-signal px-3 py-2 text-xs font-bold text-white hover:bg-copper">
             {copy.productCard.inquiry}
@@ -60,7 +66,7 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
         </div>
         <button type="button" className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md border border-ink/10 px-3 py-2 text-xs font-bold text-ink hover:bg-cloud">
           <MessageSquareText size={14} />
-          Contact Supplier
+          {contactLabel}
         </button>
       </div>
     </article>
