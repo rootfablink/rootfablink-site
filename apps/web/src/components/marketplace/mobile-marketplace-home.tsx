@@ -1,21 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Bot, Camera, Factory, FileText, Grid2X2, Mic, PackageSearch, Search, ShieldCheck, Sparkles } from "lucide-react";
+import { Box, Camera, Factory, FileText, Grid2X2, Mic, PackageSearch, Search, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { MobileBottomNav } from "./mobile-bottom-nav";
-import { countrySourcingCards, getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
-
-type MobileTab = "AI Mode" | "Products" | "Manufacturers" | "Worldwide" | "AI Modu" | "Ürünler" | "Üreticiler" | "Dünya çapında";
+import { getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
 
 export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
   const copy = getMobileMarketplaceCopy(locale);
-  const [activeTab, setActiveTab] = useState<MobileTab>(copy.tabs[1] as MobileTab);
   const [query, setQuery] = useState("");
-  const isAi = activeTab === copy.tabs[0];
-  const isManufacturers = activeTab === copy.tabs[2];
-  const isWorldwide = activeTab === copy.tabs[3];
 
   const saveSearch = () => {
     if (!query.trim() || typeof window === "undefined") return;
@@ -33,18 +27,7 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
             {locale === "tr" ? "Tedarikçi ol" : "Supplier"}
           </a>
         </div>
-        <div className="mt-3 flex gap-5 overflow-x-auto">
-          {copy.tabs.map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setActiveTab(tab as MobileTab)}
-              className={`shrink-0 border-b-2 px-1 pb-3 text-sm font-bold ${activeTab === tab ? "border-signal text-ink" : "border-transparent text-steel"}`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        <MobilePrimaryTabs locale={locale} labels={copy.tabs} active="products" />
       </header>
 
       <main className="px-4 py-4">
@@ -81,11 +64,42 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
 
         <ShortcutRail labels={copy.shortcuts} locale={locale} />
 
-        {isAi ? <AiMode copy={copy} /> : isWorldwide ? <WorldwideSection copy={copy} /> : isManufacturers ? <ManufacturersSection copy={copy} locale={locale} /> : <ProductsSection copy={copy} locale={locale} />}
+        <ProductsSection copy={copy} locale={locale} />
       </main>
 
       <MobileBottomNav locale={locale} active="home" />
     </div>
+  );
+}
+
+function MobilePrimaryTabs({ locale, labels, active }: { locale: Locale; labels: string[]; active: "logistics" | "products" | "manufacturers" | "customs" }) {
+  const items = [
+    { key: "manufacturers" as const, label: labels[0] ?? "Manufacturers", href: `/${locale}/manufacturers`, icon: Factory },
+    { key: "products" as const, label: labels[1] ?? "Products", href: `/${locale}/products`, icon: Box },
+    { key: "customs" as const, label: labels[2] ?? "Customs", href: `/${locale}/customs`, icon: ShieldCheck },
+    { key: "logistics" as const, label: labels[3] ?? "Logistics", href: `/${locale}/logistics`, icon: Truck }
+  ];
+
+  return (
+    <nav aria-label={locale === "tr" ? "Mobil ana pazar navigasyonu" : "Mobile marketplace navigation"} className="mt-3 grid grid-cols-4 gap-1">
+      {items.map((item) => {
+        const Icon = item.icon;
+        const isActive = item.key === active;
+        return (
+          <a
+            key={item.key}
+            href={item.href}
+            className={`flex min-w-0 flex-col items-center justify-center gap-1 border-b-2 px-1 pb-2 pt-1 text-center text-[10px] font-bold leading-tight ${isActive ? "border-signal text-ink" : "border-transparent text-steel"}`}
+            title={item.label}
+          >
+            <span className={`flex h-7 w-7 items-center justify-center rounded-md ${isActive ? "bg-signal/10 text-copper" : "bg-cloud text-steel"}`}>
+              <Icon size={17} />
+            </span>
+            <span className="block max-w-full truncate whitespace-nowrap">{item.label}</span>
+          </a>
+        );
+      })}
+    </nav>
   );
 }
 
@@ -117,62 +131,6 @@ function ProductsSection({ copy, locale }: { copy: ReturnType<typeof getMobileMa
       <MobileProductCarousel title={copy.sections.samples} offset={4} />
       <SupplierRail title={copy.sections.recent} locale={locale} />
     </>
-  );
-}
-
-function ManufacturersSection({ copy, locale }: { copy: ReturnType<typeof getMobileMarketplaceCopy>; locale: Locale }) {
-  return (
-    <>
-      <section className="mt-5 rounded-2xl bg-ink p-4 text-white">
-        <p className="text-xs font-bold uppercase tracking-[0.14em] text-signal">RFQ</p>
-        <h2 className="mt-2 text-xl font-bold">{copy.sections.supplierMatch}</h2>
-        <p className="mt-2 text-sm leading-6 text-white/70">Marketplace seed categories and verification-ready supplier programs are prepared for supplier matching.</p>
-        <a href={`/${locale}/rfq`} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-signal px-4 py-2 text-sm font-bold text-white">
-          RFQ <ArrowRight size={16} />
-        </a>
-      </section>
-      <SupplierRail title={copy.sections.manufacturers} locale={locale} />
-      <MobileProductCarousel title={copy.sections.samples} />
-    </>
-  );
-}
-
-function WorldwideSection({ copy }: { copy: ReturnType<typeof getMobileMarketplaceCopy> }) {
-  return (
-    <section className="mt-5">
-      <SectionTitle title={copy.worldwideTitle} />
-      <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
-        {countrySourcingCards.map((card) => (
-          <article key={card.title} className="min-w-64 rounded-2xl bg-white p-4 shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
-            <div className="flex items-center justify-between">
-              <span className="text-3xl">{card.flag}</span>
-              <ArrowRight size={18} className="text-copper" />
-            </div>
-            <h3 className="mt-3 text-base font-bold text-ink">{card.title}</h3>
-            <p className="mt-1 text-xs font-semibold text-steel">{card.volume}</p>
-            <div className="mt-4 grid grid-cols-3 gap-2">
-              {[0, 1, 2].map((item) => (
-                <div key={item} className="aspect-square rounded-xl bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]" />
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function AiMode({ copy }: { copy: ReturnType<typeof getMobileMarketplaceCopy> }) {
-  return (
-    <section className="mt-5 rounded-2xl bg-ink p-5 text-white">
-      <Bot className="text-signal" size={28} />
-      <h2 className="mt-4 text-2xl font-bold">{copy.sections.aiTitle}</h2>
-      <p className="mt-3 text-sm leading-6 text-white/72">{copy.sections.aiText}</p>
-      <textarea className="mt-4 min-h-28 w-full rounded-xl border border-white/10 bg-white/8 p-3 text-sm outline-none placeholder:text-white/45" placeholder={copy.sections.aiPlaceholder} />
-      <button type="button" disabled className="mt-4 w-full cursor-not-allowed rounded-xl bg-white/20 px-4 py-3 text-sm font-bold text-white">
-        {copy.sections.aiButton}
-      </button>
-    </section>
   );
 }
 

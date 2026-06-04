@@ -5,7 +5,7 @@ export type MobileMarketplaceCopy = typeof mobileMarketplaceCopy.en;
 
 export const mobileMarketplaceCopy = {
   en: {
-    tabs: ["AI Mode", "Products", "Manufacturers", "Worldwide"],
+    tabs: ["Manufacturers", "Products", "Customs", "Logistics"],
     searchPlaceholder: "Search products, factories or RFQs",
     searchExamples: ["women clothing", "electric scooter", "wall panels"],
     voiceSearch: "Voice search placeholder",
@@ -27,7 +27,7 @@ export const mobileMarketplaceCopy = {
     },
     categoryTabs: ["All Categories", "Home Appliances", "Home & Garden", "Industrial Machinery", "Apparel", "Electronics", "Building Materials"],
     productBadges: ["Lower price", "Fast delivery", "Trending", "Sponsored"],
-    bottomNav: ["Home", "Categories", "Messages", "Inquiry Basket", "Account"],
+    bottomNav: ["Manufacturers", "Products", "Customs", "Logistics"],
     pages: {
       categories: "Categories",
       messages: "Messages",
@@ -41,14 +41,14 @@ export const mobileMarketplaceCopy = {
       signInCta: "Sign in"
     },
     account: {
-      stats: ["Favorites", "History", "Coupons", "AI Mode"],
+      stats: ["Favorites", "History", "RFQs", "Inquiries"],
       orders: ["Unpaid", "Processing", "Shipped", "Refunds", "Reviews"],
       payment: ["Coupons & credit", "Invoices & receipts", "Cards & accounts", "Wire transfer"],
       features: ["Addresses", "Tax information", "Inquiries", "Subscription", "RFQs"]
     }
   },
   tr: {
-    tabs: ["AI Modu", "Ürünler", "Üreticiler", "Dünya çapında"],
+    tabs: ["Üreticiler", "Ürünler", "Gümrük", "Lojistik"],
     searchPlaceholder: "Ürün, fabrika veya RFQ ara",
     searchExamples: ["kadın giyim", "erkek kol saati", "duvar paneli"],
     voiceSearch: "Sesli arama yer tutucusu",
@@ -70,7 +70,7 @@ export const mobileMarketplaceCopy = {
     },
     categoryTabs: ["Tüm Kategoriler", "Ev Aletleri", "Ev & Bahçe", "Endüstriyel Makineler", "Giyim", "Elektronik", "Yapı Malzemeleri"],
     productBadges: ["Daha düşük fiyat", "Hızlı teslimat", "Trend", "Sponsorlu"],
-    bottomNav: ["Anasayfa", "Kategoriler", "Mesajlarım", "Teklif Sepeti", "Hesabım"],
+    bottomNav: ["Üreticiler", "Ürünler", "Gümrük", "Lojistik"],
     pages: {
       categories: "Kategoriler",
       messages: "Mesajlarım",
@@ -84,7 +84,7 @@ export const mobileMarketplaceCopy = {
       signInCta: "Giriş yap"
     },
     account: {
-      stats: ["Favoriler", "Geçmişim", "Kuponlar", "AI Modu"],
+      stats: ["Favoriler", "Geçmişim", "RFQ", "Sorgular"],
       orders: ["Ödenmemiş", "İşleniyor", "Kargolandı", "Para iadeleri", "Değerlendirme"],
       payment: ["Kuponlar ve kredi", "Faturalar ve makbuzlar", "Kartlar ve hesaplar", "Havale"],
       features: ["Adreslerim", "Vergi bilgileri", "Sorgular", "Abonelik", "Fiyat Teklifi Taleplerim"]

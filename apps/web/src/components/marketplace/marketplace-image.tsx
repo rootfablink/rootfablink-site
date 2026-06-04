@@ -11,6 +11,7 @@ type MarketplaceImageProps = {
   visualCategory?: string;
   title: string;
   className?: string;
+  fit?: "cover" | "contain";
 };
 
 function fallbackSvg(visualCategory: string, title: string) {
@@ -29,7 +30,7 @@ function fallbackSvg(visualCategory: string, title: string) {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-export function MarketplaceImage({ src, alt, visualCategory = "catalog_product", title, className }: MarketplaceImageProps) {
+export function MarketplaceImage({ src, alt, visualCategory = "catalog_product", title, className, fit = "cover" }: MarketplaceImageProps) {
   const [failed, setFailed] = useState(false);
   const fallback = useMemo(() => fallbackSvg(visualCategory, title), [title, visualCategory]);
   const imageSrc = !failed && src ? src : fallback;
@@ -38,7 +39,7 @@ export function MarketplaceImage({ src, alt, visualCategory = "catalog_product",
     <img
       src={imageSrc}
       alt={alt}
-      className={cn("h-full w-full object-cover", className)}
+      className={cn("h-full w-full", fit === "contain" ? "object-contain" : "object-cover", className)}
       loading="lazy"
       onError={() => setFailed(true)}
     />

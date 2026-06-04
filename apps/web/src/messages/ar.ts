@@ -2,7 +2,7 @@ export const ar = {
   localeName: "العربية",
   languageSwitch: "English",
   language: { label: "اللغة", ready: "متاح", preparing: "نسخة تحريرية قيد الإعداد", note: "نستخدم لكل سوق نصوصا تجارية أصلية ومراجعة تناسب لغة الأعمال المحلية." },
-  nav: { buyers: "المشترون", suppliers: "الموردون", logistics: "اللوجستيات", pricing: "الباقات", trust: "الثقة", rfq: "طلبات العروض", signIn: "تسجيل الدخول", start: "ابدأ التجارة" },
+  nav: { buyers: "المشترون", suppliers: "الموردون", manufacturers: "المصنعون", products: "المنتجات", customs: "الجمارك", logistics: "اللوجستيات", pricing: "الباقات", trust: "الثقة", rfq: "طلبات العروض", signIn: "تسجيل الدخول", start: "ابدأ التجارة" },
   home: {
     headline: "ROOTFABLINK",
     eyebrow: "بنية B2B للتصنيع والتوريد والتجارة العالمية",

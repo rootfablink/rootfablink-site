@@ -10,6 +10,9 @@ export const tr = {
   nav: {
     buyers: "Alıcılar",
     suppliers: "Tedarikçiler",
+    manufacturers: "Üreticiler",
+    products: "Ürünler",
+    customs: "Gümrük",
     logistics: "Lojistik",
     pricing: "Paketler",
     trust: "Güven",

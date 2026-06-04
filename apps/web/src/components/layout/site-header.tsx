@@ -26,12 +26,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           <RootFabLinkWordmark size="compact" />
         </a>
         <nav className="hidden items-center gap-6 text-sm font-medium text-steel md:flex">
-          <a href={`/${locale}/buyers`}>{t.nav.buyers}</a>
-          <a href={`/${locale}/suppliers`}>{t.nav.suppliers}</a>
+          <a href={`/${locale}/manufacturers`}>{t.nav.manufacturers}</a>
+          <a href={`/${locale}/products`}>{t.nav.products}</a>
+          <a href={`/${locale}/customs`}>{t.nav.customs}</a>
           <a href={`/${locale}/logistics`}>{t.nav.logistics}</a>
-          <a href={`/${locale}/trust`}>{t.nav.trust}</a>
-          <a href={`/${locale}/rfq`}>{t.nav.rfq}</a>
-          <a href={`/${locale}/pricing`}>{t.nav.pricing}</a>
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <details className="group relative hidden sm:block">

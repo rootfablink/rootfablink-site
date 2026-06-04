@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { Heart, MessageSquareText, ShieldCheck, Store } from "lucide-react";
 import type { MarketplaceCopy } from "./marketplace-copy";
 import { MarketplaceImage } from "./marketplace-image";
@@ -16,6 +18,7 @@ export type ProductCardData = {
   verified: boolean;
   sponsored?: boolean;
   mainImage?: string;
+  imageFit?: "cover" | "contain";
   leadTime?: string;
   category?: string;
   categoryTr?: string;
@@ -29,6 +32,9 @@ export type ProductCardData = {
   supplierName?: string;
   supplierType?: string;
   supplierTypeTr?: string;
+  brandName?: string;
+  brandLogo?: string;
+  sku?: string;
   tags?: string[];
   tradeTerms?: string[];
   capabilities?: string[];
@@ -50,7 +56,7 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
   return (
     <article className="group overflow-hidden rounded-md border border-ink/10 bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)] transition hover:-translate-y-0.5 hover:shadow-soft">
       <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#f8fafc,#fff2e5)]">
-        <MarketplaceImage src={product.mainImage} alt={product.imageAlt ?? title} visualCategory={product.visualCategory} title={title} />
+        <MarketplaceImage src={product.mainImage} alt={product.imageAlt ?? title} visualCategory={product.visualCategory} title={title} fit={product.imageFit} />
         {product.sponsored && (
           <span className="absolute left-3 top-3 rounded-md bg-ink px-2 py-1 text-xs font-bold text-white">
             {copy.productCard.sponsored}
@@ -66,6 +72,14 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
           {detailHref ? <a href={detailHref} className="hover:text-copper">{title}</a> : title}
         </h3>
         {description && <p className="mt-2 line-clamp-2 min-h-10 text-xs leading-5 text-steel">{description}</p>}
+        {product.brandLogo && (
+          <div className="mt-3 flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-md border border-ink/10 bg-white">
+              <img src={product.brandLogo} alt={`${product.brandName ?? product.supplierName ?? "Supplier"} logo`} className="h-full w-full object-contain p-1" />
+            </span>
+            <span className="text-xs font-bold text-ink">{product.brandName ?? product.supplierName}</span>
+          </div>
+        )}
         <p className="mt-2 text-lg font-bold text-copper">{product.priceRange ?? product.price}</p>
         <div className="mt-2 flex flex-wrap gap-2 text-xs font-semibold text-steel">
           <span>{copy.productCard.moq}: {product.moq}</span>

@@ -105,7 +105,7 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
             <SectionHeading eyebrow={copy.header.verified} title={copy.home.verifiedDiscovery} />
             <div className="mt-7 grid gap-4 lg:grid-cols-3">
               {marketplaceSuppliers.map((supplier) => (
-                <SupplierCard key={supplier.company} supplier={supplier} copy={copy} />
+                <SupplierCard key={supplier.company} supplier={supplier} copy={copy} locale={locale} />
               ))}
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-4">

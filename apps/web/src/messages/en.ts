@@ -10,6 +10,9 @@ export const en = {
   nav: {
     buyers: "Buyers",
     suppliers: "Suppliers",
+    manufacturers: "Manufacturers",
+    products: "Products",
+    customs: "Customs",
     logistics: "Logistics",
     pricing: "Pricing",
     trust: "Trust",

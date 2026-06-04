@@ -20,8 +20,15 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
   const headerRef = useRef<HTMLElement | null>(null);
   const [preference, setPreference] = useState<LocalizationPreference>(() => preferenceFromLanguage(locale, false));
   const copy = getMarketplaceCopy(locale);
-  const [activeTab, setActiveTab] = useState(copy.header.products);
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
+  const primaryNavItems = [
+    { label: copy.header.manufacturers, href: `/${locale}/manufacturers` },
+    { label: copy.header.products, href: `/${locale}/products` },
+    { label: copy.header.customs, href: `/${locale}/customs` },
+    { label: copy.header.logistics, href: `/${locale}/logistics` }
+  ];
+
+  const isPrimaryActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   useEffect(() => {
     const stored = readStoredPreference();
@@ -35,10 +42,6 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
       router.replace(replaceLocaleInPath(pathname, initialPreference.language));
     }
   }, [locale, pathname, router]);
-
-  useEffect(() => {
-    setActiveTab(copy.header.products);
-  }, [copy.header.products]);
 
   useEffect(() => {
     const closeOnOutsideClick = (event: MouseEvent) => {
@@ -74,11 +77,22 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             <RootFabLinkWordmark size="compact" />
           </Link>
 
-          <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex">
-            <HeaderButton label={copy.header.categories} open={openPanel === "categories"} onClick={() => toggle("categories")} />
-            <HeaderButton label={copy.header.verified} open={openPanel === "verified"} onClick={() => toggle("verified")} />
-            <HeaderButton label={copy.header.protection} open={openPanel === "protection"} onClick={() => toggle("protection")} />
-            <HeaderButton label={copy.header.buyerCenter} open={openPanel === "buyer"} onClick={() => toggle("buyer")} />
+          <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>
+            {primaryNavItems.map((item) => {
+              const active = isPrimaryActive(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "rounded-md border-b-2 px-3 py-2 font-bold transition hover:bg-cloud hover:text-ink",
+                    active ? "border-signal text-copper" : "border-transparent text-steel"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
@@ -112,20 +126,22 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
 
         <div className="mt-3 grid gap-3 lg:grid-cols-[1fr_auto] lg:items-end">
           <div className="rounded-md border border-ink/12 bg-white p-1.5 shadow-[0_8px_22px_rgba(11,11,12,0.05)]">
-            <div className="flex gap-1 px-1 pb-1">
-              {[copy.header.products, copy.header.manufacturers, copy.header.rfq].map((tab) => (
-                <button
-                  key={tab}
-                  type="button"
-                  onClick={() => setActiveTab(tab)}
-                  className={cn(
-                    "rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-[0.08em]",
-                    activeTab === tab ? "bg-ink text-white" : "text-steel hover:bg-cloud hover:text-ink"
-                  )}
-                >
-                  {tab}
-                </button>
-              ))}
+            <div className="flex gap-1 overflow-x-auto px-1 pb-1">
+              {primaryNavItems.map((item) => {
+                const active = isPrimaryActive(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "shrink-0 rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-[0.08em]",
+                      active ? "bg-ink text-white" : "text-steel hover:bg-cloud hover:text-ink"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
             <div className="flex items-center gap-2">
               <Search className="ml-2 shrink-0 text-steel" size={19} />
@@ -140,10 +156,22 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             </div>
           </div>
 
-          <div className="flex gap-2 overflow-x-auto pb-1 lg:hidden">
-            <HeaderButton label={copy.header.categories} open={openPanel === "categories"} onClick={() => toggle("categories")} compact />
-            <HeaderButton label={copy.header.verified} open={openPanel === "verified"} onClick={() => toggle("verified")} compact />
-            <HeaderButton label={copy.header.protection} open={openPanel === "protection"} onClick={() => toggle("protection")} compact />
+          <div className="flex gap-2 overflow-x-auto pb-1 lg:hidden" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>
+            {primaryNavItems.map((item) => {
+              const active = isPrimaryActive(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "inline-flex shrink-0 items-center rounded-md border px-3 py-2 text-sm font-bold whitespace-nowrap",
+                    active ? "border-signal/35 bg-cloud text-copper" : "border-ink/10 text-ink"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <button type="button" onClick={() => toggle("language")} className={cn("inline-flex shrink-0 items-center gap-2 rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink", openPanel === "language" && "border-signal/35 bg-cloud text-copper")}>
               <Globe2 size={15} />
               {copy.header.languageCurrency}
@@ -186,23 +214,6 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
         </div>
       )}
     </header>
-  );
-}
-
-function HeaderButton({ label, open, onClick, compact = false }: { label: string; open: boolean; onClick: () => void; compact?: boolean }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "inline-flex shrink-0 items-center gap-1 rounded-md px-3 py-2 font-semibold hover:bg-cloud hover:text-ink",
-        compact ? "border border-ink/10 text-sm text-ink" : "text-sm text-ink",
-        open && "bg-cloud text-copper"
-      )}
-    >
-      {label}
-      <ChevronDown size={14} />
-    </button>
   );
 }
 

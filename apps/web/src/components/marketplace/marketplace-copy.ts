@@ -1,4 +1,5 @@
 import type { Locale } from "@rootfablink/i18n";
+import { iWallProducts } from "@/components/suppliers/i-wall-data";
 import { marketplaceSeedListings } from "./marketplace-seed-data";
 
 export type MarketplaceCopy = typeof marketplaceCopy.en;
@@ -13,6 +14,8 @@ export const marketplaceCopy = {
       supplierCenter: "Supplier Center",
       products: "Products",
       manufacturers: "Manufacturers",
+      customs: "Customs",
+      logistics: "Logistics",
       rfq: "RFQ",
       search: "Search products, factories or RFQs",
       searchButton: "Search",
@@ -196,6 +199,8 @@ export const marketplaceCopy = {
       supplierCenter: "Tedarikçi merkezi",
       products: "Ürünler",
       manufacturers: "Üreticiler",
+      customs: "Gümrük",
+      logistics: "Lojistik",
       rfq: "RFQ",
       search: "Ürün, fabrika veya teklif talebi ara",
       searchButton: "Ara",
@@ -765,7 +770,9 @@ export function getMarketplaceCopy(locale: Locale): MarketplaceCopy {
   return localizedMarketplaceCopy[locale];
 }
 
-export const marketplaceSeedProducts = marketplaceSeedListings.map((listing) => ({
+export const marketplaceSeedProducts = [
+  ...iWallProducts,
+  ...marketplaceSeedListings.map((listing) => ({
   title: listing.title,
   titleTr: listing.titleTr,
   price: listing.priceRange,
@@ -776,6 +783,7 @@ export const marketplaceSeedProducts = marketplaceSeedListings.map((listing) => 
   verified: listing.verified,
   sponsored: listing.sponsored,
   mainImage: listing.mainImage,
+  imageFit: undefined,
   galleryImages: listing.galleryImages,
   imageAlt: listing.imageAlt,
   imageSearchIntent: listing.imageSearchIntent,
@@ -791,9 +799,16 @@ export const marketplaceSeedProducts = marketplaceSeedListings.map((listing) => 
   supplierName: listing.supplierName,
   supplierType: listing.supplierType,
   supplierTypeTr: listing.supplierTypeTr,
+  brandName: undefined,
+  brandLogo: undefined,
   slug: listing.slug,
+  sku: undefined,
   specifications: listing.specifications,
   specificationsTr: listing.specificationsTr,
+  applications: undefined,
+  applicationsTr: undefined,
+  packagingInfo: undefined,
+  packagingInfoTr: undefined,
   tags: listing.tags,
   tradeTerms: listing.tradeTerms,
   capabilities: listing.capabilities,
@@ -801,7 +816,8 @@ export const marketplaceSeedProducts = marketplaceSeedListings.map((listing) => 
   reviewCount: listing.reviewCount,
   review_count: listing.review_count,
   rating: listing.rating
-}));
+}))
+];
 
 export const marketplaceProducts = [
   { title: "Electric scooter", price: "$120 - $480", moq: "50 pieces", country: "Türkiye", verified: false, sponsored: true },
@@ -815,6 +831,7 @@ export const marketplaceProducts = [
 ];
 
 export const marketplaceSuppliers = [
+  { company: "i-WALL", country: "Turkey", category: "PS Wall Panels", response: "RFQ", markets: "TR, Export", verified: false, href: "/en/supplier/i-wall", logo: "/brands/i-wall/logo.png", productCount: 27 },
   { company: "Anatolia Precision Manufacturing", country: "Türkiye", category: "Machinery", response: "92%", markets: "EU, MENA" },
   { company: "Global Pack Systems", country: "Germany", category: "Packaging", response: "88%", markets: "EU, UK" },
   { company: "Marmara Textile Works", country: "Türkiye", category: "Workwear", response: "95%", markets: "US, EU" }
