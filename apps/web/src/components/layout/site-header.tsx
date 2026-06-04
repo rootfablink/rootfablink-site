@@ -1,8 +1,12 @@
+"use client";
+
 import { Globe2, ShieldCheck } from "lucide-react";
+import { usePathname } from "next/navigation";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { dictionaries } from "@/messages";
 import { Button } from "@/components/ui/button";
+import { preferenceFromLanguage, replaceLocaleInPath, writeStoredPreference } from "@/components/marketplace/localization-preferences";
 
 const languageOptions = [
   { code: "en", label: "English" },
@@ -18,6 +22,11 @@ const languageOptions = [
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const t = dictionaries[locale];
+  const pathname = usePathname();
+
+  const handleLanguageClick = (language: Locale) => {
+    writeStoredPreference(preferenceFromLanguage(language, true));
+  };
 
   return (
     <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
@@ -44,7 +53,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                   <a
                     key={item.code}
                     className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-cloud"
-                    href={`/${item.code}`}
+                    href={replaceLocaleInPath(pathname, item.code as Locale)}
+                    onClick={() => handleLanguageClick(item.code as Locale)}
                   >
                     {item.label}
                   </a>

@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import { getTextDirection, isLocale, locales, type Locale } from "@rootfablink/i18n";
 
+const hreflangAlternates = {
+  en: "/en",
+  tr: "/tr",
+  de: "/de",
+  fr: "/fr",
+  es: "/es",
+  ar: "/ar",
+  zh: "/zh",
+  ru: "/ru",
+  "x-default": "/"
+};
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -21,6 +33,10 @@ export async function generateMetadata({
     return {
       title,
       description,
+      alternates: {
+        canonical: `/${locale}`,
+        languages: hreflangAlternates
+      },
       openGraph: {
         title,
         description,
@@ -35,7 +51,12 @@ export async function generateMetadata({
     };
   }
 
-  return {};
+  return {
+    alternates: {
+      canonical: `/${locale}`,
+      languages: hreflangAlternates
+    }
+  };
 }
 
 export default async function LocaleLayout({

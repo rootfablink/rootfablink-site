@@ -9,6 +9,9 @@ export type LocalizationPreference = {
 };
 
 export const localizationStorageKey = "rootfablink.localization";
+export const localeCookieName = "rootfablink_locale";
+export const currencyCookieName = "rootfablink_currency";
+export const countryCookieName = "rootfablink_country";
 
 export const languageLocalizationMap: Record<Locale, Omit<LocalizationPreference, "language" | "manuallySelected">> = {
   en: { country: "US", currency: "USD", locale: "en-US" },
@@ -83,6 +86,16 @@ export function readStoredPreference(): LocalizationPreference | null {
 export function writeStoredPreference(preference: LocalizationPreference) {
   if (typeof window === "undefined") return;
   window.localStorage.setItem(localizationStorageKey, JSON.stringify(preference));
+  writePreferenceCookies(preference);
+}
+
+export function writePreferenceCookies(preference: LocalizationPreference) {
+  if (typeof document === "undefined") return;
+  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+  const maxAge = 60 * 60 * 24 * 365;
+  document.cookie = `${localeCookieName}=${encodeURIComponent(preference.language)}; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`;
+  document.cookie = `${currencyCookieName}=${encodeURIComponent(preference.currency)}; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`;
+  document.cookie = `${countryCookieName}=${encodeURIComponent(preference.country)}; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`;
 }
 
 export function replaceLocaleInPath(pathname: string, nextLocale: Locale) {

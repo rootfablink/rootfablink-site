@@ -8,7 +8,7 @@ import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { cn } from "@/lib/utils";
 import type { LocalizationPreference } from "./localization-preferences";
-import { detectLanguageFromBrowser, languageOptions, preferenceFromLanguage, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
+import { languageOptions, preferenceFromLanguage, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
 import { getMarketplaceCopy } from "./marketplace-copy";
 import { CategoryMegaMenu, CenterMenu, SignInDropdown, TradeProtectionMenu, VerifiedManufacturersMenu } from "./marketplace-panels";
 
@@ -32,16 +32,9 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
 
   useEffect(() => {
     const stored = readStoredPreference();
-    const initialPreference = stored ?? preferenceFromLanguage(detectLanguageFromBrowser(), false);
+    const initialPreference = stored ?? preferenceFromLanguage(locale, false);
     setPreference(initialPreference);
-
-    const shouldApplyStoredPreference = stored?.manuallySelected && initialPreference.language !== locale;
-    const shouldApplyBrowserDefault = !stored && locale === "en" && initialPreference.language !== locale;
-
-    if (shouldApplyStoredPreference || shouldApplyBrowserDefault) {
-      router.replace(replaceLocaleInPath(pathname, initialPreference.language));
-    }
-  }, [locale, pathname, router]);
+  }, [locale]);
 
   useEffect(() => {
     const closeOnOutsideClick = (event: MouseEvent) => {
