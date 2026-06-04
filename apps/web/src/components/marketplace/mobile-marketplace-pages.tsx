@@ -6,7 +6,7 @@ import { Bell, CheckCircle2, ChevronRight, Clock, CreditCard, Grid2X2, Heart, Ma
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { MobileBottomNav } from "./mobile-bottom-nav";
-import { getMobileMarketplaceCopy, mobileCategoryRecommendations, mobileCategorySidebar, mobileMessages, mobileProducts } from "./mobile-marketplace-copy";
+import { getMobileMarketplaceCopy, mobileCategoryRecommendations, mobileCategorySidebar, mobileMessages, mobileSeedProducts } from "./mobile-marketplace-copy";
 
 export function MobileCategoriesPage({ locale }: { locale: Locale }) {
   const copy = getMobileMarketplaceCopy(locale);
@@ -198,9 +198,9 @@ function MobileRecommendedStrip({ locale }: { locale: Locale }) {
     <section className="mt-4">
       <h2 className="text-lg font-bold text-ink">{locale === "tr" ? "Önerilen ürünler" : "Recommended products"}</h2>
       <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
-        {mobileProducts.slice(0, 4).map((product) => (
+        {mobileSeedProducts.slice(0, 4).map((product) => (
           <article key={product.title} className="min-w-40 rounded-2xl bg-white p-3">
-            <div className="aspect-square rounded-xl bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]" />
+            <div className="aspect-square rounded-xl bg-cover bg-center bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]" style={{ backgroundImage: `url(${product.image})` }} />
             <h3 className="mt-2 line-clamp-2 text-xs font-bold leading-4 text-ink">{product.title}</h3>
             <p className="mt-2 text-sm font-bold text-copper">{product.price}</p>
           </article>

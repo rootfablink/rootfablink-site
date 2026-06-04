@@ -1,4 +1,5 @@
 import type { Locale } from "@rootfablink/i18n";
+import { marketplaceSeedListings } from "./marketplace-seed-data";
 
 export type MobileMarketplaceCopy = typeof mobileMarketplaceCopy.en;
 
@@ -94,6 +95,17 @@ export const mobileMarketplaceCopy = {
 export function getMobileMarketplaceCopy(locale: Locale): MobileMarketplaceCopy {
   return locale === "tr" ? mobileMarketplaceCopy.tr : mobileMarketplaceCopy.en;
 }
+
+export const mobileSeedProducts = marketplaceSeedListings.slice(0, 16).map((listing, index) => ({
+  title: listing.title,
+  price: listing.priceRange,
+  badgeIndex: listing.sponsored ? 3 : index % 3,
+  supplier: "Marketplace seed",
+  country: listing.country,
+  image: listing.mainImage,
+  source: listing.source,
+  verified: listing.verified
+}));
 
 export const mobileProducts = [
   { title: "i-WALL Marble Look Wall Panel", price: "$8.40", badgeIndex: 3, supplier: "i-WALL", country: "Türkiye" },

@@ -5,7 +5,7 @@ import { ArrowRight, Bot, Camera, Factory, FileText, Grid2X2, Mic, PackageSearch
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { MobileBottomNav } from "./mobile-bottom-nav";
-import { countrySourcingCards, getMobileMarketplaceCopy, mobileProducts, mobileSuppliers } from "./mobile-marketplace-copy";
+import { countrySourcingCards, getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
 
 type MobileTab = "AI Mode" | "Products" | "Manufacturers" | "Worldwide" | "AI Modu" | "Ürünler" | "Üreticiler" | "Dünya çapında";
 
@@ -126,7 +126,7 @@ function ManufacturersSection({ copy, locale }: { copy: ReturnType<typeof getMob
       <section className="mt-5 rounded-2xl bg-ink p-4 text-white">
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-signal">RFQ</p>
         <h2 className="mt-2 text-xl font-bold">{copy.sections.supplierMatch}</h2>
-        <p className="mt-2 text-sm leading-6 text-white/70">i-WALL and verified factory programs are prepared for supplier matching.</p>
+        <p className="mt-2 text-sm leading-6 text-white/70">Marketplace seed categories and verification-ready supplier programs are prepared for supplier matching.</p>
         <a href={`/${locale}/rfq`} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-signal px-4 py-2 text-sm font-bold text-white">
           RFQ <ArrowRight size={16} />
         </a>
@@ -193,11 +193,11 @@ function MobileProductCarousel({ title, offset = 0 }: { title: string; offset?: 
     <section className="mt-5">
       <SectionTitle title={title} />
       <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
-        {mobileProducts.slice(offset).concat(mobileProducts.slice(0, offset)).slice(0, 4).map((product) => (
+        {mobileSeedProducts.slice(offset).concat(mobileSeedProducts.slice(0, offset)).slice(0, 4).map((product) => (
           <article key={`${title}-${product.title}`} className="min-w-40 overflow-hidden rounded-2xl bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
-            <div className="aspect-square bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]" />
+            <div className="aspect-square bg-cover bg-center bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]" style={{ backgroundImage: `url(${product.image})` }} />
             <div className="p-3">
-              <span className="rounded-full bg-signal/10 px-2 py-1 text-[10px] font-bold text-copper">{product.supplier === "i-WALL" ? "i-WALL" : product.country}</span>
+              <span className="rounded-full bg-signal/10 px-2 py-1 text-[10px] font-bold text-copper">{product.country}</span>
               <h3 className="mt-2 line-clamp-2 min-h-9 text-xs font-bold leading-4 text-ink">{product.title}</h3>
               <p className="mt-2 text-sm font-bold text-copper">{product.price}</p>
             </div>

@@ -1,4 +1,5 @@
 import type { Locale } from "@rootfablink/i18n";
+import { marketplaceSeedListings } from "./marketplace-seed-data";
 
 export type MarketplaceCopy = typeof marketplaceCopy.en;
 
@@ -762,15 +763,33 @@ export function getMarketplaceCopy(locale: Locale): MarketplaceCopy {
   return localizedMarketplaceCopy[locale];
 }
 
+export const marketplaceSeedProducts = marketplaceSeedListings.map((listing) => ({
+  title: listing.title,
+  price: listing.priceRange,
+  priceRange: listing.priceRange,
+  moq: listing.moq,
+  country: listing.country,
+  verified: listing.verified,
+  sponsored: listing.sponsored,
+  mainImage: listing.mainImage,
+  leadTime: listing.leadTime,
+  category: listing.category,
+  subcategory: listing.subcategory,
+  shortDescription: listing.shortDescription,
+  source: listing.source,
+  review_count: listing.review_count,
+  rating: listing.rating
+}));
+
 export const marketplaceProducts = [
-  { title: "Electric scooter", price: "$120 - $480", moq: "50 pieces", country: "Türkiye", verified: true, sponsored: true },
-  { title: "Mobile phones", price: "$38 - $210", moq: "20 pieces", country: "China", verified: true },
-  { title: "Industrial machinery", price: "$4,800 - $28,000", moq: "1 set", country: "Germany", verified: true },
+  { title: "Electric scooter", price: "$120 - $480", moq: "50 pieces", country: "Türkiye", verified: false, sponsored: true },
+  { title: "Mobile phones", price: "$38 - $210", moq: "20 pieces", country: "China", verified: false },
+  { title: "Industrial machinery", price: "$4,800 - $28,000", moq: "1 set", country: "Germany", verified: false },
   { title: "Packaging boxes", price: "$0.08 - $0.42", moq: "1,000 pieces", country: "Türkiye", verified: false, sponsored: true },
-  { title: "Solar panels", price: "$42 - $96", moq: "100 pieces", country: "UAE", verified: true },
-  { title: "Workwear", price: "$6 - $19", moq: "200 pieces", country: "Türkiye", verified: true },
+  { title: "Solar panels", price: "$42 - $96", moq: "100 pieces", country: "UAE", verified: false },
+  { title: "Workwear", price: "$6 - $19", moq: "200 pieces", country: "Türkiye", verified: false },
   { title: "Furniture", price: "$35 - $340", moq: "10 pieces", country: "Poland", verified: false },
-  { title: "Beauty tools", price: "$2 - $18", moq: "300 pieces", country: "France", verified: true }
+  { title: "Beauty tools", price: "$2 - $18", moq: "300 pieces", country: "France", verified: false }
 ];
 
 export const marketplaceSuppliers = [

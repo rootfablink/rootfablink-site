@@ -8,7 +8,7 @@ import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Button } from "@/components/ui/button";
 import { FloatingActionBar } from "./floating-action-bar";
-import { getMarketplaceCopy, marketplaceProducts, marketplaceSuppliers } from "./marketplace-copy";
+import { getMarketplaceCopy, marketplaceSeedProducts, marketplaceSuppliers } from "./marketplace-copy";
 import { MarketplaceHeader } from "./marketplace-header";
 import { RFQQuickModal, RootFabLinkLensModal } from "./marketplace-modals";
 import { MobileMarketplaceHome } from "./mobile-marketplace-home";
@@ -93,7 +93,7 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
           <div className="mx-auto max-w-7xl px-4 sm:px-5">
             <SectionHeading eyebrow="RootFabLink" title={copy.home.mostSearched} />
             <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {marketplaceProducts.map((product) => (
+              {marketplaceSeedProducts.slice(0, 12).map((product) => (
                 <ProductCard key={product.title} product={product} copy={copy} />
               ))}
             </div>

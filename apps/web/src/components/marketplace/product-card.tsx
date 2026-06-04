@@ -1,47 +1,67 @@
 "use client";
 
-import { Heart, ShieldCheck, Star } from "lucide-react";
+import { Heart, MessageSquareText, ShieldCheck, Star } from "lucide-react";
 import type { MarketplaceCopy } from "./marketplace-copy";
 
 export type ProductCardData = {
   title: string;
   price: string;
+  priceRange?: string;
   moq: string;
   country: string;
   verified: boolean;
   sponsored?: boolean;
+  mainImage?: string;
+  leadTime?: string;
+  category?: string;
+  subcategory?: string;
+  shortDescription?: string;
+  source?: "marketplace_seed_data" | string;
+  review_count?: number;
+  rating?: number | null;
 };
 
 export function ProductCard({ product, copy }: { product: ProductCardData; copy: MarketplaceCopy }) {
+  const isSeedListing = product.source === "marketplace_seed_data";
+
   return (
     <article className="group overflow-hidden rounded-md border border-ink/10 bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)] transition hover:-translate-y-0.5 hover:shadow-soft">
-      <div className="relative flex aspect-[4/3] items-center justify-center bg-[linear-gradient(135deg,#f8fafc,#fff2e5)]">
-        <div className="h-20 w-20 rounded-md border border-white/80 bg-white/70 shadow-[inset_0_0_0_1px_rgba(11,11,12,0.04)]" />
+      <div
+        className="relative flex aspect-[4/3] items-center justify-center bg-cover bg-center bg-[linear-gradient(135deg,#f8fafc,#fff2e5)]"
+        style={product.mainImage ? { backgroundImage: `linear-gradient(180deg,rgba(11,11,12,0.02),rgba(11,11,12,0.18)),url(${product.mainImage})` } : undefined}
+      >
         {product.sponsored && (
           <span className="absolute left-3 top-3 rounded-md bg-ink px-2 py-1 text-xs font-bold text-white">
             {copy.productCard.sponsored}
           </span>
         )}
-        <button type="button" className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md bg-white text-ink shadow-sm">
+        <button type="button" aria-label="Add to favorites" className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md bg-white text-ink shadow-sm">
           <Heart size={16} />
         </button>
       </div>
       <div className="p-4">
+        {product.category && <p className="mb-2 line-clamp-1 text-[11px] font-bold uppercase tracking-[0.08em] text-steel">{product.category}</p>}
         <h3 className="line-clamp-2 min-h-10 text-sm font-bold leading-5 text-ink">{product.title}</h3>
-        <p className="mt-2 text-lg font-bold text-copper">{product.price}</p>
+        {product.shortDescription && <p className="mt-2 line-clamp-2 min-h-10 text-xs leading-5 text-steel">{product.shortDescription}</p>}
+        <p className="mt-2 text-lg font-bold text-copper">{product.priceRange ?? product.price}</p>
         <div className="mt-2 flex flex-wrap gap-2 text-xs font-semibold text-steel">
           <span>{copy.productCard.moq}: {product.moq}</span>
           <span>{product.country}</span>
+          {product.leadTime && <span>{product.leadTime}</span>}
         </div>
-        <div className="mt-3 flex items-center justify-between gap-2">
+        <div className="mt-3 flex items-center justify-between gap-2 border-t border-ink/10 pt-3">
           <span className="inline-flex items-center gap-1 text-xs font-bold text-ink">
             {product.verified ? <ShieldCheck size={15} className="text-blue-700" /> : <Star size={15} className="text-steel" />}
-            {product.verified ? copy.productCard.verified : "Profile"}
+            {product.verified ? copy.productCard.verified : isSeedListing ? "Seed listing" : "Profile"}
           </span>
           <button type="button" className="rounded-md bg-signal px-3 py-2 text-xs font-bold text-white hover:bg-copper">
             {copy.productCard.inquiry}
           </button>
         </div>
+        <button type="button" className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md border border-ink/10 px-3 py-2 text-xs font-bold text-ink hover:bg-cloud">
+          <MessageSquareText size={14} />
+          Contact Supplier
+        </button>
       </div>
     </article>
   );
