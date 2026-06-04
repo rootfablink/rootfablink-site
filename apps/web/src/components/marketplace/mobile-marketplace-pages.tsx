@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Bell, Box, Car, CheckCircle2, ChevronRight, Clock, CreditCard, Footprints, Grid2X2, Heart, Laptop, MapPin, MessageSquareText, PackageSearch, PanelsTopLeft, Phone, ReceiptText, Shirt, ShieldCheck, ShoppingBasket, Smartphone, Sparkles, SunMedium, UserRound } from "lucide-react";
@@ -95,7 +97,7 @@ export function MobileMessagesPage({ locale }: { locale: Locale }) {
                   <h2 className="truncate text-sm font-bold text-ink">{message.sender}</h2>
                   {message.unread > 0 && <span className="rounded-full bg-signal px-2 py-0.5 text-[10px] font-bold text-white">{message.unread}</span>}
                 </div>
-                <p className="mt-1 text-xs font-semibold leading-5 text-steel">{message.subject}</p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-steel">{locale === "tr" ? message.subjectTr ?? message.subject : message.subject}</p>
               </div>
             </div>
           </article>
@@ -220,9 +222,11 @@ function MobileRecommendedStrip({ locale }: { locale: Locale }) {
       <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
         {mobileSeedProducts.slice(0, 4).map((product) => (
           <article key={product.title} className="min-w-40 rounded-2xl bg-white p-3">
-            <div className="aspect-square rounded-xl bg-cover bg-center bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]" style={{ backgroundImage: `url(${product.image})` }} />
-            <h3 className="mt-2 line-clamp-2 text-xs font-bold leading-4 text-ink">{product.title}</h3>
-            <p className="mt-2 text-sm font-bold text-copper">{product.price}</p>
+            <div className="flex h-36 items-center justify-center rounded-xl bg-white p-2">
+              <img src={product.image} alt={locale === "tr" ? product.titleTr : product.title} className="h-full w-full object-contain" />
+            </div>
+            <h3 className="mt-2 line-clamp-2 text-xs font-bold leading-4 text-ink">{locale === "tr" ? product.titleTr : product.title}</h3>
+            <p className="mt-2 text-sm font-bold text-copper">{locale === "tr" ? product.priceTr : product.price}</p>
           </article>
         ))}
       </div>

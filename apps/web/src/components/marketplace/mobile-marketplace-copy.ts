@@ -1,5 +1,4 @@
 import type { Locale } from "@rootfablink/i18n";
-import { marketplaceSeedListings } from "./marketplace-seed-data";
 
 export type MobileMarketplaceCopy = typeof mobileMarketplaceCopy.en;
 
@@ -7,8 +6,8 @@ export const mobileMarketplaceCopy = {
   en: {
     tabs: ["Manufacturers", "Products", "Customs", "Logistics"],
     searchPlaceholder: "Search products, factories or RFQs",
-    searchExamples: ["women clothing", "electric scooter", "wall panels"],
-    voiceSearch: "Voice search placeholder",
+    searchExamples: ["wall panels", "PS wall panel", "building materials"],
+    voiceSearch: "Voice search",
     lens: "ROOTFABLINK LENS",
     shortcuts: ["Source by category", "RFQ request", "Verified suppliers", "Most preferred", "Fast customization", "Sample center"],
     worldwideTitle: "Your global supplier guide from 190+ regions",
@@ -20,13 +19,13 @@ export const mobileMarketplaceCopy = {
       manufacturers: "Most preferred manufacturers",
       categories: "All Categories",
       supplierMatch: "Factory matches for recent interest",
-      aiTitle: "AI sourcing assistant",
-      aiText: "Describe what you want to source. Rootfablink will prepare supplier, RFQ and logistics suggestions in future AI modules.",
-      aiPlaceholder: "Example: I need 500 decorative wall panels for hotel project",
+      aiTitle: "Sourcing assistant",
+      aiText: "Describe what you want to source. RootFabLink will prepare supplier, RFQ and logistics suggestions in future modules.",
+      aiPlaceholder: "Example: I need 500 decorative wall panels for a hotel project",
       aiButton: "Prepare sourcing plan"
     },
-    categoryTabs: ["All Categories", "Home Appliances", "Home & Garden", "Industrial Machinery", "Apparel", "Electronics", "Building Materials"],
-    productBadges: ["Lower price", "Fast delivery", "Trending", "Sponsored"],
+    categoryTabs: ["All Categories", "Wall Panels", "Building Materials", "Interior Decoration", "PS Wall Panel", "Solar Panels", "Packaging"],
+    productBadges: ["Request quote", "RFQ ready", "Trending", "Sponsored"],
     bottomNav: ["Home", "Categories", "Messages", "Quote Cart", "Account"],
     pages: {
       categories: "Categories",
@@ -36,7 +35,7 @@ export const mobileMarketplaceCopy = {
       signInRequired: "Sign in required to sync real messages. Demo message center is shown for preview.",
       emptyBasket: "Your inquiry basket is empty",
       sourceByCategory: "Source by category",
-      tradeProtection: "Rootfablink trade protection",
+      tradeProtection: "RootFabLink trade protection",
       accountPreview: "Demo account preview",
       signInCta: "Sign in"
     },
@@ -50,8 +49,8 @@ export const mobileMarketplaceCopy = {
   tr: {
     tabs: ["Üreticiler", "Ürünler", "Gümrük", "Lojistik"],
     searchPlaceholder: "Ürün, fabrika veya RFQ ara",
-    searchExamples: ["kadın giyim", "erkek kol saati", "duvar paneli"],
-    voiceSearch: "Sesli arama yer tutucusu",
+    searchExamples: ["polimer lambiri", "duvar paneli", "yapı malzemeleri"],
+    voiceSearch: "Sesli arama",
     lens: "ROOTFABLINK LENS",
     shortcuts: ["Kategoriye göre tedarik", "Fiyat Teklifi Talebi (RFQ)", "Doğrulanmış tedarikçiler", "En çok tercih edilenler", "Hızlı özelleştirme", "Numune merkezi"],
     worldwideTitle: "190+ bölgeden küresel tedarikçi rehberiniz",
@@ -63,13 +62,13 @@ export const mobileMarketplaceCopy = {
       manufacturers: "En çok tercih edilen üreticiler",
       categories: "Tüm Kategoriler",
       supplierMatch: "Son ilgi alanlarına göre fabrika eşleşmeleri",
-      aiTitle: "AI tedarik asistanı",
-      aiText: "Tedarik etmek istediğiniz ürünü anlatın. Rootfablink ilerleyen AI modüllerinde tedarikçi, RFQ ve lojistik önerileri hazırlayacaktır.",
+      aiTitle: "Tedarik asistanı",
+      aiText: "Tedarik etmek istediğiniz ürünü anlatın. RootFabLink ilerleyen modüllerde tedarikçi, RFQ ve lojistik önerileri hazırlayacaktır.",
       aiPlaceholder: "Örnek: Otel projesi için 500 adet dekoratif duvar paneli arıyorum",
       aiButton: "Tedarik planı hazırla"
     },
-    categoryTabs: ["Tüm Kategoriler", "Ev Aletleri", "Ev & Bahçe", "Endüstriyel Makineler", "Giyim", "Elektronik", "Yapı Malzemeleri"],
-    productBadges: ["Daha düşük fiyat", "Hızlı teslimat", "Trend", "Sponsorlu"],
+    categoryTabs: ["Tüm Kategoriler", "Duvar Panelleri", "Yapı Malzemeleri", "İç Dekorasyon", "Polimer Lambiri", "Güneş Panelleri", "Ambalaj"],
+    productBadges: ["Teklif al", "RFQ hazır", "Trend", "Sponsorlu"],
     bottomNav: ["Anasayfa", "Kategoriler", "Mesajlarım", "Teklif Sepeti", "Hesabım"],
     pages: {
       categories: "Kategoriler",
@@ -79,7 +78,7 @@ export const mobileMarketplaceCopy = {
       signInRequired: "Gerçek mesajları senkronize etmek için giriş gerekir. Önizleme için demo mesaj merkezi gösteriliyor.",
       emptyBasket: "Sepetiniz boş",
       sourceByCategory: "Kategoriye göre tedarik edin",
-      tradeProtection: "Rootfablink ticaret koruması",
+      tradeProtection: "RootFabLink ticaret koruması",
       accountPreview: "Demo hesap önizlemesi",
       signInCta: "Giriş yap"
     },
@@ -96,83 +95,52 @@ export function getMobileMarketplaceCopy(locale: Locale): MobileMarketplaceCopy 
   return locale === "tr" ? mobileMarketplaceCopy.tr : mobileMarketplaceCopy.en;
 }
 
-export const mobileSeedProducts = marketplaceSeedListings.slice(0, 16).map((listing, index) => ({
-  title: listing.title,
-  price: listing.priceRange,
-  badgeIndex: listing.sponsored ? 3 : index % 3,
-  supplier: "Marketplace seed",
-  country: listing.country,
-  image: listing.mainImage,
-  source: listing.source,
-  verified: listing.verified
-}));
+const iWallHomepageModels = [1, 5, 9, 15, 19, 21, 27];
 
-export const mobileProducts = [
-  { title: "i-WALL Marble Look Wall Panel", price: "$8.40", badgeIndex: 3, supplier: "i-WALL", country: "Türkiye" },
-  { title: "Electric scooter export batch", price: "$118", badgeIndex: 2, supplier: "Verified Mobility Co.", country: "China" },
-  { title: "Industrial packaging boxes", price: "$0.09", badgeIndex: 0, supplier: "Global Pack Systems", country: "Germany" },
-  { title: "Workwear private label set", price: "$7.90", badgeIndex: 1, supplier: "Marmara Textile Works", country: "Türkiye" },
-  { title: "i-WALL Wood Texture Panel", price: "$9.20", badgeIndex: 3, supplier: "i-WALL", country: "Türkiye" },
-  { title: "Solar panel container order", price: "$44", badgeIndex: 2, supplier: "Gulf Energy Supply", country: "UAE" }
-];
+export const mobileSeedProducts = iWallHomepageModels.map((model, index) => {
+  const modelLabel = String(model).padStart(2, "0");
+  const sku = `iw-ps-${String(model).padStart(3, "0")}`;
+
+  return {
+    title: `i-WALL PS Wall Panel Model ${modelLabel}`,
+    titleTr: `i-WALL Polimer Lambiri Model ${modelLabel}`,
+    price: "Request quote",
+    priceTr: "Teklif al",
+    badgeIndex: index === 0 ? 3 : index % 3,
+    supplier: "i-WALL",
+    country: "Türkiye",
+    category: "Building Materials",
+    categoryTr: "Yapı Malzemeleri",
+    image: `/brands/i-wall/no${model}.jpeg`,
+    slug: sku,
+    source: "i-wall-local-assets",
+    verified: false
+  };
+});
+
+export const mobileProducts = mobileSeedProducts;
 
 export const mobileSuppliers = [
-  { name: "i-WALL Surface Systems", category: "Building materials", country: "Türkiye", cta: "/suppliers/i-wall" },
-  { name: "Anatolia Precision Manufacturing", category: "Machinery", country: "Türkiye", cta: "/manufacturers" },
-  { name: "Global Pack Systems", category: "Packaging", country: "Germany", cta: "/manufacturers" },
-  { name: "Marmara Textile Works", category: "Workwear", country: "Türkiye", cta: "/manufacturers" }
+  { name: "i-WALL Surface Systems", category: "Building Materials", categoryTr: "Yapı malzemeleri", country: "Türkiye", cta: "/suppliers/i-wall", logo: "/brands/i-wall/logo.png" },
+  { name: "Anatolia Precision Manufacturing", category: "Machinery", categoryTr: "Makine", country: "Türkiye", cta: "/manufacturers" },
+  { name: "Global Pack Systems", category: "Packaging", categoryTr: "Ambalaj", country: "Germany", cta: "/manufacturers" },
+  { name: "Marmara Textile Works", category: "Workwear", categoryTr: "İş kıyafeti", country: "Türkiye", cta: "/manufacturers" }
 ];
 
 export const countrySourcingCards = [
-  { flag: "🇹🇷", title: "Türkiye manufacturing hub", volume: "42K searches" },
-  { flag: "🇨🇳", title: "China industrial supply", volume: "118K searches" },
-  { flag: "🇮🇳", title: "India textile and materials", volume: "36K searches" },
-  { flag: "🇩🇪", title: "Germany machinery suppliers", volume: "28K searches" },
-  { flag: "🇦🇪", title: "UAE trade gateway", volume: "18K searches" },
-  { flag: "🇸🇦", title: "Saudi construction market", volume: "21K searches" },
-  { flag: "🇻🇳", title: "Vietnam competitive production", volume: "25K searches" }
-];
-
-export const mobileCategorySidebar = [
-  "Sizin için",
-  "Öne Çıkan",
-  "İndirimli ürünler",
-  "Giyim & Aksesuar",
-  "Kişisel Elektronik Cihazlar",
-  "Ev & Bahçe",
-  "Spor & Eğlence",
-  "Ebeveyn & Çocuk & Oyuncaklar",
-  "Spor Giyim & Açık Hava Kıyafetleri",
-  "Kozmetik",
-  "Takı & Gözlük & Saat",
-  "Ayakkabı & Çanta",
-  "Yapı Malzemeleri",
-  "Endüstriyel Makineler"
-];
-
-export const mobileCategoryRecommendations = [
-  "Men shoes",
-  "5G smartphones",
-  "Electric scooters",
-  "Mobile phones",
-  "Laptops",
-  "Cars",
-  "Hoodies",
-  "Drones",
-  "Evening dress",
-  "Women sets",
-  "Scooter",
-  "Perfume bottle",
-  "Wall panels",
-  "Solar panels",
-  "Packaging boxes"
+  { flag: "TR", title: "Türkiye manufacturing hub", volume: "42K searches" },
+  { flag: "CN", title: "China industrial supply", volume: "118K searches" },
+  { flag: "IN", title: "India textile and materials", volume: "36K searches" },
+  { flag: "DE", title: "Germany machinery suppliers", volume: "28K searches" },
+  { flag: "AE", title: "UAE trade gateway", volume: "18K searches" },
+  { flag: "SA", title: "Saudi construction market", volume: "21K searches" },
+  { flag: "VN", title: "Vietnam competitive production", volume: "25K searches" }
 ];
 
 export const mobileMessages = [
-  { sender: "i-WALL Support", subject: "Sample wall panel request", unread: 3 },
-  { sender: "Türkiye Logistics Partner", subject: "Delivery options for wall panels", unread: 1 },
-  { sender: "Global Buyer Desk", subject: "RFQ response preparation", unread: 0 },
-  { sender: "Verification Team", subject: "Supplier document preview", unread: 2 },
-  { sender: "RFQ Assistant", subject: "Suggested suppliers for your request", unread: 0 }
+  { sender: "i-WALL Support", subject: "Sample wall panel request", subjectTr: "Numune duvar paneli talebi", unread: 3 },
+  { sender: "Türkiye Logistics Partner", subject: "Delivery options for wall panels", subjectTr: "Duvar panelleri için teslimat seçenekleri", unread: 1 },
+  { sender: "Global Buyer Desk", subject: "RFQ response preparation", subjectTr: "RFQ yanıt hazırlığı", unread: 0 },
+  { sender: "Verification Team", subject: "Supplier document preview", subjectTr: "Tedarikçi belge önizlemesi", unread: 2 },
+  { sender: "RFQ Assistant", subject: "Suggested suppliers for your request", subjectTr: "Talebiniz için önerilen tedarikçiler", unread: 0 }
 ];
-

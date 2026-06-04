@@ -831,7 +831,7 @@ export const marketplaceProducts = [
 ];
 
 export const marketplaceSuppliers = [
-  { company: "i-WALL", country: "Turkey", category: "PS Wall Panels", response: "RFQ", markets: "TR, Export", verified: false, href: "/en/supplier/i-wall", logo: "/brands/i-wall/logo.png", productCount: 27 },
+  { company: "i-WALL", country: "Turkey", countryTr: "Türkiye", category: "PS Wall Panels", categoryTr: "Polimer Lambiri", response: "RFQ", markets: "TR, Export", verified: false, href: "/en/supplier/i-wall", logo: "/brands/i-wall/logo.png", productCount: 27 },
   { company: "Anatolia Precision Manufacturing", country: "Türkiye", category: "Machinery", response: "92%", markets: "EU, MENA" },
   { company: "Global Pack Systems", country: "Germany", category: "Packaging", response: "88%", markets: "EU, UK" },
   { company: "Marmara Textile Works", country: "Türkiye", category: "Workwear", response: "95%", markets: "US, EU" }

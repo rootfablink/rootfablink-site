@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { useState } from "react";
 import { Box, Camera, Factory, FileText, Grid2X2, Mic, PackageSearch, Search, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
@@ -63,7 +65,6 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
         </section>
 
         <ShortcutRail labels={copy.shortcuts} locale={locale} />
-
         <ProductsSection copy={copy} locale={locale} />
       </main>
 
@@ -126,9 +127,9 @@ function ProductsSection({ copy, locale }: { copy: ReturnType<typeof getMobileMa
   return (
     <>
       <HorizontalTabs items={copy.categoryTabs} />
-      <MobileProductCarousel title={copy.sections.featured} />
-      <MobileProductCarousel title={copy.sections.recommended} offset={2} />
-      <MobileProductCarousel title={copy.sections.samples} offset={4} />
+      <MobileProductCarousel title={copy.sections.featured} locale={locale} />
+      <MobileProductCarousel title={copy.sections.recommended} locale={locale} offset={2} />
+      <MobileProductCarousel title={copy.sections.samples} locale={locale} offset={4} />
       <SupplierRail title={copy.sections.recent} locale={locale} />
     </>
   );
@@ -146,20 +147,24 @@ function HorizontalTabs({ items }: { items: string[] }) {
   );
 }
 
-function MobileProductCarousel({ title, offset = 0 }: { title: string; offset?: number }) {
+function MobileProductCarousel({ title, locale, offset = 0 }: { title: string; locale: Locale; offset?: number }) {
+  const tr = locale === "tr";
+
   return (
     <section className="mt-5">
       <SectionTitle title={title} />
       <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
         {mobileSeedProducts.slice(offset).concat(mobileSeedProducts.slice(0, offset)).slice(0, 4).map((product) => (
-          <article key={`${title}-${product.title}`} className="min-w-40 overflow-hidden rounded-2xl bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
-            <div className="aspect-square bg-cover bg-center bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]" style={{ backgroundImage: `url(${product.image})` }} />
+          <a key={`${title}-${product.title}`} href={`/${locale}/products/${product.slug}`} className="min-w-44 overflow-hidden rounded-2xl bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
+            <div className="flex h-44 items-center justify-center bg-white p-3">
+              <img src={product.image} alt={tr ? product.titleTr : product.title} className="h-full w-full object-contain" />
+            </div>
             <div className="p-3">
               <span className="rounded-full bg-signal/10 px-2 py-1 text-[10px] font-bold text-copper">{product.country}</span>
-              <h3 className="mt-2 line-clamp-2 min-h-9 text-xs font-bold leading-4 text-ink">{product.title}</h3>
-              <p className="mt-2 text-sm font-bold text-copper">{product.price}</p>
+              <h3 className="mt-2 line-clamp-2 min-h-9 text-xs font-bold leading-4 text-ink">{tr ? product.titleTr : product.title}</h3>
+              <p className="mt-2 text-sm font-bold text-copper">{tr ? product.priceTr : product.price}</p>
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </section>
@@ -173,9 +178,15 @@ function SupplierRail({ title, locale }: { title: string; locale: Locale }) {
       <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
         {mobileSuppliers.map((supplier) => (
           <a key={supplier.name} href={`/${locale}${supplier.cta}`} className="min-w-64 rounded-2xl bg-white p-4 shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
-            <Factory size={22} className="text-copper" />
+            {supplier.logo ? (
+              <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl border border-ink/10 bg-white p-1">
+                <img src={supplier.logo} alt={`${supplier.name} logo`} className="h-full w-full object-contain" />
+              </span>
+            ) : (
+              <Factory size={22} className="text-copper" />
+            )}
             <h3 className="mt-3 text-sm font-bold text-ink">{supplier.name}</h3>
-            <p className="mt-1 text-xs font-semibold text-steel">{supplier.category} · {supplier.country}</p>
+            <p className="mt-1 text-xs font-semibold text-steel">{locale === "tr" ? supplier.categoryTr ?? supplier.category : supplier.category} · {supplier.country}</p>
           </a>
         ))}
       </div>
