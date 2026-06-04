@@ -8,6 +8,14 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type AccountType = "buyer" | "supplier" | "logistics" | "customs";
+type SimpleField = {
+  id: string;
+  tr: string;
+  en: string;
+  type?: "text" | "email" | "password" | "tel";
+  required?: boolean;
+  span?: boolean;
+};
 type SupplierFormData = {
   fullName: string;
   email: string;
@@ -45,10 +53,42 @@ const emptySupplierForm: SupplierFormData = {
   companyDescription: ""
 };
 
-const simpleFormFields: Record<Exclude<AccountType, "supplier">, string[]> = {
-  buyer: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Şirket Adı", "Ülke", "Şehir", "Aradığınız ürün kategorileri", "Tahmini alım hacmi", "Mesaj"],
-  logistics: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Firma Adı", "Ülke", "Şehir", "Hizmet türleri", "Hizmet verilen bölgeler", "Firma açıklaması"],
-  customs: ["Ad Soyad", "E-posta", "Şifre", "Şifre Tekrar", "Telefon", "Firma Adı", "Ülke", "Şehir", "Yetki / lisans numarası", "Hizmetler", "Firma açıklaması"]
+const simpleFormFields: Record<Exclude<AccountType, "supplier">, SimpleField[]> = {
+  buyer: [
+    { id: "fullName", tr: "Ad Soyad", en: "Full Name", required: true },
+    { id: "email", tr: "E-posta", en: "Email", type: "email", required: true },
+    { id: "password", tr: "Şifre", en: "Password", type: "password", required: true },
+    { id: "confirmPassword", tr: "Şifre tekrar", en: "Confirm Password", type: "password", required: true },
+    { id: "phone", tr: "Telefon", en: "Phone", type: "tel" },
+    { id: "country", tr: "Ülke", en: "Country", required: true },
+    { id: "city", tr: "Şehir", en: "City" }
+  ],
+  logistics: [
+    { id: "fullName", tr: "Ad Soyad", en: "Full Name", required: true },
+    { id: "email", tr: "E-posta", en: "Email", type: "email", required: true },
+    { id: "password", tr: "Şifre", en: "Password", type: "password", required: true },
+    { id: "confirmPassword", tr: "Şifre tekrar", en: "Confirm Password", type: "password", required: true },
+    { id: "phone", tr: "Telefon", en: "Phone", type: "tel" },
+    { id: "companyName", tr: "Firma Adı", en: "Company Name" },
+    { id: "country", tr: "Ülke", en: "Country" },
+    { id: "city", tr: "Şehir", en: "City" },
+    { id: "serviceTypes", tr: "Hizmet türleri", en: "Service Types" },
+    { id: "coverage", tr: "Hizmet verilen bölgeler", en: "Coverage Regions" },
+    { id: "description", tr: "Firma açıklaması", en: "Company Description", span: true }
+  ],
+  customs: [
+    { id: "fullName", tr: "Ad Soyad", en: "Full Name", required: true },
+    { id: "email", tr: "E-posta", en: "Email", type: "email", required: true },
+    { id: "password", tr: "Şifre", en: "Password", type: "password", required: true },
+    { id: "confirmPassword", tr: "Şifre tekrar", en: "Confirm Password", type: "password", required: true },
+    { id: "phone", tr: "Telefon", en: "Phone", type: "tel" },
+    { id: "companyName", tr: "Firma Adı", en: "Company Name" },
+    { id: "country", tr: "Ülke", en: "Country" },
+    { id: "city", tr: "Şehir", en: "City" },
+    { id: "licenseNumber", tr: "Yetki / lisans numarası", en: "Authorization / License Number" },
+    { id: "services", tr: "Hizmetler", en: "Services" },
+    { id: "description", tr: "Firma açıklaması", en: "Company Description", span: true }
+  ]
 };
 
 export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: string[]; accountNote?: string }) {
@@ -134,19 +174,43 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
   };
 
   const submitSimple = () => {
+    if (selectedType === "supplier") return;
+    const fields = simpleFormFields[selectedType];
+    const nextErrors: Record<string, string> = {};
+    for (const field of fields) {
+      if (field.required && !simpleValues[field.id]?.trim()) {
+        nextErrors[field.id] = tr ? "Bu alan zorunludur." : "This field is required.";
+      }
+    }
+    if (simpleValues.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(simpleValues.email.trim())) {
+      nextErrors.email = tr ? "Geçerli bir e-posta girin." : "Enter a valid email.";
+    }
+    if (simpleValues.password && simpleValues.password.length < 8) {
+      nextErrors.password = tr ? "Şifre en az 8 karakter olmalıdır." : "Password must be at least 8 characters.";
+    }
+    if (simpleValues.password !== simpleValues.confirmPassword) {
+      nextErrors.confirmPassword = tr ? "Şifre tekrarı eşleşmelidir." : "Password confirmation must match.";
+    }
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
+
     const label = tr ? accountTypes.find((item) => item.id === selectedType)?.tr : accountTypes.find((item) => item.id === selectedType)?.en;
     const now = new Date().toISOString();
+    const safeValues = Object.fromEntries(Object.entries(simpleValues).filter(([key]) => key !== "password" && key !== "confirmPassword"));
     const draft = {
       id: `${selectedType}_${Date.now()}`,
       accountType: selectedType,
       label,
-      data: simpleValues,
+      data: safeValues,
       status: "draft",
       createdAt: now,
       updatedAt: now
     };
     const existingDrafts = JSON.parse(window.localStorage.getItem("rootfablink_registration_drafts") ?? "[]") as unknown[];
     window.localStorage.setItem("rootfablink_registration_drafts", JSON.stringify([draft, ...existingDrafts]));
+    if (selectedType === "buyer") {
+      window.localStorage.setItem("rootfablink_buyer_draft", JSON.stringify(draft));
+    }
     setSuccess(true);
   };
 
@@ -207,18 +271,44 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
         </section>
       ) : (
         <section className="mt-8 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
-          <h2 className="text-xl font-bold text-ink">{tr ? accountTypes.find((item) => item.id === selectedType)?.tr : accountTypes.find((item) => item.id === selectedType)?.en}</h2>
+          <h2 className="text-xl font-bold text-ink">
+            {selectedType === "buyer" ? tr ? "Alıcı" : "Buyer" : tr ? accountTypes.find((item) => item.id === selectedType)?.tr : accountTypes.find((item) => item.id === selectedType)?.en}
+          </h2>
+          {selectedType === "buyer" && (
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-steel">
+              {tr
+                ? "Ürün aramak, tedarikçilerle iletişime geçmek ve RFQ oluşturmak için alıcı hesabınızı oluşturun."
+                : "Create your buyer account to search products, contact suppliers and create RFQs."}
+            </p>
+          )}
           <div className="mt-5 grid gap-4 md:grid-cols-2">
-            {simpleFormFields[selectedType].map((label) => (
-              <label key={label} className={cn("grid gap-2", label === "Mesaj" || label.includes("açıklaması") ? "md:col-span-2" : "")}>
-                <span className="text-xs font-bold uppercase tracking-[0.08em] text-steel">{label}</span>
-                <input value={simpleValues[label] ?? ""} onChange={(event) => setSimpleValues((current) => ({ ...current, [label]: event.target.value }))} className="h-11 rounded-md border border-ink/10 px-3 text-sm font-medium text-ink outline-none focus:border-signal" />
+            {simpleFormFields[selectedType].map((field) => (
+              <label key={field.id} className={cn("grid gap-2", field.span ? "md:col-span-2" : "")}>
+                <span className="text-xs font-bold uppercase tracking-[0.08em] text-steel">
+                  {tr ? field.tr : field.en}
+                  {field.required && <span className="text-copper"> *</span>}
+                </span>
+                <input
+                  type={field.type ?? "text"}
+                  value={simpleValues[field.id] ?? ""}
+                  onChange={(event) => {
+                    setSimpleValues((current) => ({ ...current, [field.id]: event.target.value }));
+                    setErrors((current) => ({ ...current, [field.id]: "" }));
+                    setSuccess(false);
+                  }}
+                  className={cn("h-11 rounded-md border px-3 text-sm font-medium text-ink outline-none focus:border-signal", errors[field.id] ? "border-red-400" : "border-ink/10")}
+                />
+                {errors[field.id] && <span className="text-xs font-semibold text-red-600">{errors[field.id]}</span>}
               </label>
             ))}
           </div>
           <div className="mt-6 flex justify-end border-t border-ink/10 pt-5">
             <button type="button" onClick={submitSimple} className="rounded-md bg-signal px-5 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper">
-              {selectedType === "buyer" ? "Alıcı hesabı oluştur" : selectedType === "logistics" ? "Lojistik firma hesabı oluştur" : "Gümrük müşaviri hesabı oluştur"}
+              {selectedType === "buyer"
+                ? tr ? "Alıcı hesabı oluştur" : "Create buyer account"
+                : selectedType === "logistics"
+                  ? tr ? "Lojistik firma hesabı oluştur" : "Create logistics account"
+                  : tr ? "Gümrük müşaviri hesabı oluştur" : "Create customs broker account"}
             </button>
           </div>
         </section>
@@ -228,11 +318,28 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
         <section className="mt-8 rounded-md border border-green-200 bg-green-50 p-5">
           <div className="flex items-center gap-2 text-green-800">
             <CheckCircle2 size={20} />
-            <h2 className="text-xl font-bold">{selectedType === "supplier" ? "Tedarikçi profil taslağı oluşturuldu" : "Kayıt taslağı oluşturuldu"}</h2>
+            <h2 className="text-xl font-bold">
+              {selectedType === "supplier"
+                ? tr ? "Tedarikçi profil taslağı oluşturuldu" : "Supplier profile draft created"
+                : selectedType === "buyer"
+                  ? tr ? "Alıcı hesabı oluşturuldu" : "Buyer account created"
+                  : tr ? "Kayıt taslağı oluşturuldu" : "Registration draft created"}
+            </h2>
           </div>
           <p className="mt-3 text-sm font-semibold leading-6 text-green-800">
-            {selectedType === "supplier" ? "Şirket profiliniz kaydedildi. Ürünlerinizi, desenlerinizi ve katalog bilgilerinizi eklemeye başlayabilirsiniz." : "Bilgileriniz localStorage üzerinde taslak olarak kaydedildi."}
+            {selectedType === "supplier"
+              ? tr ? "Şirket profiliniz kaydedildi. Ürünlerinizi, desenlerinizi ve katalog bilgilerinizi eklemeye başlayabilirsiniz." : "Your company profile has been saved. You can start adding products, patterns and catalog information."
+              : selectedType === "buyer"
+                ? tr ? "Artık ürünleri keşfedebilir, tedarikçilerle iletişime geçebilir ve teklif talebi oluşturabilirsiniz." : "You can now discover products, contact suppliers and create RFQs."
+                : tr ? "Bilgileriniz localStorage üzerinde taslak olarak kaydedildi." : "Your information has been saved as a local draft."}
           </p>
+          {selectedType === "buyer" && (
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <Button href={`/${locale}/products`}>{tr ? "Ürünleri keşfet" : "Explore products"}</Button>
+              <Button href={`/${locale}/rfq/new`} variant="secondary">{tr ? "RFQ oluştur" : "Create RFQ"}</Button>
+              <Button href={`/${locale}/account`} variant="secondary">{tr ? "Hesabıma git" : "Go to my account"}</Button>
+            </div>
+          )}
           {selectedType === "supplier" && (
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall` : `/${locale}/supplier-center`}>
