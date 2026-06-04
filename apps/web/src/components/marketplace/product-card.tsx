@@ -55,9 +55,10 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
   const country = tr ? product.countryTr ?? product.country : product.country;
   const description = tr ? product.shortDescriptionTr ?? product.shortDescription : product.shortDescription;
   const supplierType = tr ? product.supplierTypeTr ?? product.supplierType : product.supplierType;
-  const leadTime = tr ? product.leadTimeTr ?? product.leadTime : product.leadTime;
+  const leadTime = tr ? product.leadTimeTr : product.leadTime;
   const imageAlt = tr ? product.imageAltTr ?? product.imageAlt ?? title : product.imageAlt ?? title;
   const priceRange = tr ? product.priceRangeTr ?? product.priceRange ?? product.price : product.priceRange ?? product.price;
+  const visibleTags = tr ? product.tags?.filter(isTurkishTag) : product.tags;
   const detailHref = product.slug ? `/${tr ? "tr" : "en"}/products/${product.slug}` : undefined;
 
   return (
@@ -93,9 +94,9 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
           <span>{country}</span>
           {leadTime && <span>{leadTime}</span>}
         </div>
-        {product.tags && product.tags.length > 0 && (
+        {visibleTags && visibleTags.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {product.tags.slice(0, 3).map((tag) => (
+            {visibleTags.slice(0, 3).map((tag) => (
               <span key={tag} className="rounded bg-cloud px-2 py-1 text-[10px] font-bold uppercase tracking-[0.06em] text-steel">{tag}</span>
             ))}
           </div>
@@ -116,4 +117,9 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
       </div>
     </article>
   );
+}
+
+function isTurkishTag(tag: string) {
+  const value = tag.toLocaleLowerCase("tr");
+  return ["duvar", "panel", "polimer", "lambiri", "yapı", "malzeme", "dekoratif", "ambalaj", "güneş", "telefon", "scooter", "giyim"].some((term) => value.includes(term));
 }

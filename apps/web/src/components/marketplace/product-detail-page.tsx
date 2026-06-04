@@ -28,7 +28,7 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
   const specs = tr ? product.specificationsTr ?? product.specifications : product.specifications;
   const applications = tr ? product.applicationsTr ?? product.applications : product.applications;
   const packagingInfo = tr ? product.packagingInfoTr ?? product.packagingInfo : product.packagingInfo;
-  const leadTime = tr && "leadTimeTr" in product ? product.leadTimeTr ?? product.leadTime : product.leadTime;
+  const leadTime = tr && "leadTimeTr" in product ? product.leadTimeTr : product.leadTime;
   const imageAlt = tr && "imageAltTr" in product ? product.imageAltTr ?? product.imageAlt ?? title : product.imageAlt ?? title;
   const tradeTerms = tr && "tradeTermsTr" in product ? product.tradeTermsTr ?? product.tradeTerms : product.tradeTerms;
   const isIWall = product.supplierName === "i-WALL";

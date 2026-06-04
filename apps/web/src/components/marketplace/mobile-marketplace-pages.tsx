@@ -2,36 +2,56 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Bell, CheckCircle2, ChevronRight, Clock, CreditCard, Grid2X2, Heart, MapPin, MessageSquareText, PackageSearch, ReceiptText, ShieldCheck, ShoppingBasket, Sparkles, UserRound } from "lucide-react";
+import { Bell, Box, Car, CheckCircle2, ChevronRight, Clock, CreditCard, Footprints, Grid2X2, Heart, Laptop, MapPin, MessageSquareText, PackageSearch, PanelsTopLeft, Phone, ReceiptText, Shirt, ShieldCheck, ShoppingBasket, Smartphone, Sparkles, SunMedium, UserRound } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { categoriesForGroup, categoryGroups, categoryLocale, categoryPath, getGroupBySlug, groupPath, type MarketplaceCategory } from "@/data/categories";
 import { MobileBottomNav } from "./mobile-bottom-nav";
-import { getMobileMarketplaceCopy, mobileCategoryRecommendations, mobileCategorySidebar, mobileMessages, mobileSeedProducts } from "./mobile-marketplace-copy";
+import { getMobileMarketplaceCopy, mobileMessages, mobileSeedProducts } from "./mobile-marketplace-copy";
 
 export function MobileCategoriesPage({ locale }: { locale: Locale }) {
   const copy = getMobileMarketplaceCopy(locale);
+  translateCategory("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const language = categoryLocale(locale);
+  const selectedGroup = getGroupBySlug(locale, searchParams.get("group"));
+  const visibleCategories = categoriesForGroup(selectedGroup.id);
 
   return (
     <MobilePageShell locale={locale} active="categories" title={copy.pages.categories}>
       <div className="grid min-h-[calc(100vh-9rem)] grid-cols-[7.5rem_1fr] gap-3">
         <aside className="overflow-y-auto rounded-2xl bg-white p-2">
-          {mobileCategorySidebar.map((item, index) => (
-            <button key={item} type="button" className={`mb-1 w-full rounded-xl px-2 py-3 text-left text-xs font-bold leading-4 ${index === 0 ? "bg-cloud text-copper" : "text-steel"}`}>
-              {locale === "tr" ? item : translateCategory(item)}
+          {categoryGroups.map((group) => (
+            <button
+              key={group.id}
+              type="button"
+              aria-pressed={selectedGroup.id === group.id}
+              onClick={() => router.replace(groupPath(locale, group), { scroll: false })}
+              className={`mb-1 w-full rounded-xl px-2 py-3 text-left text-xs font-bold leading-4 transition ${selectedGroup.id === group.id ? "bg-cloud text-copper" : "text-steel hover:bg-cloud"}`}
+            >
+              {group.name[language]}
             </button>
           ))}
         </aside>
         <section className="overflow-y-auto rounded-2xl bg-white p-3">
-          <h2 className="text-base font-bold text-ink">{copy.sections.categories}</h2>
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-base font-bold text-ink">{selectedGroup.name[language]}</h2>
+            <span className="rounded-full bg-cloud px-2 py-1 text-[10px] font-bold text-steel">{visibleCategories.length}</span>
+          </div>
           <div className="mt-3 grid grid-cols-3 gap-3">
-            {mobileCategoryRecommendations.map((item) => (
-              <Link key={item} href={`/${locale}/products`} className="text-center">
+            {visibleCategories.map((category) => {
+              const Icon = iconForCategory(category);
+              return (
+              <Link key={category.id} href={categoryPath(locale, category)} aria-label={category.name[language]} className="text-center">
                 <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,#fff8f1,#e5edf7)]">
-                  <Grid2X2 size={20} className="text-copper" />
+                  <Icon size={20} className="text-copper" />
                 </span>
-                <span className="mt-2 block text-[11px] font-semibold leading-4 text-ink">{item}</span>
+                <span className="mt-2 block text-[11px] font-semibold leading-4 text-ink">{category.name[language]}</span>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </section>
       </div>
@@ -228,4 +248,26 @@ function translateCategory(item: string) {
     "Endüstriyel Makineler": "Industrial Machinery"
   };
   return map[item] ?? item;
+}
+
+function iconForCategory(category: MarketplaceCategory) {
+  const iconMap = {
+    shoe: Footprints,
+    smartphone: Smartphone,
+    scooter: Sparkles,
+    phone: Phone,
+    laptop: Laptop,
+    car: Car,
+    shirt: Shirt,
+    drone: Sparkles,
+    dress: Shirt,
+    bottle: Sparkles,
+    panel: PanelsTopLeft,
+    solar: SunMedium,
+    box: Box,
+    factory: Grid2X2,
+    spark: Sparkles
+  } satisfies Record<MarketplaceCategory["icon"], typeof Grid2X2>;
+
+  return iconMap[category.icon] ?? Grid2X2;
 }
