@@ -2,21 +2,32 @@ export type MarketplaceSeedListing = {
   id: string;
   slug: string;
   title: string;
+  titleTr: string;
   category: string;
+  categoryTr: string;
   subcategory: string;
+  subcategoryTr: string;
   country: string;
+  countryTr: string;
   supplierName: string;
   supplierType: string;
+  supplierTypeTr: string;
   priceRange: string;
   moq: string;
   unit: string;
   leadTime: string;
   shortDescription: string;
+  shortDescriptionTr: string;
   mainImage: string;
   galleryImages: string[];
+  imageAlt: string;
+  imageSearchIntent: string;
+  visualCategory: string;
   specifications: Record<string, string>;
+  specificationsTr: Record<string, string>;
   productSpecifications: Record<string, string>;
   capabilities: string[];
+  capabilitiesTr: string[];
   tags: string[];
   tradeTerms: string[];
   source: "marketplace_seed_data";
@@ -26,6 +37,7 @@ export type MarketplaceSeedListing = {
   reviewCount: 0;
   review_count: 0;
   sponsored?: boolean;
+  visualMatchScore: number;
 };
 
 type ProductTemplate = {
@@ -57,6 +69,59 @@ const supplierNames = [
   "Export-ready catalog profile"
 ];
 
+const categoryTranslations: Record<string, string> = {
+  "Construction and Building Materials": "Yapı ve İnşaat Malzemeleri",
+  "Decorative Wall Panels": "Dekoratif Duvar Panelleri",
+  "Solar and Energy": "Solar ve Enerji",
+  "Machinery and Industrial": "Makine ve Endüstri",
+  "Industrial Equipment": "Endüstriyel Ekipman",
+  "Electronics and Electrical": "Elektronik ve Elektrik",
+  "Packaging and Printing": "Ambalaj ve Baskı",
+  "Textile and Fabrics": "Tekstil ve Kumaş",
+  "Apparel and Workwear": "Hazır Giyim ve İş Kıyafetleri",
+  "Home and Furniture": "Ev ve Mobilya",
+  "Kitchen and Household Products": "Mutfak ve Ev Ürünleri",
+  "Automotive and Spare Parts": "Otomotiv ve Yedek Parça",
+  "Agriculture and Greenhouse": "Tarım ve Sera",
+  "Food Processing": "Gıda İşleme",
+  "Beauty and Personal Care": "Güzellik ve Kişisel Bakım",
+  "Medical and Health Equipment": "Medikal ve Sağlık Ekipmanları",
+  "Office and Commercial Equipment": "Ofis ve Ticari Ekipman",
+  "Hotel and Restaurant Supplies": "Otel ve Restoran Ürünleri",
+  "Cleaning and Hygiene Products": "Temizlik ve Hijyen Ürünleri",
+  "Baby and Children Products": "Bebek ve Çocuk Ürünleri",
+  "Pet Products": "Evcil Hayvan Ürünleri",
+  "Sports and Outdoor": "Spor ve Outdoor",
+  "Hardware and Tools": "Hırdavat ve El Aletleri",
+  "Security and Safety Equipment": "Güvenlik ve İş Güvenliği Ekipmanları",
+  Lighting: "Aydınlatma",
+  "HVAC and Ventilation": "HVAC ve Havalandırma",
+  "Water Treatment": "Su Arıtma",
+  "Plastic and Rubber Products": "Plastik ve Kauçuk Ürünleri",
+  "Metal Products": "Metal Ürünleri",
+  "Glass and Ceramic Products": "Cam ve Seramik Ürünleri",
+  "Paper Products": "Kağıt Ürünleri",
+  "Gifts and Promotional Products": "Hediye ve Promosyon Ürünleri",
+  "Logistics Services": "Lojistik Hizmetleri",
+  "Customs and Trade Services": "Gümrük ve Ticaret Hizmetleri"
+};
+
+const subcategoryTranslations: Record<string, string> = {
+  "Wall Panels": "Duvar Panelleri",
+  Insulation: "Yalıtım",
+  "Solar Panels": "Solar Paneller",
+  Inverters: "İnverterler",
+  "Battery Storage": "Batarya Depolama",
+  "Sea Freight": "Deniz Yolu Taşımacılığı",
+  "Air Freight": "Hava Yolu Taşımacılığı",
+  "Road Freight": "Kara Yolu Taşımacılığı",
+  Customs: "Gümrük",
+  Boxes: "Kutular",
+  Labels: "Etiketler",
+  "Office Furniture": "Ofis Mobilyaları",
+  Workwear: "İş Kıyafetleri"
+};
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -65,40 +130,122 @@ function slugify(value: string) {
     .replace(/^-|-$/g, "");
 }
 
+function visualCategoryFor(title: string, category: string) {
+  const text = `${title} ${category}`.toLowerCase();
+  if (text.includes("wall panel") || text.includes("facade") || text.includes("ceiling")) return "wall_panel";
+  if (text.includes("solar panel") || text.includes("pv ")) return "solar_panel";
+  if (text.includes("inverter")) return "inverter";
+  if (text.includes("battery") || text.includes("storage")) return "battery";
+  if (text.includes("cnc")) return "cnc_machine";
+  if (text.includes("laser")) return "laser_machine";
+  if (text.includes("machine") || text.includes("line") || text.includes("conveyor") || text.includes("press")) return "industrial_machine";
+  if (text.includes("box") || text.includes("carton") || text.includes("packaging")) return "packaging_box";
+  if (text.includes("bottle") || text.includes("jar")) return "cosmetic_packaging";
+  if (text.includes("fabric") || text.includes("textile")) return "textile_roll";
+  if (text.includes("uniform") || text.includes("hoodie") || text.includes("shirt") || text.includes("vest") || text.includes("jacket")) return "workwear";
+  if (text.includes("brake")) return "brake_disc";
+  if (text.includes("headlight") || text.includes("light")) return "led_lighting";
+  if (text.includes("greenhouse")) return "greenhouse";
+  if (text.includes("irrigation") || text.includes("drip")) return "irrigation_system";
+  if (text.includes("sea freight") || text.includes("container")) return "container_ship";
+  if (text.includes("road freight") || text.includes("truck")) return "freight_truck";
+  if (text.includes("customs") || text.includes("compliance") || text.includes("hs code") || text.includes("document")) return "customs_documents";
+  if (text.includes("medical") || text.includes("hospital") || text.includes("patient")) return "medical_device";
+  if (text.includes("chair")) return "office_chair";
+  if (text.includes("hvac") || text.includes("ventilation") || text.includes("fan") || text.includes("duct")) return "hvac_unit";
+  if (text.includes("water") || text.includes("filter") || text.includes("osmosis")) return "water_filter";
+  if (text.includes("fastener") || text.includes("screw") || text.includes("metal")) return "metal_fasteners";
+  if (text.includes("ceramic") || text.includes("glass") || text.includes("porcelain")) return "ceramic_tableware";
+  if (text.includes("furniture") || text.includes("table") || text.includes("sofa") || text.includes("desk")) return "furniture";
+  if (text.includes("camera") || text.includes("tablet") || text.includes("charger") || text.includes("earbuds")) return "electronics";
+  return "catalog_product";
+}
+
+function productSvg(visualCategory: string, title: string, variant: number) {
+  const accent = variant === 0 ? "#f97316" : variant === 1 ? "#0f766e" : "#2563eb";
+  const label = title.replace(/&/g, "and").slice(0, 34);
+  const base = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900"><rect width="1200" height="900" fill="#f8fafc"/><rect x="70" y="70" width="1060" height="760" rx="34" fill="#fff" stroke="#e5e7eb" stroke-width="3"/><text x="90" y="790" fill="#111827" font-family="Arial" font-size="38" font-weight="700">${label}</text>`;
+  const end = `<circle cx="1070" cy="130" r="28" fill="${accent}"/><text x="90" y="840" fill="#64748b" font-family="Arial" font-size="24">B2B catalog visual</text></svg>`;
+  const shapes: Record<string, string> = {
+    wall_panel: `<rect x="180" y="150" width="840" height="470" rx="18" fill="#fdf2e9" stroke="${accent}" stroke-width="8"/><path d="M210 220 C360 130 470 320 620 210 S880 230 990 160" fill="none" stroke="#a8a29e" stroke-width="18"/><path d="M210 360 C420 240 520 500 760 340 S910 390 990 310" fill="none" stroke="#d6d3d1" stroke-width="22"/><g stroke="#fff" stroke-width="5">${[0, 1, 2, 3].map((i) => `<line x1="${180 + i * 210}" y1="150" x2="${180 + i * 210}" y2="620"/>`).join("")}</g>`,
+    solar_panel: `<g transform="translate(220 150) skewX(-12)"><rect width="760" height="430" rx="18" fill="#0f2f5f" stroke="${accent}" stroke-width="8"/><g stroke="#93c5fd" stroke-width="5">${Array.from({ length: 6 }, (_, i) => `<line x1="${(i + 1) * 110}" y1="0" x2="${(i + 1) * 110}" y2="430"/>`).join("")}${Array.from({ length: 4 }, (_, i) => `<line x1="0" y1="${(i + 1) * 86}" x2="760" y2="${(i + 1) * 86}"/>`).join("")}</g></g>`,
+    industrial_machine: `<rect x="210" y="280" width="720" height="260" rx="20" fill="#334155"/><rect x="270" y="205" width="250" height="120" rx="14" fill="#64748b"/><rect x="590" y="205" width="260" height="120" rx="14" fill="#475569"/><circle cx="330" cy="575" r="48" fill="${accent}"/><circle cx="800" cy="575" r="48" fill="${accent}"/><rect x="420" y="335" width="300" height="90" fill="#e2e8f0"/>`,
+    cnc_machine: `<rect x="180" y="260" width="820" height="300" rx="18" fill="#1f2937"/><rect x="250" y="320" width="520" height="150" fill="#dbeafe"/><rect x="790" y="300" width="130" height="190" fill="${accent}"/><path d="M300 235 H750 V520" fill="none" stroke="#94a3b8" stroke-width="24"/>`,
+    laser_machine: `<rect x="200" y="260" width="780" height="300" rx="18" fill="#111827"/><rect x="260" y="310" width="420" height="150" fill="#dbeafe"/><path d="M760 260 L900 560" stroke="${accent}" stroke-width="16"/><circle cx="825" cy="410" r="50" fill="#fee2e2"/>`,
+    packaging_box: `<path d="M330 280 L540 190 L760 280 L540 380 Z" fill="#f6c177"/><path d="M330 280 V560 L540 680 V380 Z" fill="#d99a45"/><path d="M760 280 V560 L540 680 V380 Z" fill="#b7792d"/><path d="M540 190 V380" stroke="#fff" stroke-width="8"/>`,
+    cosmetic_packaging: `<rect x="350" y="220" width="150" height="360" rx="30" fill="#fde68a" stroke="${accent}" stroke-width="8"/><rect x="690" y="180" width="170" height="420" rx="40" fill="#fce7f3" stroke="#db2777" stroke-width="8"/><rect x="380" y="170" width="90" height="70" rx="16" fill="#94a3b8"/><rect x="725" y="125" width="100" height="80" rx="16" fill="#94a3b8"/>`,
+    textile_roll: `<circle cx="370" cy="430" r="150" fill="#f97316"/><circle cx="370" cy="430" r="72" fill="#fff7ed"/><rect x="370" y="280" width="520" height="300" rx="35" fill="#fed7aa"/><path d="M460 360 H860 M460 430 H860 M460 500 H860" stroke="#fb923c" stroke-width="16"/>`,
+    workwear: `<path d="M420 190 L570 250 L720 190 L820 360 L730 410 V650 H410 V410 L320 360 Z" fill="#fb923c" stroke="#111827" stroke-width="8"/><path d="M570 250 V640 M420 420 H730" stroke="#fff" stroke-width="10"/>`,
+    brake_disc: `<circle cx="600" cy="420" r="230" fill="#cbd5e1" stroke="#475569" stroke-width="18"/><circle cx="600" cy="420" r="82" fill="#f8fafc" stroke="#64748b" stroke-width="16"/><g fill="${accent}">${[0, 60, 120, 180, 240, 300].map((r) => `<circle cx="${600 + Math.cos((r * Math.PI) / 180) * 150}" cy="${420 + Math.sin((r * Math.PI) / 180) * 150}" r="22"/>`).join("")}</g>`,
+    led_lighting: `<rect x="300" y="280" width="600" height="230" rx="30" fill="#fef3c7" stroke="${accent}" stroke-width="14"/><path d="M360 350 H840 M360 430 H840" stroke="#fde68a" stroke-width="32"/><path d="M420 510 L340 650 M780 510 L860 650" stroke="#475569" stroke-width="20"/>`,
+    greenhouse: `<path d="M220 560 C320 250 880 250 980 560 Z" fill="#dcfce7" stroke="#16a34a" stroke-width="12"/><path d="M300 560 V380 M460 560 V300 M620 560 V285 M780 560 V330" stroke="#86efac" stroke-width="10"/><rect x="210" y="560" width="790" height="70" fill="#15803d"/>`,
+    irrigation_system: `<path d="M180 520 H1020" stroke="#0f766e" stroke-width="30"/><path d="M300 520 C300 420 390 420 390 520 M520 520 C520 420 610 420 610 520 M740 520 C740 420 830 420 830 520" fill="none" stroke="#38bdf8" stroke-width="18"/><circle cx="220" cy="520" r="44" fill="${accent}"/>`,
+    container_ship: `<rect x="250" y="470" width="700" height="90" fill="#1d4ed8"/><path d="M190 560 H1010 L910 640 H300 Z" fill="#0f172a"/><g>${[0, 1, 2, 3, 4].map((i) => `<rect x="${300 + i * 105}" y="360" width="90" height="100" fill="${i % 2 ? "#f97316" : "#22c55e"}"/>`).join("")}</g>`,
+    freight_truck: `<rect x="220" y="360" width="520" height="180" rx="14" fill="#f97316"/><rect x="740" y="410" width="190" height="130" rx="12" fill="#334155"/><circle cx="340" cy="575" r="55" fill="#111827"/><circle cx="805" cy="575" r="55" fill="#111827"/><rect x="780" y="430" width="90" height="55" fill="#dbeafe"/>`,
+    customs_documents: `<rect x="360" y="170" width="360" height="520" rx="20" fill="#fff" stroke="#94a3b8" stroke-width="10"/><path d="M420 270 H660 M420 340 H660 M420 410 H600" stroke="#64748b" stroke-width="18"/><circle cx="690" cy="570" r="90" fill="#fee2e2" stroke="${accent}" stroke-width="12"/><text x="635" y="585" fill="${accent}" font-family="Arial" font-size="34" font-weight="700">RFQ</text>`,
+    medical_device: `<rect x="330" y="210" width="520" height="360" rx="28" fill="#e0f2fe" stroke="#0284c7" stroke-width="12"/><path d="M400 420 H500 L540 340 L600 500 L650 420 H780" fill="none" stroke="${accent}" stroke-width="18"/><rect x="520" y="570" width="150" height="90" fill="#64748b"/>`,
+    office_chair: `<rect x="470" y="200" width="260" height="270" rx="45" fill="#334155"/><rect x="430" y="450" width="340" height="95" rx="36" fill="#475569"/><path d="M600 545 V660 M500 690 H700 M520 660 L440 725 M680 660 L760 725" stroke="${accent}" stroke-width="22"/>`,
+    hvac_unit: `<rect x="300" y="250" width="600" height="330" rx="22" fill="#e2e8f0" stroke="#64748b" stroke-width="10"/><circle cx="480" cy="415" r="95" fill="#fff" stroke="${accent}" stroke-width="14"/><circle cx="720" cy="415" r="95" fill="#fff" stroke="${accent}" stroke-width="14"/><path d="M420 415 H540 M480 355 V475 M660 415 H780 M720 355 V475" stroke="#94a3b8" stroke-width="12"/>`,
+    water_filter: `<rect x="360" y="180" width="160" height="460" rx="50" fill="#dbeafe" stroke="#0284c7" stroke-width="12"/><rect x="650" y="180" width="160" height="460" rx="50" fill="#e0f2fe" stroke="#0284c7" stroke-width="12"/><path d="M520 300 H650 M520 520 H650" stroke="${accent}" stroke-width="18"/>`,
+    metal_fasteners: `<g fill="#94a3b8" stroke="#334155" stroke-width="8">${[0, 1, 2, 3, 4].map((i) => `<rect x="${300 + i * 115}" y="${280 + (i % 2) * 90}" width="70" height="260" rx="20"/>`).join("")}</g><path d="M250 630 H930" stroke="${accent}" stroke-width="18"/>`,
+    ceramic_tableware: `<ellipse cx="600" cy="510" rx="300" ry="95" fill="#e0f2fe" stroke="#0284c7" stroke-width="10"/><ellipse cx="600" cy="500" rx="190" ry="50" fill="#fff"/><rect x="490" y="250" width="220" height="220" rx="28" fill="#f8fafc" stroke="${accent}" stroke-width="10"/>`,
+    furniture: `<rect x="300" y="360" width="600" height="150" rx="28" fill="#92400e"/><rect x="360" y="510" width="55" height="160" fill="#78350f"/><rect x="785" y="510" width="55" height="160" fill="#78350f"/><rect x="370" y="240" width="460" height="120" rx="30" fill="#fed7aa"/>`,
+    electronics: `<rect x="410" y="190" width="380" height="500" rx="36" fill="#111827"/><rect x="450" y="250" width="300" height="360" rx="12" fill="#dbeafe"/><circle cx="600" cy="650" r="24" fill="${accent}"/>`,
+    catalog_product: `<rect x="330" y="230" width="540" height="360" rx="40" fill="#e2e8f0" stroke="${accent}" stroke-width="12"/><path d="M410 340 H790 M410 430 H790 M410 520 H680" stroke="#94a3b8" stroke-width="22"/>`
+  };
+  return `data:image/svg+xml;utf8,${encodeURIComponent(base + (shapes[visualCategory] ?? shapes.catalog_product) + end)}`;
+}
+
 function imageUrl(query: string, categoryIndex: number, productIndex: number, imageIndex: number) {
-  const lock = 41000 + categoryIndex * 100 + productIndex * 10 + imageIndex;
-  return `https://loremflickr.com/1200/900/${encodeURIComponent(query)}?lock=${lock}`;
+  const visualCategory = visualCategoryFor(query, query);
+  return productSvg(visualCategory, query, imageIndex);
 }
 
 function makeListing(category: CategoryTemplate, categoryIndex: number, product: ProductTemplate, productIndex: number): MarketplaceSeedListing {
   const id = `seed-${slugify(category.category)}-${String(productIndex + 1).padStart(3, "0")}`;
   const slug = slugify(product.title);
-  const galleryImages = [0, 1, 2].map((imageIndex) => imageUrl(category.imageQuery, categoryIndex, productIndex, imageIndex));
+  const visualCategory = visualCategoryFor(product.title, category.category);
+  const galleryImages = [0, 1, 2].map((imageIndex) => productSvg(visualCategory, product.title, imageIndex));
   const specifications = {
     ...product.specs,
     usage: product.specs.usage ?? category.descriptionFocus,
     customization: product.specs.customization ?? "Available on RFQ"
   };
+  const categoryTr = categoryTranslations[category.category] ?? category.category;
+  const subcategoryTr = subcategoryTranslations[product.subcategory] ?? product.subcategory;
+  const supplierTypeTr = "Tedarikçi profili";
+  const shortDescription = `${product.title} prepared for B2B sourcing, RFQ comparison and ${category.descriptionFocus.toLowerCase()}.`;
 
   return {
     id,
     slug,
     title: product.title,
+    titleTr: product.title,
     category: category.category,
+    categoryTr,
     subcategory: product.subcategory,
+    subcategoryTr,
     country: category.country,
+    countryTr: category.country === "Türkiye" ? "Türkiye" : category.country,
     supplierName: supplierNames[(categoryIndex + productIndex) % supplierNames.length] ?? "RootFabLink Marketplace Supplier",
     supplierType: category.supplierType,
+    supplierTypeTr,
     priceRange: product.priceRange,
     moq: product.moq,
     unit: product.unit,
     leadTime: product.leadTime,
-    shortDescription: `${product.title} prepared for B2B sourcing, RFQ comparison and ${category.descriptionFocus.toLowerCase()}.`,
+    shortDescription,
+    shortDescriptionTr: `${product.title}, B2B tedarik, RFQ karşılaştırması ve ${categoryTr.toLowerCase()} alımları için hazırlanmış profesyonel ürün listelemesidir.`,
     mainImage: galleryImages[0] ?? imageUrl(category.imageQuery, categoryIndex, productIndex, 0),
     galleryImages,
+    imageAlt: `${product.title} product visual for ${product.subcategory}`,
+    imageSearchIntent: `${product.title} ${product.subcategory} B2B product catalog visual`,
+    visualCategory,
     specifications,
+    specificationsTr: Object.fromEntries(Object.entries(specifications).map(([key, value]) => [key, value])),
     productSpecifications: specifications,
     capabilities,
+    capabilitiesTr: ["OEM hazır", "ODM hazır", "Özelleştirme uygun", "RFQ uygun"],
     tags: product.tags,
     tradeTerms,
     source: "marketplace_seed_data",
@@ -107,7 +254,8 @@ function makeListing(category: CategoryTemplate, categoryIndex: number, product:
     rating: null,
     reviewCount: 0,
     review_count: 0,
-    sponsored: productIndex === 0 || productIndex === 5
+    sponsored: productIndex === 0 || productIndex === 5,
+    visualMatchScore: 10
   };
 }
 
@@ -227,6 +375,13 @@ const additionalCategories: Array<Omit<CategoryTemplate, "products"> & { product
   { category: "Gifts and Promotional Products", country: "Türkiye", supplierType: "Promotional product supplier-ready profile", imageQuery: "promotional,gifts,products", descriptionFocus: "branded gifts and promotional merchandise procurement", price: "$0.30-28 / piece", moq: "1000 pieces", unit: "piece", subcategories: ["Promotional Gifts", "Corporate", "Events", "Retail"], productNames: ["Promotional Tote Bag", "Corporate Pen Set", "Custom Notebook Gift", "Branded Drink Bottle", "Event Lanyard Program", "Promotional Keychain", "Gift Box Collection", "Corporate Desk Calendar"] }
 ];
 
+const professionalExtraCategories: Array<Omit<CategoryTemplate, "products"> & { productNames: string[]; subcategories: string[]; price: string; moq: string; unit: string }> = [
+  { category: "Decorative Wall Panels", country: "Türkiye", supplierType: "Decorative surface supplier profile", imageQuery: "decorative wall panel", descriptionFocus: "interior wall panel and architectural surface procurement", price: "$12-45 / m2", moq: "300 m2", unit: "m2", subcategories: ["PVC Panels", "Acoustic Panels", "3D Panels", "MDF Panels"], productNames: ["Marble Look PVC Decorative Wall Panel", "Wood Slat Acoustic Wall Panel", "3D Geometric Wall Panel", "Stone Look Interior Panel", "MDF Decorative Wall Panel", "Custom Patterned Wall Surface", "Luxury PVC Wall Panel", "Fluted Interior Wall Panel", "Hotel Lobby Wall Cladding", "Matte Concrete Look Panel", "Walnut Texture Wall Panel", "Moisture Resistant Wall Panel"] },
+  { category: "Textile and Fabrics", country: "Türkiye", supplierType: "Textile supplier profile", imageQuery: "fabric roll textile", descriptionFocus: "fabric roll and textile material procurement", price: "$1.20-8.50 / meter", moq: "500 meters", unit: "meter", subcategories: ["Cotton", "Polyester", "Upholstery", "Technical"], productNames: ["Cotton Fabric Roll", "Polyester Fabric Roll", "Upholstery Fabric", "Knitted Fabric", "Technical Textile Roll", "Printed Textile Fabric", "Denim Fabric Roll", "Outdoor Waterproof Fabric", "Velvet Upholstery Fabric", "Linen Blend Fabric", "Nonwoven Fabric Roll", "Jacquard Textile Fabric"] },
+  { category: "Apparel and Workwear", country: "Türkiye", supplierType: "Apparel supplier profile", imageQuery: "workwear apparel", descriptionFocus: "apparel, uniforms and workwear procurement", price: "$2.80-35 / piece", moq: "300 pieces", unit: "piece", subcategories: ["T-Shirts", "Uniforms", "Outerwear", "Sportswear"], productNames: ["Premium Cotton T-Shirt", "Workwear Uniform Set", "High Visibility Safety Vest", "Luxury Hoodie", "Sportswear Set", "Chef Uniform Program", "Corporate Polo Shirt", "Denim Jacket Program", "Softshell Work Jacket", "Medical Scrub Set", "Hotel Staff Uniform", "Private Label Sweatshirt"] },
+  { category: "Customs and Trade Services", country: "Türkiye", supplierType: "Customs and trade service profile", imageQuery: "customs trade documents", descriptionFocus: "customs, document and trade compliance service procurement", price: "Service quote", moq: "1 consultation", unit: "consultation", subcategories: ["Export Customs", "Import Customs", "Compliance", "Documents"], productNames: ["Export Customs Clearance", "Import Customs Clearance", "HS Code Consulting", "Trade Compliance Support", "Export Document Preparation", "Import Duty Review", "Certificate of Origin Support", "Transit Documentation Service", "Product Classification Review", "Customs Broker Consultation", "Freight Paperwork Review", "Market Entry Document Check"] }
+];
+
 function productFromName(name: string, category: Omit<CategoryTemplate, "products"> & { productNames: string[]; subcategories: string[]; price: string; moq: string; unit: string }, index: number): ProductTemplate {
   return {
     title: name,
@@ -244,6 +399,29 @@ function productFromName(name: string, category: Omit<CategoryTemplate, "product
   };
 }
 
+function ensureTwelveProducts(category: CategoryTemplate): CategoryTemplate {
+  if (category.products.length >= 12) return category;
+  const additions = Array.from({ length: 12 - category.products.length }, (_, index) => {
+    const base = category.products[index % category.products.length] ?? {
+      title: `${category.category} RFQ Product`,
+      subcategory: category.category,
+      priceRange: "Request quote",
+      moq: "1 lot",
+      unit: "lot",
+      leadTime: "20-40 days",
+      specs: {},
+      tags: [category.category.toLowerCase()]
+    };
+    const variantNumber = category.products.length + index + 1;
+    return {
+      ...base,
+      title: `${base.title} ${variantNumber}`,
+      tags: [...base.tags, "rfq ready", "customization available"]
+    };
+  });
+  return { ...category, products: [...category.products, ...additions] };
+}
+
 const allCategoryTemplates: CategoryTemplate[] = [
   ...categoryTemplates,
   ...additionalCategories.map((category) => ({
@@ -253,8 +431,16 @@ const allCategoryTemplates: CategoryTemplate[] = [
     imageQuery: category.imageQuery,
     descriptionFocus: category.descriptionFocus,
     products: category.productNames.map((name, index) => productFromName(name, category, index))
+  })),
+  ...professionalExtraCategories.map((category) => ({
+    category: category.category,
+    country: category.country,
+    supplierType: category.supplierType,
+    imageQuery: category.imageQuery,
+    descriptionFocus: category.descriptionFocus,
+    products: category.productNames.map((name, index) => productFromName(name, category, index))
   }))
-];
+].map(ensureTwelveProducts);
 
 export const marketplaceCategories = allCategoryTemplates.map((category) => ({
   name: category.category,

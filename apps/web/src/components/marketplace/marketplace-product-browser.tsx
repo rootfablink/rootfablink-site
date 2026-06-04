@@ -15,11 +15,16 @@ function matchesProduct(product: Product, keyword: string) {
   const value = keyword.toLowerCase();
   const haystack = [
     product.title,
+    product.titleTr,
     product.category,
+    product.categoryTr,
     product.subcategory,
+    product.subcategoryTr,
     product.country,
+    product.countryTr,
     product.supplierName,
     product.supplierType,
+    product.supplierTypeTr,
     ...(product.tags ?? [])
   ]
     .filter(Boolean)
@@ -83,7 +88,7 @@ export function MarketplaceProductBrowser({ locale, copy }: { locale: Locale; co
           >
             <option value="all">{tr ? "Tüm kategoriler" : "All categories"}</option>
             {categories.map((item) => (
-              <option key={item} value={item}>{item}</option>
+              <option key={item} value={item}>{tr ? marketplaceSeedProducts.find((product) => product.category === item)?.categoryTr ?? item : item}</option>
             ))}
           </select>
         </div>

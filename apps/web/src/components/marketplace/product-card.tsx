@@ -2,23 +2,33 @@
 
 import { Heart, MessageSquareText, ShieldCheck, Store } from "lucide-react";
 import type { MarketplaceCopy } from "./marketplace-copy";
+import { MarketplaceImage } from "./marketplace-image";
 
 export type ProductCardData = {
+  slug?: string;
   title: string;
+  titleTr?: string;
   price: string;
   priceRange?: string;
   moq: string;
   country: string;
+  countryTr?: string;
   verified: boolean;
   sponsored?: boolean;
   mainImage?: string;
   leadTime?: string;
   category?: string;
+  categoryTr?: string;
   subcategory?: string;
+  subcategoryTr?: string;
   shortDescription?: string;
+  shortDescriptionTr?: string;
+  imageAlt?: string;
+  visualCategory?: string;
   source?: "marketplace_seed_data" | string;
   supplierName?: string;
   supplierType?: string;
+  supplierTypeTr?: string;
   tags?: string[];
   tradeTerms?: string[];
   capabilities?: string[];
@@ -29,13 +39,18 @@ export type ProductCardData = {
 
 export function ProductCard({ product, copy }: { product: ProductCardData; copy: MarketplaceCopy }) {
   const contactLabel = copy.productCard.contact ?? "Contact supplier";
+  const tr = contactLabel.includes("Tedarik");
+  const title = tr ? product.titleTr ?? product.title : product.title;
+  const category = tr ? product.categoryTr ?? product.category : product.category;
+  const country = tr ? product.countryTr ?? product.country : product.country;
+  const description = tr ? product.shortDescriptionTr ?? product.shortDescription : product.shortDescription;
+  const supplierType = tr ? product.supplierTypeTr ?? product.supplierType : product.supplierType;
+  const detailHref = product.slug ? `/${tr ? "tr" : "en"}/products/${product.slug}` : undefined;
 
   return (
     <article className="group overflow-hidden rounded-md border border-ink/10 bg-white shadow-[0_8px_22px_rgba(11,11,12,0.04)] transition hover:-translate-y-0.5 hover:shadow-soft">
-      <div
-        className="relative flex aspect-[4/3] items-center justify-center bg-cover bg-center bg-[linear-gradient(135deg,#f8fafc,#fff2e5)]"
-        style={product.mainImage ? { backgroundImage: `linear-gradient(180deg,rgba(11,11,12,0.02),rgba(11,11,12,0.18)),url(${product.mainImage})` } : undefined}
-      >
+      <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#f8fafc,#fff2e5)]">
+        <MarketplaceImage src={product.mainImage} alt={product.imageAlt ?? title} visualCategory={product.visualCategory} title={title} />
         {product.sponsored && (
           <span className="absolute left-3 top-3 rounded-md bg-ink px-2 py-1 text-xs font-bold text-white">
             {copy.productCard.sponsored}
@@ -46,19 +61,28 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
         </button>
       </div>
       <div className="p-4">
-        {product.category && <p className="mb-2 line-clamp-1 text-[11px] font-bold uppercase tracking-[0.08em] text-steel">{product.category}</p>}
-        <h3 className="line-clamp-2 min-h-10 text-sm font-bold leading-5 text-ink">{product.title}</h3>
-        {product.shortDescription && <p className="mt-2 line-clamp-2 min-h-10 text-xs leading-5 text-steel">{product.shortDescription}</p>}
+        {category && <p className="mb-2 line-clamp-1 text-[11px] font-bold uppercase tracking-[0.08em] text-steel">{category}</p>}
+        <h3 className="line-clamp-2 min-h-10 text-sm font-bold leading-5 text-ink">
+          {detailHref ? <a href={detailHref} className="hover:text-copper">{title}</a> : title}
+        </h3>
+        {description && <p className="mt-2 line-clamp-2 min-h-10 text-xs leading-5 text-steel">{description}</p>}
         <p className="mt-2 text-lg font-bold text-copper">{product.priceRange ?? product.price}</p>
         <div className="mt-2 flex flex-wrap gap-2 text-xs font-semibold text-steel">
           <span>{copy.productCard.moq}: {product.moq}</span>
-          <span>{product.country}</span>
+          <span>{country}</span>
           {product.leadTime && <span>{product.leadTime}</span>}
         </div>
+        {product.tags && product.tags.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {product.tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="rounded bg-cloud px-2 py-1 text-[10px] font-bold uppercase tracking-[0.06em] text-steel">{tag}</span>
+            ))}
+          </div>
+        )}
         <div className="mt-3 flex items-center justify-between gap-2 border-t border-ink/10 pt-3">
           <span className="inline-flex items-center gap-1 text-xs font-bold text-ink">
             {product.verified ? <ShieldCheck size={15} className="text-blue-700" /> : <Store size={15} className="text-steel" />}
-            {product.verified ? copy.productCard.verified : product.supplierType ?? "Supplier-ready profile"}
+            {product.verified ? copy.productCard.verified : supplierType ?? "Supplier profile"}
           </span>
           <button type="button" className="rounded-md bg-signal px-3 py-2 text-xs font-bold text-white hover:bg-copper">
             {copy.productCard.inquiry}
