@@ -27,7 +27,7 @@ export const mobileMarketplaceCopy = {
     },
     categoryTabs: ["All Categories", "Home Appliances", "Home & Garden", "Industrial Machinery", "Apparel", "Electronics", "Building Materials"],
     productBadges: ["Lower price", "Fast delivery", "Trending", "Sponsored"],
-    bottomNav: ["Manufacturers", "Products", "Customs", "Logistics"],
+    bottomNav: ["Home", "Categories", "Messages", "Quote Cart", "Account"],
     pages: {
       categories: "Categories",
       messages: "Messages",
@@ -70,7 +70,7 @@ export const mobileMarketplaceCopy = {
     },
     categoryTabs: ["Tüm Kategoriler", "Ev Aletleri", "Ev & Bahçe", "Endüstriyel Makineler", "Giyim", "Elektronik", "Yapı Malzemeleri"],
     productBadges: ["Daha düşük fiyat", "Hızlı teslimat", "Trend", "Sponsorlu"],
-    bottomNav: ["Üreticiler", "Ürünler", "Gümrük", "Lojistik"],
+    bottomNav: ["Anasayfa", "Kategoriler", "Mesajlarım", "Teklif Sepeti", "Hesabım"],
     pages: {
       categories: "Kategoriler",
       messages: "Mesajlarım",
