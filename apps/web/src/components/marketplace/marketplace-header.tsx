@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Camera, Check, ChevronDown, Globe2, Heart, PackageSearch, Search, UserRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { getCorporateCopy } from "@/components/corporate/corporate-copy";
 import { cn } from "@/lib/utils";
 import type { LocalizationPreference } from "./localization-preferences";
 import { languageOptions, preferenceFromLanguage, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
@@ -20,6 +21,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
   const headerRef = useRef<HTMLElement | null>(null);
   const [preference, setPreference] = useState<LocalizationPreference>(() => preferenceFromLanguage(locale, false));
   const copy = getMarketplaceCopy(locale);
+  const corporate = getCorporateCopy(locale);
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
   const primaryNavItems = [
     { label: copy.header.manufacturers, href: `/${locale}/manufacturers` },
@@ -107,6 +109,15 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             <Link href={`/${locale}/inquiry-basket`} className="flex h-10 w-10 items-center justify-center rounded-md border border-ink/10 text-ink hover:border-signal/35 hover:bg-cloud" aria-label={copy.header.basket}>
               <Heart size={17} />
             </Link>
+            <Link href={`/${locale}/contact`} className={cn("flex h-10 items-center rounded-md border border-ink/10 px-3 text-sm font-semibold hover:border-signal/35 hover:bg-cloud", isPrimaryActive(`/${locale}/contact`) ? "border-signal/35 bg-cloud text-copper" : "text-ink")}>
+              {corporate.nav.contact}
+            </Link>
+            <Link href={`/${locale}/about`} className="hidden text-sm font-semibold text-steel hover:text-copper xl:inline-flex">
+              {corporate.nav.about}
+            </Link>
+            <Link href={`/${locale}/help-center`} className="hidden text-sm font-semibold text-steel hover:text-copper xl:inline-flex">
+              {corporate.nav.help}
+            </Link>
             <button type="button" onClick={() => toggle("signin")} className="flex h-10 items-center gap-2 rounded-md border border-ink/10 px-3 text-sm font-semibold text-ink hover:border-signal/35 hover:bg-cloud">
               <UserRound size={16} />
               {copy.header.signIn}
@@ -169,6 +180,15 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
               <Globe2 size={15} />
               {copy.header.languageCurrency}
             </button>
+            <Link href={`/${locale}/contact`} className={cn("inline-flex shrink-0 items-center rounded-md border px-3 py-2 text-sm font-semibold", isPrimaryActive(`/${locale}/contact`) ? "border-signal/35 bg-cloud text-copper" : "border-ink/10 text-ink")}>
+              {corporate.nav.contact}
+            </Link>
+            <Link href={`/${locale}/about`} className="inline-flex shrink-0 items-center rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink">
+              {corporate.nav.about}
+            </Link>
+            <Link href={`/${locale}/help-center`} className="inline-flex shrink-0 items-center rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink">
+              {corporate.nav.help}
+            </Link>
             <button type="button" onClick={() => toggle("signin")} className="shrink-0 rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink">
               {copy.header.signIn}
             </button>
