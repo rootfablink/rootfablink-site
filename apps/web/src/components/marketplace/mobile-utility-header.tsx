@@ -18,20 +18,20 @@ export function MobileUtilityHeader({ locale, title }: { locale: Locale; title?:
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-white/96 px-3 py-2 backdrop-blur md:hidden">
-      <div className="flex min-w-0 items-center justify-between gap-1.5">
-        <Link href={`/${locale}`} className="min-w-0 shrink overflow-hidden">
+    <header className="sticky top-0 z-50 border-b border-ink/10 bg-white/96 px-2 py-2 backdrop-blur md:hidden">
+      <div className="flex items-center justify-between gap-1">
+        <Link href={`/${locale}`} className="shrink-0 whitespace-nowrap">
           <RootfablinkWordmark
             size="compact"
-            className="max-w-full text-[22px] font-semibold [--rfl-scale:1] [--rfl-tracking:0.035em]"
+            className="text-[28px] font-bold [--rfl-scale:1] [--rfl-tracking:0]"
           />
         </Link>
 
-        <div className="flex shrink-0 items-center gap-1">
+        <div className="flex shrink-0 items-center gap-0.5">
           <details className="group">
             <summary
               aria-label={copy.header.languageCurrency}
-              className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-md border border-signal/20 bg-cloud text-copper"
+              className="flex h-8 w-8 cursor-pointer list-none items-center justify-center rounded-md border border-signal/20 bg-cloud text-copper"
             >
               <Globe2 size={18} strokeWidth={2.2} />
             </summary>
@@ -55,10 +55,10 @@ export function MobileUtilityHeader({ locale, title }: { locale: Locale; title?:
               })}
             </div>
           </details>
-          <Link href={`/${locale}/auth/login`} className="inline-flex h-9 items-center rounded-md px-1.5 text-[11px] font-bold whitespace-nowrap text-ink hover:bg-cloud xs:px-2 xs:text-xs">
+          <Link href={`/${locale}/auth/login`} className="inline-flex h-8 items-center rounded-md px-1 text-[10px] font-bold whitespace-nowrap text-ink hover:bg-cloud xs:px-1.5 xs:text-[11px]">
             {copy.header.signIn}
           </Link>
-          <Link href={`/${locale}/auth/register`} className="inline-flex h-9 items-center rounded-md bg-ink px-2 text-[11px] font-bold whitespace-nowrap text-white xs:px-2.5 xs:text-xs">
+          <Link href={`/${locale}/auth/register`} className="inline-flex h-8 items-center rounded-md bg-ink px-1.5 text-[10px] font-bold whitespace-nowrap text-white xs:px-2 xs:text-[11px]">
             {copy.header.createAccount}
           </Link>
         </div>

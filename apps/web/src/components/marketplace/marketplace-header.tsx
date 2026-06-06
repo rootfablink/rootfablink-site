@@ -64,10 +64,10 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
 
   return (
     <header ref={headerRef} className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
-      <div className="mx-auto max-w-7xl px-4 py-2 sm:px-5">
-        <div className="flex items-center justify-between gap-3">
-          <Link href={`/${locale}`} className="min-w-0 shrink overflow-hidden lg:shrink-0">
-            <RootfablinkWordmark size="compact" className="text-[22px] font-semibold [--rfl-scale:1] [--rfl-tracking:0.035em] sm:text-[23px]" />
+      <div className="mx-auto max-w-7xl px-2 py-2 sm:px-5">
+        <div className="flex items-center justify-between gap-1 sm:gap-3">
+          <Link href={`/${locale}`} className="shrink-0 whitespace-nowrap">
+            <RootfablinkWordmark size="compact" className="text-[28px] font-bold [--rfl-scale:1] [--rfl-tracking:0] lg:text-[23px] lg:font-semibold lg:[--rfl-tracking:0.035em]" />
           </Link>
 
           <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>
@@ -113,14 +113,14 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             </Link>
           </div>
 
-          <div className="flex items-center gap-1.5 lg:hidden">
-            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-9 w-9 items-center justify-center rounded-md border border-signal/20 bg-cloud text-copper", openPanel === "language" && "border-signal/45")}>
+          <div className="flex shrink-0 items-center gap-0.5 lg:hidden">
+            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-8 w-8 items-center justify-center rounded-md border border-signal/20 bg-cloud text-copper", openPanel === "language" && "border-signal/45")}>
               <Globe2 size={18} strokeWidth={2.2} />
             </button>
-            <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-9 items-center justify-center rounded-md px-1.5 text-[11px] font-bold whitespace-nowrap text-ink hover:bg-cloud xs:px-2 xs:text-xs">
+            <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-8 items-center justify-center rounded-md px-1 text-[10px] font-bold whitespace-nowrap text-ink hover:bg-cloud xs:px-1.5 xs:text-[11px]">
               {copy.header.signIn}
             </Link>
-            <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-9 items-center rounded-md bg-signal px-2 text-[11px] font-bold whitespace-nowrap text-white xs:px-2.5 xs:text-xs">
+            <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-8 items-center rounded-md bg-signal px-1.5 text-[10px] font-bold whitespace-nowrap text-white xs:px-2 xs:text-[11px]">
               {copy.header.createAccount}
             </Link>
           </div>
