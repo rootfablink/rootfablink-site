@@ -1,16 +1,15 @@
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { isLocale } from "@rootfablink/i18n";
 
-export default async function AuthErrorPage({
+export default async function LocalizedAuthErrorPage({
+  params,
   searchParams
 }: {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ error?: string }>;
 }) {
-  const cookieStore = await cookies();
-  const { error } = await searchParams;
-  const storedLocale = cookieStore.get("rootfablink_locale")?.value;
-  const locale = storedLocale && isLocale(storedLocale) ? storedLocale : "tr";
+  const [{ locale: rawLocale }, { error }] = await Promise.all([params, searchParams]);
+  const locale = isLocale(rawLocale) ? rawLocale : "tr";
   const query = new URLSearchParams({ oauthError: "1" });
 
   if (error) {

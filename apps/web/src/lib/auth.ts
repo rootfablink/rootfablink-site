@@ -5,7 +5,7 @@ const googleClientId = process.env.GOOGLE_CLIENT_ID ?? process.env.AUTH_GOOGLE_I
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET ?? process.env.AUTH_GOOGLE_SECRET;
 const authSecret = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
 
-export const googleOAuthConfigured = Boolean(googleClientId && googleClientSecret);
+export const googleOAuthConfigured = Boolean(googleClientId && googleClientSecret && authSecret);
 
 export const authOptions: NextAuthOptions = {
   providers:

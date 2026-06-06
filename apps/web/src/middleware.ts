@@ -52,7 +52,7 @@ const countryLocaleMap: Record<string, Locale> = {
   KZ: "ru"
 };
 
-const publicAssetPrefixes = ["/api", "/_next", "/images", "/brands", "/assets"];
+const publicAssetPrefixes = ["/api", "/auth", "/_next", "/images", "/brands", "/assets"];
 const publicAssetFiles = ["/favicon.ico", "/robots.txt", "/sitemap.xml"];
 
 function getLocale(pathname: string) {
