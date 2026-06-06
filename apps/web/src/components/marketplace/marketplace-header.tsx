@@ -166,7 +166,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex min-w-0 items-center justify-center border-b-[3px] px-0.5 py-2.5 text-center text-[clamp(0.7rem,3.55vw,0.95rem)] font-bold leading-none whitespace-nowrap uppercase transition-colors",
+                    "flex min-w-0 items-center justify-center border-b-[3px] px-0.5 py-2 text-center text-[clamp(0.625rem,3vw,0.8rem)] font-bold leading-none whitespace-nowrap uppercase transition-colors",
                     active ? "border-signal text-ink" : "border-transparent text-steel hover:border-signal/35 hover:text-ink"
                   )}
                 >
