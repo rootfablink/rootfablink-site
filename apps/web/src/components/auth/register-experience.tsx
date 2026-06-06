@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { AuthDivider, GoogleOAuthButton } from "./google-oauth-button";
 
 type AccountType = "buyer" | "supplier" | "logistics" | "customs";
 type SimpleField = {
@@ -91,7 +92,7 @@ const simpleFormFields: Record<Exclude<AccountType, "supplier">, SimpleField[]> 
   ]
 };
 
-export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: string[]; accountNote?: string }) {
+export function RegisterExperience({ locale, googleConfigured }: { locale: Locale; accountTypes?: string[]; accountNote?: string; googleConfigured: boolean }) {
   const tr = locale === "tr";
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -235,6 +236,18 @@ export function RegisterExperience({ locale }: { locale: Locale; accountTypes?: 
           );
         })}
       </div>
+
+      <section className="mx-auto mt-8 max-w-xl rounded-md border border-ink/10 bg-white p-5 shadow-soft">
+        <h2 className="text-lg font-bold text-ink">{tr ? "RootFabLink hesabı oluşturun" : "Create your RootFabLink account"}</h2>
+        <p className="mt-2 text-sm leading-6 text-steel">
+          {tr ? "Seçtiğiniz hesap türüyle Google üzerinden güvenli şekilde devam edin veya e-posta formunu doldurun." : "Continue securely with Google for the selected account type or complete the email registration form."}
+        </p>
+        <div className="mt-5">
+          <GoogleOAuthButton locale={locale} configured={googleConfigured} callbackUrl={`/${locale}/onboarding/${selectedType}?role=${selectedType}`} />
+          {googleConfigured && <AuthDivider locale={locale} />}
+          <p className="text-center text-xs font-bold uppercase text-steel">{tr ? "E-posta ile kayıt ol" : "Register with email"}</p>
+        </div>
+      </section>
 
       {selectedType === "supplier" ? (
         <section className="mt-8 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">

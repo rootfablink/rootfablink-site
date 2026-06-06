@@ -2,18 +2,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { HelpCircle, KeyRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { saveDemoSession } from "@/lib/auth-demo-storage";
 import { cn } from "@/lib/utils";
+import { AuthDivider, GoogleOAuthButton } from "./google-oauth-button";
 
-export function LoginExperience({ locale }: { locale: Locale }) {
+export function LoginExperience({ locale, googleConfigured }: { locale: Locale; googleConfigured: boolean }) {
   const tr = locale === "tr";
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const oauthError = searchParams.get("oauthError") === "1" || Boolean(searchParams.get("error"));
 
   const validate = () => {
     const nextErrors: Record<string, string> = {};
@@ -39,6 +42,15 @@ export function LoginExperience({ locale }: { locale: Locale }) {
 
   return (
     <div className="rounded-md border border-ink/10 bg-white p-4 shadow-soft sm:p-6">
+      {oauthError && (
+        <p className="mb-5 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-700">
+          {tr ? "Google ile giriş tamamlanamadı. Lütfen tekrar deneyin." : "Google sign-in could not be completed. Please try again."}
+        </p>
+      )}
+
+      <GoogleOAuthButton locale={locale} configured={googleConfigured} callbackUrl={`/${locale}/auth/choose-role`} />
+      {googleConfigured && <AuthDivider locale={locale} />}
+
       <label className="grid gap-2 text-sm font-semibold text-ink">
         {tr ? "E-posta" : "Email"}
         <input value={email} onChange={(event) => setEmail(event.target.value)} className={cn("h-11 rounded-md border px-3 font-normal outline-none focus:border-signal", errors.email ? "border-red-400" : "border-ink/15")} type="email" autoComplete="email" />
@@ -64,7 +76,7 @@ export function LoginExperience({ locale }: { locale: Locale }) {
       </button>
 
       <Link href={`/${locale}/auth/register`} className="mt-3 flex min-h-11 w-full items-center justify-center rounded-md border border-ink/10 px-3 py-2 text-center text-sm font-bold text-ink hover:bg-cloud">
-        {tr ? "Hesabınız yok mu? Hesap oluşturun" : "No account yet? Create account"}
+        {tr ? "Hesabınız yok mu? Hesap oluşturun" : "Don't have an account? Create account"}
       </Link>
     </div>
   );

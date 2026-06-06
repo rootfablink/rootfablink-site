@@ -4,6 +4,7 @@ import type { Locale } from "@rootfablink/i18n";
 import { isLocale } from "@rootfablink/i18n";
 import { ProductDetailPage } from "@/components/marketplace/product-detail-page";
 import { marketplaceSeedProducts } from "@/components/marketplace/marketplace-copy";
+import { localizedAlternates, siteUrl } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
@@ -19,9 +20,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: `${title} | RootFabLink`,
     description,
+    alternates: {
+      canonical: `${siteUrl}/${locale}/products/${slug}`,
+      languages: localizedAlternates(`/products/${slug}`)
+    },
+    robots: {
+      index: true,
+      follow: true
+    },
     openGraph: {
       title: `${title} | RootFabLink`,
       description,
+      url: `${siteUrl}/${locale}/products/${slug}`,
       images: product?.mainImage ? [product.mainImage] : undefined
     },
     twitter: {

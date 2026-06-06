@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { Box, Camera, Factory, FileText, Grid2X2, Mic, PackageSearch, Search, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { Box, Camera, Factory, FileText, Grid2X2, Mail, Mic, PackageSearch, Search, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { MobileBottomNav } from "./mobile-bottom-nav";
@@ -105,13 +105,14 @@ function MobilePrimaryTabs({ locale, labels, active }: { locale: Locale; labels:
 }
 
 function ShortcutRail({ labels, locale }: { labels: string[]; locale: Locale }) {
-  const icons = [Grid2X2, FileText, ShieldCheck, Sparkles, PackageSearch, Factory];
+  const icons = [Grid2X2, FileText, ShieldCheck, Sparkles, PackageSearch, Factory, Mail];
+  const hrefs = ["categories", "rfq", "products", "products", "products", "products", "contact"];
   return (
     <section className="mt-4 flex gap-3 overflow-x-auto pb-1">
       {labels.map((label, index) => {
         const Icon = icons[index] ?? Grid2X2;
         return (
-          <a key={label} href={`/${locale}/${index === 1 ? "rfq" : index === 0 ? "categories" : "products"}`} className="flex min-w-24 flex-col items-center gap-2 rounded-2xl bg-white p-3 text-center shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
+          <a key={label} href={`/${locale}/${hrefs[index] ?? "products"}`} className="flex min-w-24 flex-col items-center gap-2 rounded-2xl bg-white p-3 text-center shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cloud text-copper">
               <Icon size={19} />
             </span>

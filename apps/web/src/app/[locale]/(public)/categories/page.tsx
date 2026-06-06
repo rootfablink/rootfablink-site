@@ -3,6 +3,20 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@rootfablink/i18n";
 import { MobileCategoriesPage } from "@/components/marketplace/mobile-marketplace-pages";
 import { CategoriesLandingPage } from "@/components/marketplace/categories-landing-page";
+import { createSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const tr = locale === "tr";
+  return createSeoMetadata(
+    locale as Locale,
+    "/categories",
+    tr ? "B2B Ürün Kategorileri | RootFabLink" : "B2B Product Categories | RootFabLink",
+    tr ? "RootFabLink üzerinde endüstriyel ürün, üretici ve tedarikçi kategorilerini keşfedin." : "Explore industrial product, manufacturer and supplier categories on RootFabLink.",
+    ["B2B categories", "industrial sourcing", "product categories"]
+  );
+}
 
 export default async function CategoriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

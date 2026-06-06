@@ -9,7 +9,7 @@ export const mobileMarketplaceCopy = {
     searchExamples: ["wall panels", "PS wall panel", "building materials"],
     voiceSearch: "Voice search",
     lens: "ROOTFABLINK LENS",
-    shortcuts: ["Source by category", "RFQ request", "Verified suppliers", "Most preferred", "Fast customization", "Sample center"],
+    shortcuts: ["Source by category", "RFQ request", "Verified suppliers", "Most preferred", "Fast customization", "Sample center", "Contact"],
     worldwideTitle: "Your global supplier guide from 190+ regions",
     sections: {
       featured: "Featured Opportunities",
@@ -52,7 +52,7 @@ export const mobileMarketplaceCopy = {
     searchExamples: ["polimer lambiri", "duvar paneli", "yapı malzemeleri"],
     voiceSearch: "Sesli arama",
     lens: "ROOTFABLINK LENS",
-    shortcuts: ["Kategoriye göre tedarik", "Fiyat Teklifi Talebi (RFQ)", "Doğrulanmış tedarikçiler", "En çok tercih edilenler", "Hızlı özelleştirme", "Numune merkezi"],
+    shortcuts: ["Kategoriye göre tedarik", "Fiyat Teklifi Talebi (RFQ)", "Doğrulanmış tedarikçiler", "En çok tercih edilenler", "Hızlı özelleştirme", "Numune merkezi", "İletişim"],
     worldwideTitle: "190+ bölgeden küresel tedarikçi rehberiniz",
     sections: {
       featured: "Öne Çıkan Fırsatlar",

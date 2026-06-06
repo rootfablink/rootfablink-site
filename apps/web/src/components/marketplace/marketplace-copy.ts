@@ -16,6 +16,7 @@ export const marketplaceCopy = {
       manufacturers: "Manufacturers",
       customs: "Customs",
       logistics: "Logistics",
+      contact: "Contact",
       rfq: "RFQ",
       search: "Search products, factories or RFQs",
       searchButton: "Search",
@@ -201,6 +202,7 @@ export const marketplaceCopy = {
       manufacturers: "Üreticiler",
       customs: "Gümrük",
       logistics: "Lojistik",
+      contact: "İletişim",
       rfq: "RFQ",
       search: "Ürün, fabrika veya teklif talebi ara",
       searchButton: "Ara",
@@ -370,6 +372,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       signIn: "Anmelden",
       createAccount: "Konto erstellen",
       supplierOnboarding: "Lieferant werden",
+      contact: "Kontakt",
       startTrading: "Handel starten"
     },
     selectors: {
@@ -426,6 +429,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       signIn: "Connexion",
       createAccount: "Créer un compte",
       supplierOnboarding: "Devenir fournisseur",
+      contact: "Contact",
       startTrading: "Commencer"
     },
     selectors: {
@@ -482,6 +486,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       signIn: "Ingresar",
       createAccount: "Crear cuenta",
       supplierOnboarding: "Ser proveedor",
+      contact: "Contacto",
       startTrading: "Empezar"
     },
     selectors: {
@@ -538,6 +543,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       signIn: "تسجيل الدخول",
       createAccount: "إنشاء حساب",
       supplierOnboarding: "كن موردا",
+      contact: "اتصل بنا",
       startTrading: "ابدأ التجارة"
     },
     selectors: {
@@ -594,6 +600,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       signIn: "登录",
       createAccount: "创建账户",
       supplierOnboarding: "成为供应商",
+      contact: "联系我们",
       startTrading: "开始贸易"
     },
     selectors: {
@@ -650,6 +657,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       signIn: "Войти",
       createAccount: "Создать аккаунт",
       supplierOnboarding: "Стать поставщиком",
+      contact: "Контакты",
       startTrading: "Начать торговлю"
     },
     selectors: {
@@ -708,6 +716,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       signIn: "サインイン",
       createAccount: "アカウント作成",
       supplierOnboarding: "サプライヤー登録",
+      contact: "お問い合わせ",
       startTrading: "取引を開始"
     },
     selectors: {

@@ -10,6 +10,7 @@ const hreflangAlternates = {
   ar: "/ar",
   zh: "/zh",
   ru: "/ru",
+  ja: "/ja",
   "x-default": "/"
 };
 
@@ -26,13 +27,20 @@ export async function generateMetadata({
   const locale: Locale = isLocale(localeParam) ? localeParam : "en";
 
   if (locale === "tr") {
-    const title = "RootFabLink | Üreticiler, Alıcılar ve Ticaret Hizmetleri İçin Küresel B2B Pazaryeri";
+    const title = "RootFabLink | Türkiye B2B Marketplace";
     const description =
-      "RootFabLink; alıcıları, üreticileri, doğrulanmış tedarikçileri, lojistik firmalarını ve ticaret hizmet ekiplerini küresel B2B tedarik, RFQ, ürün keşfi ve güvenli ticaret iş akışlarında buluşturur.";
+      "RootFabLink connects manufacturers, suppliers, logistics providers and customs brokers through a global B2B marketplace.";
 
     return {
-      title,
+      title: {
+        absolute: title
+      },
       description,
+      keywords: ["Türkiye B2B marketplace", "üreticiler", "tedarikçiler", "lojistik", "gümrük müşavirleri", "RootFabLink"],
+      robots: {
+        index: true,
+        follow: true
+      },
       alternates: {
         canonical: `/${locale}`,
         languages: hreflangAlternates
