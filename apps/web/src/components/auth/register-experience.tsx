@@ -23,7 +23,6 @@ type SupplierFormData = {
   password: string;
   confirmPassword: string;
   phone: string;
-  brandName: string;
   legalCompanyName: string;
   country: string;
   city: string;
@@ -45,7 +44,6 @@ const emptySupplierForm: SupplierFormData = {
   password: "",
   confirmPassword: "",
   phone: "",
-  brandName: "",
   legalCompanyName: "",
   country: "",
   city: "",
@@ -73,7 +71,6 @@ const simpleFormFields: Record<Exclude<AccountType, "supplier">, SimpleField[]> 
     { id: "companyName", tr: "Firma Adı", en: "Company Name" },
     { id: "country", tr: "Ülke", en: "Country" },
     { id: "city", tr: "Şehir", en: "City" },
-    { id: "serviceTypes", tr: "Hizmet türleri", en: "Service Types" },
     { id: "coverage", tr: "Hizmet verilen bölgeler", en: "Coverage Regions" },
     { id: "description", tr: "Firma açıklaması", en: "Company Description", span: true }
   ],
@@ -124,7 +121,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
 
   const validateSupplier = () => {
     const nextErrors: Record<string, string> = {};
-    const required: Array<keyof SupplierFormData> = ["fullName", "email", "password", "confirmPassword", "brandName", "country", "businessType", "mainCategory"];
+    const required: Array<keyof SupplierFormData> = ["fullName", "email", "password", "confirmPassword", "country", "businessType", "mainCategory"];
     for (const field of required) {
       if (!supplierForm[field].trim()) {
         nextErrors[field] = tr ? "Bu alan zorunludur." : "This field is required.";
@@ -149,7 +146,6 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
     const draft = {
       id: `supplier_${Date.now()}`,
       accountType: "supplier",
-      brandName: supplierForm.brandName,
       legalCompanyName: supplierForm.legalCompanyName,
       country: supplierForm.country,
       city: supplierForm.city,
@@ -166,9 +162,6 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
       updatedAt: now
     };
     window.localStorage.setItem("rootfablink_supplier_draft", JSON.stringify(draft));
-    if (supplierForm.brandName.trim().toLowerCase() === "i-wall") {
-      window.localStorage.setItem("rootfablink_supplier_draft_iwall", JSON.stringify(draft));
-    }
     const existingDrafts = JSON.parse(window.localStorage.getItem("rootfablink_registration_drafts") ?? "[]") as unknown[];
     window.localStorage.setItem("rootfablink_registration_drafts", JSON.stringify([draft, ...existingDrafts]));
     setSuccess(true);
@@ -197,7 +190,8 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
 
     const label = tr ? accountTypes.find((item) => item.id === selectedType)?.tr : accountTypes.find((item) => item.id === selectedType)?.en;
     const now = new Date().toISOString();
-    const safeValues = Object.fromEntries(Object.entries(simpleValues).filter(([key]) => key !== "password" && key !== "confirmPassword"));
+    const allowedFields = new Set(fields.map((field) => field.id).filter((id) => id !== "password" && id !== "confirmPassword"));
+    const safeValues = Object.fromEntries(Object.entries(simpleValues).filter(([key]) => allowedFields.has(key)));
     const draft = {
       id: `${selectedType}_${Date.now()}`,
       accountType: selectedType,
@@ -264,14 +258,13 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
             <SupplierField label={tr ? "Şifre" : "Password"} value={supplierForm.password} error={errors.password} onChange={(value) => updateSupplier("password", value)} required password />
             <SupplierField label={tr ? "Şifre Tekrar" : "Confirm Password"} value={supplierForm.confirmPassword} error={errors.confirmPassword} onChange={(value) => updateSupplier("confirmPassword", value)} required password />
             <SupplierField label={tr ? "Telefon" : "Phone"} value={supplierForm.phone} onChange={(value) => updateSupplier("phone", value)} />
-            <SupplierField label={tr ? "Marka Adı" : "Brand Name"} value={supplierForm.brandName} error={errors.brandName} onChange={(value) => updateSupplier("brandName", value)} required />
             <SupplierField label={tr ? "Resmi Şirket Adı" : "Legal Company Name"} value={supplierForm.legalCompanyName} onChange={(value) => updateSupplier("legalCompanyName", value)} />
             <SupplierField label={tr ? "Ülke" : "Country"} value={supplierForm.country} error={errors.country} onChange={(value) => updateSupplier("country", value)} required />
             <SupplierField label={tr ? "Şehir" : "City"} value={supplierForm.city} onChange={(value) => updateSupplier("city", value)} />
             <SupplierField label={tr ? "İşletme Türü" : "Business Type"} value={supplierForm.businessType} error={errors.businessType} onChange={(value) => updateSupplier("businessType", value)} required />
             <SupplierField label={tr ? "Ana Kategori" : "Main Category"} value={supplierForm.mainCategory} error={errors.mainCategory} onChange={(value) => updateSupplier("mainCategory", value)} required />
             <label className="grid gap-2 md:col-span-2">
-              <span className="text-xs font-bold uppercase tracking-[0.08em] text-steel">{tr ? "Şirket Açıklaması" : "Company Description"}</span>
+              <span className="text-xs font-bold uppercase tracking-[0.08em] text-steel">{tr ? "Firma Açıklaması" : "Company Description"}</span>
               <textarea value={supplierForm.companyDescription} onChange={(event) => updateSupplier("companyDescription", event.target.value)} className="min-h-28 rounded-md border border-ink/10 px-3 py-3 text-sm font-medium text-ink outline-none focus:border-signal" />
             </label>
           </div>
@@ -355,13 +348,13 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
           )}
           {selectedType === "supplier" && (
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall` : `/${locale}/supplier-center`}>
+              <Button href={`/${locale}/supplier-center`}>
                 {tr ? "Üretici paneline git" : "Go to supplier dashboard"}
               </Button>
-              <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall/products/new` : `/${locale}/products`} variant="secondary">
+              <Button href={`/${locale}/products`} variant="secondary">
                 {tr ? "Ürün ekle" : "Add product"}
               </Button>
-              <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall/patterns/new` : `/${locale}/supplier-center`} variant="secondary">
+              <Button href={`/${locale}/supplier-center`} variant="secondary">
                 {tr ? "Desen koleksiyonu ekle" : "Add pattern collection"}
               </Button>
             </div>

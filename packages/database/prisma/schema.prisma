@@ -254,7 +254,7 @@ model LogisticsProvider {
   id                 String             @id @default(cuid())
   companyId          String             @unique
   company            Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  serviceTypes       String[]
+  serviceTypes       String[]           @default([])
   regions            String[]
   ports              String[]
   transportModes     String[]
