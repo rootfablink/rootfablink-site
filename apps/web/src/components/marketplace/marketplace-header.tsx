@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Camera, Check, ChevronDown, Globe2, Heart, PackageSearch, Search, UserRound } from "lucide-react";
+import { Camera, Check, ChevronDown, Globe2, Search, UserRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
-import { getCorporateCopy } from "@/components/corporate/corporate-copy";
 import { cn } from "@/lib/utils";
 import type { LocalizationPreference } from "./localization-preferences";
 import { languageOptions, preferenceFromLanguage, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
@@ -21,7 +20,6 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
   const headerRef = useRef<HTMLElement | null>(null);
   const [preference, setPreference] = useState<LocalizationPreference>(() => preferenceFromLanguage(locale, false));
   const copy = getMarketplaceCopy(locale);
-  const corporate = getCorporateCopy(locale);
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
   const primaryNavItems = [
     { label: copy.header.manufacturers, href: `/${locale}/manufacturers` },
@@ -66,7 +64,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
 
   return (
     <header ref={headerRef} className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
-      <div className="mx-auto max-w-7xl px-4 py-3 sm:px-5">
+      <div className="mx-auto max-w-7xl px-4 py-2 sm:px-5">
         <div className="flex items-center justify-between gap-3">
           <Link href={`/${locale}`} className="shrink-0">
             <RootFabLinkWordmark size="compact" />
@@ -106,29 +104,29 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
               </button>
               {openPanel === "language" && <LanguageDropdown current={preference.language} onSelect={handleLanguageSelect} />}
             </div>
-            <Link href={`/${locale}/inquiry-basket`} className="flex h-10 w-10 items-center justify-center rounded-md border border-ink/10 text-ink hover:border-signal/35 hover:bg-cloud" aria-label={copy.header.basket}>
-              <Heart size={17} />
-            </Link>
-            <Link href={`/${locale}/contact`} className={cn("flex h-10 items-center rounded-md border border-ink/10 px-3 text-sm font-semibold hover:border-signal/35 hover:bg-cloud", isPrimaryActive(`/${locale}/contact`) ? "border-signal/35 bg-cloud text-copper" : "text-ink")}>
-              {corporate.nav.contact}
-            </Link>
-            <Link href={`/${locale}/about`} className="hidden text-sm font-semibold text-steel hover:text-copper xl:inline-flex">
-              {corporate.nav.about}
-            </Link>
-            <Link href={`/${locale}/help-center`} className="hidden text-sm font-semibold text-steel hover:text-copper xl:inline-flex">
-              {corporate.nav.help}
-            </Link>
             <button type="button" onClick={() => toggle("signin")} className="flex h-10 items-center gap-2 rounded-md border border-ink/10 px-3 text-sm font-semibold text-ink hover:border-signal/35 hover:bg-cloud">
               <UserRound size={16} />
               {copy.header.signIn}
             </button>
-            <Link href={`/${locale}/auth/register`} className="hidden rounded-md bg-signal px-4 py-2.5 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper xl:inline-flex">
-              {copy.header.createAccount}
+            <Link href={`/${locale}/auth/register?type=supplier`} className="inline-flex rounded-md bg-signal px-4 py-2.5 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper">
+              {copy.header.supplierOnboarding}
+            </Link>
+          </div>
+
+          <div className="flex items-center gap-1.5 lg:hidden">
+            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-9 w-9 items-center justify-center rounded-md border border-ink/10 text-ink", openPanel === "language" && "border-signal/35 bg-cloud text-copper")}>
+              <Globe2 size={16} />
+            </button>
+            <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-9 w-9 items-center justify-center rounded-md border border-ink/10 text-ink">
+              <UserRound size={16} />
+            </Link>
+            <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-9 items-center rounded-md bg-signal px-2.5 text-xs font-bold text-white">
+              {copy.header.supplierOnboarding}
             </Link>
           </div>
         </div>
 
-        <div className="mt-3 grid gap-3 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div className="mt-2">
           <div className="rounded-md border border-ink/12 bg-white p-1.5 shadow-[0_8px_22px_rgba(11,11,12,0.05)]">
             <div className="flex gap-1 overflow-x-auto px-1 pb-1">
               {primaryNavItems.map((item) => {
@@ -176,32 +174,6 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
                 </Link>
               );
             })}
-            <button type="button" onClick={() => toggle("language")} className={cn("inline-flex shrink-0 items-center gap-2 rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink", openPanel === "language" && "border-signal/35 bg-cloud text-copper")}>
-              <Globe2 size={15} />
-              {copy.header.languageCurrency}
-            </button>
-            <Link href={`/${locale}/contact`} className={cn("inline-flex shrink-0 items-center rounded-md border px-3 py-2 text-sm font-semibold", isPrimaryActive(`/${locale}/contact`) ? "border-signal/35 bg-cloud text-copper" : "border-ink/10 text-ink")}>
-              {corporate.nav.contact}
-            </Link>
-            <Link href={`/${locale}/about`} className="inline-flex shrink-0 items-center rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink">
-              {corporate.nav.about}
-            </Link>
-            <Link href={`/${locale}/help-center`} className="inline-flex shrink-0 items-center rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink">
-              {corporate.nav.help}
-            </Link>
-            <button type="button" onClick={() => toggle("signin")} className="shrink-0 rounded-md border border-ink/10 px-3 py-2 text-sm font-semibold text-ink">
-              {copy.header.signIn}
-            </button>
-          </div>
-
-          <div className="hidden min-w-max flex-col items-end gap-2 text-sm font-semibold text-ink lg:flex">
-            <Link href={`/${locale}/supplier/onboarding`} className="inline-flex items-center gap-2 rounded-md border border-signal/25 px-3 py-2 text-copper hover:bg-cloud">
-              <PackageSearch size={16} />
-              {copy.header.supplierOnboarding}
-            </Link>
-            <button type="button" onClick={() => toggle("supplier")} className="text-xs font-bold uppercase tracking-[0.1em] text-steel hover:text-ink">
-              {copy.header.supplierCenter}
-            </button>
           </div>
         </div>
       </div>

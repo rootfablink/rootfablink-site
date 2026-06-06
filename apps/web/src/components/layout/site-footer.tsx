@@ -28,6 +28,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             <a href={`/${locale}/contact`} className="rounded-md border border-signal/20 px-3 py-1.5 hover:bg-cloud">
               {corporate.nav.contact}
             </a>
+            <a href={`/${locale}/help-center`} className="rounded-md border border-signal/20 px-3 py-1.5 hover:bg-cloud">
+              {corporate.nav.help}
+            </a>
           </div>
         </div>
         {t.footer.groups.map((group, groupIndex) => (
