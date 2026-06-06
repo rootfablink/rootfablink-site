@@ -18,7 +18,7 @@ export function CategoriesLandingPage({ locale }: { locale: Locale }) {
       <main className="min-h-screen bg-white pb-20 md:pb-0">
         <section className="border-b border-ink/10 bg-[linear-gradient(135deg,#ffffff,#fff7ed)] px-4 py-8 md:px-5 md:py-12">
           <div className="mx-auto max-w-7xl">
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-copper">RootFabLink</p>
+            <p className="text-sm font-bold uppercase tracking-[0.12em] text-copper">Rootfablink</p>
             <h1 className="mt-3 text-3xl font-bold text-ink sm:text-4xl">{tr ? "Tüm kategoriler" : "All categories"}</h1>
             <p className="mt-3 max-w-3xl text-sm leading-6 text-steel">
               {tr

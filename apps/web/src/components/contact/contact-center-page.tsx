@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import type { Locale } from "@rootfablink/i18n";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { MarketplaceHeader } from "@/components/marketplace/marketplace-header";
-import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { createSeoMetadata } from "@/lib/seo";
 import { ContactForm } from "./contact-form";
 import { contactCopy, contactDepartmentOrder, contactEmails, type ContactDepartmentKey } from "./contact-copy";
@@ -55,7 +55,7 @@ export function ContactCenterPage({ locale, variant = "contact" }: { locale: Loc
             </div>
 
             <div className="rounded-md border border-ink/10 bg-white p-5 shadow-soft">
-              <RootFabLinkWordmark size="large" />
+              <RootfablinkWordmark size="large" />
               <p className="mt-4 text-sm leading-6 text-steel">{copy.responseNote}</p>
               <div className="mt-5 grid gap-3">
                 {copy.company.details.map(([label, value]) => (

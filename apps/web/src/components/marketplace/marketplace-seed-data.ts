@@ -63,7 +63,7 @@ type CategoryTemplate = {
 const tradeTerms = ["EXW", "FOB", "CIF"];
 const capabilities = ["OEM ready", "ODM ready", "Customization available", "RFQ available"];
 const supplierNames = [
-  "RootFabLink Marketplace Supplier",
+  "Rootfablink Marketplace Supplier",
   "Manufacturer-ready profile",
   "Trade workflow ready supplier",
   "Export-ready catalog profile"
@@ -227,7 +227,7 @@ function makeListing(category: CategoryTemplate, categoryIndex: number, product:
     subcategoryTr,
     country: category.country,
     countryTr: category.country === "Türkiye" ? "Türkiye" : category.country,
-    supplierName: supplierNames[(categoryIndex + productIndex) % supplierNames.length] ?? "RootFabLink Marketplace Supplier",
+    supplierName: supplierNames[(categoryIndex + productIndex) % supplierNames.length] ?? "Rootfablink Marketplace Supplier",
     supplierType: category.supplierType,
     supplierTypeTr,
     priceRange: product.priceRange,

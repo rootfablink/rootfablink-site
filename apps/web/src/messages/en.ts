@@ -24,7 +24,7 @@ export const en = {
     headline: "Global B2B Trade Infrastructure for Manufacturers, Buyers and Logistics Partners",
     eyebrow: "Türkiye to the world, built for global manufacturing trade",
     subhead:
-      "RootFabLink helps factories, suppliers and global buyers connect, negotiate, source products, manage RFQs and prepare secure international trade workflows.",
+      "Rootfablink helps factories, suppliers and global buyers connect, negotiate, source products, manage RFQs and prepare secure international trade workflows.",
     primary: "Post an RFQ",
     secondary: "List Your Products for Free",
     stats: [
@@ -117,7 +117,7 @@ export const en = {
       eyebrow: "For global buyers",
       title: "Source directly from manufacturers through structured RFQs.",
       intro:
-        "RootFabLink gives procurement teams a clear way to discover suppliers, submit product requirements, compare quotations, communicate securely and prepare international trade workflows.",
+        "Rootfablink gives procurement teams a clear way to discover suppliers, submit product requirements, compare quotations, communicate securely and prepare international trade workflows.",
       primary: "Create buyer account",
       secondary: "Post an RFQ",
       highlights: [
@@ -147,7 +147,7 @@ export const en = {
       eyebrow: "Logistics and customs",
       title: "Connect sourcing with freight, customs and trade service execution.",
       intro:
-        "RootFabLink is designed to make logistics providers, customs brokers, inspection companies and trade consultants part of the same international trade operating system.",
+        "Rootfablink is designed to make logistics providers, customs brokers, inspection companies and trade consultants part of the same international trade operating system.",
       primary: "Join as provider",
       secondary: "Explore trade services",
       highlights: [
@@ -192,7 +192,7 @@ export const en = {
       eyebrow: "Marketplace model",
       title: "Free supplier access with value-based monetization.",
       intro:
-        "RootFabLink is designed around free supplier onboarding and free product listing. Revenue is generated through transaction services, trade assurance, sponsored visibility, premium lead access and future enterprise tools.",
+        "Rootfablink is designed around free supplier onboarding and free product listing. Revenue is generated through transaction services, trade assurance, sponsored visibility, premium lead access and future enterprise tools.",
       primary: "Start free",
       secondary: "Compare growth options",
       highlights: [

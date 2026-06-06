@@ -9,8 +9,8 @@ const en = {
     company: "Company"
   },
   contact: {
-    title: "RootFabLink Contact Center",
-    subtitle: "Contact the right RootFabLink team for sourcing, supplier verification, sales, logistics, customs and platform support.",
+    title: "Rootfablink Contact Center",
+    subtitle: "Contact the right Rootfablink team for sourcing, supplier verification, sales, logistics, customs and platform support.",
     cards: {
       support: ["Support", "Platform usage, account access, technical issues, verification process and general support requests."],
       information: ["General Information", "Company information, platform scope, general questions and initial partnership inquiries."],
@@ -20,7 +20,7 @@ const en = {
     } satisfies Record<ContactDepartmentKey, [string, string]>,
     form: {
       title: "Send a message",
-      subtitle: "Share your request with the relevant RootFabLink department.",
+      subtitle: "Share your request with the relevant Rootfablink department.",
       fullName: "Full name",
       companyName: "Company name",
       email: "Email",
@@ -42,10 +42,10 @@ const en = {
     }
   },
   about: {
-    title: "About RootFabLink",
+    title: "About Rootfablink",
     intro: [
-      "RootFabLink is a Türkiye-based B2B marketplace infrastructure designed to connect manufacturers, suppliers, buyers, logistics companies and customs brokers in one digital trade platform.",
-      "RootFabLink aims to make product discovery, supplier comparison, RFQ creation, secure communication, logistics coordination and customs operations more organized, transparent and accessible."
+      "Rootfablink is a Türkiye-based B2B marketplace infrastructure designed to connect manufacturers, suppliers, buyers, logistics companies and customs brokers in one digital trade platform.",
+      "Rootfablink aims to make product discovery, supplier comparison, RFQ creation, secure communication, logistics coordination and customs operations more organized, transparent and accessible."
     ],
     missionTitle: "Our Mission",
     mission:
@@ -62,18 +62,18 @@ const en = {
       "Company verification, document review, product moderation and auditable platform actions are designed as core trust layers.",
     visionTitle: "Türkiye to Global B2B Trade Vision",
     vision:
-      "RootFabLink is designed to help Türkiye-based manufacturing capabilities connect with global demand while remaining open to international suppliers and trade service providers."
+      "Rootfablink is designed to help Türkiye-based manufacturing capabilities connect with global demand while remaining open to international suppliers and trade service providers."
   },
   help: {
-    title: "RootFabLink Help Center",
+    title: "Rootfablink Help Center",
     subtitle: "Frequently asked questions about account creation, supplier registration, product listing, RFQ, logistics and customs workflows.",
     groups: [
-      ["Account and Registration", "How do I create a RootFabLink account?", "You can choose your role as buyer, supplier, logistics company or customs broker and complete the application form."],
+      ["Account and Registration", "How do I create a Rootfablink account?", "You can choose your role as buyer, supplier, logistics company or customs broker and complete the application form."],
       ["Supplier Registration", "Is supplier registration paid?", "Basic supplier registration and product listing are planned to be free. Sponsored visibility and advertising packages may be offered separately."],
       ["RFQ", "What is an RFQ?", "RFQ is a request for quotation process where buyers specify product, quantity, delivery and requirements to receive offers from suppliers."],
       ["Logistics", "How do logistics companies join the platform?", "Logistics companies can create profiles and connect freight, warehousing and shipment services to buyer and supplier workflows."],
       ["Customs", "What can customs brokers do on the platform?", "Customs brokers can provide document checks, regulatory consulting, import export process guidance and clearance support."],
-      ["Contact", "How can I contact RootFabLink?", "You can contact the relevant department using support@rootfablink.com, info@rootfablink.com, sales@rootfablink.com, logistics@rootfablink.com or custom@rootfablink.com."]
+      ["Contact", "How can I contact Rootfablink?", "You can contact the relevant department using support@rootfablink.com, info@rootfablink.com, sales@rootfablink.com, logistics@rootfablink.com or custom@rootfablink.com."]
     ]
   }
 };
@@ -86,18 +86,18 @@ const tr: typeof en = {
     company: "Kurumsal"
   },
   contact: {
-    title: "RootFabLink İletişim Merkezi",
+    title: "Rootfablink İletişim Merkezi",
     subtitle: "Tedarik, üretici doğrulama, satış, lojistik, gümrük ve platform desteği için ilgili ekibimizle iletişime geçin.",
     cards: {
       support: ["Destek", "Platform kullanımı, hesap erişimi, teknik sorunlar, doğrulama süreci ve genel destek talepleri."],
-      information: ["Genel Bilgi", "RootFabLink hakkında bilgi, kurumsal sorular, platform kapsamı ve iş birliği başlangıç talepleri."],
+      information: ["Genel Bilgi", "Rootfablink hakkında bilgi, kurumsal sorular, platform kapsamı ve iş birliği başlangıç talepleri."],
       sales: ["Satış ve Reklam", "Tedarikçi üyelikleri, sponsorlu görünürlük, reklam paketleri, premium listeleme ve ticari iş birlikleri."],
       logistics: ["Lojistik", "Nakliye, taşıma, depolama, yük teklifleri, lojistik iş birlikleri ve taşıyıcı firma başvuruları."],
       customs: ["Gümrük", "Gümrük müşavirliği, ithalat ihracat süreçleri, belge kontrolü, mevzuat danışmanlığı ve operasyon desteği."]
     },
     form: {
       title: "Mesaj gönder",
-      subtitle: "Talebinizi ilgili RootFabLink departmanıyla paylaşın.",
+      subtitle: "Talebinizi ilgili Rootfablink departmanıyla paylaşın.",
       fullName: "Ad Soyad",
       companyName: "Şirket adı",
       email: "E-posta",
@@ -119,10 +119,10 @@ const tr: typeof en = {
     }
   },
   about: {
-    title: "RootFabLink Hakkında",
+    title: "Rootfablink Hakkında",
     intro: [
-      "RootFabLink, Türkiye merkezli üreticileri, tedarikçileri, alıcıları, lojistik firmalarını ve gümrük müşavirlerini tek bir B2B ticaret altyapısında buluşturmak için tasarlanmış dijital bir pazar yeri platformudur.",
-      "RootFabLink'in amacı; ürün keşfi, tedarikçi karşılaştırması, teklif talebi, güvenli iletişim, lojistik koordinasyon ve gümrük süreçlerini daha düzenli, şeffaf ve erişilebilir hale getirmektir."
+      "Rootfablink, Türkiye merkezli üreticileri, tedarikçileri, alıcıları, lojistik firmalarını ve gümrük müşavirlerini tek bir B2B ticaret altyapısında buluşturmak için tasarlanmış dijital bir pazar yeri platformudur.",
+      "Rootfablink'in amacı; ürün keşfi, tedarikçi karşılaştırması, teklif talebi, güvenli iletişim, lojistik koordinasyon ve gümrük süreçlerini daha düzenli, şeffaf ve erişilebilir hale getirmektir."
     ],
     missionTitle: "Misyonumuz",
     mission:
@@ -139,18 +139,18 @@ const tr: typeof en = {
       "Şirket doğrulama, belge inceleme, ürün moderasyonu ve denetlenebilir platform aksiyonları temel güven katmanları olarak tasarlanır.",
     visionTitle: "Türkiye'den dünyaya B2B ticaret vizyonu",
     vision:
-      "RootFabLink, Türkiye'nin üretim kabiliyetlerini global taleple buluştururken uluslararası tedarikçilere ve ticaret hizmet sağlayıcılarına da açık olacak şekilde tasarlanır."
+      "Rootfablink, Türkiye'nin üretim kabiliyetlerini global taleple buluştururken uluslararası tedarikçilere ve ticaret hizmet sağlayıcılarına da açık olacak şekilde tasarlanır."
   },
   help: {
-    title: "RootFabLink Yardım Merkezi",
+    title: "Rootfablink Yardım Merkezi",
     subtitle: "Hesap oluşturma, tedarikçi kaydı, ürün listeleme, RFQ, lojistik ve gümrük süreçleri hakkında sık sorulan sorular.",
     groups: [
-      ["Hesap ve Kayıt", "RootFabLink hesabı nasıl oluşturulur?", "Alıcı, tedarikçi, lojistik firması veya gümrük müşaviri rolünü seçerek başvuru formunu doldurabilirsiniz."],
+      ["Hesap ve Kayıt", "Rootfablink hesabı nasıl oluşturulur?", "Alıcı, tedarikçi, lojistik firması veya gümrük müşaviri rolünü seçerek başvuru formunu doldurabilirsiniz."],
       ["Tedarikçi Kaydı", "Tedarikçi kaydı ücretli mi?", "Ürün listeleme ve temel tedarikçi kaydı ücretsiz olacak şekilde planlanmıştır. Sponsorlu görünürlük ve reklam paketleri ayrıca sunulabilir."],
       ["RFQ", "RFQ nedir?", "RFQ, alıcıların ürün, miktar, teslimat ve özel gereksinimlerini belirterek tedarikçilerden teklif istemesini sağlayan teklif talebi sürecidir."],
       ["Lojistik", "Lojistik firmaları platformda nasıl yer alır?", "Lojistik firmaları profil oluşturarak taşıma, depolama ve sevkiyat hizmetlerini alıcı ve tedarikçi akışlarına bağlayabilir."],
       ["Gümrük", "Gümrük müşavirleri platformda ne yapabilir?", "Gümrük müşavirleri belge kontrolü, mevzuat danışmanlığı, ithalat ihracat süreçleri ve operasyon desteği sağlayabilir."],
-      ["İletişim", "RootFabLink ile nasıl iletişime geçebilirim?", "İlgili departman e-posta adreslerinden bize ulaşabilirsiniz: support@rootfablink.com, info@rootfablink.com, sales@rootfablink.com, logistics@rootfablink.com, custom@rootfablink.com."]
+      ["İletişim", "Rootfablink ile nasıl iletişime geçebilirim?", "İlgili departman e-posta adreslerinden bize ulaşabilirsiniz: support@rootfablink.com, info@rootfablink.com, sales@rootfablink.com, logistics@rootfablink.com, custom@rootfablink.com."]
     ]
   }
 };

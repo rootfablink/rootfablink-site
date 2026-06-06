@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { Bell, Box, Car, CheckCircle2, ChevronRight, Clock, CreditCard, Footprints, Grid2X2, Heart, Laptop, MapPin, MessageSquareText, PackageSearch, PanelsTopLeft, Phone, ReceiptText, Shirt, ShieldCheck, ShoppingBasket, Smartphone, Sparkles, SunMedium, UserRound } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { Locale } from "@rootfablink/i18n";
-import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { categoriesForGroup, categoryGroups, categoryLocale, categoryPath, getGroupBySlug, groupPath, type MarketplaceCategory } from "@/data/categories";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { getMobileMarketplaceCopy, mobileMessages, mobileSeedProducts } from "./mobile-marketplace-copy";
@@ -170,7 +170,7 @@ function MobilePageShell({ locale, active, title, children }: { locale: Locale; 
     <div className="min-h-screen bg-[#f6f7f8] pb-20 md:hidden">
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-white px-4 py-3">
         <div className="flex items-center justify-between gap-3">
-          <RootFabLinkWordmark size="compact" />
+          <RootfablinkWordmark size="compact" />
           <h1 className="truncate text-base font-bold text-ink">{title}</h1>
         </div>
       </header>

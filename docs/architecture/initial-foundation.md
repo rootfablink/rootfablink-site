@@ -1,4 +1,4 @@
-# ROOTFABLINK Initial Architecture
+# Rootfablink Initial Architecture
 
 ## Existing project inspection
 
@@ -6,7 +6,7 @@ The workspace initially contained only `rootfablink.com.tr .pdf` and no Git repo
 
 ## Recommended architecture
 
-ROOTFABLINK should evolve as a TypeScript monorepo with clearly separated applications and shared packages:
+Rootfablink should evolve as a TypeScript monorepo with clearly separated applications and shared packages:
 
 - `apps/web`: Next.js public site, auth entry points, buyer/supplier dashboards, and future admin UI.
 - `apps/api`: NestJS backend API with modular bounded contexts.

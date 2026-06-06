@@ -8,7 +8,7 @@ export const mobileMarketplaceCopy = {
     searchPlaceholder: "Search products, factories or RFQs",
     searchExamples: ["wall panels", "PS wall panel", "building materials"],
     voiceSearch: "Voice search",
-    lens: "ROOTFABLINK LENS",
+    lens: "Rootfablink LENS",
     shortcuts: ["Source by category", "RFQ request", "Verified suppliers", "Most preferred", "Fast customization", "Sample center", "Contact"],
     worldwideTitle: "Your global supplier guide from 190+ regions",
     sections: {
@@ -20,7 +20,7 @@ export const mobileMarketplaceCopy = {
       categories: "All Categories",
       supplierMatch: "Factory matches for recent interest",
       aiTitle: "Sourcing assistant",
-      aiText: "Describe what you want to source. RootFabLink will prepare supplier, RFQ and logistics suggestions in future modules.",
+      aiText: "Describe what you want to source. Rootfablink will prepare supplier, RFQ and logistics suggestions in future modules.",
       aiPlaceholder: "Example: I need 500 decorative wall panels for a hotel project",
       aiButton: "Prepare sourcing plan"
     },
@@ -35,7 +35,7 @@ export const mobileMarketplaceCopy = {
       signInRequired: "Sign in required to sync real messages. Demo message center is shown for preview.",
       emptyBasket: "Your inquiry basket is empty",
       sourceByCategory: "Source by category",
-      tradeProtection: "RootFabLink trade protection",
+      tradeProtection: "Rootfablink trade protection",
       accountPreview: "Demo account preview",
       signInCta: "Sign in"
     },
@@ -51,7 +51,7 @@ export const mobileMarketplaceCopy = {
     searchPlaceholder: "Ürün, fabrika veya RFQ ara",
     searchExamples: ["polimer lambiri", "duvar paneli", "yapı malzemeleri"],
     voiceSearch: "Sesli arama",
-    lens: "ROOTFABLINK LENS",
+    lens: "Rootfablink LENS",
     shortcuts: ["Kategoriye göre tedarik", "Fiyat Teklifi Talebi (RFQ)", "Doğrulanmış tedarikçiler", "En çok tercih edilenler", "Hızlı özelleştirme", "Numune merkezi", "İletişim"],
     worldwideTitle: "190+ bölgeden küresel tedarikçi rehberiniz",
     sections: {
@@ -63,7 +63,7 @@ export const mobileMarketplaceCopy = {
       categories: "Tüm Kategoriler",
       supplierMatch: "Son ilgi alanlarına göre fabrika eşleşmeleri",
       aiTitle: "Tedarik asistanı",
-      aiText: "Tedarik etmek istediğiniz ürünü anlatın. RootFabLink ilerleyen modüllerde tedarikçi, RFQ ve lojistik önerileri hazırlayacaktır.",
+      aiText: "Tedarik etmek istediğiniz ürünü anlatın. Rootfablink ilerleyen modüllerde tedarikçi, RFQ ve lojistik önerileri hazırlayacaktır.",
       aiPlaceholder: "Örnek: Otel projesi için 500 adet dekoratif duvar paneli arıyorum",
       aiButton: "Tedarik planı hazırla"
     },
@@ -78,7 +78,7 @@ export const mobileMarketplaceCopy = {
       signInRequired: "Gerçek mesajları senkronize etmek için giriş gerekir. Önizleme için demo mesaj merkezi gösteriliyor.",
       emptyBasket: "Sepetiniz boş",
       sourceByCategory: "Kategoriye göre tedarik edin",
-      tradeProtection: "RootFabLink ticaret koruması",
+      tradeProtection: "Rootfablink ticaret koruması",
       accountPreview: "Demo hesap önizlemesi",
       signInCta: "Giriş yap"
     },

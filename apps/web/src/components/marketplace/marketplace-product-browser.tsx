@@ -57,7 +57,7 @@ export function MarketplaceProductBrowser({ locale, copy }: { locale: Locale; co
       <div className="mx-auto max-w-7xl px-4 sm:px-5">
         <div className="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-copper">RootFabLink Marketplace</p>
+            <p className="text-sm font-bold uppercase tracking-[0.12em] text-copper">Rootfablink Marketplace</p>
             <h2 className="mt-3 text-2xl font-bold text-ink sm:text-3xl">{tr ? "Ürün ve hizmet keşfi" : "Product and service discovery"}</h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-steel">
               {tr

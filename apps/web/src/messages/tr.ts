@@ -24,7 +24,7 @@ export const tr = {
     headline: "Üreticiler, Alıcılar ve Lojistik Ortakları İçin Küresel B2B Ticaret Altyapısı",
     eyebrow: "Türkiye'den dünyaya, global üretim ticareti için tasarlandı",
     subhead:
-      "RootFabLink; fabrikaların, tedarikçilerin ve global alıcıların bağlantı kurmasını, müzakere etmesini, ürün tedarik etmesini, RFQ süreçlerini yönetmesini ve güvenli uluslararası ticaret iş akışlarına hazırlanmasını sağlar.",
+      "Rootfablink; fabrikaların, tedarikçilerin ve global alıcıların bağlantı kurmasını, müzakere etmesini, ürün tedarik etmesini, RFQ süreçlerini yönetmesini ve güvenli uluslararası ticaret iş akışlarına hazırlanmasını sağlar.",
     primary: "RFQ Yayınla",
     secondary: "Ürünlerini Ücretsiz Listele",
     stats: [
@@ -117,7 +117,7 @@ export const tr = {
       eyebrow: "Global alıcılar için",
       title: "Yapılandırılmış RFQ akışıyla doğrudan üreticiden tedarik edin.",
       intro:
-        "RootFabLink, satın alma ekiplerine tedarikçi keşfi, ürün ihtiyacı paylaşımı, teklif karşılaştırması, güvenli iletişim ve uluslararası ticaret hazırlığı için düzenli bir çalışma alanı sunar.",
+        "Rootfablink, satın alma ekiplerine tedarikçi keşfi, ürün ihtiyacı paylaşımı, teklif karşılaştırması, güvenli iletişim ve uluslararası ticaret hazırlığı için düzenli bir çalışma alanı sunar.",
       primary: "Alıcı hesabı oluştur",
       secondary: "RFQ yayınla",
       highlights: [
@@ -147,7 +147,7 @@ export const tr = {
       eyebrow: "Lojistik ve gümrük",
       title: "Tedariki navlun, gümrük ve dış ticaret hizmetleriyle aynı yapıda birleştirin.",
       intro:
-        "RootFabLink; lojistik firmalarını, gümrük müşavirlerini, denetim şirketlerini ve dış ticaret danışmanlarını uluslararası ticaret işleyişinin parçası olarak konumlandırır.",
+        "Rootfablink; lojistik firmalarını, gümrük müşavirlerini, denetim şirketlerini ve dış ticaret danışmanlarını uluslararası ticaret işleyişinin parçası olarak konumlandırır.",
       primary: "Hizmet sağlayıcı olarak katıl",
       secondary: "Ticaret hizmetlerini incele",
       highlights: [
@@ -192,7 +192,7 @@ export const tr = {
       eyebrow: "Pazar yeri modeli",
       title: "Ücretsiz tedarikçi erişimi ve değer bazlı gelir modeli.",
       intro:
-        "RootFabLink; ücretsiz tedarikçi kaydı ve ücretsiz ürün listeleme üzerine tasarlanır. Gelir; işlem servisleri, ticaret güvence sistemi, sponsorlu görünürlük, premium lead erişimi ve gelecekteki kurumsal araçlardan oluşur.",
+        "Rootfablink; ücretsiz tedarikçi kaydı ve ücretsiz ürün listeleme üzerine tasarlanır. Gelir; işlem servisleri, ticaret güvence sistemi, sponsorlu görünürlük, premium lead erişimi ve gelecekteki kurumsal araçlardan oluşur.",
       primary: "Ücretsiz başla",
       secondary: "Büyüme seçeneklerini karşılaştır",
       highlights: [

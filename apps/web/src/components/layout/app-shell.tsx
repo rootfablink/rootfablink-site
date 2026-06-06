@@ -1,6 +1,6 @@
 import { BarChart3, Bell, Building2, FileText, LayoutDashboard, PackageSearch, Settings, ShieldCheck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
-import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { dictionaries } from "@/messages";
 
 const navigationIcons = [
@@ -20,7 +20,7 @@ export function AppShell({ locale, title, children }: { locale: Locale; title: s
     <div className="min-h-screen bg-white">
       <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-ink/10 bg-white p-4 lg:block">
         <a href={`/${locale}`} className="flex h-11 items-center overflow-hidden rounded-md bg-ink px-4 text-white ring-2 ring-signal/25">
-          <RootFabLinkWordmark variant="dark" size="compact" />
+          <RootfablinkWordmark variant="dark" size="compact" />
         </a>
         <nav className="mt-6 grid gap-1">
           {t.shell.navigation.map((label, index) => {

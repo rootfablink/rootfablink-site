@@ -1,6 +1,6 @@
 # Database Foundation
 
-The Prisma schema in `packages/database/prisma/schema.prisma` defines the first core ROOTFABLINK entities:
+The Prisma schema in `packages/database/prisma/schema.prisma` defines the first core Rootfablink entities:
 
 - User
 - Company

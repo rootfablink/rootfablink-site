@@ -1,4 +1,4 @@
-# ROOTFABLINK Security Checklist
+# Rootfablink Security Checklist
 
 ## Browser and Frontend
 

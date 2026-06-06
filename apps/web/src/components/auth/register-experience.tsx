@@ -238,7 +238,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
       </div>
 
       <section className="mx-auto mt-8 max-w-xl rounded-md border border-ink/10 bg-white p-5 shadow-soft">
-        <h2 className="text-lg font-bold text-ink">{tr ? "RootFabLink hesabı oluşturun" : "Create your RootFabLink account"}</h2>
+        <h2 className="text-lg font-bold text-ink">{tr ? "Rootfablink hesabı oluşturun" : "Create your Rootfablink account"}</h2>
         <p className="mt-2 text-sm leading-6 text-steel">
           {tr ? "Seçtiğiniz hesap türüyle Google üzerinden güvenli şekilde devam edin veya e-posta formunu doldurun." : "Continue securely with Google for the selected account type or complete the email registration form."}
         </p>

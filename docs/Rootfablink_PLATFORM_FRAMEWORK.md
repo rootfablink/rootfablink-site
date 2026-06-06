@@ -1,6 +1,6 @@
-# RootFabLink Platform Framework
+# Rootfablink Platform Framework
 
-RootFabLink is a production frontend foundation for a global B2B manufacturing, sourcing, logistics, customs and trade services marketplace. Alibaba is used only as a functional benchmark; RootFabLink keeps its own brand, product language, UI structure and Türkiye-to-global positioning.
+Rootfablink is a production frontend foundation for a global B2B manufacturing, sourcing, logistics, customs and trade services marketplace. Alibaba is used only as a functional benchmark; Rootfablink keeps its own brand, product language, UI structure and Türkiye-to-global positioning.
 
 ## Current Frontend Modules
 
@@ -36,7 +36,7 @@ Initial API groups should include `/auth`, `/accounts`, `/suppliers`, `/buyers`,
 
 ## Payment And Trade Protection
 
-RootFabLink should use careful wording until payment infrastructure is implemented: prepared for, designed for, verification-ready and future workflow. Future integrations may include Stripe, Wise, Payoneer, SWIFT, bank transfer and escrow partners.
+Rootfablink should use careful wording until payment infrastructure is implemented: prepared for, designed for, verification-ready and future workflow. Future integrations may include Stripe, Wise, Payoneer, SWIFT, bank transfer and escrow partners.
 
 ## Logistics And Verification Workflow
 

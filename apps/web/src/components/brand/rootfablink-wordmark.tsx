@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type RootFabLinkWordmarkProps = {
+type RootfablinkWordmarkProps = {
   variant?: "light" | "dark" | "accent";
   size?: "compact" | "default" | "large" | "hero";
   className?: string;
@@ -8,13 +8,13 @@ type RootFabLinkWordmarkProps = {
   subline?: string;
 };
 
-export function RootFabLinkWordmark({
+export function RootfablinkWordmark({
   variant = "light",
   size = "default",
   className,
   showSubline = false,
   subline = "GLOBAL B2B MANUFACTURING INFRASTRUCTURE"
-}: RootFabLinkWordmarkProps) {
+}: RootfablinkWordmarkProps) {
   return (
     <span
       className={cn(
@@ -25,11 +25,10 @@ export function RootFabLinkWordmark({
         variant === "accent" && "text-copper",
         className
       )}
-      aria-label="RootFabLink"
+      aria-label="Rootfablink"
     >
       <span className="rootfablink-brand-line" aria-hidden="true">
-        <span className="rootfablink-brand-root">ROOT</span>
-        <span className="rootfablink-brand-fab">FABLINK</span>
+        Rootfablink
       </span>
       {showSubline && <span className="rootfablink-brand-subline">{subline}</span>}
     </span>

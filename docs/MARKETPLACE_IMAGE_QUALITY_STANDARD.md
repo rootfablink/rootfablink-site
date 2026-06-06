@@ -1,6 +1,6 @@
-# RootFabLink Marketplace Image Quality Standard
+# Rootfablink Marketplace Image Quality Standard
 
-RootFabLink marketplace listings must look like serious B2B product catalog entries. Seed listings are internal marketplace structure data and must never create fake trust claims.
+Rootfablink marketplace listings must look like serious B2B product catalog entries. Seed listings are internal marketplace structure data and must never create fake trust claims.
 
 ## Accepted Image Rules
 

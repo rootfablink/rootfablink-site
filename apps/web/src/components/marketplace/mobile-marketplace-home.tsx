@@ -5,7 +5,7 @@
 import { useState } from "react";
 import { Box, Camera, Factory, FileText, Grid2X2, Mail, Mic, PackageSearch, Search, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
-import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
 import { getMarketplaceCopy } from "./marketplace-copy";
@@ -26,7 +26,7 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
     <div className="min-h-screen bg-[#f6f7f8] pb-20 md:hidden">
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-white px-4 pt-3">
         <div className="flex items-center justify-between">
-          <RootFabLinkWordmark size="compact" />
+          <RootfablinkWordmark size="compact" />
           <a href={`/${locale}/supplier/onboarding`} className="rounded-md bg-ink px-3 py-2 text-xs font-bold text-white">
             {marketplaceCopy.header.createAccount}
           </a>

@@ -4,13 +4,13 @@ import { useState } from "react";
 import type { ComponentType } from "react";
 import { ArrowRight, BadgeCheck, Boxes, Camera, Factory, FileSearch, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
-import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Button } from "@/components/ui/button";
 import { FloatingActionBar } from "./floating-action-bar";
 import { getMarketplaceCopy, marketplaceSeedProducts, marketplaceSuppliers } from "./marketplace-copy";
 import { MarketplaceHeader } from "./marketplace-header";
-import { RFQQuickModal, RootFabLinkLensModal } from "./marketplace-modals";
+import { RFQQuickModal, RootfablinkLensModal } from "./marketplace-modals";
 import { MobileMarketplaceHome } from "./mobile-marketplace-home";
 import { ProductCard } from "./product-card";
 import { SupplierCard } from "./supplier-card";
@@ -43,7 +43,7 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
 
             <div className="min-w-0">
               <div className="mb-7 overflow-hidden rounded-md bg-ink px-5 py-6 text-white shadow-soft sm:px-7 sm:py-8">
-                <RootFabLinkWordmark
+                <RootfablinkWordmark
                   variant="dark"
                   size="hero"
                   showSubline
@@ -91,7 +91,7 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
 
         <section className="bg-white py-12 sm:py-14">
           <div className="mx-auto max-w-7xl px-4 sm:px-5">
-            <SectionHeading eyebrow="RootFabLink" title={copy.home.mostSearched} />
+            <SectionHeading eyebrow="Rootfablink" title={copy.home.mostSearched} />
             <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {marketplaceSeedProducts.slice(0, 12).map((product) => (
                 <ProductCard key={product.title} product={product} copy={copy} />
@@ -181,7 +181,7 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
       </main>
       <SiteFooter locale={locale} />
       <FloatingActionBar copy={copy} locale={locale} onOpenLens={() => setLensOpen(true)} onOpenRfq={() => setRfqOpen(true)} />
-      <RootFabLinkLensModal copy={copy} open={lensOpen} onClose={() => setLensOpen(false)} />
+      <RootfablinkLensModal copy={copy} open={lensOpen} onClose={() => setLensOpen(false)} />
       <RFQQuickModal copy={copy} open={rfqOpen} onClose={() => setRfqOpen(false)} />
       </div>
     </>

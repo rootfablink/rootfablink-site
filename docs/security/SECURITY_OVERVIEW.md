@@ -1,4 +1,4 @@
-# ROOTFABLINK Security Overview
+# Rootfablink Security Overview
 
 ## Current Stack
 

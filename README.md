@@ -1,6 +1,6 @@
-# ROOTFABLINK
+# Rootfablink
 
-ROOTFABLINK is a global B2B manufacturing, sourcing, logistics, and trade platform foundation.
+Rootfablink is a global B2B manufacturing, sourcing, logistics, and trade platform foundation.
 
 ## Current foundation
 

@@ -20,7 +20,7 @@ export const marketplaceCopy = {
       rfq: "RFQ",
       search: "Search products, factories or RFQs",
       searchButton: "Search",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       delivery: "Language",
       deliveryCountry: "Türkiye",
       languageCurrency: "Language",
@@ -32,7 +32,7 @@ export const marketplaceCopy = {
     },
     categories: {
       title: "Industrial categories",
-      subtitle: "Explore RootFabLink sectors for global manufacturing, sourcing and trade services.",
+      subtitle: "Explore Rootfablink sectors for global manufacturing, sourcing and trade services.",
       viewAll: "View all categories",
       featuredSupplier: "Featured supplier foundation",
       featuredText: "Verified factory profiles, product catalogs and RFQ response flows are prepared for onboarding.",
@@ -51,7 +51,7 @@ export const marketplaceCopy = {
     },
     verifiedMenu: {
       title: "Access verified factories and manufacturers",
-      text: "RootFabLink is built for document-reviewed suppliers, production capacity profiles and a coming verification program.",
+      text: "Rootfablink is built for document-reviewed suppliers, production capacity profiles and a coming verification program.",
       items: [
         "Verified factories",
         "Document reviewed suppliers",
@@ -82,12 +82,12 @@ export const marketplaceCopy = {
       cta: "Explore protection workflow"
     },
     signIn: {
-      welcome: "Welcome to RootFabLink",
+      welcome: "Welcome to Rootfablink",
       signIn: "Sign in",
       create: "Create account",
       social: "Social sign-in placeholders",
       items: [
-        "My RootFabLink Account",
+        "My Rootfablink Account",
         "My Orders",
         "My Messages",
         "My RFQs",
@@ -115,13 +115,13 @@ export const marketplaceCopy = {
     },
     quick: {
       messages: "Messages",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "Help Center",
       top: "Back to top"
     },
     lens: {
-      title: "ROOTFABLINK LENS",
+      title: "Rootfablink LENS",
       text: "Upload a product image to search similar products and suppliers. Visual search infrastructure will be connected in a future AI module.",
       upload: "Upload product image",
       close: "Close"
@@ -141,8 +141,8 @@ export const marketplaceCopy = {
       heroEyebrow: "Free to join, free to list, commission and promotion based marketplace model.",
       heroTitle: "Global B2B marketplace for manufacturers, buyers and trade services",
       heroText:
-        "Search products, compare manufacturers, send RFQs, prepare protected trade workflows and connect with logistics partners through one RootFabLink marketplace foundation.",
-      welcome: "Welcome to RootFabLink",
+        "Search products, compare manufacturers, send RFQs, prepare protected trade workflows and connect with logistics partners through one Rootfablink marketplace foundation.",
+      welcome: "Welcome to Rootfablink",
       recommended: "Recommended categories",
       mostSearched: "Most searched products",
       verifiedDiscovery: "Verified factory discovery",
@@ -178,14 +178,14 @@ export const marketplaceCopy = {
     buyerCenter: ["How sourcing works", "RFQ marketplace", "Supplier comparison", "Order protection", "Logistics support", "Help center", "Report a problem"],
     supplierCenter: ["Become a supplier", "List products for free", "Verified supplier program", "Sponsored visibility", "RFQ opportunities", "Supplier help center"],
     routes: {
-      categories: ["Categories", "Explore industrial categories, subcategories and supplier discovery paths prepared for the RootFabLink marketplace."],
+      categories: ["Categories", "Explore industrial categories, subcategories and supplier discovery paths prepared for the Rootfablink marketplace."],
       "verified-manufacturers": ["Verified Manufacturers", "Discover verification-ready factory and supplier profile flows built for global sourcing confidence."],
       "trade-protection": ["Trade Protection", "Review secure transaction, documentation and future trade assurance workflow foundations."],
       "buyer-center": ["Buyer Center", "Access buyer tools for sourcing, RFQs, supplier comparison, protection and logistics support."],
       "supplier-center": ["Supplier Center", "Start supplier onboarding, list products for free and prepare sponsored growth visibility."],
       messages: ["Messages", "Messaging foundations are prepared for buyer-supplier conversations in the next platform phase."],
       "help-center": ["Help Center", "Find support foundations for sourcing, supplier onboarding, RFQs and trust workflows."],
-      account: ["Account", "RootFabLink account workspace placeholders are prepared for secure authentication and role-based access."],
+      account: ["Account", "Rootfablink account workspace placeholders are prepared for secure authentication and role-based access."],
       "supplier/onboarding": ["Supplier Onboarding", "Create a supplier profile, list products for free and prepare verification documents."],
       products: ["Products", "Product discovery placeholders are prepared for search, categories and sponsored visibility."],
       manufacturers: ["Manufacturers", "Manufacturer discovery placeholders are prepared for factory profiles and verified supplier programs."]
@@ -206,7 +206,7 @@ export const marketplaceCopy = {
       rfq: "RFQ",
       search: "Ürün, fabrika veya teklif talebi ara",
       searchButton: "Ara",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       delivery: "Dil",
       deliveryCountry: "Türkiye",
       languageCurrency: "Dil",
@@ -218,7 +218,7 @@ export const marketplaceCopy = {
     },
     categories: {
       title: "Endüstriyel kategoriler",
-      subtitle: "Global üretim, tedarik ve ticaret hizmetleri için RootFabLink sektörlerini keşfedin.",
+      subtitle: "Global üretim, tedarik ve ticaret hizmetleri için Rootfablink sektörlerini keşfedin.",
       viewAll: "Tüm kategorileri görüntüle",
       featuredSupplier: "Öne çıkan tedarikçi altyapısı",
       featuredText: "Doğrulamaya hazır fabrika profilleri, ürün katalogları ve RFQ yanıt akışları onboarding için hazırlanır.",
@@ -237,7 +237,7 @@ export const marketplaceCopy = {
     },
     verifiedMenu: {
       title: "Onaylanmış fabrika ve üreticilere erişin",
-      text: "RootFabLink; belge incelemesine, üretim kapasitesi profillerine ve gelecek doğrulama programına hazır şekilde tasarlanır.",
+      text: "Rootfablink; belge incelemesine, üretim kapasitesi profillerine ve gelecek doğrulama programına hazır şekilde tasarlanır.",
       items: ["Doğrulanmış fabrikalar", "Belge incelemesi", "Üretim kapasitesi", "Fabrika denetimine hazır şirketler", "İhracat deneyimi", "Premium üreticiler", "Türkiye merkezli üreticiler", "Global üreticiler"],
       stats: ["Doğrulanmış tedarikçi programı", "Ürün sektörleri", "Ticaret hizmet ortakları"],
       explore: "Onaylanmış tedarikçileri keşfet",
@@ -250,11 +250,11 @@ export const marketplaceCopy = {
       cta: "Koruma akışını incele"
     },
     signIn: {
-      welcome: "RootFabLink'e hoş geldiniz",
+      welcome: "Rootfablink'e hoş geldiniz",
       signIn: "Giriş yap",
       create: "Hesap oluştur",
       social: "Sosyal giriş yer tutucuları",
-      items: ["RootFabLink Hesabım", "Siparişlerim", "Mesajlarım", "Teklif Taleplerim", "Favorilerim", "Hesap Bilgilerim", "Tedarikçi Merkezi", "Üyelik Programı", "Yardım Merkezi"]
+      items: ["Rootfablink Hesabım", "Siparişlerim", "Mesajlarım", "Teklif Taleplerim", "Favorilerim", "Hesap Bilgilerim", "Tedarikçi Merkezi", "Üyelik Programı", "Yardım Merkezi"]
     },
     selectors: {
       language: "Dil",
@@ -273,13 +273,13 @@ export const marketplaceCopy = {
     },
     quick: {
       messages: "Mesajlarım",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "Yardım Merkezi",
       top: "En üste çık"
     },
     lens: {
-      title: "ROOTFABLINK LENS",
+      title: "Rootfablink LENS",
       text: "Benzer ürünleri ve tedarikçileri bulmak için ürün görseli yükleyin. Görsel arama altyapısı ilerleyen AI modülünde bağlanacaktır.",
       upload: "Ürün görseli yükle",
       close: "Kapat"
@@ -299,8 +299,8 @@ export const marketplaceCopy = {
       heroEyebrow: "Katılım ücretsiz, ürün listeleme ücretsiz, gelir modeli işlem komisyonu ve sponsorlu görünürlük üzerine kuruludur.",
       heroTitle: "Üreticiler, alıcılar ve ticaret hizmetleri için küresel B2B pazaryeri",
       heroText:
-        "Ürün arayın, üreticileri karşılaştırın, RFQ gönderin, güvenli ticaret iş akışlarına hazırlanın ve lojistik ortaklarına tek RootFabLink pazaryeri temelinden ulaşın.",
-      welcome: "RootFabLink'e hoş geldiniz",
+        "Ürün arayın, üreticileri karşılaştırın, RFQ gönderin, güvenli ticaret iş akışlarına hazırlanın ve lojistik ortaklarına tek Rootfablink pazaryeri temelinden ulaşın.",
+      welcome: "Rootfablink'e hoş geldiniz",
       recommended: "Önerilen kategoriler",
       mostSearched: "En çok aranan ürünler",
       verifiedDiscovery: "Doğrulanmış fabrika keşfi",
@@ -336,14 +336,14 @@ export const marketplaceCopy = {
     buyerCenter: ["Tedarik süreci nasıl işler?", "Teklif talebi pazarı", "Tedarikçi karşılaştırma", "Sipariş koruması", "Lojistik desteği", "Yardım merkezi", "Sorun bildir"],
     supplierCenter: ["Tedarikçi ol", "Ürünleri ücretsiz listele", "Doğrulanmış tedarikçi programı", "Sponsorlu görünürlük", "RFQ fırsatları", "Tedarikçi yardım merkezi"],
     routes: {
-      categories: ["Kategoriler", "RootFabLink pazaryeri için endüstriyel kategori, alt kategori ve tedarikçi keşif yollarını inceleyin."],
+      categories: ["Kategoriler", "Rootfablink pazaryeri için endüstriyel kategori, alt kategori ve tedarikçi keşif yollarını inceleyin."],
       "verified-manufacturers": ["Onaylanmış Üreticiler", "Global tedarik güveni için hazırlanmış doğrulamaya hazır fabrika ve tedarikçi profil akışlarını keşfedin."],
       "trade-protection": ["Ticaret Güvence Sistemi", "Güvenli işlem, belge ve gelecekteki ticaret güvence iş akışı temellerini inceleyin."],
       "buyer-center": ["Alıcı Merkezi", "Tedarik, RFQ, tedarikçi karşılaştırma, koruma ve lojistik destek araçlarına erişin."],
       "supplier-center": ["Tedarikçi Merkezi", "Tedarikçi onboarding başlatın, ürünleri ücretsiz listeleyin ve sponsorlu büyüme görünürlüğüne hazırlanın."],
       messages: ["Mesajlar", "Mesajlaşma temeli, sonraki platform aşamasında alıcı-tedarikçi görüşmeleri için hazırlanır."],
       "help-center": ["Yardım Merkezi", "Tedarik, tedarikçi onboarding, RFQ ve güven akışları için destek temellerini bulun."],
-      account: ["Hesap", "RootFabLink hesap çalışma alanı, güvenli kimlik doğrulama ve rol bazlı erişim için hazırlanır."],
+      account: ["Hesap", "Rootfablink hesap çalışma alanı, güvenli kimlik doğrulama ve rol bazlı erişim için hazırlanır."],
       "supplier/onboarding": ["Tedarikçi Onboarding", "Tedarikçi profili oluşturun, ürünleri ücretsiz listeleyin ve doğrulama belgelerine hazırlanın."],
       products: ["Ürünler", "Ürün keşfi; arama, kategoriler ve sponsorlu görünürlük için hazırlanır."],
       manufacturers: ["Üreticiler", "Üretici keşfi; fabrika profilleri ve doğrulanmış tedarikçi programları için hazırlanır."]
@@ -399,13 +399,13 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     signIn: {
       ...marketplaceCopy.en.signIn,
-      welcome: "Willkommen bei RootFabLink",
+      welcome: "Willkommen bei Rootfablink",
       signIn: "Anmelden",
       create: "Konto erstellen"
     },
     quick: {
       messages: "Nachrichten",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "Hilfezentrum",
       top: "Nach oben"
@@ -456,13 +456,13 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     signIn: {
       ...marketplaceCopy.en.signIn,
-      welcome: "Bienvenue sur RootFabLink",
+      welcome: "Bienvenue sur Rootfablink",
       signIn: "Connexion",
       create: "Créer un compte"
     },
     quick: {
       messages: "Messages",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "Centre d’aide",
       top: "Retour en haut"
@@ -513,13 +513,13 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     signIn: {
       ...marketplaceCopy.en.signIn,
-      welcome: "Bienvenido a RootFabLink",
+      welcome: "Bienvenido a Rootfablink",
       signIn: "Ingresar",
       create: "Crear cuenta"
     },
     quick: {
       messages: "Mensajes",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "Centro de ayuda",
       top: "Arriba"
@@ -570,13 +570,13 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     signIn: {
       ...marketplaceCopy.en.signIn,
-      welcome: "مرحبا بك في RootFabLink",
+      welcome: "مرحبا بك في Rootfablink",
       signIn: "تسجيل الدخول",
       create: "إنشاء حساب"
     },
     quick: {
       messages: "الرسائل",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "مركز المساعدة",
       top: "إلى الأعلى"
@@ -627,13 +627,13 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     signIn: {
       ...marketplaceCopy.en.signIn,
-      welcome: "欢迎来到 RootFabLink",
+      welcome: "欢迎来到 Rootfablink",
       signIn: "登录",
       create: "创建账户"
     },
     quick: {
       messages: "消息",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "帮助中心",
       top: "返回顶部"
@@ -684,13 +684,13 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     signIn: {
       ...marketplaceCopy.en.signIn,
-      welcome: "Добро пожаловать в RootFabLink",
+      welcome: "Добро пожаловать в Rootfablink",
       signIn: "Войти",
       create: "Создать аккаунт"
     },
     quick: {
       messages: "Сообщения",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "Центр помощи",
       top: "Наверх"
@@ -710,7 +710,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       rfq: "RFQ",
       search: "製品、工場、RFQを検索",
       searchButton: "検索",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       languageCurrency: "言語",
       basket: "問い合わせリスト",
       signIn: "サインイン",
@@ -736,7 +736,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       ...marketplaceCopy.en.home,
       heroEyebrow: "登録無料、製品掲載無料。手数料とプロモーションを中心としたマーケットプレイスモデル。",
       heroTitle: "メーカー、バイヤー、貿易サービスのためのグローバルB2Bマーケットプレイス",
-      heroText: "製品検索、メーカー比較、RFQ送信、国際取引フローの準備、物流パートナーとの接続をRootFabLink上で進められます。",
+      heroText: "製品検索、メーカー比較、RFQ送信、国際取引フローの準備、物流パートナーとの接続をRootfablink上で進められます。",
       recommended: "おすすめカテゴリ",
       mostSearched: "よく検索される製品",
       verifiedDiscovery: "認証対応メーカーの発見",
@@ -757,20 +757,20 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
     },
     signIn: {
       ...marketplaceCopy.en.signIn,
-      welcome: "RootFabLinkへようこそ",
+      welcome: "Rootfablinkへようこそ",
       signIn: "サインイン",
       create: "アカウント作成"
     },
     quick: {
       messages: "メッセージ",
-      lens: "ROOTFABLINK LENS",
+      lens: "Rootfablink LENS",
       rfq: "RFQ",
       help: "ヘルプセンター",
       top: "トップへ戻る"
     },
     lens: {
       ...marketplaceCopy.en.lens,
-      title: "ROOTFABLINK LENS"
+      title: "Rootfablink LENS"
     }
   }
 };

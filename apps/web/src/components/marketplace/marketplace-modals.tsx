@@ -4,7 +4,7 @@ import { Camera, FileUp, X } from "lucide-react";
 import type { ReactNode } from "react";
 import type { MarketplaceCopy } from "./marketplace-copy";
 
-export function RootFabLinkLensModal({ copy, open, onClose }: { copy: MarketplaceCopy; open: boolean; onClose: () => void }) {
+export function RootfablinkLensModal({ copy, open, onClose }: { copy: MarketplaceCopy; open: boolean; onClose: () => void }) {
   if (!open) return null;
 
   return (

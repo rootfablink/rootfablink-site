@@ -193,16 +193,16 @@ function category(
     relatedProducts: [...keywordsEn, ...keywordsTr],
     relatedSuppliers,
     description: {
-      en: `Browse ${nameEn.toLowerCase()} suppliers, product listings and RFQ-ready sourcing options on RootFabLink.`,
-      tr: `RootFabLink üzerinde ${nameTr.toLowerCase()} tedarikçilerini, ürün listelerini ve RFQ hazır tedarik seçeneklerini keşfedin.`
+      en: `Browse ${nameEn.toLowerCase()} suppliers, product listings and RFQ-ready sourcing options on Rootfablink.`,
+      tr: `Rootfablink üzerinde ${nameTr.toLowerCase()} tedarikçilerini, ürün listelerini ve RFQ hazır tedarik seçeneklerini keşfedin.`
     },
     seoTitle: {
-      en: `${nameEn} Suppliers and Products | RootFabLink`,
-      tr: `${nameTr} Tedarikçileri ve Ürünleri | RootFabLink`
+      en: `${nameEn} Suppliers and Products | Rootfablink`,
+      tr: `${nameTr} Tedarikçileri ve Ürünleri | Rootfablink`
     },
     seoDescription: {
-      en: `Find ${nameEn.toLowerCase()} products, manufacturers and RFQ workflows through RootFabLink's global B2B marketplace.`,
-      tr: `${nameTr.toLowerCase()} ürünlerini, üreticilerini ve RFQ akışlarını RootFabLink küresel B2B pazaryerinde bulun.`
+      en: `Find ${nameEn.toLowerCase()} products, manufacturers and RFQ workflows through Rootfablink's global B2B marketplace.`,
+      tr: `${nameTr.toLowerCase()} ürünlerini, üreticilerini ve RFQ akışlarını Rootfablink küresel B2B pazaryerinde bulun.`
     }
   };
 }

@@ -3,7 +3,7 @@
 import { Globe2, ShieldCheck, UserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@rootfablink/i18n";
-import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { dictionaries } from "@/messages";
 import { Button } from "@/components/ui/button";
 import { preferenceFromLanguage, replaceLocaleInPath, writeStoredPreference } from "@/components/marketplace/localization-preferences";
@@ -32,7 +32,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
       <div className="mx-auto flex min-h-14 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-5">
         <a href={`/${locale}`} className="min-w-0 shrink-0">
-          <RootFabLinkWordmark size="compact" />
+          <RootfablinkWordmark size="compact" />
         </a>
         <nav className="hidden items-center gap-6 text-sm font-medium text-steel md:flex">
           <a href={`/${locale}/manufacturers`}>{t.nav.manufacturers}</a>

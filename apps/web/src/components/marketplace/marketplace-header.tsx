@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Camera, Check, ChevronDown, Globe2, Search, UserRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
-import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
+import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { cn } from "@/lib/utils";
 import type { LocalizationPreference } from "./localization-preferences";
 import { languageOptions, preferenceFromLanguage, readStoredPreference, replaceLocaleInPath, writeStoredPreference } from "./localization-preferences";
@@ -67,7 +67,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
       <div className="mx-auto max-w-7xl px-4 py-2 sm:px-5">
         <div className="flex items-center justify-between gap-3">
           <Link href={`/${locale}`} className="shrink-0">
-            <RootFabLinkWordmark size="compact" />
+            <RootfablinkWordmark size="compact" />
           </Link>
 
           <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>

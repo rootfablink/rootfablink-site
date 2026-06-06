@@ -1,4 +1,4 @@
-# ROOTFABLINK Gap Audit
+# Rootfablink Gap Audit
 
 ## Current strengths
 
