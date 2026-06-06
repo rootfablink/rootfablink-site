@@ -15,7 +15,7 @@ export function AccountSessionGate({ locale, authConfigured }: { locale: Locale;
     let active = true;
 
     if (!authConfigured) {
-      router.replace(`/${locale}/auth/login?oauthError=1&error=Configuration`);
+      router.replace(`/${locale}/auth/login?next=/${locale}/account`);
       return () => {
         active = false;
       };
@@ -31,7 +31,7 @@ export function AccountSessionGate({ locale, authConfigured }: { locale: Locale;
         setSession(nextSession);
       })
       .catch(() => {
-        if (active) router.replace(`/${locale}/auth/login?oauthError=1&error=SessionUnavailable`);
+        if (active) router.replace(`/${locale}/auth/login?next=/${locale}/account`);
       });
 
     return () => {

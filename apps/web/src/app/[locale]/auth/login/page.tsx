@@ -5,8 +5,14 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { dictionaries } from "@/messages";
 import { googleOAuthConfigured } from "@/lib/auth";
 
-export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: rawLocale } = await params;
+export default async function LoginPage({
+  params,
+  searchParams
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ error?: string; next?: string }>;
+}) {
+  const [{ locale: rawLocale }, { error, next }] = await Promise.all([params, searchParams]);
   const locale: Locale = isLocale(rawLocale) ? rawLocale : "en";
   const t = dictionaries[locale];
 
@@ -20,7 +26,7 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
           <p className="mt-4 text-sm leading-6 text-steel sm:text-base">{locale === "tr" ? "Tedarik, teklif, mesajlaşma ve şirket yönetimi işlemlerinize devam edin." : t.auth.loginText}</p>
         </section>
         <Suspense fallback={<div className="min-h-80 rounded-md border border-ink/10 bg-white shadow-soft" />}>
-          <LoginExperience locale={locale} googleConfigured={googleOAuthConfigured} />
+          <LoginExperience locale={locale} googleConfigured={googleOAuthConfigured} showOAuthError={error === "google_auth_failed"} nextPath={next} />
         </Suspense>
       </main>
     </>

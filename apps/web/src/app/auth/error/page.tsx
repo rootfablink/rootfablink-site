@@ -8,14 +8,8 @@ export default async function AuthErrorPage({
   searchParams: Promise<{ error?: string }>;
 }) {
   const cookieStore = await cookies();
-  const { error } = await searchParams;
+  await searchParams;
   const storedLocale = cookieStore.get("rootfablink_locale")?.value;
   const locale = storedLocale && isLocale(storedLocale) ? storedLocale : "tr";
-  const query = new URLSearchParams({ oauthError: "1" });
-
-  if (error) {
-    query.set("error", error);
-  }
-
-  redirect(`/${locale}/auth/login?${query.toString()}`);
+  redirect(`/${locale}/auth/login?error=google_auth_failed`);
 }

@@ -1,22 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { HelpCircle, KeyRound } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { saveDemoSession } from "@/lib/auth-demo-storage";
 import { cn } from "@/lib/utils";
 import { AuthDivider, GoogleOAuthButton } from "./google-oauth-button";
 
-export function LoginExperience({ locale, googleConfigured }: { locale: Locale; googleConfigured: boolean }) {
+export function LoginExperience({
+  locale,
+  googleConfigured,
+  showOAuthError = false,
+  nextPath
+}: {
+  locale: Locale;
+  googleConfigured: boolean;
+  showOAuthError?: boolean;
+  nextPath?: string;
+}) {
   const tr = locale === "tr";
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const oauthError = searchParams.get("oauthError") === "1" || Boolean(searchParams.get("error"));
+
+  useEffect(() => {
+    if (!showOAuthError) return;
+
+    router.replace(nextPath ? `/${locale}/auth/login?next=${encodeURIComponent(nextPath)}` : `/${locale}/auth/login`, { scroll: false });
+  }, [locale, nextPath, router, showOAuthError]);
 
   const validate = () => {
     const nextErrors: Record<string, string> = {};
@@ -42,7 +56,7 @@ export function LoginExperience({ locale, googleConfigured }: { locale: Locale; 
 
   return (
     <div className="rounded-md border border-ink/10 bg-white p-4 shadow-soft sm:p-6">
-      {oauthError && (
+      {showOAuthError && (
         <p className="mb-5 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-700">
           {tr ? "Google ile giriş tamamlanamadı. Lütfen tekrar deneyin." : "Google sign-in could not be completed. Please try again."}
         </p>
