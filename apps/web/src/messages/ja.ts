@@ -20,7 +20,7 @@ export const ja = {
     trust: "信頼",
     rfq: "RFQ",
     signIn: "サインイン",
-    start: "取引を開始"
+    start: "登録"
   },
   home: {
     ...en.home,

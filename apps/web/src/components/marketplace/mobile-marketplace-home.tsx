@@ -8,9 +8,11 @@ import type { Locale } from "@rootfablink/i18n";
 import { RootFabLinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
+import { getMarketplaceCopy } from "./marketplace-copy";
 
 export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
   const copy = getMobileMarketplaceCopy(locale);
+  const marketplaceCopy = getMarketplaceCopy(locale);
   const [query, setQuery] = useState("");
 
   const saveSearch = () => {
@@ -26,7 +28,7 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
         <div className="flex items-center justify-between">
           <RootFabLinkWordmark size="compact" />
           <a href={`/${locale}/supplier/onboarding`} className="rounded-md bg-ink px-3 py-2 text-xs font-bold text-white">
-            {locale === "tr" ? "Tedarikçi ol" : "Supplier"}
+            {marketplaceCopy.header.createAccount}
           </a>
         </div>
         <MobilePrimaryTabs locale={locale} labels={copy.tabs} active="products" />

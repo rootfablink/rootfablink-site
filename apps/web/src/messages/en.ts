@@ -18,7 +18,7 @@ export const en = {
     trust: "Trust",
     rfq: "RFQ",
     signIn: "Sign in",
-    start: "Start trading"
+    start: "Sign Up"
   },
   home: {
     headline: "Global B2B Trade Infrastructure for Manufacturers, Buyers and Logistics Partners",

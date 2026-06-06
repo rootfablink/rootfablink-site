@@ -2,7 +2,7 @@ export const ru = {
   localeName: "Русский",
   languageSwitch: "English",
   language: { label: "Язык", ready: "Доступно", preparing: "Редакционная версия готовится", note: "Для каждого рынка используется профессиональный B2B-текст, написанный естественно для этого языка." },
-  nav: { buyers: "Покупатели", suppliers: "Поставщики", manufacturers: "Производители", products: "Товары", customs: "Таможня", logistics: "Логистика", pricing: "Тарифы", trust: "Доверие", rfq: "Запросы", signIn: "Войти", start: "Начать торговлю" },
+  nav: { buyers: "Покупатели", suppliers: "Поставщики", manufacturers: "Производители", products: "Товары", customs: "Таможня", logistics: "Логистика", pricing: "Тарифы", trust: "Доверие", rfq: "Запросы", signIn: "Войти", start: "Регистрация" },
   home: {
     headline: "ROOTFABLINK",
     eyebrow: "B2B-инфраструктура для производства, закупок и мировой торговли",

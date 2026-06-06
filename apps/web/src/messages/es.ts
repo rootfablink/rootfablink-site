@@ -2,7 +2,7 @@ export const es = {
   localeName: "Español",
   languageSwitch: "English",
   language: { label: "Idioma", ready: "Disponible", preparing: "Versión editorial en preparación", note: "Cada mercado utiliza textos B2B revisados, naturales y redactados para su propio contexto comercial." },
-  nav: { buyers: "Compradores", suppliers: "Proveedores", manufacturers: "Fabricantes", products: "Productos", customs: "Aduanas", logistics: "Logística", pricing: "Planes", trust: "Confianza", rfq: "Solicitudes", signIn: "Ingresar", start: "Empezar" },
+  nav: { buyers: "Compradores", suppliers: "Proveedores", manufacturers: "Fabricantes", products: "Productos", customs: "Aduanas", logistics: "Logística", pricing: "Planes", trust: "Confianza", rfq: "Solicitudes", signIn: "Ingresar", start: "Registrarse" },
   home: {
     headline: "ROOTFABLINK",
     eyebrow: "Infraestructura B2B para manufactura, abastecimiento y comercio global",

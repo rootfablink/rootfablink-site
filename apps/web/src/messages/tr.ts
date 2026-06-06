@@ -18,7 +18,7 @@ export const tr = {
     trust: "Güven",
     rfq: "Talepler",
     signIn: "Giriş yap",
-    start: "Ticarete başla"
+    start: "Kayıt Ol"
   },
   home: {
     headline: "Üreticiler, Alıcılar ve Lojistik Ortakları İçin Küresel B2B Ticaret Altyapısı",

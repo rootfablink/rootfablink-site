@@ -2,7 +2,7 @@ export const zh = {
   localeName: "中文",
   languageSwitch: "English",
   language: { label: "语言", ready: "已上线", preparing: "本地化商务文案准备中", note: "每个市场都使用经过审阅、符合当地商务表达的专业 B2B 文案。" },
-  nav: { buyers: "买家", suppliers: "供应商", manufacturers: "制造商", products: "产品", customs: "清关", logistics: "物流", pricing: "套餐", trust: "信任", rfq: "询盘", signIn: "登录", start: "开始贸易" },
+  nav: { buyers: "买家", suppliers: "供应商", manufacturers: "制造商", products: "产品", customs: "清关", logistics: "物流", pricing: "套餐", trust: "信任", rfq: "询盘", signIn: "登录", start: "注册" },
   home: {
     headline: "ROOTFABLINK",
     eyebrow: "面向制造、采购与全球贸易的 B2B 基础设施",

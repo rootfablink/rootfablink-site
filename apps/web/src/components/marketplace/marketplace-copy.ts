@@ -26,7 +26,7 @@ export const marketplaceCopy = {
       languageCurrency: "Language",
       basket: "Inquiry basket",
       signIn: "Sign in",
-      createAccount: "Create account",
+      createAccount: "Sign Up",
       supplierOnboarding: "Become a supplier",
       startTrading: "Start trading"
     },
@@ -212,7 +212,7 @@ export const marketplaceCopy = {
       languageCurrency: "Dil",
       basket: "Talep sepeti",
       signIn: "Giriş yap",
-      createAccount: "Hesap oluştur",
+      createAccount: "Kayıt Ol",
       supplierOnboarding: "Tedarikçi ol",
       startTrading: "Ticarete başla"
     },
@@ -370,7 +370,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       delivery: "Lieferland",
       languageCurrency: "Sprache",
       signIn: "Anmelden",
-      createAccount: "Konto erstellen",
+      createAccount: "Registrieren",
       supplierOnboarding: "Lieferant werden",
       contact: "Kontakt",
       startTrading: "Handel starten"
@@ -427,7 +427,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       delivery: "Livraison",
       languageCurrency: "Langue",
       signIn: "Connexion",
-      createAccount: "Créer un compte",
+      createAccount: "S'inscrire",
       supplierOnboarding: "Devenir fournisseur",
       contact: "Contact",
       startTrading: "Commencer"
@@ -484,7 +484,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       delivery: "Entrega",
       languageCurrency: "Idioma",
       signIn: "Ingresar",
-      createAccount: "Crear cuenta",
+      createAccount: "Registrarse",
       supplierOnboarding: "Ser proveedor",
       contact: "Contacto",
       startTrading: "Empezar"
@@ -598,7 +598,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       delivery: "配送至",
       languageCurrency: "语言",
       signIn: "登录",
-      createAccount: "创建账户",
+      createAccount: "注册",
       supplierOnboarding: "成为供应商",
       contact: "联系我们",
       startTrading: "开始贸易"
@@ -655,7 +655,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       delivery: "Доставка",
       languageCurrency: "Язык",
       signIn: "Войти",
-      createAccount: "Создать аккаунт",
+      createAccount: "Регистрация",
       supplierOnboarding: "Стать поставщиком",
       contact: "Контакты",
       startTrading: "Начать торговлю"
@@ -714,7 +714,7 @@ const localizedMarketplaceCopy: Record<Locale, MarketplaceCopy> = {
       languageCurrency: "言語",
       basket: "問い合わせリスト",
       signIn: "サインイン",
-      createAccount: "アカウント作成",
+      createAccount: "登録",
       supplierOnboarding: "サプライヤー登録",
       contact: "お問い合わせ",
       startTrading: "取引を開始"

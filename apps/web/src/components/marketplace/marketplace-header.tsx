@@ -109,7 +109,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
               {copy.header.signIn}
             </button>
             <Link href={`/${locale}/auth/register?type=supplier`} className="inline-flex rounded-md bg-signal px-4 py-2.5 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper">
-              {copy.header.supplierOnboarding}
+              {copy.header.createAccount}
             </Link>
           </div>
 
@@ -121,7 +121,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
               <UserRound size={16} />
             </Link>
             <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-9 items-center rounded-md bg-signal px-2.5 text-xs font-bold text-white">
-              {copy.header.supplierOnboarding}
+              {copy.header.createAccount}
             </Link>
           </div>
         </div>
