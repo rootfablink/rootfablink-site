@@ -20,7 +20,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
       <div className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between gap-1 px-1.5 py-2 min-[420px]:px-2 sm:min-h-14 sm:gap-3 sm:px-5">
         <a href={`/${locale}`} className="shrink-0 whitespace-nowrap">
-          <RootfablinkWordmark size="compact" className="text-[30px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:0] sm:text-[23px] sm:font-semibold sm:[--rfl-tracking:0.035em]" />
+          <RootfablinkWordmark text="ROOTFABLINK" size="compact" className="text-[24px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:2px] md:text-[32px]" />
         </a>
         <nav className="hidden items-center gap-6 text-sm font-medium text-steel md:flex">
           <a href={`/${locale}/manufacturers`}>{t.nav.manufacturers}</a>

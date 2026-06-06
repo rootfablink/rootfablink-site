@@ -23,7 +23,7 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
   return (
     <div className="min-h-screen bg-[#f6f7f8] pb-20 md:hidden">
       <MobileUtilityHeader locale={locale} />
-      <div className="sticky top-[53px] z-40 border-b border-ink/10 bg-white px-3 pt-1">
+      <div className="sticky top-[72px] z-[49] border-b border-ink/10 bg-white px-3 pt-1 shadow-[0_8px_18px_rgba(11,11,12,0.06)]">
         <MobilePrimaryTabs locale={locale} labels={copy.tabs} active="products" />
       </div>
 

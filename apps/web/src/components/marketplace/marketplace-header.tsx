@@ -63,11 +63,11 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
   };
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
+    <header ref={headerRef} className="sticky top-0 z-[60] border-b border-ink/10 bg-white/96 backdrop-blur">
       <div className="mx-auto max-w-7xl px-1.5 py-2 min-[420px]:px-2 sm:px-5">
         <div className="flex min-h-[56px] items-center justify-between gap-1 min-[420px]:min-h-16 sm:gap-3 lg:min-h-0">
           <Link href={`/${locale}`} className="shrink-0 whitespace-nowrap">
-            <RootfablinkWordmark size="compact" className="text-[30px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:0] lg:text-[23px] lg:font-semibold lg:[--rfl-tracking:0.035em]" />
+            <RootfablinkWordmark text="ROOTFABLINK" size="compact" className="text-[24px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:2px] lg:text-[32px]" />
           </Link>
 
           <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>

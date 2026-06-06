@@ -22,8 +22,9 @@ export function MobileUtilityHeader({ locale, title }: { locale: Locale; title?:
       <div className="flex items-center justify-between gap-1">
         <Link href={`/${locale}`} className="shrink-0 whitespace-nowrap">
           <RootfablinkWordmark
+            text="ROOTFABLINK"
             size="compact"
-            className="text-[30px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:0]"
+            className="text-[24px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:2px]"
           />
         </Link>
 

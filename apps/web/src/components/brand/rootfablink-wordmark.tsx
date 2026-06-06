@@ -4,6 +4,7 @@ type RootfablinkWordmarkProps = {
   variant?: "light" | "dark" | "accent";
   size?: "compact" | "default" | "large" | "hero";
   className?: string;
+  text?: string;
   showSubline?: boolean;
   subline?: string;
 };
@@ -12,6 +13,7 @@ export function RootfablinkWordmark({
   variant = "light",
   size = "default",
   className,
+  text = "Rootfablink",
   showSubline = false,
   subline = "GLOBAL B2B MANUFACTURING INFRASTRUCTURE"
 }: RootfablinkWordmarkProps) {
@@ -28,7 +30,7 @@ export function RootfablinkWordmark({
       aria-label="Rootfablink"
     >
       <span className="rootfablink-brand-line" aria-hidden="true">
-        Rootfablink
+        {text}
       </span>
       {showSubline && <span className="rootfablink-brand-subline">{subline}</span>}
     </span>
