@@ -138,9 +138,9 @@ export const countrySourcingCards = [
 ];
 
 export const mobileMessages = [
-  { sender: "i-WALL Support", subject: "Sample wall panel request", subjectTr: "Numune duvar paneli talebi", unread: 3 },
-  { sender: "Türkiye Logistics Partner", subject: "Delivery options for wall panels", subjectTr: "Duvar panelleri için teslimat seçenekleri", unread: 1 },
-  { sender: "Global Buyer Desk", subject: "RFQ response preparation", subjectTr: "RFQ yanıt hazırlığı", unread: 0 },
-  { sender: "Verification Team", subject: "Supplier document preview", subjectTr: "Üretici belge önizlemesi", unread: 2 },
-  { sender: "RFQ Assistant", subject: "Suggested suppliers for your request", subjectTr: "Talebiniz için önerilen üreticiler", unread: 0 }
+  { sender: "i-WALL Support", senderTr: "i-WALL Destek", subject: "Sample wall panel request", subjectTr: "Numune duvar paneli talebi", unread: 3 },
+  { sender: "Türkiye Logistics Partner", senderTr: "Türkiye Lojistik Partneri", subject: "Delivery options for wall panels", subjectTr: "Duvar panelleri için teslimat seçenekleri", unread: 1 },
+  { sender: "Global Buyer Desk", senderTr: "Küresel Alıcı Masası", subject: "RFQ response preparation", subjectTr: "RFQ yanıt hazırlığı", unread: 0 },
+  { sender: "Verification Team", senderTr: "Doğrulama Ekibi", subject: "Supplier document preview", subjectTr: "Üretici belge önizlemesi", unread: 2 },
+  { sender: "RFQ Assistant", senderTr: "RFQ Asistanı", subject: "Suggested suppliers for your request", subjectTr: "Talebiniz için önerilen üreticiler", unread: 0 }
 ];

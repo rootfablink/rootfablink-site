@@ -66,8 +66,8 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
     <header ref={headerRef} className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 py-2 sm:px-5">
         <div className="flex items-center justify-between gap-3">
-          <Link href={`/${locale}`} className="shrink-0">
-            <RootfablinkWordmark size="compact" />
+          <Link href={`/${locale}`} className="min-w-0 shrink overflow-hidden lg:shrink-0">
+            <RootfablinkWordmark size="compact" className="text-[22px] font-semibold [--rfl-scale:1] [--rfl-tracking:0.035em] sm:text-[23px]" />
           </Link>
 
           <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>
@@ -98,7 +98,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
                   openPanel === "language" && "border-signal/35 bg-cloud text-copper"
                 )}
               >
-                <Globe2 size={16} />
+                <Globe2 size={18} className="text-copper" strokeWidth={2.2} />
                 {copy.header.languageCurrency}
                 <ChevronDown size={14} />
               </button>
@@ -114,13 +114,13 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
           </div>
 
           <div className="flex items-center gap-1.5 lg:hidden">
-            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-9 w-9 items-center justify-center rounded-md border border-ink/10 text-ink", openPanel === "language" && "border-signal/35 bg-cloud text-copper")}>
-              <Globe2 size={16} />
+            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-9 w-9 items-center justify-center rounded-md border border-signal/20 bg-cloud text-copper", openPanel === "language" && "border-signal/45")}>
+              <Globe2 size={18} strokeWidth={2.2} />
             </button>
-            <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-9 w-9 items-center justify-center rounded-md border border-ink/10 text-ink">
-              <UserRound size={16} />
+            <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-9 items-center justify-center rounded-md px-1.5 text-[11px] font-bold whitespace-nowrap text-ink hover:bg-cloud xs:px-2 xs:text-xs">
+              {copy.header.signIn}
             </Link>
-            <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-9 items-center rounded-md bg-signal px-2.5 text-xs font-bold text-white">
+            <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-9 items-center rounded-md bg-signal px-2 text-[11px] font-bold whitespace-nowrap text-white xs:px-2.5 xs:text-xs">
               {copy.header.createAccount}
             </Link>
           </div>
@@ -192,8 +192,8 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
       )}
 
       {openPanel === "language" && (
-        <div className="border-t border-ink/10 bg-white shadow-soft lg:hidden">
-          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-5">
+        <div className="fixed inset-x-3 top-14 z-[70] lg:hidden">
+          <div className="mx-auto max-w-7xl">
             <LanguageDropdown current={preference.language} onSelect={handleLanguageSelect} mobile />
           </div>
         </div>
@@ -204,7 +204,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
 
 function LanguageDropdown({ current, onSelect, mobile = false }: { current: Locale; onSelect: (language: Locale) => void; mobile?: boolean }) {
   return (
-    <div className={cn("rounded-md border border-ink/10 bg-white p-1.5 shadow-[0_18px_42px_rgba(11,11,12,0.14)]", mobile ? "w-full" : "absolute right-0 top-[calc(100%+0.5rem)] z-50 w-48")}>
+    <div className={cn("rounded-md border border-ink/10 bg-white p-1.5 shadow-[0_18px_42px_rgba(11,11,12,0.18)]", mobile ? "max-h-[min(72vh,30rem)] w-full overflow-y-auto" : "absolute right-0 top-[calc(100%+0.5rem)] z-50 max-h-[min(72vh,30rem)] w-52 overflow-y-auto")}>
       {languageOptions.map((option) => {
         const active = option.code === current;
         return (

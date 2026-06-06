@@ -7,10 +7,10 @@ import type { ReactNode } from "react";
 import { Bell, Box, Car, CheckCircle2, ChevronRight, Clock, CreditCard, Footprints, Grid2X2, Heart, Laptop, MapPin, MessageSquareText, PackageSearch, PanelsTopLeft, Phone, ReceiptText, Shirt, ShieldCheck, ShoppingBasket, Smartphone, Sparkles, SunMedium, UserRound } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { Locale } from "@rootfablink/i18n";
-import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { categoriesForGroup, categoryGroups, categoryLocale, categoryPath, getGroupBySlug, groupPath, type MarketplaceCategory } from "@/data/categories";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { getMobileMarketplaceCopy, mobileMessages, mobileSeedProducts } from "./mobile-marketplace-copy";
+import { MobileUtilityHeader } from "./mobile-utility-header";
 
 export function MobileCategoriesPage({ locale }: { locale: Locale }) {
   const copy = getMobileMarketplaceCopy(locale);
@@ -94,7 +94,7 @@ export function MobileMessagesPage({ locale }: { locale: Locale }) {
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
-                  <h2 className="truncate text-sm font-bold text-ink">{message.sender}</h2>
+                  <h2 className="truncate text-sm font-bold text-ink">{locale === "tr" ? message.senderTr : message.sender}</h2>
                   {message.unread > 0 && <span className="rounded-full bg-signal px-2 py-0.5 text-[10px] font-bold text-white">{message.unread}</span>}
                 </div>
                 <p className="mt-1 text-xs font-semibold leading-5 text-steel">{locale === "tr" ? message.subjectTr ?? message.subject : message.subject}</p>
@@ -168,12 +168,7 @@ export function MobileAccountPage({ locale }: { locale: Locale }) {
 function MobilePageShell({ locale, active, title, children }: { locale: Locale; active: "home" | "categories" | "messages" | "basket" | "account"; title: string; children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[#f6f7f8] pb-20 md:hidden">
-      <header className="sticky top-0 z-40 border-b border-ink/10 bg-white px-4 py-3">
-        <div className="flex items-center justify-between gap-3">
-          <RootfablinkWordmark size="compact" />
-          <h1 className="truncate text-base font-bold text-ink">{title}</h1>
-        </div>
-      </header>
+      <MobileUtilityHeader locale={locale} title={title} />
       <main className="px-4 py-4">{children}</main>
       <MobileBottomNav locale={locale} active={active} />
     </div>

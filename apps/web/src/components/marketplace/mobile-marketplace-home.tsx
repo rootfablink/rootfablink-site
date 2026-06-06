@@ -5,14 +5,12 @@
 import { useState } from "react";
 import { Box, Camera, Factory, FileText, Grid2X2, Mail, Mic, PackageSearch, Search, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
-import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
-import { getMarketplaceCopy } from "./marketplace-copy";
+import { MobileUtilityHeader } from "./mobile-utility-header";
 
 export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
   const copy = getMobileMarketplaceCopy(locale);
-  const marketplaceCopy = getMarketplaceCopy(locale);
   const [query, setQuery] = useState("");
 
   const saveSearch = () => {
@@ -24,15 +22,10 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
 
   return (
     <div className="min-h-screen bg-[#f6f7f8] pb-20 md:hidden">
-      <header className="sticky top-0 z-40 border-b border-ink/10 bg-white px-4 pt-3">
-        <div className="flex items-center justify-between">
-          <RootfablinkWordmark size="compact" />
-          <a href={`/${locale}/supplier/onboarding`} className="rounded-md bg-ink px-3 py-2 text-xs font-bold text-white">
-            {marketplaceCopy.header.createAccount}
-          </a>
-        </div>
+      <MobileUtilityHeader locale={locale} />
+      <div className="sticky top-[53px] z-40 border-b border-ink/10 bg-white px-3 pt-1">
         <MobilePrimaryTabs locale={locale} labels={copy.tabs} active="products" />
-      </header>
+      </div>
 
       <main className="px-4 py-4">
         <section className="rounded-2xl bg-white p-3 shadow-[0_8px_22px_rgba(11,11,12,0.05)]">
