@@ -64,10 +64,10 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
 
   return (
     <header ref={headerRef} className="sticky top-0 z-40 border-b border-ink/10 bg-white/96 backdrop-blur">
-      <div className="mx-auto max-w-7xl px-2 py-2 sm:px-5">
-        <div className="flex items-center justify-between gap-1 sm:gap-3">
+      <div className="mx-auto max-w-7xl px-1.5 py-2 min-[420px]:px-2 sm:px-5">
+        <div className="flex min-h-[56px] items-center justify-between gap-1 min-[420px]:min-h-16 sm:gap-3 lg:min-h-0">
           <Link href={`/${locale}`} className="shrink-0 whitespace-nowrap">
-            <RootfablinkWordmark size="compact" className="text-[28px] font-bold [--rfl-scale:1] [--rfl-tracking:0] lg:text-[23px] lg:font-semibold lg:[--rfl-tracking:0.035em]" />
+            <RootfablinkWordmark size="compact" className="text-[30px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:0] lg:text-[23px] lg:font-semibold lg:[--rfl-tracking:0.035em]" />
           </Link>
 
           <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>
@@ -113,14 +113,14 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             </Link>
           </div>
 
-          <div className="flex shrink-0 items-center gap-0.5 lg:hidden">
-            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-8 w-8 items-center justify-center rounded-md border border-signal/20 bg-cloud text-copper", openPanel === "language" && "border-signal/45")}>
-              <Globe2 size={18} strokeWidth={2.2} />
+          <div className="flex shrink-0 items-center gap-0.5 min-[420px]:gap-1 lg:hidden">
+            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-10 w-10 items-center justify-center rounded-xl border border-signal/20 bg-cloud text-copper xs:h-11 xs:w-11 min-[420px]:h-12 min-[420px]:w-12", openPanel === "language" && "border-signal/45")}>
+              <Globe2 size={21} strokeWidth={2.2} />
             </button>
-            <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-8 items-center justify-center rounded-md px-1 text-[10px] font-bold whitespace-nowrap text-ink hover:bg-cloud xs:px-1.5 xs:text-[11px]">
+            <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-10 items-center justify-center rounded-xl px-1 text-[11px] font-semibold whitespace-nowrap text-ink hover:bg-cloud xs:h-11 xs:px-1.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-2 min-[420px]:text-[15px]">
               {copy.header.signIn}
             </Link>
-            <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-8 items-center rounded-md bg-signal px-1.5 text-[10px] font-bold whitespace-nowrap text-white xs:px-2 xs:text-[11px]">
+            <Link href={`/${locale}/auth/register?type=supplier`} className="flex h-10 items-center rounded-xl bg-signal px-2 text-[11px] font-bold whitespace-nowrap text-white xs:h-11 xs:px-2.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-3 min-[420px]:text-[15px]">
               {copy.header.createAccount}
             </Link>
           </div>

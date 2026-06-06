@@ -18,22 +18,22 @@ export function MobileUtilityHeader({ locale, title }: { locale: Locale; title?:
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-white/96 px-2 py-2 backdrop-blur md:hidden">
+    <header className="sticky top-0 z-50 min-h-[72px] border-b border-ink/10 bg-white/96 px-1.5 py-2 backdrop-blur min-[420px]:px-2 md:hidden">
       <div className="flex items-center justify-between gap-1">
         <Link href={`/${locale}`} className="shrink-0 whitespace-nowrap">
           <RootfablinkWordmark
             size="compact"
-            className="text-[28px] font-bold [--rfl-scale:1] [--rfl-tracking:0]"
+            className="text-[30px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:0]"
           />
         </Link>
 
-        <div className="flex shrink-0 items-center gap-0.5">
+        <div className="flex shrink-0 items-center gap-0.5 min-[420px]:gap-1">
           <details className="group">
             <summary
               aria-label={copy.header.languageCurrency}
-              className="flex h-8 w-8 cursor-pointer list-none items-center justify-center rounded-md border border-signal/20 bg-cloud text-copper"
+              className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-xl border border-signal/20 bg-cloud text-copper xs:h-11 xs:w-11 min-[420px]:h-12 min-[420px]:w-12"
             >
-              <Globe2 size={18} strokeWidth={2.2} />
+              <Globe2 size={21} strokeWidth={2.2} />
             </summary>
             <div className="fixed inset-x-3 top-14 z-[80] max-h-[min(70vh,28rem)] overflow-y-auto rounded-md border border-ink/10 bg-white p-2 shadow-[0_18px_42px_rgba(11,11,12,0.18)]">
               {languageOptions.map((option) => {
@@ -55,10 +55,10 @@ export function MobileUtilityHeader({ locale, title }: { locale: Locale; title?:
               })}
             </div>
           </details>
-          <Link href={`/${locale}/auth/login`} className="inline-flex h-8 items-center rounded-md px-1 text-[10px] font-bold whitespace-nowrap text-ink hover:bg-cloud xs:px-1.5 xs:text-[11px]">
+          <Link href={`/${locale}/auth/login`} className="inline-flex h-10 items-center rounded-xl px-1 text-[11px] font-semibold whitespace-nowrap text-ink hover:bg-cloud xs:h-11 xs:px-1.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-2 min-[420px]:text-[15px]">
             {copy.header.signIn}
           </Link>
-          <Link href={`/${locale}/auth/register`} className="inline-flex h-8 items-center rounded-md bg-ink px-1.5 text-[10px] font-bold whitespace-nowrap text-white xs:px-2 xs:text-[11px]">
+          <Link href={`/${locale}/auth/register`} className="inline-flex h-10 items-center rounded-xl bg-ink px-2 text-[11px] font-bold whitespace-nowrap text-white xs:h-11 xs:px-2.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-3 min-[420px]:text-[15px]">
             {copy.header.createAccount}
           </Link>
         </div>
