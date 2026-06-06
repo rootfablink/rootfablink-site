@@ -14,6 +14,10 @@ const hreflangAlternates = {
   "x-default": "/"
 };
 
+const homepageTitle = "Rootfablink | Global B2B Platform for Manufacturers, Suppliers and Buyers";
+const socialTitle = "Rootfablink | Global B2B Platform";
+const homepageDescription = "Rootfablink connects manufacturers, suppliers and buyers through sourcing, RFQs, messaging, logistics, customs services and digital trade infrastructure.";
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -26,43 +30,30 @@ export async function generateMetadata({
   const { locale: localeParam } = await params;
   const locale: Locale = isLocale(localeParam) ? localeParam : "en";
 
-  if (locale === "tr") {
-    const title = "RootFabLink | Türkiye B2B Marketplace";
-    const description =
-      "RootFabLink connects manufacturers, suppliers, logistics providers and customs brokers through a global B2B marketplace.";
-
-    return {
-      title: {
-        absolute: title
-      },
-      description,
-      keywords: ["Türkiye B2B marketplace", "üreticiler", "tedarikçiler", "lojistik", "gümrük müşavirleri", "RootFabLink"],
-      robots: {
-        index: true,
-        follow: true
-      },
-      alternates: {
-        canonical: `/${locale}`,
-        languages: hreflangAlternates
-      },
-      openGraph: {
-        title,
-        description,
-        siteName: "RootFabLink",
-        type: "website"
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description
-      }
-    };
-  }
-
   return {
+    title: {
+      absolute: homepageTitle
+    },
+    description: homepageDescription,
+    keywords: ["Rootfablink", "B2B platform", "manufacturers", "suppliers", "buyers", "RFQ", "logistics", "customs services", "digital trade"],
+    robots: {
+      index: true,
+      follow: true
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: hreflangAlternates
+    },
+    openGraph: {
+      title: socialTitle,
+      description: homepageDescription,
+      siteName: "Rootfablink",
+      type: "website"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description: homepageDescription
     }
   };
 }

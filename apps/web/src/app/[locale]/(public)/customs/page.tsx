@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return createSeoMetadata(
     locale as Locale,
     "/customs",
-    tr ? "Gümrük Operasyonları | RootFabLink" : "Customs Operations | RootFabLink",
+    tr ? "Gümrük Operasyonları | Rootfablink" : "Customs Operations | Rootfablink",
     tr ? "Gümrük müşavirliği, ithalat-ihracat süreçleri, GTİP ve dış ticaret uyum desteğini keşfedin." : "Explore customs brokerage, import-export procedures, HS code and trade compliance support.",
     ["customs brokers", "customs clearance", "trade compliance"]
   );

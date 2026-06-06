@@ -3,21 +3,22 @@ import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? "https://rootfablink.com";
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-const title = "RootFabLink | Türkiye B2B Marketplace";
-const description = "RootFabLink connects manufacturers, suppliers, logistics providers and customs brokers through a global B2B marketplace.";
+const title = "Rootfablink | Global B2B Platform for Manufacturers, Suppliers and Buyers";
+const socialTitle = "Rootfablink | Global B2B Platform";
+const description = "Rootfablink connects manufacturers, suppliers and buyers through sourcing, RFQs, messaging, logistics, customs services and digital trade infrastructure.";
 
 export const metadata: Metadata = {
   title: {
     default: title,
-    template: "%s | RootFabLink"
+    template: "%s | Rootfablink"
   },
   description,
-  keywords: ["RootFabLink", "B2B marketplace", "manufacturers", "suppliers", "industrial sourcing", "logistics", "customs brokers", "Türkiye export"],
+  keywords: ["Rootfablink", "B2B platform", "manufacturers", "suppliers", "buyers", "industrial sourcing", "RFQ", "logistics", "customs services", "digital trade"],
   metadataBase: new URL(siteUrl),
-  applicationName: "RootFabLink",
-  authors: [{ name: "RootFabLink", url: siteUrl }],
-  creator: "RootFabLink",
-  publisher: "RootFabLink",
+  applicationName: "Rootfablink",
+  authors: [{ name: "Rootfablink", url: siteUrl }],
+  creator: "Rootfablink",
+  publisher: "Rootfablink",
   robots: {
     index: true,
     follow: true,
@@ -31,16 +32,16 @@ export const metadata: Metadata = {
   },
   verification: googleSiteVerification ? { google: googleSiteVerification } : undefined,
   openGraph: {
-    title,
+    title: socialTitle,
     description,
     url: siteUrl,
-    siteName: "RootFabLink",
+    siteName: "Rootfablink",
     type: "website",
-    images: [{ url: "/logo.png", width: 1200, height: 300, alt: "RootFabLink" }]
+    images: [{ url: "/logo.png", width: 1200, height: 300, alt: "Rootfablink" }]
   },
   twitter: {
     card: "summary_large_image",
-    title,
+    title: socialTitle,
     description,
     images: ["/logo.png"]
   }
@@ -50,8 +51,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "RootFabLink",
-    alternateName: "Rootfablink",
+    name: "Rootfablink",
+    description: "Global B2B Platform",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     email: "info@rootfablink.com",

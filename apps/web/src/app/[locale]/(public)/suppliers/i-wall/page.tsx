@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const tr = locale === "tr";
 
   return {
-    title: tr ? "i-WALL | Polimer Lambiri Üretici Showroom | RootFabLink" : "i-WALL | PS Wall Panel Manufacturer Showroom | RootFabLink",
+    title: tr ? "i-WALL | Polimer Lambiri Üretici Showroom | Rootfablink" : "i-WALL | PS Wall Panel Manufacturer Showroom | Rootfablink",
     description: tr
       ? "i-WALL polimer lambiri modellerini gerçek ürün görselleriyle keşfedin, RFQ gönderin ve tedarikçiyle iletişime geçin."
       : "Discover i-WALL PS wall panel models with real product images, send RFQs and contact the manufacturer.",
@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: tr ? "i-WALL Polimer Lambiri Showroom" : "i-WALL PS Wall Panel Showroom",
       description: tr
-        ? "RootFabLink üzerinde i-WALL üretici showroom ve ürün kataloğu."
-        : "i-WALL manufacturer showroom and product catalog on RootFabLink.",
+        ? "Rootfablink üzerinde i-WALL üretici showroom ve ürün kataloğu."
+        : "i-WALL manufacturer showroom and product catalog on Rootfablink.",
       url: `${siteUrl}/${locale}/suppliers/i-wall`,
       images: ["/brands/i-wall/no1.jpeg"]
     },

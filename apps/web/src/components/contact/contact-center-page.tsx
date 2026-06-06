@@ -18,12 +18,12 @@ const departmentIcons: Record<ContactDepartmentKey, typeof Headphones> = {
 
 export function contactMetadata(locale: Locale): Metadata {
   const copy = contactCopy[locale];
-  return createSeoMetadata(locale, "/contact", `${copy.title} | RootFabLink`, copy.subtitle, ["RootFabLink contact", "B2B marketplace support", "logistics contact", "customs support"]);
+  return createSeoMetadata(locale, "/contact", `${copy.title} | Rootfablink`, copy.subtitle, ["Rootfablink contact", "B2B platform support", "logistics contact", "customs support"]);
 }
 
 export function companyMetadata(locale: Locale): Metadata {
   const copy = contactCopy[locale];
-  return createSeoMetadata(locale, "/company", `${copy.company.title} | RootFabLink`, copy.company.subtitle, ["RootFabLink company", "global B2B marketplace", "manufacturing sourcing platform"]);
+  return createSeoMetadata(locale, "/company", `${copy.company.title} | Rootfablink`, copy.company.subtitle, ["Rootfablink company", "global B2B platform", "manufacturing sourcing platform"]);
 }
 
 export function ContactCenterPage({ locale, variant = "contact" }: { locale: Locale; variant?: "contact" | "company" }) {

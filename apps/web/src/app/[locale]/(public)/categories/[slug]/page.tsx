@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { isLocale, locales, type Locale } from "@rootfablink/i18n";
 import { CategoryDetailPage } from "@/components/marketplace/category-detail-page";
 import { categoryLocale, categoryPath, categoryStaticParams, getCategoryByAnySlug, getCategoryBySlug } from "@/data/categories";
-import { siteUrl } from "@/lib/seo";
+import { normalizePublicSeoText, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return categoryStaticParams(locales);
@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const languages = Object.fromEntries(locales.map((supportedLocale) => [supportedLocale, `${siteUrl}${categoryPath(supportedLocale, category)}`]));
 
   return {
-    title: category.seoTitle[language],
-    description: category.seoDescription[language],
+    title: normalizePublicSeoText(category.seoTitle[language]),
+    description: normalizePublicSeoText(category.seoDescription[language]),
     alternates: {
       canonical: `${siteUrl}${categoryPath(locale, category)}`,
       languages: {
@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       follow: true
     },
     openGraph: {
-      title: category.seoTitle[language],
-      description: category.seoDescription[language],
+      title: normalizePublicSeoText(category.seoTitle[language]),
+      description: normalizePublicSeoText(category.seoDescription[language]),
       url: `${siteUrl}${categoryPath(locale, category)}`,
       type: "website"
     }

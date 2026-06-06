@@ -10,15 +10,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   const tr = locale === "tr";
   const product = marketplaceSeedProducts.find((item) => item.slug === slug);
-  const title = product ? (tr ? product.titleTr ?? product.title : product.title) : "RootFabLink Product";
+  const title = product ? (tr ? product.titleTr ?? product.title : product.title) : "Rootfablink Product";
   const description = product
     ? tr
       ? product.shortDescriptionTr ?? product.shortDescription
       : product.shortDescription
-    : "RootFabLink B2B product detail page.";
+    : "Rootfablink B2B product detail page.";
 
   return {
-    title: `${title} | RootFabLink`,
+    title: `${title} | Rootfablink`,
     description,
     alternates: {
       canonical: `${siteUrl}/${locale}/products/${slug}`,
@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       follow: true
     },
     openGraph: {
-      title: `${title} | RootFabLink`,
+      title: `${title} | Rootfablink`,
       description,
       url: `${siteUrl}/${locale}/products/${slug}`,
       images: product?.mainImage ? [product.mainImage] : undefined
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | RootFabLink`,
+      title: `${title} | Rootfablink`,
       description,
       images: product?.mainImage ? [product.mainImage] : undefined
     }

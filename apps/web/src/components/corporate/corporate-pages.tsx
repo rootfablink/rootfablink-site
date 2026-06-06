@@ -20,31 +20,31 @@ export function corporateMetadata(locale: Locale, page: "about" | "contact" | "h
   const copy = getCorporateCopy(locale);
   const metadata = {
     about: {
-      title: locale === "tr" ? "Hakkımızda | RootFabLink" : "About Us | RootFabLink",
+      title: locale === "tr" ? "Hakkımızda | Rootfablink" : "About Us | Rootfablink",
       description: copy.about.intro[0]
     },
     contact: {
-      title: locale === "tr" ? "İletişim | RootFabLink" : "Contact | RootFabLink",
+      title: locale === "tr" ? "İletişim | Rootfablink" : "Contact | Rootfablink",
       description:
         locale === "tr"
-          ? "RootFabLink destek, satış, lojistik, gümrük ve genel bilgi iletişim kanalları."
-          : "Contact RootFabLink for support, sales, logistics, customs and general information."
+          ? "Rootfablink destek, satış, lojistik, gümrük ve genel bilgi iletişim kanalları."
+          : "Contact Rootfablink for support, sales, logistics, customs and general information."
     },
     "help-center": {
-      title: locale === "tr" ? "Yardım Merkezi | RootFabLink" : "Help Center | RootFabLink",
+      title: locale === "tr" ? "Yardım Merkezi | Rootfablink" : "Help Center | Rootfablink",
       description: copy.help.subtitle
     }
   }[page] ?? {
-    title: "RootFabLink",
-    description: copy.about.intro[0] ?? "RootFabLink global B2B marketplace infrastructure."
+    title: "Rootfablink",
+    description: copy.about.intro[0] ?? "Rootfablink global B2B platform infrastructure."
   };
 
   return createSeoMetadata(
     locale,
     `/${page}`,
-    metadata.title ?? "RootFabLink",
-    metadata.description ?? "RootFabLink global B2B marketplace infrastructure.",
-    ["RootFabLink", page, "B2B marketplace"]
+    metadata.title ?? "Rootfablink",
+    metadata.description ?? "Rootfablink global B2B platform infrastructure.",
+    ["Rootfablink", page, "B2B platform"]
   );
 }
 

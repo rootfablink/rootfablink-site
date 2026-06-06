@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return createSeoMetadata(
     locale as Locale,
     "/categories",
-    tr ? "B2B Ürün Kategorileri | RootFabLink" : "B2B Product Categories | RootFabLink",
-    tr ? "RootFabLink üzerinde endüstriyel ürün, üretici ve tedarikçi kategorilerini keşfedin." : "Explore industrial product, manufacturer and supplier categories on RootFabLink.",
+    tr ? "B2B Ürün Kategorileri | Rootfablink" : "B2B Product Categories | Rootfablink",
+    tr ? "Rootfablink üzerinde endüstriyel ürün, üretici ve tedarikçi kategorilerini keşfedin." : "Explore industrial product, manufacturer and supplier categories on Rootfablink.",
     ["B2B categories", "industrial sourcing", "product categories"]
   );
 }

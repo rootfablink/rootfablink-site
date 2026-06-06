@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const page = dictionaries[locale as Locale].pages.logistics;
-  return createSeoMetadata(locale as Locale, "/logistics", `${page.title} | RootFabLink`, page.intro, ["B2B logistics", "freight forwarding", "international shipping"]);
+  return createSeoMetadata(locale as Locale, "/logistics", `${page.title} | Rootfablink`, page.intro, ["B2B logistics", "freight forwarding", "international shipping"]);
 }
 
 export default async function LogisticsPage({ params }: { params: Promise<{ locale: string }> }) {
