@@ -102,7 +102,7 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
                 <Info label={tr ? "Fiyat" : "Price"} value={product.priceRange} />
                 <Info label="MOQ" value={product.moq} />
                 <Info label={tr ? "Teslim süresi" : "Lead time"} value={leadTime ?? ""} />
-                <Info label={tr ? "Tedarikçi tipi" : "Supplier type"} value={supplierType ?? "Supplier profile"} />
+                <Info label={tr ? "Üretici tipi" : "Supplier type"} value={supplierType ?? "Supplier profile"} />
               </div>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Button href={`/${locale}/rfq/new`}>
@@ -111,7 +111,7 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
                 </Button>
                 <Button href={`/${locale}/messages`} variant="secondary">
                   <MessageSquareText className="mr-2" size={17} />
-                  {tr ? "Tedarikçi ile iletişime geç" : "Contact supplier"}
+                  {tr ? "Üretici ile iletişime geç" : "Contact supplier"}
                 </Button>
                 <button type="button" className="inline-flex items-center justify-center rounded-md border border-ink/10 px-4 py-3 text-sm font-bold text-ink hover:bg-cloud">
                   <Heart className="mr-2" size={17} />

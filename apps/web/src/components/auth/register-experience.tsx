@@ -33,10 +33,10 @@ type SupplierFormData = {
 };
 
 const accountTypes: Array<{ id: AccountType; tr: string; en: string; textTr: string; textEn: string }> = [
-  { id: "buyer", tr: "Alıcı", en: "Buyer", textTr: "Ürün arayın, RFQ oluşturun ve tedarikçileri karşılaştırın.", textEn: "Source products, post RFQs and compare suppliers." },
-  { id: "supplier", tr: "Tedarikçi", en: "Supplier", textTr: "Şirket profilinizi oluşturun ve ürünlerinizi listelemeye hazırlanın.", textEn: "Create a company profile and prepare product listings." },
-  { id: "logistics", tr: "Lojistik firması", en: "Logistics provider", textTr: "Lojistik hizmetlerinizi alıcı ve tedarikçi akışlarına bağlayın.", textEn: "Connect logistics services to buyer and supplier workflows." },
-  { id: "customs", tr: "Gümrük müşaviri", en: "Customs broker", textTr: "Gümrük, evrak ve uyum hizmetleri için profil hazırlayın.", textEn: "Prepare a profile for customs, documents and compliance services." }
+  { id: "buyer", tr: "Alıcı", en: "Buyer", textTr: "Ürün arayın, üreticileri karşılaştırın ve RFQ oluşturun.", textEn: "Source products, post RFQs and compare suppliers." },
+  { id: "supplier", tr: "Üretici", en: "Supplier", textTr: "Şirket profilinizi oluşturun, ürünlerinizi yayınlayın ve küresel alıcılara ulaşın.", textEn: "Create a company profile and prepare product listings." },
+  { id: "logistics", tr: "Lojistik Firması", en: "Logistics provider", textTr: "Lojistik hizmetlerinizi alıcı ve üretici akışlarına bağlayın.", textEn: "Connect logistics services to buyer and supplier workflows." },
+  { id: "customs", tr: "Gümrük Müşaviri", en: "Customs broker", textTr: "Gümrük, evrak ve uyum hizmetleri için profil hazırlayın.", textEn: "Prepare a profile for customs, documents and compliance services." }
 ];
 
 const emptySupplierForm: SupplierFormData = {
@@ -252,7 +252,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
       {selectedType === "supplier" ? (
         <section className="mt-8 rounded-md border border-ink/10 bg-white p-5 shadow-[0_14px_34px_rgba(11,11,12,0.06)]">
           <div className="border-b border-ink/10 pb-5">
-            <h2 className="text-xl font-bold text-ink">{tr ? "Tedarikçi kayıt formu" : "Supplier registration form"}</h2>
+            <h2 className="text-xl font-bold text-ink">{tr ? "Üretici kayıt formu" : "Supplier registration form"}</h2>
             <p className="mt-2 text-sm leading-6 text-steel">
               {tr ? "Şirket bilgilerinizi manuel olarak girin. Kayıt taslağı güvenli şekilde yerel olarak saklanır; şifre kaydedilmez." : "Enter your company information manually. The registration draft is saved locally; passwords are never stored."}
             </p>
@@ -278,7 +278,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
 
           <div className="mt-6 flex justify-end border-t border-ink/10 pt-5">
             <button type="button" onClick={submitSupplier} className="rounded-md bg-signal px-5 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(249,115,22,0.22)] hover:bg-copper">
-              {tr ? "Tedarikçi hesabı oluştur" : "Create supplier account"}
+              {tr ? "Üretici hesabı oluştur" : "Create supplier account"}
             </button>
           </div>
         </section>
@@ -290,7 +290,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
           {selectedType === "buyer" && (
             <p className="mt-2 max-w-2xl text-sm leading-6 text-steel">
               {tr
-                ? "Ürün aramak, tedarikçilerle iletişime geçmek ve RFQ oluşturmak için alıcı hesabınızı oluşturun."
+                ? "Ürün aramak, üreticilerle iletişime geçmek ve RFQ oluşturmak için alıcı hesabınızı oluşturun."
                 : "Create your buyer account to search products, contact suppliers and create RFQs."}
             </p>
           )}
@@ -333,7 +333,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
             <CheckCircle2 size={20} />
             <h2 className="text-xl font-bold">
               {selectedType === "supplier"
-                ? tr ? "Tedarikçi profil taslağı oluşturuldu" : "Supplier profile draft created"
+                ? tr ? "Üretici profil taslağı oluşturuldu" : "Supplier profile draft created"
                 : selectedType === "buyer"
                   ? tr ? "Alıcı hesabı oluşturuldu" : "Buyer account created"
                   : tr ? "Kayıt taslağı oluşturuldu" : "Registration draft created"}
@@ -343,7 +343,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
             {selectedType === "supplier"
               ? tr ? "Şirket profiliniz kaydedildi. Ürünlerinizi, desenlerinizi ve katalog bilgilerinizi eklemeye başlayabilirsiniz." : "Your company profile has been saved. You can start adding products, patterns and catalog information."
               : selectedType === "buyer"
-                ? tr ? "Artık ürünleri keşfedebilir, tedarikçilerle iletişime geçebilir ve teklif talebi oluşturabilirsiniz." : "You can now discover products, contact suppliers and create RFQs."
+                ? tr ? "Artık ürünleri keşfedebilir, üreticilerle iletişime geçebilir ve teklif talebi oluşturabilirsiniz." : "You can now discover products, contact suppliers and create RFQs."
                 : tr ? "Bilgileriniz localStorage üzerinde taslak olarak kaydedildi." : "Your information has been saved as a local draft."}
           </p>
           {selectedType === "buyer" && (
@@ -356,7 +356,7 @@ export function RegisterExperience({ locale, googleConfigured }: { locale: Local
           {selectedType === "supplier" && (
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall` : `/${locale}/supplier-center`}>
-                {tr ? "Tedarikçi paneline git" : "Go to supplier dashboard"}
+                {tr ? "Üretici paneline git" : "Go to supplier dashboard"}
               </Button>
               <Button href={supplierForm.brandName.trim().toLowerCase() === "i-wall" ? `/${locale}/suppliers/i-wall/products/new` : `/${locale}/products`} variant="secondary">
                 {tr ? "Ürün ekle" : "Add product"}

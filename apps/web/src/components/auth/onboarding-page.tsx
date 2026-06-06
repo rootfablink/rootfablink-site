@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 
 const roleCopy = {
   buyer: { tr: "Alıcı", en: "Buyer" },
-  supplier: { tr: "Tedarikçi", en: "Supplier" },
+  supplier: { tr: "Üretici", en: "Supplier" },
   logistics: { tr: "Lojistik Sağlayıcısı", en: "Logistics Provider" },
   customs: { tr: "Gümrük Müşaviri", en: "Customs Broker" }
 } as const;

@@ -91,7 +91,7 @@ const tr: typeof en = {
     cards: {
       support: ["Destek", "Platform kullanımı, hesap erişimi, teknik sorunlar, doğrulama süreci ve genel destek talepleri."],
       information: ["Genel Bilgi", "Rootfablink hakkında bilgi, kurumsal sorular, platform kapsamı ve iş birliği başlangıç talepleri."],
-      sales: ["Satış ve Reklam", "Tedarikçi üyelikleri, sponsorlu görünürlük, reklam paketleri, premium listeleme ve ticari iş birlikleri."],
+      sales: ["Satış ve Reklam", "Üretici üyelikleri, sponsorlu görünürlük, reklam paketleri, premium listeleme ve ticari iş birlikleri."],
       logistics: ["Lojistik", "Nakliye, taşıma, depolama, yük teklifleri, lojistik iş birlikleri ve taşıyıcı firma başvuruları."],
       customs: ["Gümrük", "Gümrük müşavirliği, ithalat ihracat süreçleri, belge kontrolü, mevzuat danışmanlığı ve operasyon desteği."]
     },
@@ -121,8 +121,8 @@ const tr: typeof en = {
   about: {
     title: "Rootfablink Hakkında",
     intro: [
-      "Rootfablink, Türkiye merkezli üreticileri, tedarikçileri, alıcıları, lojistik firmalarını ve gümrük müşavirlerini tek bir B2B ticaret altyapısında buluşturmak için tasarlanmış dijital bir pazar yeri platformudur.",
-      "Rootfablink'in amacı; ürün keşfi, tedarikçi karşılaştırması, teklif talebi, güvenli iletişim, lojistik koordinasyon ve gümrük süreçlerini daha düzenli, şeffaf ve erişilebilir hale getirmektir."
+      "Rootfablink, Türkiye merkezli üreticileri, üreticileri, alıcıları, lojistik firmalarını ve gümrük müşavirlerini tek bir B2B ticaret altyapısında buluşturmak için tasarlanmış dijital bir pazar yeri platformudur.",
+      "Rootfablink'in amacı; ürün keşfi, üretici karşılaştırması, teklif talebi, güvenli iletişim, lojistik koordinasyon ve gümrük süreçlerini daha düzenli, şeffaf ve erişilebilir hale getirmektir."
     ],
     missionTitle: "Misyonumuz",
     mission:
@@ -130,7 +130,7 @@ const tr: typeof en = {
     audienceTitle: "Kimler için tasarlandı?",
     audiences: [
       ["Üreticiler", "Global alıcı talebine, doğrulanmış görünürlüğe ve düzenli ihracat iş akışlarına ulaşmak isteyen fabrikalar ve üreticiler."],
-      ["Alıcılar", "Nitelikli tedarikçi ve karşılaştırılabilir teklif arayan ithalatçı, distribütör ve satın alma ekipleri."],
+      ["Alıcılar", "Nitelikli üretici ve karşılaştırılabilir teklif arayan ithalatçı, distribütör ve satın alma ekipleri."],
       ["Lojistik firmaları", "Uluslararası ticaret operasyonlarını destekleyen navlun, taşıma ve depolama hizmet sağlayıcıları."],
       ["Gümrük müşavirleri", "Belge kontrolü, mevzuat, ithalat-ihracat süreçleri ve gümrükleme desteği sunan ticaret uzmanları."]
     ],
@@ -139,16 +139,16 @@ const tr: typeof en = {
       "Şirket doğrulama, belge inceleme, ürün moderasyonu ve denetlenebilir platform aksiyonları temel güven katmanları olarak tasarlanır.",
     visionTitle: "Türkiye'den dünyaya B2B ticaret vizyonu",
     vision:
-      "Rootfablink, Türkiye'nin üretim kabiliyetlerini global taleple buluştururken uluslararası tedarikçilere ve ticaret hizmet sağlayıcılarına da açık olacak şekilde tasarlanır."
+      "Rootfablink, Türkiye'nin üretim kabiliyetlerini global taleple buluştururken uluslararası üreticilere ve ticaret hizmet sağlayıcılarına da açık olacak şekilde tasarlanır."
   },
   help: {
     title: "Rootfablink Yardım Merkezi",
-    subtitle: "Hesap oluşturma, tedarikçi kaydı, ürün listeleme, RFQ, lojistik ve gümrük süreçleri hakkında sık sorulan sorular.",
+    subtitle: "Hesap oluşturma, üretici kaydı, ürün listeleme, RFQ, lojistik ve gümrük süreçleri hakkında sık sorulan sorular.",
     groups: [
-      ["Hesap ve Kayıt", "Rootfablink hesabı nasıl oluşturulur?", "Alıcı, tedarikçi, lojistik firması veya gümrük müşaviri rolünü seçerek başvuru formunu doldurabilirsiniz."],
-      ["Tedarikçi Kaydı", "Tedarikçi kaydı ücretli mi?", "Ürün listeleme ve temel tedarikçi kaydı ücretsiz olacak şekilde planlanmıştır. Sponsorlu görünürlük ve reklam paketleri ayrıca sunulabilir."],
-      ["RFQ", "RFQ nedir?", "RFQ, alıcıların ürün, miktar, teslimat ve özel gereksinimlerini belirterek tedarikçilerden teklif istemesini sağlayan teklif talebi sürecidir."],
-      ["Lojistik", "Lojistik firmaları platformda nasıl yer alır?", "Lojistik firmaları profil oluşturarak taşıma, depolama ve sevkiyat hizmetlerini alıcı ve tedarikçi akışlarına bağlayabilir."],
+      ["Hesap ve Kayıt", "Rootfablink hesabı nasıl oluşturulur?", "Alıcı, üretici, lojistik firması veya gümrük müşaviri rolünü seçerek başvuru formunu doldurabilirsiniz."],
+      ["Üretici Kaydı", "Üretici kaydı ücretli mi?", "Ürün listeleme ve temel üretici kaydı ücretsiz olacak şekilde planlanmıştır. Sponsorlu görünürlük ve reklam paketleri ayrıca sunulabilir."],
+      ["RFQ", "RFQ nedir?", "RFQ, alıcıların ürün, miktar, teslimat ve özel gereksinimlerini belirterek üreticilerden teklif istemesini sağlayan teklif talebi sürecidir."],
+      ["Lojistik", "Lojistik firmaları platformda nasıl yer alır?", "Lojistik firmaları profil oluşturarak taşıma, depolama ve sevkiyat hizmetlerini alıcı ve üretici akışlarına bağlayabilir."],
       ["Gümrük", "Gümrük müşavirleri platformda ne yapabilir?", "Gümrük müşavirleri belge kontrolü, mevzuat danışmanlığı, ithalat ihracat süreçleri ve operasyon desteği sağlayabilir."],
       ["İletişim", "Rootfablink ile nasıl iletişime geçebilirim?", "İlgili departman e-posta adreslerinden bize ulaşabilirsiniz: support@rootfablink.com, info@rootfablink.com, sales@rootfablink.com, logistics@rootfablink.com, custom@rootfablink.com."]
     ]

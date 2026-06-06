@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 
 const roles = [
   ["buyer", "Alıcı", "Buyer"],
-  ["supplier", "Tedarikçi", "Supplier"],
+  ["supplier", "Üretici", "Supplier"],
   ["logistics", "Lojistik", "Logistics"],
   ["customs", "Gümrük", "Customs"]
 ] as const;

@@ -56,7 +56,7 @@ export function IWallShowroom({ locale }: { locale: Locale }) {
                 </Button>
                 <Button href={`/${locale}/messages`} variant="secondary">
                   <MessageSquareText className="mr-2" size={17} />
-                  {tr ? "Tedarikçi ile iletişime geç" : "Contact Supplier"}
+                  {tr ? "Üretici ile iletişime geç" : "Contact Supplier"}
                 </Button>
               </div>
             </div>

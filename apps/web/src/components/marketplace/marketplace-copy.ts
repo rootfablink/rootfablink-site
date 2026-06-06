@@ -197,7 +197,7 @@ export const marketplaceCopy = {
       verified: "Onaylanmış üreticiler",
       protection: "Sipariş koruması",
       buyerCenter: "Alıcı merkezi",
-      supplierCenter: "Tedarikçi merkezi",
+      supplierCenter: "Üretici merkezi",
       products: "Ürünler",
       manufacturers: "Üreticiler",
       customs: "Gümrük",
@@ -213,14 +213,14 @@ export const marketplaceCopy = {
       basket: "Talep sepeti",
       signIn: "Giriş yap",
       createAccount: "Kayıt Ol",
-      supplierOnboarding: "Tedarikçi ol",
+      supplierOnboarding: "Üretici ol",
       startTrading: "Ticarete başla"
     },
     categories: {
       title: "Endüstriyel kategoriler",
       subtitle: "Global üretim, tedarik ve ticaret hizmetleri için Rootfablink sektörlerini keşfedin.",
       viewAll: "Tüm kategorileri görüntüle",
-      featuredSupplier: "Öne çıkan tedarikçi altyapısı",
+      featuredSupplier: "Öne çıkan üretici altyapısı",
       featuredText: "Doğrulamaya hazır fabrika profilleri, ürün katalogları ve RFQ yanıt akışları onboarding için hazırlanır.",
       groups: [
         ["Giyim ve Tekstil", ["Giyim", "İş kıyafeti", "Ayakkabı", "Çanta", "Ev tekstili"]],
@@ -239,14 +239,14 @@ export const marketplaceCopy = {
       title: "Onaylanmış fabrika ve üreticilere erişin",
       text: "Rootfablink; belge incelemesine, üretim kapasitesi profillerine ve gelecek doğrulama programına hazır şekilde tasarlanır.",
       items: ["Doğrulanmış fabrikalar", "Belge incelemesi", "Üretim kapasitesi", "Fabrika denetimine hazır şirketler", "İhracat deneyimi", "Premium üreticiler", "Türkiye merkezli üreticiler", "Global üreticiler"],
-      stats: ["Doğrulanmış tedarikçi programı", "Ürün sektörleri", "Ticaret hizmet ortakları"],
-      explore: "Onaylanmış tedarikçileri keşfet",
+      stats: ["Doğrulanmış üretici programı", "Ürün sektörleri", "Ticaret hizmet ortakları"],
+      explore: "Onaylanmış üreticileri keşfet",
       become: "Doğrulama başvurusu yap"
     },
     protectionMenu: {
       title: "Ticaret güvence sistemi",
       text: "Canlı ödeme altyapısı iddiası olmadan, gelecekteki ticaret güvence iş akışları için tasarlanır.",
-      items: ["Güvenli işlem altyapısı", "Aşamalı ödeme hazırlığı", "Tedarikçi doğrulama", "Sevkiyat belgeleri", "Uyuşmazlık yönetimi hazırlığı", "İade politikası çerçevesi", "Lojistik desteği", "Gümrük belge desteği"],
+      items: ["Güvenli işlem altyapısı", "Aşamalı ödeme hazırlığı", "Üretici doğrulama", "Sevkiyat belgeleri", "Uyuşmazlık yönetimi hazırlığı", "İade politikası çerçevesi", "Lojistik desteği", "Gümrük belge desteği"],
       cta: "Koruma akışını incele"
     },
     signIn: {
@@ -254,7 +254,7 @@ export const marketplaceCopy = {
       signIn: "Giriş yap",
       create: "Hesap oluştur",
       social: "Sosyal giriş yer tutucuları",
-      items: ["Rootfablink Hesabım", "Siparişlerim", "Mesajlarım", "Teklif Taleplerim", "Favorilerim", "Hesap Bilgilerim", "Tedarikçi Merkezi", "Üyelik Programı", "Yardım Merkezi"]
+      items: ["Rootfablink Hesabım", "Siparişlerim", "Mesajlarım", "Teklif Taleplerim", "Favorilerim", "Hesap Bilgilerim", "Üretici Merkezi", "Üyelik Programı", "Yardım Merkezi"]
     },
     selectors: {
       language: "Dil",
@@ -280,7 +280,7 @@ export const marketplaceCopy = {
     },
     lens: {
       title: "Rootfablink LENS",
-      text: "Benzer ürünleri ve tedarikçileri bulmak için ürün görseli yükleyin. Görsel arama altyapısı ilerleyen AI modülünde bağlanacaktır.",
+      text: "Benzer ürünleri ve üreticileri bulmak için ürün görseli yükleyin. Görsel arama altyapısı ilerleyen AI modülünde bağlanacaktır.",
       upload: "Ürün görseli yükle",
       close: "Kapat"
     },
@@ -306,16 +306,16 @@ export const marketplaceCopy = {
       verifiedDiscovery: "Doğrulanmış fabrika keşfi",
       tradeProtection: "Ticaret güvence temeli",
       businessRecommendations: "İş önerileri",
-      supplierGrowth: "Tedarikçi büyüme modeli",
-      rfqCallout: "Tek bir RFQ yayınlayın ve ilgili tedarikçilerden yanıt almaya hazırlanın.",
+      supplierGrowth: "Üretici büyüme modeli",
+      rfqCallout: "Tek bir RFQ yayınlayın ve ilgili üreticilerden yanıt almaya hazırlanın.",
       searchTabs: ["Ürünler", "Üreticiler", "RFQ"],
-      discoveryCards: ["Akıllı fabrika arama", "En çok tercih edilen üreticiler", "Doğrudan fabrika numuneleri", "Türkiye ihracat tedarikçileri"],
+      discoveryCards: ["Akıllı fabrika arama", "En çok tercih edilen üreticiler", "Doğrudan fabrika numuneleri", "Türkiye ihracat üreticileri"],
       protectionCards: ["Güvenli iş akışı", "İade politikası hazırlığı", "Lojistik hizmetleri", "Satış sonrası koruma hazırlığı"],
-      businessCards: ["RFQ pazaryeri", "Sponsorlu ürünler", "Doğrulanmış tedarikçi programı", "Lojistik teklif talebi"],
+      businessCards: ["RFQ pazaryeri", "Sponsorlu ürünler", "Doğrulanmış üretici programı", "Lojistik teklif talebi"],
       growth: [
-        ["Ücretsiz kayıt", "Ön ücret olmadan tedarikçi erişimi ve şirket profili oluşturun."],
+        ["Ücretsiz kayıt", "Ön ücret olmadan üretici erişimi ve şirket profili oluşturun."],
         ["Ücretsiz ürün listeleme", "Temel ürün listeleri yayınlayın ve alıcı talepleri alın."],
-        ["Sponsorlu görünürlük", "Büyümeye hazır olduğunuzda ürün, tedarikçi ve RFQ fırsatlarını öne çıkarın."],
+        ["Sponsorlu görünürlük", "Büyümeye hazır olduğunuzda ürün, üretici ve RFQ fırsatlarını öne çıkarın."],
         ["Komisyon modeli", "Pazaryeri geliri işlem, koruma servisi ve lead değeri etrafında tasarlanır."]
       ]
     },
@@ -324,29 +324,29 @@ export const marketplaceCopy = {
       verified: "Doğrulanmış",
       inquiry: "Talep gönder",
       sponsored: "Sponsorlu",
-      contact: "Tedarikçi ile iletişime geç"
+      contact: "Üretici ile iletişime geç"
     },
     supplierCard: {
       verified: "Doğrulamaya hazır",
       response: "Yanıt",
       markets: "Pazarlar",
-      contact: "Tedarikçiyle iletişime geç",
+      contact: "Üreticiyle iletişime geç",
       profile: "Profili görüntüle"
     },
-    buyerCenter: ["Tedarik süreci nasıl işler?", "Teklif talebi pazarı", "Tedarikçi karşılaştırma", "Sipariş koruması", "Lojistik desteği", "Yardım merkezi", "Sorun bildir"],
-    supplierCenter: ["Tedarikçi ol", "Ürünleri ücretsiz listele", "Doğrulanmış tedarikçi programı", "Sponsorlu görünürlük", "RFQ fırsatları", "Tedarikçi yardım merkezi"],
+    buyerCenter: ["Tedarik süreci nasıl işler?", "Teklif talebi pazarı", "Üretici karşılaştırma", "Sipariş koruması", "Lojistik desteği", "Yardım merkezi", "Sorun bildir"],
+    supplierCenter: ["Üretici ol", "Ürünleri ücretsiz listele", "Doğrulanmış üretici programı", "Sponsorlu görünürlük", "RFQ fırsatları", "Üretici yardım merkezi"],
     routes: {
-      categories: ["Kategoriler", "Rootfablink pazaryeri için endüstriyel kategori, alt kategori ve tedarikçi keşif yollarını inceleyin."],
-      "verified-manufacturers": ["Onaylanmış Üreticiler", "Global tedarik güveni için hazırlanmış doğrulamaya hazır fabrika ve tedarikçi profil akışlarını keşfedin."],
+      categories: ["Kategoriler", "Rootfablink pazaryeri için endüstriyel kategori, alt kategori ve üretici keşif yollarını inceleyin."],
+      "verified-manufacturers": ["Onaylanmış Üreticiler", "Global tedarik güveni için hazırlanmış doğrulamaya hazır fabrika ve üretici profil akışlarını keşfedin."],
       "trade-protection": ["Ticaret Güvence Sistemi", "Güvenli işlem, belge ve gelecekteki ticaret güvence iş akışı temellerini inceleyin."],
-      "buyer-center": ["Alıcı Merkezi", "Tedarik, RFQ, tedarikçi karşılaştırma, koruma ve lojistik destek araçlarına erişin."],
-      "supplier-center": ["Tedarikçi Merkezi", "Tedarikçi onboarding başlatın, ürünleri ücretsiz listeleyin ve sponsorlu büyüme görünürlüğüne hazırlanın."],
-      messages: ["Mesajlar", "Mesajlaşma temeli, sonraki platform aşamasında alıcı-tedarikçi görüşmeleri için hazırlanır."],
-      "help-center": ["Yardım Merkezi", "Tedarik, tedarikçi onboarding, RFQ ve güven akışları için destek temellerini bulun."],
+      "buyer-center": ["Alıcı Merkezi", "Tedarik, RFQ, üretici karşılaştırma, koruma ve lojistik destek araçlarına erişin."],
+      "supplier-center": ["Üretici Merkezi", "Üretici onboarding başlatın, ürünleri ücretsiz listeleyin ve sponsorlu büyüme görünürlüğüne hazırlanın."],
+      messages: ["Mesajlar", "Mesajlaşma temeli, sonraki platform aşamasında alıcı-üretici görüşmeleri için hazırlanır."],
+      "help-center": ["Yardım Merkezi", "Tedarik, üretici onboarding, RFQ ve güven akışları için destek temellerini bulun."],
       account: ["Hesap", "Rootfablink hesap çalışma alanı, güvenli kimlik doğrulama ve rol bazlı erişim için hazırlanır."],
-      "supplier/onboarding": ["Tedarikçi Onboarding", "Tedarikçi profili oluşturun, ürünleri ücretsiz listeleyin ve doğrulama belgelerine hazırlanın."],
+      "supplier/onboarding": ["Üretici Onboarding", "Üretici profili oluşturun, ürünleri ücretsiz listeleyin ve doğrulama belgelerine hazırlanın."],
       products: ["Ürünler", "Ürün keşfi; arama, kategoriler ve sponsorlu görünürlük için hazırlanır."],
-      manufacturers: ["Üreticiler", "Üretici keşfi; fabrika profilleri ve doğrulanmış tedarikçi programları için hazırlanır."]
+      manufacturers: ["Üreticiler", "Üretici keşfi; fabrika profilleri ve doğrulanmış üretici programları için hazırlanır."]
     }
   }
 } satisfies Record<"en" | "tr", Record<string, unknown>>;

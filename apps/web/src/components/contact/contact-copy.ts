@@ -68,7 +68,7 @@ const tr: typeof en = {
   cards: {
     support: ["Destek", "Teknik destek, platform sorunları, hesap desteği, doğrulama desteği ve kullanıcı yardımı."],
     information: ["Genel Bilgi", "Rootfablink, şirket bilgileri, platform özellikleri ve iş ortaklıkları hakkında sorular."],
-    sales: ["Satış", "Tedarikçi üyelikleri, premium görünürlük paketleri, reklam fırsatları ve ticari talepler."],
+    sales: ["Satış", "Üretici üyelikleri, premium görünürlük paketleri, reklam fırsatları ve ticari talepler."],
     logistics: ["Lojistik", "Navlun, taşıma çözümleri, depolama, sevkiyat ve lojistik iş ortaklıkları."],
     customs: ["Gümrük Müşavirliği", "Gümrük müşavirliği, ithalat-ihracat süreçleri, gümrük danışmanlığı ve beyan destekleri."]
   },
@@ -95,11 +95,11 @@ const tr: typeof en = {
   },
   company: {
     title: "Rootfablink Şirket Bilgileri",
-    subtitle: "Rootfablink; üreticiler, tedarikçiler, lojistik şirketleri, gümrük müşavirleri, ithalatçılar, ihracatçılar ve endüstriyel alıcılar için küresel B2B pazaryeri altyapısıdır.",
+    subtitle: "Rootfablink; üreticiler, üreticiler, lojistik şirketleri, gümrük müşavirleri, ithalatçılar, ihracatçılar ve endüstriyel alıcılar için küresel B2B pazaryeri altyapısıdır.",
     details: [
       ["Resmi web sitesi", "https://rootfablink.com"],
       ["Platform kapsamı", "Üretim, tedarik, lojistik, gümrükleme ve uluslararası B2B ticaret iş akışları"],
-      ["Çalışma modeli", "Ücretsiz tedarikçi kaydı, ücretsiz ürün listeleme, RFQ, sponsorlu görünürlük ve ticaret hizmetleri"]
+      ["Çalışma modeli", "Ücretsiz üretici kaydı, ücretsiz ürün listeleme, RFQ, sponsorlu görünürlük ve ticaret hizmetleri"]
     ]
   }
 };

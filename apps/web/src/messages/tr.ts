@@ -9,7 +9,7 @@ export const tr = {
   },
   nav: {
     buyers: "Alıcılar",
-    suppliers: "Tedarikçiler",
+    suppliers: "Üreticiler",
     manufacturers: "Üreticiler",
     products: "Ürünler",
     customs: "Gümrük",
@@ -24,11 +24,11 @@ export const tr = {
     headline: "Üreticiler, Alıcılar ve Lojistik Ortakları İçin Küresel B2B Ticaret Altyapısı",
     eyebrow: "Türkiye'den dünyaya, global üretim ticareti için tasarlandı",
     subhead:
-      "Rootfablink; fabrikaların, tedarikçilerin ve global alıcıların bağlantı kurmasını, müzakere etmesini, ürün tedarik etmesini, RFQ süreçlerini yönetmesini ve güvenli uluslararası ticaret iş akışlarına hazırlanmasını sağlar.",
+      "Rootfablink; fabrikaların, üreticilerin ve global alıcıların bağlantı kurmasını, müzakere etmesini, ürün tedarik etmesini, RFQ süreçlerini yönetmesini ve güvenli uluslararası ticaret iş akışlarına hazırlanmasını sağlar.",
     primary: "RFQ Yayınla",
     secondary: "Ürünlerini Ücretsiz Listele",
     stats: [
-      ["Ücretsiz", "tedarikçi kaydı"],
+      ["Ücretsiz", "üretici kaydı"],
       ["Ücretsiz", "ürün listeleme"],
       ["RFQ", "odaklı tedarik"],
       ["Gelecek", "ticaret güvence sistemi"]
@@ -36,7 +36,7 @@ export const tr = {
     cockpitTitle: "Pazar yeri işleyiş akışı",
     workflows: [
       "Alıcılar yapılandırılmış RFQ yayınlar",
-      "Tedarikçiler ücretsiz kaydolur ve ürün listeler",
+      "Üreticiler ücretsiz kaydolur ve ürün listeler",
       "Fabrikalar teklif sunar",
       "Ekipler güvenli ticaret akışlarına hazırlanır",
       "Lojistik ve gümrük ortakları süreci destekler"
@@ -44,7 +44,7 @@ export const tr = {
     featureCards: [
       {
         title: "Önce ücretsiz listeleme",
-        text: "Tedarikçi kaydı, şirket profili ve temel ürün listeleme; ücretli büyüme araçlarından önce açık kalır."
+        text: "Üretici kaydı, şirket profili ve temel ürün listeleme; ücretli büyüme araçlarından önce açık kalır."
       },
       {
         title: "Güvene hazır iş akışları",
@@ -52,31 +52,31 @@ export const tr = {
       }
     ],
     flywheelEyebrow: "Pazar yeri döngüsü",
-    flywheelTitle: "Likidite; alıcı talebi, ücretsiz tedarikçi katılımı ve ticaret hizmetleri aynı döngüde çalıştığında büyür.",
+    flywheelTitle: "Likidite; alıcı talebi, ücretsiz üretici katılımı ve ticaret hizmetleri aynı döngüde çalıştığında büyür.",
     flywheel: [
       ["Talep yakalama", "RFQ akışı; alıcı ihtiyacını dosya, teslim şartı, miktar ve varış bilgisiyle düzenli tedarik talebine dönüştürür."],
-      ["Açık tedarikçi arzı", "Fabrikalar ve tedarikçiler ön listeleme ücreti olmadan profil oluşturabilir, ürün yayınlayabilir ve alıcı talepleri alabilir."],
+      ["Açık üretici arzı", "Fabrikalar ve üreticiler ön listeleme ücreti olmadan profil oluşturabilir, ürün yayınlayabilir ve alıcı talepleri alabilir."],
       ["Güvenli ticarete hazırlık", "Mesajlaşma, teklif karşılaştırma, doğrulama incelemesi ve lojistik desteği işlemlerin daha güvenli ilerlemesine zemin hazırlar."]
     ],
     proofEyebrow: "Gelir modeli şeffaflığı",
     proofTitle: "Basit pazar yeri modeli: önce ücretsiz erişim, sonra değer bazlı gelir.",
     proof: [
-      "Tedarikçi kaydı, şirket profili, temel alıcı erişimi ve ürün listeleme ücretsiz kalır.",
+      "Üretici kaydı, şirket profili, temel alıcı erişimi ve ürün listeleme ücretsiz kalır.",
       "Gelir modeli işlem komisyonu, ticaret güvence hizmet bedeli ve güvenli iş akışı servisleri üzerine kurulur.",
-      "Sponsorlu ürünler, öne çıkan tedarikçiler, premium RFQ görünürlüğü, lojistik lead gelirleri ve kurumsal araçlar gelecekteki büyüme gelirlerini oluşturur."
+      "Sponsorlu ürünler, öne çıkan üreticiler, premium RFQ görünürlüğü, lojistik lead gelirleri ve kurumsal araçlar gelecekteki büyüme gelirlerini oluşturur."
     ],
     foundationEyebrow: "Platform temeli",
     foundationTitle: "Küresel B2B tedarik ve endüstriyel ticaretin gerçek işleyişine göre tasarlandı.",
     pillars: [
       {
         id: "suppliers",
-        title: "Fabrikalar ve tedarikçiler ücretsiz katılabilir",
+        title: "Fabrikalar ve üreticiler ücretsiz katılabilir",
         text: "Şirket profili oluşturun, ön listeleme ücreti olmadan ürün yayınlayın, RFQ alın, doğrulama ile güven oluşturun ve büyümeye hazır olduğunuzda sponsorlu görünürlük kullanın."
       },
       {
         id: "buyers",
         title: "Alıcılar doğrudan üreticiden tedarik eder",
-        text: "Doğrulanmış tedarikçileri keşfedin, teklifleri karşılaştırın, RFQ gönderin, güvenli iletişim kurun ve gelecekteki ticaret güvence iş akışlarına hazırlanın."
+        text: "Doğrulanmış üreticileri keşfedin, teklifleri karşılaştırın, RFQ gönderin, güvenli iletişim kurun ve gelecekteki ticaret güvence iş akışlarına hazırlanın."
       },
       {
         id: "logistics",
@@ -91,7 +91,7 @@ export const tr = {
     ],
     commercialEyebrow: "Ticari model",
     commercialTitle: "Önce ücretsiz listeleme. Sonra işlem komisyonu, ticaret güvence sistemi ve sponsorlu görünürlük.",
-    plans: ["Ücretsiz Tedarikçi", "Doğrulanmış Tedarikçi", "Sponsorlu Büyüme", "Kurumsal"],
+    plans: ["Ücretsiz Üretici", "Doğrulanmış Üretici", "Sponsorlu Büyüme", "Kurumsal"],
     planNote:
       "Temel erişim ücretsiz kalır; ücretli değer doğrulama, işlem servisleri, sponsorlu keşif, premium RFQ görünürlüğü ve gelişmiş araçlar etrafında oluşur."
   },
@@ -100,11 +100,11 @@ export const tr = {
     groups: [
       {
         title: "Platform",
-        links: ["Tedarikçi rehberi", "RFQ pazarı", "Doğrulama merkezi"]
+        links: ["Üretici rehberi", "RFQ pazarı", "Doğrulama merkezi"]
       },
       {
         title: "Güven",
-        links: ["Doğrulanmış tedarikçiler", "Belge inceleme", "Denetim kayıtları"]
+        links: ["Doğrulanmış üreticiler", "Belge inceleme", "Denetim kayıtları"]
       },
       {
         title: "Kurumsal",
@@ -117,30 +117,30 @@ export const tr = {
       eyebrow: "Global alıcılar için",
       title: "Yapılandırılmış RFQ akışıyla doğrudan üreticiden tedarik edin.",
       intro:
-        "Rootfablink, satın alma ekiplerine tedarikçi keşfi, ürün ihtiyacı paylaşımı, teklif karşılaştırması, güvenli iletişim ve uluslararası ticaret hazırlığı için düzenli bir çalışma alanı sunar.",
+        "Rootfablink, satın alma ekiplerine üretici keşfi, ürün ihtiyacı paylaşımı, teklif karşılaştırması, güvenli iletişim ve uluslararası ticaret hazırlığı için düzenli bir çalışma alanı sunar.",
       primary: "Alıcı hesabı oluştur",
       secondary: "RFQ yayınla",
       highlights: [
-        ["Yapılandırılmış RFQ", "Teknik özellik, miktar, varış ülkesi, teslim şekli ve ek dosyalar tedarikçiye gitmeden önce netleşir."],
-        ["Tedarikçi karşılaştırma", "Teklifler, yanıt kalitesi, doğrulama seviyesi ve ticari uygunluk aynı çalışma alanında değerlendirilir."],
+        ["Yapılandırılmış RFQ", "Teknik özellik, miktar, varış ülkesi, teslim şekli ve ek dosyalar üreticiye gitmeden önce netleşir."],
+        ["Üretici karşılaştırma", "Teklifler, yanıt kalitesi, doğrulama seviyesi ve ticari uygunluk aynı çalışma alanında değerlendirilir."],
         ["Ticaret hazırlığı", "Tedarikten müzakereye, lojistik desteğine ve gelecekteki ticaret güvence iş akışlarına aynı platform içinde ilerleyin."]
       ],
       stepsTitle: "Alıcı akışı",
-      steps: ["RFQ aç", "Uygun tedarikçilerle eşleş", "Teklifleri karşılaştır", "Görüş ve pazarlık yap", "Sipariş ve lojistik hazırlığına geç"]
+      steps: ["RFQ aç", "Uygun üreticilerle eşleş", "Teklifleri karşılaştır", "Görüş ve pazarlık yap", "Sipariş ve lojistik hazırlığına geç"]
     },
     suppliers: {
-      eyebrow: "Tedarikçiler ve fabrikalar için",
+      eyebrow: "Üreticiler ve fabrikalar için",
       title: "Ücretsiz kaydolun, ürünlerinizi ücretsiz listeleyin ve doğrulanmış alıcı talepleriyle büyüyün.",
       intro:
         "Üreticiler, ihracatçılar, toptancılar ve fabrikalar ön listeleme ücreti olmadan şirket profili oluşturabilir, temel ürün listeleri yayınlayabilir ve RFQ alabilir.",
-      primary: "Tedarikçi hesabı oluştur",
+      primary: "Üretici hesabı oluştur",
       secondary: "Ürünleri ücretsiz listele",
       highlights: [
         ["Ücretsiz şirket profili", "İhracat pazarları, ana kategoriler, fabrika kabiliyeti, belgeler ve ekip sahipliği tek yapıda toplanır."],
         ["Ücretsiz ürün listeleme", "MOQ, teslim süresi, sertifika, görsel ve özel üretim seçenekleriyle ürün sayfaları yayınlanır."],
-        ["Sponsorlu görünürlük", "Büyümeye hazır olduğunuzda sponsorlu ürün, öne çıkan tedarikçi sıralaması ve RFQ görünürlük artışı kullanılabilir."]
+        ["Sponsorlu görünürlük", "Büyümeye hazır olduğunuzda sponsorlu ürün, öne çıkan üretici sıralaması ve RFQ görünürlük artışı kullanılabilir."]
       ],
-      stepsTitle: "Tedarikçi akışı",
+      stepsTitle: "Üretici akışı",
       steps: ["Ücretsiz kaydol", "Şirket profili oluştur", "Ürünleri ücretsiz listele", "RFQ'lara teklif ver", "Doğrulama ve görünürlük oluştur"]
     },
     logistics: {
@@ -153,7 +153,7 @@ export const tr = {
       highlights: [
         ["Navlun talepleri", "Deniz, hava, kara, konteyner, depo ve varış noktası bazlı taşıma teklif akışları için altyapı hazırlanır."],
         ["Gümrük desteği", "Gümrük müşaviri profilleri, GTİP desteği, belge kontrol listeleri ve danışmanlık talepleri modellenir."],
-        ["Lead komisyon modeli", "Lojistik ve gümrük ortakları alıcı-tedarikçi işlemlerini destekler ve gelecekte ücretli lead fırsatlarına hazırlanır."]
+        ["Lead komisyon modeli", "Lojistik ve gümrük ortakları alıcı-üretici işlemlerini destekler ve gelecekte ücretli lead fırsatlarına hazırlanır."]
       ],
       stepsTitle: "Hizmet akışı",
       steps: ["Profil oluştur", "Bölge ve taşıma modlarını tanımla", "Teklif talebi al", "Şartlarını sun", "Sevkiyat sürecini destekle"]
@@ -162,11 +162,11 @@ export const tr = {
       eyebrow: "Güven altyapısı",
       title: "Doğrulama, moderasyon ve denetlenebilirlik platformun ana ürün katmanıdır.",
       intro:
-        "Tedarikçi doğrulama durumları, belge inceleme, ürün moderasyonu, yönetici kuyrukları ve denetim kayıtları en baştan platform mimarisine yerleştirildi.",
+        "Üretici doğrulama durumları, belge inceleme, ürün moderasyonu, yönetici kuyrukları ve denetim kayıtları en baştan platform mimarisine yerleştirildi.",
       primary: "Doğrulama merkezine git",
       secondary: "Yönetim panelini incele",
       highlights: [
-        ["Doğrulanmış tedarikçi", "Şirket belgeleri, fabrika profilleri, ürün kanıtları ve güven rozetleri için inceleme durumları desteklenir."],
+        ["Doğrulanmış üretici", "Şirket belgeleri, fabrika profilleri, ürün kanıtları ve güven rozetleri için inceleme durumları desteklenir."],
         ["Ticaret güvence hazırlığı", "Korumalı ödeme, milestone, emanet ödeme, uyuşmazlık ve işlem güvenliği iş akışları; canlı ödeme altyapısı iddiası olmadan hazırlanır."],
         ["Denetim kayıtları", "Hassas yönetici ve moderasyon aksiyonları kalıcı platform kaydıyla izlenir."]
       ],
@@ -175,30 +175,30 @@ export const tr = {
     },
     rfq: {
       eyebrow: "RFQ pazarı",
-      title: "Alıcı ihtiyacını düzenli tedarikçi fırsatına dönüştürün.",
+      title: "Alıcı ihtiyacını düzenli üretici fırsatına dönüştürün.",
       intro:
-        "RFQ sistemi; satın alma niyetini nitelikli tedarikçi yanıtı, teklif karşılaştırması, mesajlaşma ve lojistik hazırlığıyla birleştiren ana platform motorudur.",
+        "RFQ sistemi; satın alma niyetini nitelikli üretici yanıtı, teklif karşılaştırması, mesajlaşma ve lojistik hazırlığıyla birleştiren ana platform motorudur.",
       primary: "RFQ yayınla",
-      secondary: "Tedarikçi paneli",
+      secondary: "Üretici paneli",
       highlights: [
         ["Talep kalitesi", "Alıcı ürün detayını, dosyayı, miktarı, varış ülkesini ve teslim beklentisini eksiksiz paylaşmaya yönlendirilir."],
-        ["Tedarikçi eşleştirme", "Kategori, ülke, sertifika, güven puanı ve görünürlük bazlı eşleştirme mantığı hazırlanır."],
-        ["RFQ öncelikli görünürlük", "Gelecekte sponsorlu RFQ erişimi, nitelikli tedarikçilerin ilgili fırsatları daha hızlı görmesini sağlayabilir."]
+        ["Üretici eşleştirme", "Kategori, ülke, sertifika, güven puanı ve görünürlük bazlı eşleştirme mantığı hazırlanır."],
+        ["RFQ öncelikli görünürlük", "Gelecekte sponsorlu RFQ erişimi, nitelikli üreticilerin ilgili fırsatları daha hızlı görmesini sağlayabilir."]
       ],
       stepsTitle: "RFQ akışı",
-      steps: ["Alıcı talep açar", "Sistem tedarikçi eşleştirir", "Tedarikçiler teklif verir", "Alıcı karşılaştırır", "Görüşme başlar"]
+      steps: ["Alıcı talep açar", "Sistem üretici eşleştirir", "Üreticiler teklif verir", "Alıcı karşılaştırır", "Görüşme başlar"]
     },
     pricing: {
       eyebrow: "Pazar yeri modeli",
-      title: "Ücretsiz tedarikçi erişimi ve değer bazlı gelir modeli.",
+      title: "Ücretsiz üretici erişimi ve değer bazlı gelir modeli.",
       intro:
-        "Rootfablink; ücretsiz tedarikçi kaydı ve ücretsiz ürün listeleme üzerine tasarlanır. Gelir; işlem servisleri, ticaret güvence sistemi, sponsorlu görünürlük, premium lead erişimi ve gelecekteki kurumsal araçlardan oluşur.",
+        "Rootfablink; ücretsiz üretici kaydı ve ücretsiz ürün listeleme üzerine tasarlanır. Gelir; işlem servisleri, ticaret güvence sistemi, sponsorlu görünürlük, premium lead erişimi ve gelecekteki kurumsal araçlardan oluşur.",
       primary: "Ücretsiz başla",
       secondary: "Büyüme seçeneklerini karşılaştır",
       highlights: [
-        ["Ücretsiz Tedarikçi", "Şirket profili, temel ürün listeleri, temel RFQ erişimi, temel mesajlaşma ve açık tedarikçi profili."],
-        ["Doğrulanmış Tedarikçi", "Doğrulanmış tedarikçi rozeti, güven profili, belge inceleme, daha yüksek alıcı güveni ve daha iyi görünürlük."],
-        ["Sponsorlu Büyüme", "Sponsorlu ürün yerleşimi, öne çıkan tedarikçi sıralaması, kategori tanıtımı, arama sonucu artışı ve RFQ görünürlük artışı."],
+        ["Ücretsiz Üretici", "Şirket profili, temel ürün listeleri, temel RFQ erişimi, temel mesajlaşma ve açık üretici profili."],
+        ["Doğrulanmış Üretici", "Doğrulanmış üretici rozeti, güven profili, belge inceleme, daha yüksek alıcı güveni ve daha iyi görünürlük."],
+        ["Sponsorlu Büyüme", "Sponsorlu ürün yerleşimi, öne çıkan üretici sıralaması, kategori tanıtımı, arama sonucu artışı ve RFQ görünürlük artışı."],
         ["Kurumsal", "API erişimi, ekip yönetimi, gelişmiş analitik, ERP/CRM entegrasyonu, özel destek ve kurumsal iş akışları."]
       ],
       stepsTitle: "Ticari yayılım",
@@ -216,7 +216,7 @@ export const tr = {
     signIn: "Giriş yap",
     registerEyebrow: "Başvuru",
     registerTitle: "Küresel ticarete uygun bir şirket hesabı oluşturun.",
-    accountTypes: ["Alıcı", "Tedarikçi", "Lojistik firması", "Gümrük müşaviri"],
+    accountTypes: ["Alıcı", "Üretici", "Lojistik Firması", "Gümrük Müşaviri"],
     accountNote: "Her hesap türü için ayrı başvuru akışı ve yetki modeli hazırlanır."
   },
   shell: {
@@ -226,7 +226,7 @@ export const tr = {
     notifications: "Bildirimler"
   },
   dashboard: {
-    title: "Tedarikçi paneli",
+    title: "Üretici paneli",
     cards: [
       ["Aktif RFQ'lar", "18", "5 talep teklif incelemesi bekliyor"],
       ["Ürünler", "142", "9 ürün onay sırasında"],
@@ -239,7 +239,7 @@ export const tr = {
   admin: {
     title: "Yönetim merkezi",
     queues: [
-      ["Doğrulama bekleyen tedarikçiler", "26"],
+      ["Doğrulama bekleyen üreticiler", "26"],
       ["Onay bekleyen ürünler", "84"],
       ["Açık destek kayıtları", "11"],
       ["Şüpheli hareket uyarıları", "4"]

@@ -213,7 +213,7 @@ function makeListing(category: CategoryTemplate, categoryIndex: number, product:
   };
   const categoryTr = categoryTranslations[category.category] ?? category.category;
   const subcategoryTr = subcategoryTranslations[product.subcategory] ?? product.subcategory;
-  const supplierTypeTr = "Tedarikçi profili";
+  const supplierTypeTr = "Üretici profili";
   const shortDescription = `${product.title} prepared for B2B sourcing, RFQ comparison and ${category.descriptionFocus.toLowerCase()}.`;
 
   return {

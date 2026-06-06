@@ -52,8 +52,8 @@ export const mobileMarketplaceCopy = {
     searchExamples: ["polimer lambiri", "duvar paneli", "yapı malzemeleri"],
     voiceSearch: "Sesli arama",
     lens: "Rootfablink LENS",
-    shortcuts: ["Kategoriye göre tedarik", "Fiyat Teklifi Talebi (RFQ)", "Doğrulanmış tedarikçiler", "En çok tercih edilenler", "Hızlı özelleştirme", "Numune merkezi", "İletişim"],
-    worldwideTitle: "190+ bölgeden küresel tedarikçi rehberiniz",
+    shortcuts: ["Kategoriye göre tedarik", "Fiyat Teklifi Talebi (RFQ)", "Doğrulanmış üreticiler", "En çok tercih edilenler", "Hızlı özelleştirme", "Numune merkezi", "İletişim"],
+    worldwideTitle: "190+ bölgeden küresel üretici rehberiniz",
     sections: {
       featured: "Öne Çıkan Fırsatlar",
       recommended: "İşletmeniz için öneriler",
@@ -63,7 +63,7 @@ export const mobileMarketplaceCopy = {
       categories: "Tüm Kategoriler",
       supplierMatch: "Son ilgi alanlarına göre fabrika eşleşmeleri",
       aiTitle: "Tedarik asistanı",
-      aiText: "Tedarik etmek istediğiniz ürünü anlatın. Rootfablink ilerleyen modüllerde tedarikçi, RFQ ve lojistik önerileri hazırlayacaktır.",
+      aiText: "Tedarik etmek istediğiniz ürünü anlatın. Rootfablink ilerleyen modüllerde üretici, RFQ ve lojistik önerileri hazırlayacaktır.",
       aiPlaceholder: "Örnek: Otel projesi için 500 adet dekoratif duvar paneli arıyorum",
       aiButton: "Tedarik planı hazırla"
     },
@@ -141,6 +141,6 @@ export const mobileMessages = [
   { sender: "i-WALL Support", subject: "Sample wall panel request", subjectTr: "Numune duvar paneli talebi", unread: 3 },
   { sender: "Türkiye Logistics Partner", subject: "Delivery options for wall panels", subjectTr: "Duvar panelleri için teslimat seçenekleri", unread: 1 },
   { sender: "Global Buyer Desk", subject: "RFQ response preparation", subjectTr: "RFQ yanıt hazırlığı", unread: 0 },
-  { sender: "Verification Team", subject: "Supplier document preview", subjectTr: "Tedarikçi belge önizlemesi", unread: 2 },
-  { sender: "RFQ Assistant", subject: "Suggested suppliers for your request", subjectTr: "Talebiniz için önerilen tedarikçiler", unread: 0 }
+  { sender: "Verification Team", subject: "Supplier document preview", subjectTr: "Üretici belge önizlemesi", unread: 2 },
+  { sender: "RFQ Assistant", subject: "Suggested suppliers for your request", subjectTr: "Talebiniz için önerilen üreticiler", unread: 0 }
 ];

@@ -42,7 +42,7 @@ export function SupplierCard({ supplier, copy, locale }: { supplier: SupplierCar
       <div className="mt-4 grid gap-2 text-sm">
         <p className="inline-flex items-center gap-2 font-semibold text-ink">
           <BadgeCheck size={16} className={verified ? "text-copper" : "text-steel"} />
-          {verified ? copy.supplierCard.verified : tr ? "Tedarikçi profili" : "Supplier profile"}
+          {verified ? copy.supplierCard.verified : tr ? "Üretici profili" : "Supplier profile"}
         </p>
         <p className="inline-flex items-center gap-2 text-steel">
           <Globe2 size={16} />

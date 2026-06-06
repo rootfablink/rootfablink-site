@@ -70,7 +70,7 @@ export function CategoryDetailPage({ locale, category }: { locale: Locale; categ
               {tr ? "Filtreler" : "Filters"}
             </div>
             <div className="mt-4 grid gap-2">
-              {(tr ? ["Tüm ürünler", "Tedarikçiler", "RFQ hazır", "Türkiye"] : ["All products", "Suppliers", "RFQ ready", "Türkiye"]).map((item, index) => (
+              {(tr ? ["Tüm ürünler", "Üreticiler", "RFQ hazır", "Türkiye"] : ["All products", "Suppliers", "RFQ ready", "Türkiye"]).map((item, index) => (
                 <button key={item} type="button" className={`rounded-md px-3 py-2 text-left text-xs font-bold ${index === 0 ? "bg-white text-copper" : "text-steel hover:bg-white"}`}>
                   {item}
                 </button>
@@ -112,7 +112,7 @@ export function CategoryDetailPage({ locale, category }: { locale: Locale; categ
             </section>
 
             <section className="mt-8">
-              <h2 className="text-xl font-bold text-ink">{tr ? "İlgili tedarikçiler" : "Related suppliers"}</h2>
+              <h2 className="text-xl font-bold text-ink">{tr ? "İlgili üreticiler" : "Related suppliers"}</h2>
               {suppliers.length > 0 ? (
                 <div className="mt-4 grid gap-4 lg:grid-cols-2">
                   {suppliers.map((supplier) => (
@@ -121,7 +121,7 @@ export function CategoryDetailPage({ locale, category }: { locale: Locale; categ
                 </div>
               ) : (
                 <div className="mt-4 rounded-md border border-dashed border-ink/15 bg-cloud p-5 text-sm font-semibold text-steel">
-                  {tr ? "Bu kategori için tedarikçi profilleri hazırlanıyor." : "Supplier profiles for this category are being prepared."}
+                  {tr ? "Bu kategori için üretici profilleri hazırlanıyor." : "Supplier profiles for this category are being prepared."}
                 </div>
               )}
             </section>
@@ -194,7 +194,7 @@ function EmptyState({ locale, category }: { locale: Locale; category: Marketplac
       <h3 className="text-lg font-bold text-ink">{category.name[categoryLocale(locale)]}</h3>
       <p className="mt-2 text-sm leading-6 text-steel">
         {tr
-          ? "Bu kategori için tedarikçi ve ürünler hazırlanıyor. Talebinizi RFQ olarak oluşturabilirsiniz."
+          ? "Bu kategori için üretici ve ürünler hazırlanıyor. Talebinizi RFQ olarak oluşturabilirsiniz."
           : "Suppliers and products for this category are being prepared. You can submit an RFQ for this category."}
       </p>
       <Link href={`/${locale}/rfq/new`} className="mt-4 inline-flex rounded-md bg-signal px-4 py-3 text-sm font-bold text-white hover:bg-copper">

@@ -79,7 +79,7 @@ export function MobileMessagesPage({ locale }: { locale: Locale }) {
           </button>
         ))}
       </div>
-      <input className="mt-4 h-12 w-full rounded-2xl border border-ink/10 px-4 text-sm font-semibold outline-none" placeholder={locale === "tr" ? "Mesaj veya tedarikçi ara" : "Search messages or suppliers"} />
+      <input className="mt-4 h-12 w-full rounded-2xl border border-ink/10 px-4 text-sm font-semibold outline-none" placeholder={locale === "tr" ? "Mesaj veya üretici ara" : "Search messages or suppliers"} />
       <div className="mt-3 flex gap-2 overflow-x-auto">
         {filters.map((filter) => (
           <span key={filter} className="shrink-0 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-steel">{filter}</span>

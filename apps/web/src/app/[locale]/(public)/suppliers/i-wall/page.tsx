@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: tr ? "i-WALL | Polimer Lambiri Üretici Showroom | Rootfablink" : "i-WALL | PS Wall Panel Manufacturer Showroom | Rootfablink",
     description: tr
-      ? "i-WALL polimer lambiri modellerini gerçek ürün görselleriyle keşfedin, RFQ gönderin ve tedarikçiyle iletişime geçin."
+      ? "i-WALL polimer lambiri modellerini gerçek ürün görselleriyle keşfedin, RFQ gönderin ve üreticiyle iletişime geçin."
       : "Discover i-WALL PS wall panel models with real product images, send RFQs and contact the manufacturer.",
     alternates: {
       canonical: `${siteUrl}/${locale}/suppliers/i-wall`,

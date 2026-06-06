@@ -76,7 +76,7 @@ export function MarketplaceProductBrowser({ locale, copy }: { locale: Locale; co
               setVisibleCount(24);
             }}
             className="h-12 rounded-md border border-ink/10 bg-white px-4 text-sm font-semibold text-ink outline-none focus:border-signal"
-            placeholder={tr ? "Ürün, kategori, ülke veya tedarikçi tipi ara" : "Search product, category, country or supplier type"}
+            placeholder={tr ? "Ürün, kategori, ülke veya üretici tipi ara" : "Search product, category, country or supplier type"}
           />
           <select
             value={category}

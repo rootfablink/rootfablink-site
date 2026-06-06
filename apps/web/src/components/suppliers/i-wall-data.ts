@@ -199,7 +199,7 @@ export const iWallProducts: IWallProduct[] = Array.from({ length: 27 }, (_, item
     packagingInfoTr: "Paketleme bilgileri sipariş hacmi, teslimat ülkesi ve proje gereksinimlerine göre teklif aşamasında netleştirilir.",
     tags,
     tradeTerms: ["RFQ", "Project quotation", "Supplier inquiry"],
-    tradeTermsTr: ["RFQ", "Proje teklifi", "Tedarikçi talebi"],
+    tradeTermsTr: ["RFQ", "Proje teklifi", "Üretici talebi"],
     capabilities: ["Manufacturer", "Project sourcing", "Interior decoration", "RFQ ready"],
     source: "i-wall-local-assets",
     isRealBrandAsset: true,
