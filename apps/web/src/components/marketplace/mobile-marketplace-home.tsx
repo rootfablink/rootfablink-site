@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { Box, Camera, Factory, FileText, Grid2X2, Mail, Mic, PackageSearch, Search, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { Camera, Factory, FileText, Grid2X2, Mail, Mic, PackageSearch, Search, ShieldCheck, Sparkles } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
@@ -70,28 +70,24 @@ export function MobileMarketplaceHome({ locale }: { locale: Locale }) {
 
 function MobilePrimaryTabs({ locale, labels, active }: { locale: Locale; labels: string[]; active: "logistics" | "products" | "manufacturers" | "customs" }) {
   const items = [
-    { key: "manufacturers" as const, label: labels[0] ?? "Manufacturers", href: `/${locale}/manufacturers`, icon: Factory },
-    { key: "products" as const, label: labels[1] ?? "Products", href: `/${locale}/products`, icon: Box },
-    { key: "customs" as const, label: labels[2] ?? "Customs", href: `/${locale}/customs`, icon: ShieldCheck },
-    { key: "logistics" as const, label: labels[3] ?? "Logistics", href: `/${locale}/logistics`, icon: Truck }
+    { key: "manufacturers" as const, label: labels[0] ?? "Manufacturers", href: `/${locale}/manufacturers` },
+    { key: "products" as const, label: labels[1] ?? "Products", href: `/${locale}/products` },
+    { key: "customs" as const, label: labels[2] ?? "Customs", href: `/${locale}/customs` },
+    { key: "logistics" as const, label: labels[3] ?? "Logistics", href: `/${locale}/logistics` }
   ];
 
   return (
-    <nav aria-label={locale === "tr" ? "Mobil ana pazar navigasyonu" : "Mobile marketplace navigation"} className="mt-3 grid grid-cols-4 gap-1">
+    <nav aria-label={locale === "tr" ? "Mobil ana pazar navigasyonu" : "Mobile marketplace navigation"} className="grid grid-cols-4">
       {items.map((item) => {
-        const Icon = item.icon;
         const isActive = item.key === active;
         return (
           <a
             key={item.key}
             href={item.href}
-            className={`flex min-w-0 flex-col items-center justify-center gap-1 border-b-2 px-1 pb-2 pt-1 text-center text-[10px] font-bold leading-tight ${isActive ? "border-signal text-ink" : "border-transparent text-steel"}`}
+            className={`flex min-w-0 items-center justify-center border-b-[3px] px-0.5 py-3 text-center text-[clamp(0.78rem,4.15vw,1.125rem)] font-bold leading-none whitespace-nowrap uppercase transition-colors ${isActive ? "border-signal text-ink" : "border-transparent text-steel hover:border-signal/35 hover:text-ink"}`}
             title={item.label}
           >
-            <span className={`flex h-7 w-7 items-center justify-center rounded-md ${isActive ? "bg-signal/10 text-copper" : "bg-cloud text-steel"}`}>
-              <Icon size={17} />
-            </span>
-            <span className="block max-w-full truncate whitespace-nowrap">{item.label}</span>
+            {item.label}
           </a>
         );
       })}
