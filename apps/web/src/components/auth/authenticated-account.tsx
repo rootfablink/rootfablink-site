@@ -9,6 +9,9 @@ import { SiteFooter } from "@/components/layout/site-footer";
 
 export function AuthenticatedAccount({ locale, session }: { locale: Locale; session: Session }) {
   const tr = locale === "tr";
+  const user = session.user;
+  const accountType = user?.accountType ?? (tr ? "Belirtilmedi" : "Not specified");
+  const provider = user?.provider ?? (tr ? "Bilinmiyor" : "Unknown");
 
   return (
     <>
@@ -18,9 +21,9 @@ export function AuthenticatedAccount({ locale, session }: { locale: Locale; sess
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-center gap-4">
               <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-ink text-white">
-                {session.user?.image ? (
+                {user?.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={session.user.image} alt="" className="h-full w-full object-cover" />
+                  <img src={user.image} alt="" className="h-full w-full object-cover" />
                 ) : (
                   <UserRound size={25} />
                 )}
@@ -36,10 +39,10 @@ export function AuthenticatedAccount({ locale, session }: { locale: Locale; sess
             </button>
           </div>
           <dl className="mt-7 grid gap-3 sm:grid-cols-2">
-            <AccountDetail label={tr ? "Ad Soyad" : "Name"} value={session.user?.name ?? "-"} />
-            <AccountDetail label={tr ? "E-posta" : "Email"} value={session.user?.email ?? "-"} />
-            <AccountDetail label={tr ? "Sağlayıcı" : "Provider"} value={session.user?.provider ?? "google"} />
-            <AccountDetail label={tr ? "Oturum" : "Session"} value={tr ? "Aktif" : "Active"} />
+            <AccountDetail label={tr ? "Ad Soyad" : "Full Name"} value={user?.name ?? "-"} />
+            <AccountDetail label={tr ? "E-posta" : "Email"} value={user?.email ?? "-"} />
+            <AccountDetail label={tr ? "Hesap türü" : "Account Type"} value={accountType} />
+            <AccountDetail label={tr ? "Giriş yöntemi" : "Sign-in Method"} value={provider} />
           </dl>
         </section>
       </main>
