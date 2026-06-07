@@ -94,7 +94,7 @@ export function MarketplaceHome({ locale }: { locale: Locale }) {
             <SectionHeading eyebrow="Rootfablink" title={copy.home.mostSearched} />
             <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {marketplaceSeedProducts.slice(0, 12).map((product) => (
-                <ProductCard key={product.title} product={product} copy={copy} />
+                <ProductCard key={product.title} product={product} copy={copy} locale={locale} />
               ))}
             </div>
           </div>

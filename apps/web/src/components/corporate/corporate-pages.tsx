@@ -100,13 +100,22 @@ export function CorporateAboutPage({ locale }: { locale: Locale }) {
       <MarketplaceHeader locale={locale} />
       <main className="bg-white">
         <CorporateHero eyebrow={copy.nav.company} title={copy.about.title} subtitle={copy.about.intro[0] ?? copy.about.mission} icon={Building2} />
+        <section className="border-b border-ink/10 bg-white py-10 sm:py-12">
+          <div className="mx-auto max-w-5xl px-4 sm:px-5">
+            <h2 className="text-2xl font-bold text-ink">{copy.about.title}</h2>
+            <div className="mt-5 grid gap-4 text-base leading-8 text-steel">
+              {copy.about.intro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </section>
         <section className="bg-white py-12 sm:py-16">
           <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-5 lg:grid-cols-[0.85fr_1.15fr]">
             <article className="rounded-md border border-ink/10 bg-cloud p-6">
               <Globe2 className="text-copper" size={24} />
               <h2 className="mt-5 text-2xl font-bold text-ink">{copy.about.missionTitle}</h2>
-              <p className="mt-4 text-sm leading-7 text-steel">{copy.about.mission}</p>
-              <p className="mt-4 text-sm leading-7 text-steel">{copy.about.intro[1]}</p>
+              <p className="mt-4 whitespace-pre-line text-sm leading-7 text-steel">{copy.about.mission}</p>
             </article>
             <div>
               <div className="flex items-center gap-3">
@@ -134,7 +143,7 @@ export function CorporateAboutPage({ locale }: { locale: Locale }) {
             <article className="rounded-md border border-white/12 bg-white/6 p-6">
               <Globe2 className="text-signal" size={24} />
               <h2 className="mt-5 text-xl font-bold">{copy.about.visionTitle}</h2>
-              <p className="mt-3 text-sm leading-7 text-white/72">{copy.about.vision}</p>
+              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-white/72">{copy.about.vision}</p>
             </article>
           </div>
         </section>

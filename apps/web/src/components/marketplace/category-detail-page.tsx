@@ -103,7 +103,7 @@ export function CategoryDetailPage({ locale, category }: { locale: Locale; categ
               {products.length > 0 ? (
                 <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                   {products.slice(0, 12).map((product) => (
-                    <ProductCard key={product.slug} product={product} copy={copy} />
+                    <ProductCard key={product.slug} product={product} copy={copy} locale={locale} />
                   ))}
                 </div>
               ) : (

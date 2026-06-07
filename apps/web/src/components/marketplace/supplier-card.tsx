@@ -4,10 +4,12 @@
 
 import { BadgeCheck, Globe2 } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
+import { getLocalizedCountry, getLocalizedIndustry } from "@/lib/localization";
 import type { MarketplaceCopy } from "./marketplace-copy";
 
 export type SupplierCardData = {
   company: string;
+  companyTr?: string;
   country: string;
   countryTr?: string;
   category: string;
@@ -24,19 +26,20 @@ export function SupplierCard({ supplier, copy, locale }: { supplier: SupplierCar
   const tr = locale === "tr";
   const verified = supplier.verified ?? true;
   const href = supplier.company === "i-WALL" && locale ? `/${locale}/supplier/i-wall` : supplier.href;
-  const country = tr ? supplier.countryTr ?? supplier.country : supplier.country;
-  const category = tr ? supplier.categoryTr ?? supplier.category : supplier.category;
+  const company = tr ? supplier.companyTr ?? supplier.company : supplier.company;
+  const country = tr ? supplier.countryTr ?? getLocalizedCountry(supplier.country, "tr") : supplier.country;
+  const category = tr ? supplier.categoryTr ?? getLocalizedIndustry(supplier.category, "tr") : supplier.category;
 
   return (
     <article className="rounded-md border border-ink/10 bg-white p-5 shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-base font-bold text-ink">{supplier.company}</h3>
+          <h3 className="text-base font-bold text-ink">{company}</h3>
           <p className="mt-1 text-sm font-medium text-steel">{country} · {category}</p>
           {supplier.productCount && <p className="mt-1 text-xs font-bold uppercase tracking-[0.08em] text-copper">{supplier.productCount} {tr ? "ürün" : "products"}</p>}
         </div>
         <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-blue-50 text-blue-700">
-          {supplier.logo ? <img src={supplier.logo} alt={`${supplier.company} logo`} className="h-full w-full object-contain p-1" /> : <BadgeCheck size={20} />}
+          {supplier.logo ? <img src={supplier.logo} alt={`${company} logo`} className="h-full w-full object-contain p-1" /> : <BadgeCheck size={20} />}
         </span>
       </div>
       <div className="mt-4 grid gap-2 text-sm">

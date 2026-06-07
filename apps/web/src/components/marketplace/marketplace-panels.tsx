@@ -70,7 +70,7 @@ export function VerifiedManufacturersMenu({ copy, locale }: { copy: MarketplaceC
         {copy.verifiedMenu.stats.map((item) => (
           <div key={item} className="rounded-md bg-ink p-4 text-white">
             <p className="text-sm font-semibold leading-6">{item}</p>
-            <p className="mt-2 text-xs text-white/62">Designed for marketplace scale</p>
+            <p className="mt-2 text-xs text-white/62">Designed for Global B2B Platform scale</p>
           </div>
         ))}
       </div>

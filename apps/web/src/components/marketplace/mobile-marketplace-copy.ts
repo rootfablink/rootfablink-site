@@ -108,7 +108,8 @@ export const mobileSeedProducts = iWallHomepageModels.map((model, index) => {
     priceTr: "Teklif al",
     badgeIndex: index === 0 ? 3 : index % 3,
     supplier: "i-WALL",
-    country: "Türkiye",
+    country: "Turkey",
+    countryTr: "Türkiye",
     category: "Building Materials",
     categoryTr: "Yapı Malzemeleri",
     image: `/brands/i-wall/no${model}.jpeg`,
@@ -121,10 +122,10 @@ export const mobileSeedProducts = iWallHomepageModels.map((model, index) => {
 export const mobileProducts = mobileSeedProducts;
 
 export const mobileSuppliers = [
-  { name: "i-WALL Surface Systems", category: "Building Materials", categoryTr: "Yapı malzemeleri", country: "Türkiye", cta: "/suppliers/i-wall", logo: "/brands/i-wall/logo.png" },
-  { name: "Anatolia Precision Manufacturing", category: "Machinery", categoryTr: "Makine", country: "Türkiye", cta: "/manufacturers" },
-  { name: "Global Pack Systems", category: "Packaging", categoryTr: "Ambalaj", country: "Germany", cta: "/manufacturers" },
-  { name: "Marmara Textile Works", category: "Workwear", categoryTr: "İş kıyafeti", country: "Türkiye", cta: "/manufacturers" }
+  { name: { en: "i-WALL Surface Systems", tr: "i-WALL Yüzey Sistemleri" }, category: { en: "Building Materials", tr: "Yapı Malzemeleri" }, country: { en: "Turkey", tr: "Türkiye" }, cta: "/suppliers/i-wall", logo: "/brands/i-wall/logo.png" },
+  { name: { en: "Anatolia Precision Manufacturing", tr: "Anadolu Hassas Üretim" }, category: { en: "Machinery", tr: "Makine" }, country: { en: "Turkey", tr: "Türkiye" }, cta: "/manufacturers" },
+  { name: { en: "Global Pack Systems", tr: "Global Ambalaj Sistemleri" }, category: { en: "Packaging", tr: "Ambalaj" }, country: { en: "Germany", tr: "Almanya" }, cta: "/manufacturers" },
+  { name: { en: "Marmara Textile Works", tr: "Marmara Tekstil Fabrikası" }, category: { en: "Workwear", tr: "İş Kıyafetleri" }, country: { en: "Turkey", tr: "Türkiye" }, cta: "/manufacturers" }
 ];
 
 export const countrySourcingCards = [

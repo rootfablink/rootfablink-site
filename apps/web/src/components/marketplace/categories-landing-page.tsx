@@ -23,7 +23,7 @@ export function CategoriesLandingPage({ locale }: { locale: Locale }) {
             <p className="mt-3 max-w-3xl text-sm leading-6 text-steel">
               {tr
                 ? "Ürünleri, üreticileri ve RFQ hazır tedarik akışlarını kategoriye göre keşfedin."
-                : "Browse products, manufacturers and RFQ-ready sourcing flows by marketplace category."}
+                : "Browse products, manufacturers and RFQ-ready sourcing flows by B2B platform category."}
             </p>
           </div>
         </section>

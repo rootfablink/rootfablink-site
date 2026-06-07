@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Globe2 } from "lucide-react";
+import { Check, ChevronDown, Globe2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@rootfablink/i18n";
 import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
@@ -29,10 +29,14 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           <a href={`/${locale}/logistics`}>{t.nav.logistics}</a>
         </nav>
         <div className="flex shrink-0 items-center gap-0.5 min-[420px]:gap-1 sm:gap-2">
-          <details className="group relative">
-            <summary aria-label={t.language.label} className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-xl border border-signal/20 bg-cloud text-copper hover:border-signal/45 xs:h-11 xs:w-11 min-[420px]:h-12 min-[420px]:w-12 sm:h-auto sm:w-auto sm:gap-1 sm:px-3 sm:py-2">
-              <Globe2 size={21} strokeWidth={2.2} />
-              <span className="hidden text-sm font-medium sm:inline">{t.language.label}</span>
+          <details className="group relative shrink-0">
+            <summary
+              aria-label={locale === "tr" ? "Dil seç" : "Select Language"}
+              className="flex h-10 shrink-0 cursor-pointer list-none items-center gap-1 rounded-xl border border-signal/20 bg-cloud px-1.5 text-[10px] font-semibold whitespace-nowrap text-ink hover:border-signal/45 xs:h-11 xs:px-2 xs:text-[11px] min-[420px]:h-12 min-[420px]:gap-1.5 min-[420px]:px-2.5 min-[420px]:text-[13px] sm:h-auto sm:gap-2 sm:px-3 sm:py-2 sm:text-sm"
+            >
+              <Globe2 size={17} className="shrink-0 text-copper sm:h-[21px] sm:w-[21px]" strokeWidth={2.2} />
+              <span className="inline-block shrink-0">{t.language.label}</span>
+              <ChevronDown size={12} className="shrink-0 text-steel sm:h-[14px] sm:w-[14px]" />
             </summary>
             <div className="fixed inset-x-3 top-16 z-[80] max-h-[min(72vh,30rem)] overflow-y-auto rounded-md border border-ink/10 bg-white p-3 shadow-[0_18px_42px_rgba(11,11,12,0.18)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-auto sm:mt-2 sm:w-72">
               <p className="px-2 pb-2 text-xs leading-5 text-steel">{t.language.note}</p>

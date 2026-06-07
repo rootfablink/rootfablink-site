@@ -44,25 +44,26 @@ const en = {
   about: {
     title: "About Rootfablink",
     intro: [
-      "Rootfablink is a Türkiye-based B2B marketplace infrastructure designed to connect manufacturers, suppliers, buyers, logistics companies and customs brokers in one digital trade platform.",
-      "Rootfablink aims to make product discovery, supplier comparison, RFQ creation, secure communication, logistics coordination and customs operations more organized, transparent and accessible."
+      "Rootfablink is a professional business network that connects manufacturers, buyers, logistics providers and customs brokers through one Global B2B Platform.",
+      "The platform helps companies discover new business partners, reach international markets, manage quotation processes and operate cross-border trade more efficiently.",
+      "Rootfablink exists to build trusted commercial connections, increase manufacturer visibility and make global B2B trade more accessible."
     ],
     missionTitle: "Our Mission",
     mission:
-      "To build a trusted digital trade infrastructure where companies can discover the right partners, exchange structured commercial information and prepare international trade operations with greater clarity.",
-    audienceTitle: "Who It Is Built For",
+      "To create a transparent, accessible and sustainable B2B ecosystem that enables trusted commercial relationships between manufacturers and buyers worldwide.\n\nTo provide digital solutions that help companies reach new markets, develop international partnerships and accelerate commercial growth.",
+    audienceTitle: "Platform Participants",
     audiences: [
-      ["Manufacturers", "Factories and producers seeking global buyer demand, verified visibility and structured export workflows."],
-      ["Buyers", "Importers, distributors and procurement teams seeking qualified suppliers and comparable quotations."],
-      ["Logistics Companies", "Freight, transportation and warehousing providers supporting international trade execution."],
-      ["Customs Brokers", "Trade professionals supporting document checks, regulations, import-export procedures and clearance."]
+      ["Manufacturers", "For manufacturers that want to present products to international markets, connect with new buyers and manage quotation requests."],
+      ["Buyers", "For businesses that want to discover reliable manufacturers, compare products and manage sourcing more efficiently."],
+      ["Logistics Providers", "For logistics providers that want to connect directly with manufacturers and buyers across international transportation, delivery and operational workflows."],
+      ["Customs Brokers", "For customs brokers that provide professional customs, foreign trade and regulatory services."]
     ],
     trustTitle: "Trust and Verification Approach",
     trust:
       "Company verification, document review, product moderation and auditable platform actions are designed as core trust layers.",
-    visionTitle: "Türkiye to Global B2B Trade Vision",
+    visionTitle: "Our Vision",
     vision:
-      "Rootfablink is designed to help Türkiye-based manufacturing capabilities connect with global demand while remaining open to international suppliers and trade service providers."
+      "To become one of the world's most trusted and effective B2B platforms for manufacturers, buyers, logistics providers and customs brokers.\n\nTo lead the digital transformation of global trade and help businesses access opportunities beyond borders."
   },
   help: {
     title: "Rootfablink Help Center",
@@ -121,25 +122,26 @@ const tr: typeof en = {
   about: {
     title: "Rootfablink Hakkında",
     intro: [
-      "Rootfablink, Türkiye merkezli üreticileri, üreticileri, alıcıları, lojistik firmalarını ve gümrük müşavirlerini tek bir B2B ticaret altyapısında buluşturmak için tasarlanmış dijital bir pazar yeri platformudur.",
-      "Rootfablink'in amacı; ürün keşfi, üretici karşılaştırması, teklif talebi, güvenli iletişim, lojistik koordinasyon ve gümrük süreçlerini daha düzenli, şeffaf ve erişilebilir hale getirmektir."
+      "Rootfablink, üreticileri, alıcıları, lojistik firmalarını ve gümrük müşavirlerini tek bir küresel B2B platformda buluşturan profesyonel bir iş ağıdır.",
+      "Platform, şirketlerin yeni iş ortakları bulmasını, ürünlerini uluslararası pazarlara ulaştırmasını, teklif süreçlerini yönetmesini ve sınır ötesi ticaret operasyonlarını daha verimli yürütmesini sağlar.",
+      "Rootfablink'in amacı; güvenilir ticari bağlantılar kurmak, üreticilerin görünürlüğünü artırmak ve küresel B2B ticareti daha erişilebilir hale getirmektir."
     ],
     missionTitle: "Misyonumuz",
     mission:
-      "Şirketlerin doğru ticaret ortaklarını bulabildiği, ticari bilgileri düzenli biçimde paylaşabildiği ve uluslararası operasyonlarını daha net hazırlayabildiği güvenilir bir dijital ticaret altyapısı kurmak.",
-    audienceTitle: "Kimler için tasarlandı?",
+      "Dünya genelindeki üreticiler ile alıcılar arasında güvene dayalı ticari ilişkiler kurulmasını sağlayan, şeffaf, erişilebilir ve sürdürülebilir bir B2B ekosistemi oluşturmak.\n\nŞirketlerin yeni pazarlara ulaşmasını, uluslararası iş birlikleri geliştirmesini ve ticari büyümelerini hızlandırmasını sağlayan dijital çözümler sunmak.",
+    audienceTitle: "Platform Katılımcıları",
     audiences: [
-      ["Üreticiler", "Global alıcı talebine, doğrulanmış görünürlüğe ve düzenli ihracat iş akışlarına ulaşmak isteyen fabrikalar ve üreticiler."],
-      ["Alıcılar", "Nitelikli üretici ve karşılaştırılabilir teklif arayan ithalatçı, distribütör ve satın alma ekipleri."],
-      ["Lojistik firmaları", "Uluslararası ticaret operasyonlarını destekleyen navlun, taşıma ve depolama hizmet sağlayıcıları."],
-      ["Gümrük müşavirleri", "Belge kontrolü, mevzuat, ithalat-ihracat süreçleri ve gümrükleme desteği sunan ticaret uzmanları."]
+      ["Üreticiler", "Ürünlerini uluslararası pazarlara sunmak, yeni alıcılarla bağlantı kurmak ve teklif taleplerini yönetmek isteyen üretici firmalar için tasarlanmıştır."],
+      ["Alıcılar", "Güvenilir üreticiler bulmak, ürün karşılaştırmak ve tedarik süreçlerini daha verimli yönetmek isteyen işletmeler için tasarlanmıştır."],
+      ["Lojistik Firmaları", "Uluslararası taşıma, teslimat ve operasyonel süreçlerde üretici ve alıcılarla doğrudan bağlantı kurmak isteyen lojistik sağlayıcıları için tasarlanmıştır."],
+      ["Gümrük Müşavirleri", "Gümrük, dış ticaret ve mevzuat süreçlerinde profesyonel hizmet sunmak isteyen gümrük müşavirleri için tasarlanmıştır."]
     ],
     trustTitle: "Güven ve doğrulama yaklaşımı",
     trust:
       "Şirket doğrulama, belge inceleme, ürün moderasyonu ve denetlenebilir platform aksiyonları temel güven katmanları olarak tasarlanır.",
-    visionTitle: "Türkiye'den dünyaya B2B ticaret vizyonu",
+    visionTitle: "Vizyonumuz",
     vision:
-      "Rootfablink, Türkiye'nin üretim kabiliyetlerini global taleple buluştururken uluslararası üreticilere ve ticaret hizmet sağlayıcılarına da açık olacak şekilde tasarlanır."
+      "Üreticiler, alıcılar, lojistik firmaları ve gümrük müşavirleri için dünyanın en güvenilir ve en etkili B2B platformlarından biri olmak.\n\nKüresel ticaretin dijitalleşmesine öncülük ederek işletmelerin sınırları aşan yeni fırsatlara erişmesini sağlamak."
   },
   help: {
     title: "Rootfablink Yardım Merkezi",

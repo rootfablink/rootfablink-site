@@ -5,7 +5,7 @@ export const en = {
     label: "Language",
     ready: "Available",
     preparing: "Native editorial version in preparation",
-    note: "Choose a market language for reviewed B2B marketplace copy."
+    note: "Choose a market language for reviewed Global B2B Platform copy."
   },
   nav: {
     buyers: "Buyers",
@@ -33,7 +33,7 @@ export const en = {
       ["RFQ", "driven sourcing"],
       ["Future", "trade assurance workflows"]
     ],
-    cockpitTitle: "Marketplace operating flow",
+    cockpitTitle: "B2B platform operating flow",
     workflows: [
       "Buyers create structured RFQs",
       "Suppliers register and list products free",
@@ -51,7 +51,7 @@ export const en = {
         text: "RFQs, quotations, messaging, moderation and future trade assurance flows are positioned as the platform operating core."
       }
     ],
-    flywheelEyebrow: "Marketplace flywheel",
+    flywheelEyebrow: "B2B network flywheel",
     flywheelTitle: "Liquidity grows when buyer demand, free supplier participation and trade services operate in one loop.",
     flywheel: [
       ["Demand capture", "RFQs turn buyer intent into structured sourcing demand with files, delivery terms, quantity and destination."],
@@ -59,7 +59,7 @@ export const en = {
       ["Secure trade preparation", "Messaging, quotation comparison, verification review and logistics support prepare transactions for safer execution."]
     ],
     proofEyebrow: "Revenue transparency",
-    proofTitle: "Simple marketplace model: free access first, value-based monetization later.",
+    proofTitle: "Simple B2B platform model: free access first, value-based monetization later.",
     proof: [
       "Supplier registration, company profiles, basic buyer access and product listing remain free.",
       "Revenue is designed around transaction commission, trade assurance service fees and secure workflow services.",
@@ -100,7 +100,7 @@ export const en = {
     groups: [
       {
         title: "Platform",
-        links: ["Supplier directory", "RFQ marketplace", "Verification center"]
+        links: ["Manufacturer directory", "RFQ network", "Verification center"]
       },
       {
         title: "Trust",
@@ -162,7 +162,7 @@ export const en = {
       eyebrow: "Trust infrastructure",
       title: "Verification, moderation and auditability are product pillars.",
       intro:
-        "The platform foundation includes supplier verification states, document review, product moderation, admin queues and audit logs so trust can scale with the marketplace.",
+        "The platform foundation includes manufacturer verification states, document review, product moderation, admin queues and audit logs so trust can scale with the B2B network.",
       primary: "Open verification center",
       secondary: "View admin shell",
       highlights: [
@@ -174,7 +174,7 @@ export const en = {
       steps: ["Upload documents", "Review evidence", "Assign status", "Update trust score", "Monitor risk"]
     },
     rfq: {
-      eyebrow: "RFQ marketplace",
+      eyebrow: "RFQ network",
       title: "Turn buyer demand into structured supplier opportunities.",
       intro:
         "RFQ is the platform engine that connects buying intent with qualified supplier response, quotation comparison, messaging and logistics preparation.",
@@ -189,7 +189,7 @@ export const en = {
       steps: ["Buyer posts request", "System matches suppliers", "Suppliers quote", "Buyer compares", "Negotiation begins"]
     },
     pricing: {
-      eyebrow: "Marketplace model",
+      eyebrow: "B2B platform model",
       title: "Free supplier access with value-based monetization.",
       intro:
         "Rootfablink is designed around free supplier onboarding and free product listing. Revenue is generated through transaction services, trade assurance, sponsored visibility, premium lead access and future enterprise tools.",

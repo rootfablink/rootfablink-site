@@ -58,7 +58,7 @@ export function IWallProductCatalog({
       </div>
       <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.slug} product={product} copy={copy} />
+          <ProductCard key={product.slug} product={product} copy={copy} locale={locale} />
         ))}
       </div>
     </>

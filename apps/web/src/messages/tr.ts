@@ -21,7 +21,7 @@ export const tr = {
     start: "Kayıt Ol"
   },
   home: {
-    headline: "Üreticiler, Alıcılar ve Lojistik Ortakları İçin Küresel B2B Ticaret Altyapısı",
+    headline: "Üreticiler, Alıcılar ve Lojistik Ortakları İçin Küresel B2B Platform",
     eyebrow: "Türkiye'den dünyaya, global üretim ticareti için tasarlandı",
     subhead:
       "Rootfablink; fabrikaların, üreticilerin ve global alıcıların bağlantı kurmasını, müzakere etmesini, ürün tedarik etmesini, RFQ süreçlerini yönetmesini ve güvenli uluslararası ticaret iş akışlarına hazırlanmasını sağlar.",
@@ -33,7 +33,7 @@ export const tr = {
       ["RFQ", "odaklı tedarik"],
       ["Gelecek", "ticaret güvence sistemi"]
     ],
-    cockpitTitle: "Pazar yeri işleyiş akışı",
+    cockpitTitle: "B2B platform işleyişi",
     workflows: [
       "Alıcılar yapılandırılmış RFQ yayınlar",
       "Üreticiler ücretsiz kaydolur ve ürün listeler",
@@ -51,7 +51,7 @@ export const tr = {
         text: "RFQ, teklif, mesajlaşma, moderasyon ve gelecekteki ticaret güvence süreçleri platformun ana operasyon omurgası olarak konumlanır."
       }
     ],
-    flywheelEyebrow: "Pazar yeri döngüsü",
+    flywheelEyebrow: "B2B iş ağı döngüsü",
     flywheelTitle: "Likidite; alıcı talebi, ücretsiz üretici katılımı ve ticaret hizmetleri aynı döngüde çalıştığında büyür.",
     flywheel: [
       ["Talep yakalama", "RFQ akışı; alıcı ihtiyacını dosya, teslim şartı, miktar ve varış bilgisiyle düzenli tedarik talebine dönüştürür."],
@@ -59,7 +59,7 @@ export const tr = {
       ["Güvenli ticarete hazırlık", "Mesajlaşma, teklif karşılaştırma, doğrulama incelemesi ve lojistik desteği işlemlerin daha güvenli ilerlemesine zemin hazırlar."]
     ],
     proofEyebrow: "Gelir modeli şeffaflığı",
-    proofTitle: "Basit pazar yeri modeli: önce ücretsiz erişim, sonra değer bazlı gelir.",
+    proofTitle: "Basit B2B platform modeli: önce ücretsiz erişim, sonra değer bazlı gelir.",
     proof: [
       "Üretici kaydı, şirket profili, temel alıcı erişimi ve ürün listeleme ücretsiz kalır.",
       "Gelir modeli işlem komisyonu, ticaret güvence hizmet bedeli ve güvenli iş akışı servisleri üzerine kurulur.",
@@ -189,7 +189,7 @@ export const tr = {
       steps: ["Alıcı talep açar", "Sistem üretici eşleştirir", "Üreticiler teklif verir", "Alıcı karşılaştırır", "Görüşme başlar"]
     },
     pricing: {
-      eyebrow: "Pazar yeri modeli",
+      eyebrow: "B2B platform modeli",
       title: "Ücretsiz üretici erişimi ve değer bazlı gelir modeli.",
       intro:
         "Rootfablink; ücretsiz üretici kaydı ve ücretsiz ürün listeleme üzerine tasarlanır. Gelir; işlem servisleri, ticaret güvence sistemi, sponsorlu görünürlük, premium lead erişimi ve gelecekteki kurumsal araçlardan oluşur.",

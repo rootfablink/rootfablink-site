@@ -3,9 +3,9 @@ import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? "https://rootfablink.com";
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-const title = "Rootfablink | Global B2B Platform for Manufacturers, Suppliers and Buyers";
+const title = "Rootfablink | Global B2B Platform for Manufacturers and Buyers";
 const socialTitle = "Rootfablink | Global B2B Platform";
-const description = "Rootfablink connects manufacturers, suppliers and buyers through sourcing, RFQs, messaging, logistics, customs services and digital trade infrastructure.";
+const description = "Rootfablink connects manufacturers, buyers, logistics providers and customs brokers through a global B2B platform for sourcing, RFQ management and international trade operations.";
 
 export const metadata: Metadata = {
   title: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Rootfablink"
   },
   description,
-  keywords: ["Rootfablink", "B2B platform", "manufacturers", "suppliers", "buyers", "industrial sourcing", "RFQ", "logistics", "customs services", "digital trade"],
+  keywords: ["Rootfablink", "Global B2B Platform", "manufacturers", "buyers", "industrial sourcing", "RFQ", "logistics providers", "customs brokers", "international trade operations"],
   metadataBase: new URL(siteUrl),
   applicationName: "Rootfablink",
   authors: [{ name: "Rootfablink", url: siteUrl }],

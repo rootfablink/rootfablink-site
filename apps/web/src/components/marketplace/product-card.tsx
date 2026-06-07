@@ -3,6 +3,8 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { Heart, MessageSquareText, ShieldCheck, Store } from "lucide-react";
+import type { Locale } from "@rootfablink/i18n";
+import { getLocalizedCountry, getLocalizedIndustry } from "@/lib/localization";
 import type { MarketplaceCopy } from "./marketplace-copy";
 import { MarketplaceImage } from "./marketplace-image";
 
@@ -14,6 +16,7 @@ export type ProductCardData = {
   priceRange?: string;
   priceRangeTr?: string;
   moq: string;
+  moqTr?: string;
   country: string;
   countryTr?: string;
   verified: boolean;
@@ -47,12 +50,12 @@ export type ProductCardData = {
   rating?: number | null;
 };
 
-export function ProductCard({ product, copy }: { product: ProductCardData; copy: MarketplaceCopy }) {
+export function ProductCard({ product, copy, locale = "en" }: { product: ProductCardData; copy: MarketplaceCopy; locale?: Locale }) {
   const contactLabel = copy.productCard.contact ?? "Contact supplier";
-  const tr = contactLabel.includes("Tedarik");
+  const tr = locale === "tr";
   const title = tr ? product.titleTr ?? product.title : product.title;
-  const category = tr ? product.categoryTr ?? product.category : product.category;
-  const country = tr ? product.countryTr ?? product.country : product.country;
+  const category = tr ? product.categoryTr ?? (product.category ? getLocalizedIndustry(product.category, locale) : product.category) : product.category;
+  const country = tr ? product.countryTr ?? getLocalizedCountry(product.country, locale) : product.country;
   const description = tr ? product.shortDescriptionTr ?? product.shortDescription : product.shortDescription;
   const supplierType = tr ? product.supplierTypeTr ?? product.supplierType : product.supplierType;
   const leadTime = tr ? product.leadTimeTr : product.leadTime;
@@ -70,7 +73,7 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
             {copy.productCard.sponsored}
           </span>
         )}
-        <button type="button" aria-label="Add to favorites" className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md bg-white text-ink shadow-sm">
+        <button type="button" aria-label={tr ? "Favorilere ekle" : "Add to favorites"} className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md bg-white text-ink shadow-sm">
           <Heart size={16} />
         </button>
       </div>
@@ -90,7 +93,7 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
         )}
         <p className="mt-2 text-lg font-bold text-copper">{priceRange}</p>
         <div className="mt-2 flex flex-wrap gap-2 text-xs font-semibold text-steel">
-          <span>{copy.productCard.moq}: {product.moq}</span>
+          <span>{copy.productCard.moq}: {tr ? product.moqTr ?? product.moq : product.moq}</span>
           <span>{country}</span>
           {leadTime && <span>{leadTime}</span>}
         </div>
@@ -104,7 +107,7 @@ export function ProductCard({ product, copy }: { product: ProductCardData; copy:
         <div className="mt-3 flex items-center justify-between gap-2 border-t border-ink/10 pt-3">
           <span className="inline-flex items-center gap-1 text-xs font-bold text-ink">
             {product.verified ? <ShieldCheck size={15} className="text-blue-700" /> : <Store size={15} className="text-steel" />}
-            {product.verified ? copy.productCard.verified : supplierType ?? "Supplier profile"}
+            {product.verified ? copy.productCard.verified : supplierType ?? (tr ? "Üretici profili" : "Supplier profile")}
           </span>
           <button type="button" className="rounded-md bg-signal px-3 py-2 text-xs font-bold text-white hover:bg-copper">
             {copy.productCard.inquiry}

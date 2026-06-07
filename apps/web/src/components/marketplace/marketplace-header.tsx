@@ -70,7 +70,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             <RootfablinkWordmark text="ROOTFABLINK" size="compact" className="text-[24px] font-bold leading-none [--rfl-scale:1] [--rfl-tracking:2px] lg:text-[32px]" />
           </Link>
 
-          <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>
+          <nav className="hidden items-center gap-1 text-sm font-semibold text-ink lg:flex" aria-label={locale === "tr" ? "Ana B2B platform navigasyonu" : "Main B2B platform navigation"}>
             {primaryNavItems.map((item) => {
               const active = isPrimaryActive(item.href);
               return (
@@ -93,6 +93,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
               <button
                 type="button"
                 onClick={() => toggle("language")}
+                aria-label={locale === "tr" ? "Dil seç" : "Select Language"}
                 className={cn(
                   "flex h-10 items-center gap-2 rounded-md border border-ink/10 px-3 text-sm font-semibold text-ink hover:border-signal/35 hover:bg-cloud",
                   openPanel === "language" && "border-signal/35 bg-cloud text-copper"
@@ -114,8 +115,18 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
           </div>
 
           <div className="flex shrink-0 items-center gap-0.5 min-[420px]:gap-1 lg:hidden">
-            <button type="button" onClick={() => toggle("language")} aria-label={copy.header.languageCurrency} className={cn("flex h-10 w-10 items-center justify-center rounded-xl border border-signal/20 bg-cloud text-copper xs:h-11 xs:w-11 min-[420px]:h-12 min-[420px]:w-12", openPanel === "language" && "border-signal/45")}>
-              <Globe2 size={21} strokeWidth={2.2} />
+            <button
+              type="button"
+              onClick={() => toggle("language")}
+              aria-label={locale === "tr" ? "Dil seç" : "Select Language"}
+              className={cn(
+                "flex h-10 shrink-0 items-center gap-1 rounded-xl border border-signal/20 bg-cloud px-1.5 text-[10px] font-semibold whitespace-nowrap text-ink xs:h-11 xs:px-2 xs:text-[11px] min-[420px]:h-12 min-[420px]:gap-1.5 min-[420px]:px-2.5 min-[420px]:text-[13px]",
+                openPanel === "language" && "border-signal/45"
+              )}
+            >
+              <Globe2 size={17} className="shrink-0 text-copper" strokeWidth={2.2} />
+              <span className="inline-block shrink-0">{copy.header.languageCurrency}</span>
+              <ChevronDown size={12} className="shrink-0 text-steel" />
             </button>
             <Link href={`/${locale}/auth/login`} aria-label={copy.header.signIn} className="flex h-10 items-center justify-center rounded-xl px-1 text-[11px] font-semibold whitespace-nowrap text-ink hover:bg-cloud xs:h-11 xs:px-1.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-2 min-[420px]:text-[15px]">
               {copy.header.signIn}
@@ -158,7 +169,7 @@ export function MarketplaceHeader({ locale, onOpenLens }: { locale: Locale; onOp
             </div>
           </div>
 
-          <div className="grid grid-cols-4 lg:hidden" aria-label={locale === "tr" ? "Ana pazar navigasyonu" : "Main marketplace navigation"}>
+          <div className="grid grid-cols-4 lg:hidden" aria-label={locale === "tr" ? "Ana B2B platform navigasyonu" : "Main B2B platform navigation"}>
             {primaryNavItems.map((item) => {
               const active = isPrimaryActive(item.href);
               return (

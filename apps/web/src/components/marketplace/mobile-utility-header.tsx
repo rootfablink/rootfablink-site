@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Globe2 } from "lucide-react";
+import { Check, ChevronDown, Globe2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@rootfablink/i18n";
 import { RootfablinkWordmark } from "@/components/brand/rootfablink-wordmark";
@@ -29,12 +29,14 @@ export function MobileUtilityHeader({ locale, title }: { locale: Locale; title?:
         </Link>
 
         <div className="flex shrink-0 items-center gap-0.5 min-[420px]:gap-1">
-          <details className="group">
+          <details className="group shrink-0">
             <summary
-              aria-label={copy.header.languageCurrency}
-              className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-xl border border-signal/20 bg-cloud text-copper xs:h-11 xs:w-11 min-[420px]:h-12 min-[420px]:w-12"
+              aria-label={locale === "tr" ? "Dil seç" : "Select Language"}
+              className="flex h-10 shrink-0 cursor-pointer list-none items-center gap-1 rounded-xl border border-signal/20 bg-cloud px-1.5 text-[10px] font-semibold whitespace-nowrap text-ink xs:h-11 xs:px-2 xs:text-[11px] min-[420px]:h-12 min-[420px]:gap-1.5 min-[420px]:px-2.5 min-[420px]:text-[13px]"
             >
-              <Globe2 size={21} strokeWidth={2.2} />
+              <Globe2 size={17} className="shrink-0 text-copper" strokeWidth={2.2} />
+              <span className="inline-block shrink-0">{copy.header.languageCurrency}</span>
+              <ChevronDown size={12} className="shrink-0 text-steel" />
             </summary>
             <div className="fixed inset-x-3 top-14 z-[80] max-h-[min(70vh,28rem)] overflow-y-auto rounded-md border border-ink/10 bg-white p-2 shadow-[0_18px_42px_rgba(11,11,12,0.18)]">
               {languageOptions.map((option) => {
@@ -59,7 +61,7 @@ export function MobileUtilityHeader({ locale, title }: { locale: Locale; title?:
           <Link href={`/${locale}/auth/login`} className="inline-flex h-10 items-center rounded-xl px-1 text-[11px] font-semibold whitespace-nowrap text-ink hover:bg-cloud xs:h-11 xs:px-1.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-2 min-[420px]:text-[15px]">
             {copy.header.signIn}
           </Link>
-          <Link href={`/${locale}/auth/register`} className="inline-flex h-10 items-center rounded-xl bg-ink px-2 text-[11px] font-bold whitespace-nowrap text-white xs:h-11 xs:px-2.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-3 min-[420px]:text-[15px]">
+          <Link href={`/${locale}/auth/register`} className="inline-flex h-10 items-center rounded-xl border-0 bg-signal px-2 text-[11px] font-bold whitespace-nowrap text-white transition hover:bg-copper xs:h-11 xs:px-2.5 xs:text-[13px] min-[420px]:h-12 min-[420px]:px-3 min-[420px]:text-[15px]">
             {copy.header.createAccount}
           </Link>
         </div>

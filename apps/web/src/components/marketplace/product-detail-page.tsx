@@ -29,6 +29,8 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
   const applications = tr ? product.applicationsTr ?? product.applications : product.applications;
   const packagingInfo = tr ? product.packagingInfoTr ?? product.packagingInfo : product.packagingInfo;
   const leadTime = tr && "leadTimeTr" in product ? product.leadTimeTr : product.leadTime;
+  const moq = tr && "moqTr" in product ? product.moqTr ?? product.moq : product.moq;
+  const priceRange = tr && "priceRangeTr" in product ? product.priceRangeTr ?? product.priceRange : product.priceRange;
   const imageAlt = tr && "imageAltTr" in product ? product.imageAltTr ?? product.imageAlt ?? title : product.imageAlt ?? title;
   const tradeTerms = tr && "tradeTermsTr" in product ? product.tradeTermsTr ?? product.tradeTerms : product.tradeTerms;
   const isIWall = product.supplierName === "i-WALL";
@@ -99,8 +101,8 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
                 </div>
               )}
               <div className="mt-6 grid gap-3 rounded-md border border-ink/10 bg-white p-4 sm:grid-cols-2">
-                <Info label={tr ? "Fiyat" : "Price"} value={product.priceRange} />
-                <Info label="MOQ" value={product.moq} />
+                <Info label={tr ? "Fiyat" : "Price"} value={priceRange} />
+                <Info label="MOQ" value={moq} />
                 <Info label={tr ? "Teslim süresi" : "Lead time"} value={leadTime ?? ""} />
                 <Info label={tr ? "Üretici tipi" : "Supplier type"} value={supplierType ?? "Supplier profile"} />
               </div>
@@ -195,7 +197,7 @@ export function ProductDetailPage({ locale, slug }: { locale: Locale; slug: stri
             <h2 className="text-2xl font-bold text-ink">{tr ? "Benzer ürünler" : "Similar products"}</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {similar.map((item) => (
-                <ProductCard key={item.slug} product={item} copy={copy} />
+                <ProductCard key={item.slug} product={item} copy={copy} locale={locale} />
               ))}
             </div>
           </div>

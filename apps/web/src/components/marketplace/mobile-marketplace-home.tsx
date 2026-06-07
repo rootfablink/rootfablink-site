@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { Camera, Factory, FileText, Grid2X2, Mail, Mic, PackageSearch, Search, ShieldCheck, Sparkles } from "lucide-react";
 import type { Locale } from "@rootfablink/i18n";
+import { getLocalizedCountry, getLocalizedValue } from "@/lib/localization";
 import { MobileBottomNav } from "./mobile-bottom-nav";
 import { getMobileMarketplaceCopy, mobileSeedProducts, mobileSuppliers } from "./mobile-marketplace-copy";
 import { MobileUtilityHeader } from "./mobile-utility-header";
@@ -77,7 +78,7 @@ function MobilePrimaryTabs({ locale, labels, active }: { locale: Locale; labels:
   ];
 
   return (
-    <nav aria-label={locale === "tr" ? "Mobil ana pazar navigasyonu" : "Mobile marketplace navigation"} className="grid grid-cols-4">
+    <nav aria-label={locale === "tr" ? "Mobil ana B2B platform navigasyonu" : "Mobile B2B platform navigation"} className="grid grid-cols-4">
       {items.map((item) => {
         const isActive = item.key === active;
         return (
@@ -152,7 +153,7 @@ function MobileProductCarousel({ title, locale, offset = 0 }: { title: string; l
               <img src={product.image} alt={tr ? product.titleTr : product.title} className="h-full w-full object-contain" />
             </div>
             <div className="p-3">
-              <span className="rounded-full bg-signal/10 px-2 py-1 text-[10px] font-bold text-copper">{product.country}</span>
+              <span className="rounded-full bg-signal/10 px-2 py-1 text-[10px] font-bold text-copper">{tr ? product.countryTr ?? getLocalizedCountry(product.country, locale) : product.country}</span>
               <h3 className="mt-2 line-clamp-2 min-h-9 text-xs font-bold leading-4 text-ink">{tr ? product.titleTr : product.title}</h3>
               <p className="mt-2 text-sm font-bold text-copper">{tr ? product.priceTr : product.price}</p>
             </div>
@@ -168,19 +169,25 @@ function SupplierRail({ title, locale }: { title: string; locale: Locale }) {
     <section className="mt-5">
       <SectionTitle title={title} />
       <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
-        {mobileSuppliers.map((supplier) => (
-          <a key={supplier.name} href={`/${locale}${supplier.cta}`} className="min-w-64 rounded-2xl bg-white p-4 shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
-            {supplier.logo ? (
-              <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl border border-ink/10 bg-white p-1">
-                <img src={supplier.logo} alt={`${supplier.name} logo`} className="h-full w-full object-contain" />
-              </span>
-            ) : (
-              <Factory size={22} className="text-copper" />
-            )}
-            <h3 className="mt-3 text-sm font-bold text-ink">{supplier.name}</h3>
-            <p className="mt-1 text-xs font-semibold text-steel">{locale === "tr" ? supplier.categoryTr ?? supplier.category : supplier.category} · {supplier.country}</p>
-          </a>
-        ))}
+        {mobileSuppliers.map((supplier) => {
+          const name = getLocalizedValue(supplier.name, locale);
+          const category = getLocalizedValue(supplier.category, locale);
+          const country = getLocalizedCountry(getLocalizedValue(supplier.country, locale), locale);
+
+          return (
+            <a key={supplier.name.en} href={`/${locale}${supplier.cta}`} className="min-w-64 rounded-2xl bg-white p-4 shadow-[0_8px_22px_rgba(11,11,12,0.04)]">
+              {supplier.logo ? (
+                <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl border border-ink/10 bg-white p-1">
+                  <img src={supplier.logo} alt={`${name} logo`} className="h-full w-full object-contain" />
+                </span>
+              ) : (
+                <Factory size={22} className="text-copper" />
+              )}
+              <h3 className="mt-3 text-sm font-bold text-ink">{name}</h3>
+              <p className="mt-1 text-xs font-semibold text-steel">{category} · {country}</p>
+            </a>
+          );
+        })}
       </div>
     </section>
   );

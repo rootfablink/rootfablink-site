@@ -48,7 +48,7 @@ const en = {
   },
   company: {
     title: "Rootfablink Company Information",
-    subtitle: "Rootfablink is a global B2B marketplace infrastructure for manufacturers, suppliers, logistics companies, customs brokers, importers, exporters and industrial buyers.",
+    subtitle: "Rootfablink is a Global B2B Platform connecting manufacturers, buyers, logistics providers, customs brokers, importers, exporters and industrial buyers.",
     details: [
       ["Official website", "https://rootfablink.com"],
       ["Platform scope", "Manufacturing, sourcing, logistics, customs clearance and international B2B trade workflows"],
@@ -70,7 +70,7 @@ const tr: typeof en = {
     information: ["Genel Bilgi", "Rootfablink, şirket bilgileri, platform özellikleri ve iş ortaklıkları hakkında sorular."],
     sales: ["Satış", "Üretici üyelikleri, premium görünürlük paketleri, reklam fırsatları ve ticari talepler."],
     logistics: ["Lojistik", "Navlun, taşıma çözümleri, depolama, sevkiyat ve lojistik iş ortaklıkları."],
-    customs: ["Gümrük Müşavirliği", "Gümrük müşavirliği, ithalat-ihracat süreçleri, gümrük danışmanlığı ve beyan destekleri."]
+    customs: ["Gümrük Müşavirliği", "Gümrük müşavirliği, ithalat-ihracat süreçleri, mevzuat desteği ve beyan işlemleri."]
   },
   form: {
     title: "Mesaj gönder",
@@ -95,7 +95,7 @@ const tr: typeof en = {
   },
   company: {
     title: "Rootfablink Şirket Bilgileri",
-    subtitle: "Rootfablink; üreticiler, üreticiler, lojistik şirketleri, gümrük müşavirleri, ithalatçılar, ihracatçılar ve endüstriyel alıcılar için küresel B2B pazaryeri altyapısıdır.",
+    subtitle: "Rootfablink; üreticileri, alıcıları, lojistik firmalarını, gümrük müşavirlerini, ithalatçıları, ihracatçıları ve endüstriyel alıcıları buluşturan küresel bir B2B platformdur.",
     details: [
       ["Resmi web sitesi", "https://rootfablink.com"],
       ["Platform kapsamı", "Üretim, tedarik, lojistik, gümrükleme ve uluslararası B2B ticaret iş akışları"],
@@ -142,7 +142,7 @@ const ar: typeof en = {
   },
   company: {
     title: "معلومات شركة Rootfablink",
-    subtitle: "Rootfablink هي بنية سوق B2B عالمية للمصنعين والموردين وشركات اللوجستيات والمخلصين الجمركيين والمستوردين والمصدرين والمشترين الصناعيين.",
+    subtitle: "Rootfablink هي منصة B2B عالمية تربط المصنعين والمشترين وشركات اللوجستيات والمخلصين الجمركيين والمستوردين والمصدرين والمشترين الصناعيين.",
     details: [
       ["الموقع الرسمي", "https://rootfablink.com"],
       ["نطاق المنصة", "التصنيع والتوريد واللوجستيات والتخليص الجمركي وسير عمل التجارة الدولية B2B"],
@@ -189,7 +189,7 @@ const de: typeof en = {
   },
   company: {
     title: "Rootfablink Unternehmensinformationen",
-    subtitle: "Rootfablink ist eine globale B2B-Marktplatzinfrastruktur für Hersteller, Lieferanten, Logistikunternehmen, Zollagenten, Importeure, Exporteure und industrielle Einkäufer.",
+    subtitle: "Rootfablink ist eine globale B2B-Plattform für Hersteller, Einkäufer, Logistikunternehmen, Zollagenten, Importeure, Exporteure und industrielle Einkäufer.",
     details: [
       ["Offizielle Website", "https://rootfablink.com"],
       ["Plattformumfang", "Fertigung, Beschaffung, Logistik, Zollabwicklung und internationale B2B-Handelsabläufe"],
@@ -236,7 +236,7 @@ const fr: typeof en = {
   },
   company: {
     title: "Informations sur Rootfablink",
-    subtitle: "Rootfablink est une infrastructure mondiale de marketplace B2B pour fabricants, fournisseurs, entreprises logistiques, courtiers en douane, importateurs, exportateurs et acheteurs industriels.",
+    subtitle: "Rootfablink est une plateforme B2B mondiale pour fabricants, acheteurs, entreprises logistiques, courtiers en douane, importateurs, exportateurs et acheteurs industriels.",
     details: [
       ["Site officiel", "https://rootfablink.com"],
       ["Périmètre de la plateforme", "Fabrication, sourcing, logistique, dédouanement et workflows de commerce B2B international"],
@@ -283,7 +283,7 @@ const es: typeof en = {
   },
   company: {
     title: "Información de Rootfablink",
-    subtitle: "Rootfablink es una infraestructura global de marketplace B2B para fabricantes, proveedores, empresas logísticas, agentes aduaneros, importadores, exportadores y compradores industriales.",
+    subtitle: "Rootfablink es una plataforma B2B global para fabricantes, compradores, empresas logísticas, agentes aduaneros, importadores, exportadores y compradores industriales.",
     details: [
       ["Sitio web oficial", "https://rootfablink.com"],
       ["Alcance de la plataforma", "Fabricación, sourcing, logística, despacho aduanero y flujos de comercio B2B internacional"],
@@ -330,7 +330,7 @@ const zh: typeof en = {
   },
   company: {
     title: "Rootfablink 公司信息",
-    subtitle: "Rootfablink 是面向制造商、供应商、物流公司、报关行、进口商、出口商和工业买家的全球 B2B 市场基础设施。",
+    subtitle: "Rootfablink 是连接制造商、买家、物流公司、报关行、进口商、出口商和工业买家的全球 B2B 平台。",
     details: [
       ["官方网站", "https://rootfablink.com"],
       ["平台范围", "制造、采购、物流、清关和国际 B2B 贸易工作流"],
@@ -377,7 +377,7 @@ const ru: typeof en = {
   },
   company: {
     title: "Информация о Rootfablink",
-    subtitle: "Rootfablink — глобальная B2B-инфраструктура маркетплейса для производителей, поставщиков, логистических компаний, таможенных брокеров, импортеров, экспортеров и промышленных покупателей.",
+    subtitle: "Rootfablink — глобальная B2B-платформа для производителей, покупателей, логистических компаний, таможенных брокеров, импортеров, экспортеров и промышленных покупателей.",
     details: [
       ["Официальный сайт", "https://rootfablink.com"],
       ["Охват платформы", "Производство, закупки, логистика, таможенное оформление и международные B2B-процессы"],
@@ -424,7 +424,7 @@ const ja: typeof en = {
   },
   company: {
     title: "Rootfablink 会社情報",
-    subtitle: "Rootfablink は、メーカー、サプライヤー、物流会社、通関業者、輸入業者、輸出業者、産業バイヤー向けのグローバル B2B マーケットプレイス基盤です。",
+    subtitle: "Rootfablink は、メーカー、バイヤー、物流会社、通関業者、輸入業者、輸出業者、産業バイヤーをつなぐグローバル B2B プラットフォームです。",
     details: [
       ["公式ウェブサイト", "https://rootfablink.com"],
       ["プラットフォーム範囲", "製造、調達、物流、通関、国際 B2B 取引ワークフロー"],

@@ -1,3 +1,5 @@
+import { getLocalizedCountry } from "@/lib/localization";
+
 export type MarketplaceSeedListing = {
   id: string;
   slug: string;
@@ -13,9 +15,12 @@ export type MarketplaceSeedListing = {
   supplierType: string;
   supplierTypeTr: string;
   priceRange: string;
+  priceRangeTr: string;
   moq: string;
+  moqTr: string;
   unit: string;
   leadTime: string;
+  leadTimeTr: string;
   shortDescription: string;
   shortDescriptionTr: string;
   mainImage: string;
@@ -63,11 +68,97 @@ type CategoryTemplate = {
 const tradeTerms = ["EXW", "FOB", "CIF"];
 const capabilities = ["OEM ready", "ODM ready", "Customization available", "RFQ available"];
 const supplierNames = [
-  "Rootfablink Marketplace Supplier",
+  "Rootfablink B2B Platform Manufacturer",
   "Manufacturer-ready profile",
   "Trade workflow ready supplier",
   "Export-ready catalog profile"
 ];
+
+const productTitleTranslations: Record<string, string> = {
+  "Premium Cotton T-Shirt": "Premium Pamuklu Tişört",
+  "Industrial Workwear Uniform": "Endüstriyel İş Kıyafeti Üniforması",
+  "Sportswear Collection": "Spor Giyim Koleksiyonu",
+  "Luxury Hoodie": "Lüks Kapüşonlu Sweatshirt",
+  "Smart WiFi Camera": "Akıllı WiFi Kamera",
+  "Industrial Tablet": "Endüstriyel Tablet",
+  "Wireless Earbuds": "Kablosuz Kulaklık",
+  "USB-C Charging Station": "USB-C Şarj İstasyonu",
+  "CNC Router Machine": "CNC Router Makinesi",
+  "Fiber Laser Cutting Machine": "Fiber Lazer Kesim Makinesi",
+  "Industrial Packaging Line": "Endüstriyel Ambalaj Hattı",
+  "Automatic Labeling Machine": "Otomatik Etiketleme Makinesi",
+  "Modern Dining Table Set": "Modern Yemek Masası Takımı",
+  "Luxury Sofa Collection": "Lüks Koltuk Koleksiyonu",
+  "Hotel Bedroom Furniture Set": "Otel Yatak Odası Mobilya Takımı",
+  "Smart Office Desk": "Akıllı Ofis Masası",
+  "Marble Look PVC Decorative Wall Panel": "Mermer Görünümlü PVC Dekoratif Duvar Paneli",
+  "Acoustic Wooden Wall Panel": "Akustik Ahşap Duvar Paneli",
+  "3D Geometric Wall Panel": "3D Geometrik Duvar Paneli",
+  "Luxury PVC Wall Panel": "Lüks PVC Duvar Paneli",
+  "590W N-Type Solar Panel": "590W N-Tipi Güneş Paneli",
+  "5KW Hybrid Inverter": "5KW Hibrit İnverter",
+  "10KW Off Grid Solar System": "10KW Şebekeden Bağımsız Güneş Enerjisi Sistemi",
+  "Lithium Energy Storage Battery": "Lityum Enerji Depolama Bataryası",
+  "Export Customs Clearance": "İhracat Gümrükleme Hizmeti",
+  "Import Customs Clearance": "İthalat Gümrükleme Hizmeti",
+  "HS Code Consulting": "GTİP Danışmanlığı",
+  "Trade Compliance Support": "Dış Ticaret Uyum Desteği"
+};
+
+function translateProductTitleToTurkish(title: string, subcategoryTr = "B2B", categoryTr = "Ürün") {
+  return productTitleTranslations[title] ?? `${subcategoryTr} - ${categoryTr} Ürünü`;
+}
+
+const specificationKeysTr: Record<string, string> = {
+  material: "Malzeme",
+  usage: "Kullanım alanı",
+  customization: "Özelleştirme",
+  packaging: "Paketleme",
+  feature: "Özellik",
+  finish: "Yüzey",
+  power: "Güç",
+  capacity: "Kapasite",
+  output: "Çıkış",
+  control: "Kontrol",
+  width: "Genişlik",
+  items: "İçerik",
+  frame: "Gövde",
+  use: "Kullanım",
+  volume: "Hacim"
+};
+
+function translateCommercialTextToTurkish(value: string) {
+  return value
+    .replaceAll("Quote based", "Teklife göre")
+    .replaceAll("Service quote", "Hizmet teklifi")
+    .replaceAll("days", "gün")
+    .replaceAll("pieces", "adet")
+    .replaceAll("piece", "adet")
+    .replaceAll("sets", "takım")
+    .replaceAll("set", "takım")
+    .replaceAll("units", "ünite")
+    .replaceAll("unit", "ünite")
+    .replaceAll("systems", "sistem")
+    .replaceAll("system", "sistem")
+    .replaceAll("lines", "hat")
+    .replaceAll("line", "hat")
+    .replaceAll("rooms", "oda")
+    .replaceAll("room", "oda")
+    .replaceAll("meters", "metre")
+    .replaceAll("meter", "metre")
+    .replaceAll("panels", "panel")
+    .replaceAll("shipments", "sevkiyat")
+    .replaceAll("shipment", "sevkiyat")
+    .replaceAll("consultations", "danışmanlık")
+    .replaceAll("consultation", "danışmanlık")
+    .replaceAll("Available on RFQ", "RFQ ile sunulur");
+}
+
+function translateSpecificationValueToTurkish(value: string) {
+  const translated = translateCommercialTextToTurkish(value);
+  if (translated !== value || /^[\d\s.,/%+-]+(?:cm|mm|m2|m²|W|kW|V|mAh)?$/i.test(value)) return translated;
+  return "Projeye göre belirlenir";
+}
 
 const categoryTranslations: Record<string, string> = {
   "Construction and Building Materials": "Yapı ve İnşaat Malzemeleri",
@@ -212,7 +303,7 @@ function makeListing(category: CategoryTemplate, categoryIndex: number, product:
     customization: product.specs.customization ?? "Available on RFQ"
   };
   const categoryTr = categoryTranslations[category.category] ?? category.category;
-  const subcategoryTr = subcategoryTranslations[product.subcategory] ?? product.subcategory;
+  const subcategoryTr = subcategoryTranslations[product.subcategory] ?? categoryTr;
   const supplierTypeTr = "Üretici profili";
   const shortDescription = `${product.title} prepared for B2B sourcing, RFQ comparison and ${category.descriptionFocus.toLowerCase()}.`;
 
@@ -220,29 +311,37 @@ function makeListing(category: CategoryTemplate, categoryIndex: number, product:
     id,
     slug,
     title: product.title,
-    titleTr: product.title,
+    titleTr: translateProductTitleToTurkish(product.title, subcategoryTr, categoryTr),
     category: category.category,
     categoryTr,
     subcategory: product.subcategory,
     subcategoryTr,
-    country: category.country,
-    countryTr: category.country === "Türkiye" ? "Türkiye" : category.country,
-    supplierName: supplierNames[(categoryIndex + productIndex) % supplierNames.length] ?? "Rootfablink Marketplace Supplier",
+    country: category.country === "Türkiye" ? "Turkey" : category.country,
+    countryTr: getLocalizedCountry(category.country, "tr"),
+    supplierName: supplierNames[(categoryIndex + productIndex) % supplierNames.length] ?? "Rootfablink B2B Platform Manufacturer",
     supplierType: category.supplierType,
     supplierTypeTr,
     priceRange: product.priceRange,
+    priceRangeTr: translateCommercialTextToTurkish(product.priceRange),
     moq: product.moq,
+    moqTr: translateCommercialTextToTurkish(product.moq),
     unit: product.unit,
     leadTime: product.leadTime,
+    leadTimeTr: translateCommercialTextToTurkish(product.leadTime),
     shortDescription,
-    shortDescriptionTr: `${product.title}, B2B tedarik, RFQ karşılaştırması ve ${categoryTr.toLowerCase()} alımları için hazırlanmış profesyonel ürün listelemesidir.`,
+    shortDescriptionTr: `${translateProductTitleToTurkish(product.title, subcategoryTr, categoryTr)}, B2B tedarik, RFQ karşılaştırması ve ${categoryTr.toLowerCase()} alımları için hazırlanmış profesyonel ürün listelemesidir.`,
     mainImage: galleryImages[0] ?? imageUrl(category.imageQuery, categoryIndex, productIndex, 0),
     galleryImages,
     imageAlt: `${product.title} product visual for ${product.subcategory}`,
     imageSearchIntent: `${product.title} ${product.subcategory} B2B product catalog visual`,
     visualCategory,
     specifications,
-    specificationsTr: Object.fromEntries(Object.entries(specifications).map(([key, value]) => [key, value])),
+    specificationsTr: Object.fromEntries(
+      Object.entries(specifications).map(([key, value]) => [
+        specificationKeysTr[key] ?? key,
+        translateSpecificationValueToTurkish(value)
+      ])
+    ),
     productSpecifications: specifications,
     capabilities,
     capabilitiesTr: ["OEM hazır", "ODM hazır", "Özelleştirme uygun", "RFQ uygun"],

@@ -103,7 +103,7 @@ export const marketplaceCopy = {
       currency: "Currency",
       country: "Country / Region",
       preferencesTitle: "Language settings",
-      preferencesNote: "Country selection applies language, currency and marketplace locale automatically. Advanced users can override these values manually.",
+      preferencesNote: "Country selection applies language, currency and regional platform settings automatically. Advanced users can override these values manually.",
       autoApplied: "Auto-applied preferences",
       postal: "Postal code optional",
       save: "Save",
@@ -111,7 +111,7 @@ export const marketplaceCopy = {
       shippingNote: "Shipping options and trade workflows may vary by destination.",
       languages: ["English", "Türkçe", "العربية", "中文", "Русский", "Deutsch", "Français", "Español"],
       currencies: ["USD", "EUR", "TRY", "GBP", "CNY", "AED", "SAR"],
-      countries: ["Türkiye", "United States", "Germany", "United Kingdom", "China", "Iraq", "Syria", "UAE", "Saudi Arabia", "France", "Spain"]
+      countries: ["Turkey", "United States", "Germany", "United Kingdom", "China", "Iraq", "Syria", "UAE", "Saudi Arabia", "France", "Spain"]
     },
     quick: {
       messages: "Messages",
@@ -138,10 +138,10 @@ export const marketplaceCopy = {
       close: "Close"
     },
     home: {
-      heroEyebrow: "Free to join, free to list, commission and promotion based marketplace model.",
-      heroTitle: "Global B2B marketplace for manufacturers, buyers and trade services",
+      heroEyebrow: "Free to join, free to list, commission and promotion based B2B platform model.",
+      heroTitle: "Global B2B Platform for manufacturers, buyers and trade services",
       heroText:
-        "Search products, compare manufacturers, send RFQs, prepare protected trade workflows and connect with logistics partners through one Rootfablink marketplace foundation.",
+        "Search products, compare manufacturers, send RFQs, prepare protected trade workflows and connect with logistics partners through the Rootfablink Global B2B Platform.",
       welcome: "Welcome to Rootfablink",
       recommended: "Recommended categories",
       mostSearched: "Most searched products",
@@ -153,12 +153,12 @@ export const marketplaceCopy = {
       searchTabs: ["Products", "Manufacturers", "RFQ"],
       discoveryCards: ["Smart factory search", "Most preferred manufacturers", "Direct factory samples", "Türkiye export suppliers"],
       protectionCards: ["Secure workflow", "Refund policy preparation", "Logistics services", "After sales protection preparation"],
-      businessCards: ["RFQ marketplace", "Sponsored products", "Verified supplier program", "Logistics quote request"],
+      businessCards: ["RFQ network", "Sponsored products", "Verified manufacturer program", "Logistics quote request"],
       growth: [
         ["Free registration", "Create supplier access and company profile without upfront fees."],
         ["Free product listing", "Publish basic product listings and receive buyer demand."],
         ["Sponsored visibility", "Promote products, suppliers and RFQ opportunities when ready to scale."],
-        ["Commission model", "Marketplace revenue is designed around transactions, protection services and lead value."]
+        ["Commission model", "Platform revenue is designed around transactions, protection services and lead value."]
       ]
     },
     productCard: {
@@ -175,10 +175,10 @@ export const marketplaceCopy = {
       contact: "Contact supplier",
       profile: "View profile"
     },
-    buyerCenter: ["How sourcing works", "RFQ marketplace", "Supplier comparison", "Order protection", "Logistics support", "Help center", "Report a problem"],
+    buyerCenter: ["How sourcing works", "RFQ network", "Manufacturer comparison", "Order protection", "Logistics support", "Help center", "Report a problem"],
     supplierCenter: ["Become a supplier", "List products for free", "Verified supplier program", "Sponsored visibility", "RFQ opportunities", "Supplier help center"],
     routes: {
-      categories: ["Categories", "Explore industrial categories, subcategories and supplier discovery paths prepared for the Rootfablink marketplace."],
+      categories: ["Categories", "Explore industrial categories, subcategories and manufacturer discovery paths across the Rootfablink Global B2B Platform."],
       "verified-manufacturers": ["Verified Manufacturers", "Discover verification-ready factory and supplier profile flows built for global sourcing confidence."],
       "trade-protection": ["Trade Protection", "Review secure transaction, documentation and future trade assurance workflow foundations."],
       "buyer-center": ["Buyer Center", "Access buyer tools for sourcing, RFQs, supplier comparison, protection and logistics support."],
@@ -261,7 +261,7 @@ export const marketplaceCopy = {
       currency: "Para birimi",
       country: "Ülke / Bölge",
       preferencesTitle: "Dil ayarları",
-      preferencesNote: "Ülke seçimi dili, para birimini ve pazar yeri locale ayarını otomatik uygular. Gelişmiş kullanıcılar bu değerleri elle değiştirebilir.",
+      preferencesNote: "Ülke seçimi dili, para birimini ve bölgesel platform ayarlarını otomatik uygular. Gelişmiş kullanıcılar bu değerleri elle değiştirebilir.",
       autoApplied: "Otomatik uygulanan tercihler",
       postal: "Posta kodu isteğe bağlı",
       save: "Kaydet",
@@ -269,7 +269,7 @@ export const marketplaceCopy = {
       shippingNote: "Kargo seçenekleri ve ticaret süreçleri teslimat ülkesine göre değişebilir.",
       languages: ["English", "Türkçe", "العربية", "中文", "Русский", "Deutsch", "Français", "Español"],
       currencies: ["USD", "EUR", "TRY", "GBP", "CNY", "AED", "SAR"],
-      countries: ["Türkiye", "United States", "Germany", "United Kingdom", "China", "Iraq", "Syria", "UAE", "Saudi Arabia", "France", "Spain"]
+      countries: ["Türkiye", "Amerika Birleşik Devletleri", "Almanya", "Birleşik Krallık", "Çin", "Irak", "Suriye", "Birleşik Arap Emirlikleri", "Suudi Arabistan", "Fransa", "İspanya"]
     },
     quick: {
       messages: "Mesajlarım",
@@ -297,9 +297,9 @@ export const marketplaceCopy = {
     },
     home: {
       heroEyebrow: "Katılım ücretsiz, ürün listeleme ücretsiz, gelir modeli işlem komisyonu ve sponsorlu görünürlük üzerine kuruludur.",
-      heroTitle: "Üreticiler, alıcılar ve ticaret hizmetleri için küresel B2B pazaryeri",
+      heroTitle: "Üreticiler, alıcılar ve ticaret hizmetleri için küresel B2B platform",
       heroText:
-        "Ürün arayın, üreticileri karşılaştırın, RFQ gönderin, güvenli ticaret iş akışlarına hazırlanın ve lojistik ortaklarına tek Rootfablink pazaryeri temelinden ulaşın.",
+        "Ürün arayın, üreticileri karşılaştırın, RFQ gönderin, güvenli ticaret iş akışlarına hazırlanın ve lojistik ortaklarına Rootfablink küresel B2B platformu üzerinden ulaşın.",
       welcome: "Rootfablink'e hoş geldiniz",
       recommended: "Önerilen kategoriler",
       mostSearched: "En çok aranan ürünler",
@@ -311,12 +311,12 @@ export const marketplaceCopy = {
       searchTabs: ["Ürünler", "Üreticiler", "RFQ"],
       discoveryCards: ["Akıllı fabrika arama", "En çok tercih edilen üreticiler", "Doğrudan fabrika numuneleri", "Türkiye ihracat üreticileri"],
       protectionCards: ["Güvenli iş akışı", "İade politikası hazırlığı", "Lojistik hizmetleri", "Satış sonrası koruma hazırlığı"],
-      businessCards: ["RFQ pazaryeri", "Sponsorlu ürünler", "Doğrulanmış üretici programı", "Lojistik teklif talebi"],
+      businessCards: ["RFQ iş ağı", "Sponsorlu ürünler", "Doğrulanmış üretici programı", "Lojistik teklif talebi"],
       growth: [
         ["Ücretsiz kayıt", "Ön ücret olmadan üretici erişimi ve şirket profili oluşturun."],
         ["Ücretsiz ürün listeleme", "Temel ürün listeleri yayınlayın ve alıcı talepleri alın."],
         ["Sponsorlu görünürlük", "Büyümeye hazır olduğunuzda ürün, üretici ve RFQ fırsatlarını öne çıkarın."],
-        ["Komisyon modeli", "Pazaryeri geliri işlem, koruma servisi ve lead değeri etrafında tasarlanır."]
+        ["Komisyon modeli", "Platform geliri işlem, koruma servisi ve lead değeri etrafında tasarlanır."]
       ]
     },
     productCard: {
@@ -336,7 +336,7 @@ export const marketplaceCopy = {
     buyerCenter: ["Tedarik süreci nasıl işler?", "Teklif talebi pazarı", "Üretici karşılaştırma", "Sipariş koruması", "Lojistik desteği", "Yardım merkezi", "Sorun bildir"],
     supplierCenter: ["Üretici ol", "Ürünleri ücretsiz listele", "Doğrulanmış üretici programı", "Sponsorlu görünürlük", "RFQ fırsatları", "Üretici yardım merkezi"],
     routes: {
-      categories: ["Kategoriler", "Rootfablink pazaryeri için endüstriyel kategori, alt kategori ve üretici keşif yollarını inceleyin."],
+      categories: ["Kategoriler", "Rootfablink küresel B2B platformundaki endüstriyel kategorileri, alt kategorileri ve üretici keşif yollarını inceleyin."],
       "verified-manufacturers": ["Onaylanmış Üreticiler", "Global tedarik güveni için hazırlanmış doğrulamaya hazır fabrika ve üretici profil akışlarını keşfedin."],
       "trade-protection": ["Ticaret Güvence Sistemi", "Güvenli işlem, belge ve gelecekteki ticaret güvence iş akışı temellerini inceleyin."],
       "buyer-center": ["Alıcı Merkezi", "Tedarik, RFQ, üretici karşılaştırma, koruma ve lojistik destek araçlarına erişin."],
@@ -786,7 +786,9 @@ export const marketplaceSeedProducts = [
   titleTr: listing.titleTr,
   price: listing.priceRange,
   priceRange: listing.priceRange,
+  priceRangeTr: listing.priceRangeTr,
   moq: listing.moq,
+  moqTr: listing.moqTr,
   country: listing.country,
   countryTr: listing.countryTr,
   verified: listing.verified,
@@ -799,6 +801,7 @@ export const marketplaceSeedProducts = [
   visualCategory: listing.visualCategory,
   visualMatchScore: listing.visualMatchScore,
   leadTime: listing.leadTime,
+  leadTimeTr: listing.leadTimeTr,
   category: listing.category,
   categoryTr: listing.categoryTr,
   subcategory: listing.subcategory,
@@ -840,9 +843,9 @@ export const marketplaceProducts = [
 ];
 
 export const marketplaceSuppliers = [
-  { company: "i-WALL", country: "Turkey", countryTr: "Türkiye", category: "PS Wall Panels", categoryTr: "Polimer Lambiri", response: "RFQ", markets: "TR, Export", verified: false, href: "/en/supplier/i-wall", logo: "/brands/i-wall/logo.png", productCount: 27 },
-  { company: "Anatolia Precision Manufacturing", country: "Türkiye", category: "Machinery", response: "92%", markets: "EU, MENA" },
-  { company: "Global Pack Systems", country: "Germany", category: "Packaging", response: "88%", markets: "EU, UK" },
-  { company: "Marmara Textile Works", country: "Türkiye", category: "Workwear", response: "95%", markets: "US, EU" }
+  { company: "i-WALL Surface Systems", companyTr: "i-WALL Yüzey Sistemleri", country: "Turkey", countryTr: "Türkiye", category: "Building Materials", categoryTr: "Yapı Malzemeleri", response: "RFQ", markets: "TR, Export", verified: false, href: "/en/supplier/i-wall", logo: "/brands/i-wall/logo.png", productCount: 27 },
+  { company: "Anatolia Precision Manufacturing", companyTr: "Anadolu Hassas Üretim", country: "Turkey", countryTr: "Türkiye", category: "Machinery", categoryTr: "Makine", response: "92%", markets: "EU, MENA" },
+  { company: "Global Pack Systems", companyTr: "Global Ambalaj Sistemleri", country: "Germany", countryTr: "Almanya", category: "Packaging", categoryTr: "Ambalaj", response: "88%", markets: "EU, UK" },
+  { company: "Marmara Textile Works", companyTr: "Marmara Tekstil Fabrikası", country: "Turkey", countryTr: "Türkiye", category: "Workwear", categoryTr: "İş Kıyafetleri", response: "95%", markets: "US, EU" }
 ];
 

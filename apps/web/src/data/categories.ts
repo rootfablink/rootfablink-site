@@ -201,8 +201,8 @@ function category(
       tr: `${nameTr} Üreticileri ve Ürünleri | Rootfablink`
     },
     seoDescription: {
-      en: `Find ${nameEn.toLowerCase()} products, manufacturers and RFQ workflows through Rootfablink's global B2B marketplace.`,
-      tr: `${nameTr.toLowerCase()} ürünlerini, üreticilerini ve RFQ akışlarını Rootfablink küresel B2B pazaryerinde bulun.`
+      en: `Find ${nameEn.toLowerCase()} products, manufacturers and RFQ workflows through the Rootfablink Global B2B Platform.`,
+      tr: `${nameTr.toLowerCase()} ürünlerini, üreticilerini ve RFQ akışlarını Rootfablink küresel B2B platformunda bulun.`
     }
   };
 }

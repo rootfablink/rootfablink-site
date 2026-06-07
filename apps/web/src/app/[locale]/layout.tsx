@@ -14,9 +14,11 @@ const hreflangAlternates = {
   "x-default": "/"
 };
 
-const homepageTitle = "Rootfablink | Global B2B Platform for Manufacturers, Suppliers and Buyers";
+const englishHomepageTitle = "Rootfablink | Global B2B Platform for Manufacturers and Buyers";
+const turkishHomepageTitle = "Rootfablink | Üreticiler ve Alıcılar için Global B2B Platform";
 const socialTitle = "Rootfablink | Global B2B Platform";
-const homepageDescription = "Rootfablink connects manufacturers, suppliers and buyers through sourcing, RFQs, messaging, logistics, customs services and digital trade infrastructure.";
+const englishHomepageDescription = "Rootfablink connects manufacturers, buyers, logistics providers and customs brokers through a global B2B platform for sourcing, RFQ management and international trade operations.";
+const turkishHomepageDescription = "Rootfablink, üreticileri, alıcıları, lojistik firmalarını ve gümrük müşavirlerini küresel bir B2B platformda buluşturur.";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -29,13 +31,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale: localeParam } = await params;
   const locale: Locale = isLocale(localeParam) ? localeParam : "en";
+  const homepageTitle = locale === "tr" ? turkishHomepageTitle : englishHomepageTitle;
+  const homepageDescription = locale === "tr" ? turkishHomepageDescription : englishHomepageDescription;
 
   return {
     title: {
       absolute: homepageTitle
     },
     description: homepageDescription,
-    keywords: ["Rootfablink", "B2B platform", "manufacturers", "suppliers", "buyers", "RFQ", "logistics", "customs services", "digital trade"],
+    keywords: ["Rootfablink", "Global B2B Platform", "manufacturers", "buyers", "RFQ", "logistics providers", "customs brokers", "international trade operations"],
     robots: {
       index: true,
       follow: true
